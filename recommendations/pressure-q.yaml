@@ -1,0 +1,34 @@
+# Requirements for Specific humidity
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Specific humidity
+    filters:
+    - kind: cf-standard-name
+      value: specific_humidity
+    - kind: cf-short-name
+      value: q
+    - kind: grib-short-name
+      value: q
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 4.685290662e-07 [kg kg**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

@@ -1,0 +1,32 @@
+# Requirements for Convective available potential energy
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Convective available potential energy
+    filters:
+    - kind: cf-short-name
+      value: cape
+    - kind: grib-short-name
+      value: cape
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.1963424683 [J kg**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

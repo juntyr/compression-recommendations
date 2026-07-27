@@ -1,0 +1,34 @@
+# Requirements for Relative humidity
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Relative humidity
+    filters:
+    - kind: cf-standard-name
+      value: relative_humidity
+    - kind: cf-short-name
+      value: r
+    - kind: grib-short-name
+      value: r
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.002527310513 [%]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

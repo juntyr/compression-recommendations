@@ -1,0 +1,36 @@
+# Requirements for Ozone mass mixing ratio
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Ozone mass mixing ratio
+    filters:
+    - kind: cf-standard-name
+      value: mass_fraction_of_ozone_in_air
+    - kind: cf-short-name
+      value: o3
+    - kind: grib-short-name
+      value: o3
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Johannes Flemming
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.278617767e-10 [kg kg**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

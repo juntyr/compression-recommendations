@@ -1,0 +1,37 @@
+# Requirements for U component of wind
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # U component of wind
+    filters:
+    - kind: cf-standard-name
+      value: eastward_wind
+    - kind: cf-short-name
+      value: u
+    - kind: grib-short-name
+      value: u
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Peter B. and Jean suggest to go lower, e.g. 0,01m/s or even 0.001m/s for wind
+  # fields
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.002341713756 [m s**-1]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.5

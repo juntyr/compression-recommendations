@@ -1,0 +1,34 @@
+# Requirements for Snowfall
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Snowfall
+    filters:
+    - kind: cf-standard-name
+      value: lwe_thickness_of_snowfall_amount
+    - kind: cf-short-name
+      value: sf
+    - kind: grib-short-name
+      value: sf
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 2.327105904e-07 [m of water equivalent]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-05

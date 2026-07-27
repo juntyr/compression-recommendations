@@ -1,0 +1,36 @@
+# Requirements for Geopotential
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Geopotential
+    filters:
+    - kind: cf-standard-name
+      value: geopotential
+    - kind: cf-short-name
+      value: z
+    - kind: grib-short-name
+      value: z
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 3.278542519 [m**2 s**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 5.0
+    - kind: max-pointwise-absolute-error-bound
+      value: 10.0

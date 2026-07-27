@@ -1,0 +1,41 @@
+# Requirements for Temperature
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Temperature
+    filters:
+    - kind: cf-standard-name
+      value: air_temperature
+    - kind: cf-short-name
+      value: t
+    - kind: grib-short-name
+      value: t
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Peter B. recommends 0.01K for T fields for long integrations to make budgets
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.002234057756 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.05
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

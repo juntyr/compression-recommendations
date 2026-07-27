@@ -1,0 +1,39 @@
+# Requirements for Runoff
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Runoff
+    filters:
+    - kind: cf-short-name
+      value: ro
+    - kind: grib-short-name
+      value: ro
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # It could be considered to remove this value, as ro=sro+ssro
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 8.138595149e-07 [m]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-05
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

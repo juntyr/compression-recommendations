@@ -1,0 +1,32 @@
+# Requirements for Specific snow water content
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Specific snow water content
+    filters:
+    - kind: cf-short-name
+      value: cswc
+    - kind: grib-short-name
+      value: cswc
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 6.541631592e-08 [kg kg**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

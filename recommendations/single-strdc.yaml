@@ -1,0 +1,32 @@
+# Requirements for Surface long-wave (thermal) radiation downward clear-sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface long-wave (thermal) radiation downward clear-sky
+    filters:
+    - kind: cf-short-name
+      value: strdc
+    - kind: grib-short-name
+      value: strdc
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 79.14935303 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

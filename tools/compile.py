@@ -16,11 +16,16 @@ combined = {
     },
 }
 
-combined = strictyaml.as_document(data=combined, schema=strictyaml.Map({
-    "recommendations": strictyaml.Seq(strictyaml.Any()),
-    "version": strictyaml.Str(),
-    "metadata": strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
-}))
+combined = strictyaml.as_document(
+    data=combined,
+    schema=strictyaml.Map(
+        {
+            "recommendations": strictyaml.Seq(strictyaml.Any()),
+            "version": strictyaml.Str(),
+            "metadata": strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
+        }
+    ),
+)
 
 for i, path in tqdm(enumerate(paths)):
     yaml = path.read_text()
@@ -30,7 +35,7 @@ for i, path in tqdm(enumerate(paths)):
             continue
         yaml2.append(line)
     yaml = "".join(yaml2)
-    
+
     combined["recommendations"][i] = strictyaml.load(yaml)
 
 Path("recommendations.yaml").write_text(
@@ -38,4 +43,6 @@ Path("recommendations.yaml").write_text(
 # Automatically compiled from recommendations/*.yaml.
 # DO NOT EDIT
 
-""" + combined.as_yaml())
+"""
+    + combined.as_yaml()
+)

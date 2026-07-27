@@ -1,0 +1,34 @@
+# Requirements for Maximum 10 metre wind gust since previous post-processing
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Maximum 10 metre wind gust since previous post-processing
+    filters:
+    - kind: cf-short-name
+      value: fg10
+    - kind: grib-short-name
+      value: 10fg
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.0008327648393 [m s**-1]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.5
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.5

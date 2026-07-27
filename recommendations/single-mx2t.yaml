@@ -1,0 +1,32 @@
+# Requirements for Maximum temperature at 2 metres since previous post-processing
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Maximum temperature at 2 metres since previous post-processing
+    filters:
+    - kind: cf-short-name
+      value: mx2t
+    - kind: grib-short-name
+      value: mx2t
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.001913307933 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.05

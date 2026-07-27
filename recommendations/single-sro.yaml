@@ -1,0 +1,41 @@
+# Requirements for Surface runoff
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface runoff
+    filters:
+    - kind: cf-short-name
+      value: sro
+    - kind: grib-short-name
+      value: sro
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # |-
+  # The maximum error should be the smaller of either indicated absolute/relative errors
+  # Once this is implemented, please communicate with Jasper Denissen/Michel Wortmann on the issues they solved for runoff
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 6.206246326e-07 [m]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-05
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

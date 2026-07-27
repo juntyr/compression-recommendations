@@ -1,0 +1,32 @@
+# Requirements for Wave spectral directional width for swell
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Wave spectral directional width for swell
+    filters:
+    - kind: cf-short-name
+      value: dwps
+    - kind: grib-short-name
+      value: dwps
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 2.05e-05 [radians]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.01

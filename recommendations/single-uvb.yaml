@@ -1,0 +1,38 @@
+# Requirements for Surface downward UV radiation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface downward UV radiation
+    filters:
+    - kind: cf-short-name
+      value: uvb
+    - kind: grib-short-name
+      value: uvb
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # For all the accumulated radiative fluxes I am going for 1 W/m2 error in a 1-hr
+  # mean, implying a 3600 J/m2 error in the accumulation. Note that you can't easily
+  # convert this to a relative error, because accumulations can be a year long, and
+  # you might want the same error in hourly average or daily average flux for the
+  # final day as the beginning.
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 24.82275391 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

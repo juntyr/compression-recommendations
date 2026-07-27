@@ -1,0 +1,39 @@
+# Requirements for Potential vorticity
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Potential vorticity
+    filters:
+    - kind: cf-short-name
+      value: pv
+    - kind: grib-short-name
+      value: pv
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # 0,1 PVU = 1e-7
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 7.056142337e-09 [K m**2 kg**-1 s**-1]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 1e-07
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.1

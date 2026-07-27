@@ -1,0 +1,34 @@
+# Requirements for Time-integrated eastward turbulent surface stress
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-integrated eastward turbulent surface stress
+    filters:
+    - kind: cf-standard-name
+      value: surface_downward_eastward_stress
+    - kind: cf-short-name
+      value: ewss
+    - kind: grib-short-name
+      value: ewss
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 3.720990658 [N m**-2 s]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 100.0

@@ -1,0 +1,32 @@
+# Requirements for Instantaneous large-scale precipitation fraction
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Instantaneous large-scale precipitation fraction
+    filters:
+    - kind: cf-short-name
+      value: ilspf
+    - kind: grib-short-name
+      value: ilspf
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.525878906e-05 [Proportion]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

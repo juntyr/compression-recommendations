@@ -1,0 +1,41 @@
+# Requirements for Sea ice area fraction
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Sea ice area fraction
+    filters:
+    - kind: cf-standard-name
+      value: sea_ice_area_fraction
+    - kind: cf-short-name
+      value: siconc
+    - kind: grib-short-name
+      value: ci
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.525878906e-05 [dimensionless]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.05
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01
+    - kind: max-pointwise-relative-error-bound
+      value: 0.05

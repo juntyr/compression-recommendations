@@ -1,0 +1,34 @@
+# Requirements for Time-integrated boundary layer dissipation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-integrated boundary layer dissipation
+    filters:
+    - kind: cf-standard-name
+      value: kinetic_energy_dissipation_in_atmosphere_boundary_layer
+    - kind: cf-short-name
+      value: bld
+    - kind: grib-short-name
+      value: bld
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 89.1663208 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1000.0

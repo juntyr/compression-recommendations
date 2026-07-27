@@ -1,0 +1,34 @@
+# Requirements for Fraction of cloud cover
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Fraction of cloud cover
+    filters:
+    - kind: cf-short-name
+      value: cc
+    - kind: grib-short-name
+      value: cc
+- kind: level-kind
+  value: pressure
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Richard Forbes
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.00390625 [dimensionless]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01

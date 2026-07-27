@@ -1,0 +1,34 @@
+# Requirements for Top net short-wave (solar) radiation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Top net short-wave (solar) radiation
+    filters:
+    - kind: cf-standard-name
+      value: toa_net_upward_shortwave_flux
+    - kind: cf-short-name
+      value: tsr
+    - kind: grib-short-name
+      value: tsr
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 217.046875 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

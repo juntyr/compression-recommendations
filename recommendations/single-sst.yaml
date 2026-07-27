@@ -1,0 +1,36 @@
+# Requirements for Sea surface temperature
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Sea surface temperature
+    filters:
+    - kind: cf-short-name
+      value: sst
+    - kind: grib-short-name
+      value: sst
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Peter B. recommends 0.01K for T fields for long integrations to make budgets
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.0006627105176 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.01
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.01
