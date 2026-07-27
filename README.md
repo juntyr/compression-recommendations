@@ -9,7 +9,7 @@ These recommendations can then be used by external tools to automatically recomm
 
 That is up to *you* to decide!
 - You can add comments to any recommendation to elaborate or discuss different requirements.
-- You can propose edits to any recommendation, which we accept once a new concensus has been reached.
+- You can propose edits to any recommendation, which we accept once a new consensus has been reached.
 - You can create new recommendations for new variables or to specialise existing requirements for specific cases.
 - You can merge multiple recommendations to generalise them.
 - You can propose new filters to select which recommendations should apply, or new kinds of requirements.
