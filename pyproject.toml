@@ -4,3 +4,7 @@ dev = [
     "strictyaml ~= 1.7.3",
     "tqdm ~= 4.67.1",
 ]
+
+book = [
+    "jupyter-book~=2.1.5",
+]

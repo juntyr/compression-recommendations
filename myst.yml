@@ -1,0 +1,43 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 0467dbad-1c73-4a1a-a0be-14ab0d1f5bf0
+  title: Compression Recommendations
+  description: Recommendations for Safe Lossy Compression of weather and climate data
+  keywords:
+    - compression
+    - recommendations
+    - weather
+    - climate
+  license: MPL-2.0
+  authors:
+    - name: Juniper Tyree
+      orcid: 0000-0002-7923-9609
+      affiliations:
+        - name: University of Helsinki
+          ror: 040af2s02
+      github: juntyr
+    - name: Sara Faghih-Naini
+      orcid: 0009-0009-1880-2822
+      affiliations:
+        - name: European Centre for Medium-Range Weather Forecasts
+          ror: 014w0fd65
+      github: SF-N
+    - name: Milan Klöwer
+      orcid: 0000-0002-3920-4356
+      affiliations:
+        - name: University of Oxford
+          ror: 052gg0110
+      github: milankl
+    - name: Peter Dueben
+      orcid: 0000-0002-3920-4356
+      affiliations:
+        - name: European Centre for Medium-Range Weather Forecasts
+          ror: 014w0fd65
+
+  github: https://github.com/juntyr/compression-recommendations
+  toc:
+    - file: README.md
+
+site:
+  template: book-theme
