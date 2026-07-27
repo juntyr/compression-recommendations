@@ -2,7 +2,7 @@
 
 What lossy compression is safe when using lossy compression on weather and climate data?
 
-This repository contains community-created [recommendations][recommendations] that are automatically compiled into one machine-readable [`recommendations.yaml`][recommendations.yaml] file.
+This repository contains community-created [recommendations](recommendations) that are automatically compiled into one machine-readable [`recommendations.yaml`](recommendations.yaml) file.
 These recommendations can then be used by external tools to automatically recommend appropriate safety requirements for compressing various weather and climate data.
 
 ## Contributing: What should be recommended?
