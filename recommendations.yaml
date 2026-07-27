@@ -1,0 +1,4629 @@
+# Automatically compiled from recommendations/*.yaml.
+# DO NOT EDIT
+
+recommendations:
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cc
+      - kind: grib-short-name
+        value: cc
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ciwc
+      - kind: grib-short-name
+        value: ciwc
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: clwc
+      - kind: grib-short-name
+        value: clwc
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: crwc
+      - kind: grib-short-name
+        value: crwc
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cswc
+      - kind: grib-short-name
+        value: cswc
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: divergence_of_wind
+      - kind: cf-short-name
+        value: d
+      - kind: grib-short-name
+        value: d
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: mass_fraction_of_ozone_in_air
+      - kind: cf-short-name
+        value: o3
+      - kind: grib-short-name
+        value: o3
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: pv
+      - kind: grib-short-name
+        value: pv
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 1e-07
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: specific_humidity
+      - kind: cf-short-name
+        value: q
+      - kind: grib-short-name
+        value: q
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: relative_humidity
+      - kind: cf-short-name
+        value: r
+      - kind: grib-short-name
+        value: r
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: air_temperature
+      - kind: cf-short-name
+        value: t
+      - kind: grib-short-name
+        value: t
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: eastward_wind
+      - kind: cf-short-name
+        value: u
+      - kind: grib-short-name
+        value: u
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.5
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: northward_wind
+      - kind: cf-short-name
+        value: v
+      - kind: grib-short-name
+        value: v
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.5
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: atmosphere_relative_vorticity
+      - kind: cf-short-name
+        value: vo
+      - kind: grib-short-name
+        value: vo
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lagrangian_tendency_of_air_pressure
+      - kind: cf-short-name
+        value: w
+      - kind: grib-short-name
+        value: w
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: geopotential
+      - kind: cf-short-name
+        value: z
+      - kind: grib-short-name
+        value: z
+  - kind: level-kind
+    value: pressure
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 5.0
+      - kind: max-pointwise-absolute-error-bound
+        value: 10.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: alnid
+      - kind: grib-short-name
+        value: alnid
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: alnip
+      - kind: grib-short-name
+        value: alnip
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: aluvd
+      - kind: grib-short-name
+        value: aluvd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: aluvp
+      - kind: grib-short-name
+        value: aluvp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: anor
+      - kind: grib-short-name
+        value: anor
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: asn
+      - kind: grib-short-name
+        value: asn
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.001
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_cpr
+      - kind: grib-short-name
+        value: avg_cpr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_csfr
+      - kind: grib-short-name
+        value: avg_csfr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_esrwe
+      - kind: grib-short-name
+        value: avg_esrwe
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-07
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ibld
+      - kind: grib-short-name
+        value: avg_ibld
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ie
+      - kind: grib-short-name
+        value: avg_ie
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_iegwss
+      - kind: grib-short-name
+        value: avg_iegwss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_iews
+      - kind: grib-short-name
+        value: avg_iews
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_igwd
+      - kind: grib-short-name
+        value: avg_igwd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ilspf
+      - kind: grib-short-name
+        value: avg_ilspf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ingwss
+      - kind: grib-short-name
+        value: avg_ingwss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_inss
+      - kind: grib-short-name
+        value: avg_inss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ishf
+      - kind: grib-short-name
+        value: avg_ishf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_lsprate
+      - kind: grib-short-name
+        value: avg_lsprate
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_lssfr
+      - kind: grib-short-name
+        value: avg_lssfr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_pevr
+      - kind: grib-short-name
+        value: avg_pevr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_rorwe
+      - kind: grib-short-name
+        value: avg_rorwe
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdirswrf
+      - kind: grib-short-name
+        value: avg_sdirswrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdirswrfcs
+      - kind: grib-short-name
+        value: avg_sdirswrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdlwrf
+      - kind: grib-short-name
+        value: avg_sdlwrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdlwrfcs
+      - kind: grib-short-name
+        value: avg_sdlwrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdswrf
+      - kind: grib-short-name
+        value: avg_sdswrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sdswrfcs
+      - kind: grib-short-name
+        value: avg_sdswrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_sduvrf
+      - kind: grib-short-name
+        value: avg_sduvrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_slhtf
+      - kind: grib-short-name
+        value: avg_slhtf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_smr
+      - kind: grib-short-name
+        value: avg_smr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-06
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_snlwrf
+      - kind: grib-short-name
+        value: avg_snlwrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_snlwrfcs
+      - kind: grib-short-name
+        value: avg_snlwrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_snswrf
+      - kind: grib-short-name
+        value: avg_snswrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_snswrfcs
+      - kind: grib-short-name
+        value: avg_snswrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_ssurfror
+      - kind: grib-short-name
+        value: avg_ssurfror
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-06
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_surfror
+      - kind: grib-short-name
+        value: avg_surfror
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-06
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tdswrf
+      - kind: grib-short-name
+        value: avg_tdswrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tnlwrf
+      - kind: grib-short-name
+        value: avg_tnlwrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tnlwrfcs
+      - kind: grib-short-name
+        value: avg_tnlwrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tnswrf
+      - kind: grib-short-name
+        value: avg_tnswrf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tnswrfcs
+      - kind: grib-short-name
+        value: avg_tnswrfcs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tprate
+      - kind: grib-short-name
+        value: avg_tprate
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_tsrwe
+      - kind: grib-short-name
+        value: avg_tsrwe
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: avg_vimdf
+      - kind: grib-short-name
+        value: avg_vimdf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: bfi
+      - kind: grib-short-name
+        value: bfi
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: kinetic_energy_dissipation_in_atmosphere_boundary_layer
+      - kind: cf-short-name
+        value: bld
+      - kind: grib-short-name
+        value: bld
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1000.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: blh
+      - kind: grib-short-name
+        value: blh
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 10.0
+      - kind: max-pointwise-absolute-error-bound
+        value: 10.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cape
+      - kind: grib-short-name
+        value: cape
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cbh
+      - kind: grib-short-name
+        value: cbh
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cdir
+      - kind: grib-short-name
+        value: cdir
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cdww
+      - kind: grib-short-name
+        value: cdww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: chnk
+      - kind: grib-short-name
+        value: chnk
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cin
+      - kind: grib-short-name
+        value: cin
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cl
+      - kind: grib-short-name
+        value: cl
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_convective_precipitation_amount
+      - kind: cf-short-name
+        value: cp
+      - kind: grib-short-name
+        value: cp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: crr
+      - kind: grib-short-name
+        value: crr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: csf
+      - kind: grib-short-name
+        value: csf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: csfr
+      - kind: grib-short-name
+        value: csfr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cvh
+      - kind: grib-short-name
+        value: cvh
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: cvl
+      - kind: grib-short-name
+        value: cvl
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: d2m
+      - kind: grib-short-name
+        value: 2d
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dctb
+      - kind: grib-short-name
+        value: dctb
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: deg0l
+      - kind: grib-short-name
+        value: deg0l
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dl
+      - kind: grib-short-name
+        value: dl
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dndza
+      - kind: grib-short-name
+        value: dndza
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dndzn
+      - kind: grib-short-name
+        value: dndzn
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dwi
+      - kind: grib-short-name
+        value: dwi
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dwps
+      - kind: grib-short-name
+        value: dwps
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: dwww
+      - kind: grib-short-name
+        value: dwww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_water_evaporation_amount
+      - kind: cf-short-name
+        value: e
+      - kind: grib-short-name
+        value: e
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: es
+      - kind: grib-short-name
+        value: es
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_downward_eastward_stress
+      - kind: cf-short-name
+        value: ewss
+      - kind: grib-short-name
+        value: ewss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 100.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: fal
+      - kind: grib-short-name
+        value: fal
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: fdir
+      - kind: grib-short-name
+        value: fdir
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: fg10
+      - kind: grib-short-name
+        value: 10fg
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.5
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.5
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: flsr
+      - kind: grib-short-name
+        value: flsr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: fsr
+      - kind: grib-short-name
+        value: fsr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: gwd
+      - kind: grib-short-name
+        value: gwd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1000.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: hcc
+      - kind: grib-short-name
+        value: hcc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: hmax
+      - kind: grib-short-name
+        value: hmax
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: i10fg
+      - kind: grib-short-name
+        value: i10fg
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ie
+      - kind: grib-short-name
+        value: ie
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: iews
+      - kind: grib-short-name
+        value: iews
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ilspf
+      - kind: grib-short-name
+        value: ilspf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: inss
+      - kind: grib-short-name
+        value: inss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ishf
+      - kind: grib-short-name
+        value: ishf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: isor
+      - kind: grib-short-name
+        value: isor
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: istl1
+      - kind: grib-short-name
+        value: istl1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: istl2
+      - kind: grib-short-name
+        value: istl2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: istl3
+      - kind: grib-short-name
+        value: istl3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: istl4
+      - kind: grib-short-name
+        value: istl4
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: kx
+      - kind: grib-short-name
+        value: kx
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lai_hv
+      - kind: grib-short-name
+        value: lai_hv
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lai_lv
+      - kind: grib-short-name
+        value: lai_lv
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lblt
+      - kind: grib-short-name
+        value: lblt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lcc
+      - kind: grib-short-name
+        value: lcc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lgws
+      - kind: grib-short-name
+        value: lgws
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 100.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: licd
+      - kind: grib-short-name
+        value: licd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lict
+      - kind: grib-short-name
+        value: lict
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lmld
+      - kind: grib-short-name
+        value: lmld
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lmlt
+      - kind: grib-short-name
+        value: lmlt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lsf
+      - kind: grib-short-name
+        value: lsf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lshf
+      - kind: grib-short-name
+        value: lshf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_stratiform_precipitation_amount
+      - kind: cf-short-name
+        value: lsp
+      - kind: grib-short-name
+        value: lsp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lspf
+      - kind: grib-short-name
+        value: lspf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lsrr
+      - kind: grib-short-name
+        value: lsrr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lssfr
+      - kind: grib-short-name
+        value: lssfr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ltlt
+      - kind: grib-short-name
+        value: ltlt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0001
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mcc
+      - kind: grib-short-name
+        value: mcc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mdts
+      - kind: grib-short-name
+        value: mdts
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mdww
+      - kind: grib-short-name
+        value: mdww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mgws
+      - kind: grib-short-name
+        value: mgws
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 100.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mn2t
+      - kind: grib-short-name
+        value: mn2t
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mntpr
+      - kind: grib-short-name
+        value: mntpr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mp1
+      - kind: grib-short-name
+        value: mp1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mp2
+      - kind: grib-short-name
+        value: mp2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mpts
+      - kind: grib-short-name
+        value: mpts
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mpww
+      - kind: grib-short-name
+        value: mpww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: air_pressure_at_mean_sea_level
+      - kind: cf-short-name
+        value: msl
+      - kind: grib-short-name
+        value: msl
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+      - kind: max-pointwise-absolute-error-bound
+        value: 1.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: msqs
+      - kind: grib-short-name
+        value: msqs
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwd
+      - kind: grib-short-name
+        value: mwd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwd1
+      - kind: grib-short-name
+        value: mwd1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwd2
+      - kind: grib-short-name
+        value: mwd2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwd3
+      - kind: grib-short-name
+        value: mwd3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwp
+      - kind: grib-short-name
+        value: mwp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwp1
+      - kind: grib-short-name
+        value: mwp1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwp2
+      - kind: grib-short-name
+        value: mwp2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mwp3
+      - kind: grib-short-name
+        value: mwp3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mx2t
+      - kind: grib-short-name
+        value: mx2t
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mxtpr
+      - kind: grib-short-name
+        value: mxtpr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_downward_northward_stress
+      - kind: cf-short-name
+        value: nsss
+      - kind: grib-short-name
+        value: nsss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 100.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: p1ps
+      - kind: grib-short-name
+        value: p1ps
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: p1ww
+      - kind: grib-short-name
+        value: p1ww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: p2ps
+      - kind: grib-short-name
+        value: p2ps
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: p2ww
+      - kind: grib-short-name
+        value: p2ww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: pev
+      - kind: grib-short-name
+        value: pev
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: phiaw
+      - kind: grib-short-name
+        value: phiaw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: phioc
+      - kind: grib-short-name
+        value: phioc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.03
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: pp1d
+      - kind: grib-short-name
+        value: pp1d
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: rhoao
+      - kind: grib-short-name
+        value: rhoao
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ro
+      - kind: grib-short-name
+        value: ro
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: rsn
+      - kind: grib-short-name
+        value: rsn
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_surface_snow_amount
+      - kind: cf-short-name
+        value: sd
+      - kind: grib-short-name
+        value: sd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: sdfor
+      - kind: grib-short-name
+        value: sdfor
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.05
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: sdor
+      - kind: grib-short-name
+        value: sdor
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_snowfall_amount
+      - kind: cf-short-name
+        value: sf
+      - kind: grib-short-name
+        value: sf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: shts
+      - kind: grib-short-name
+        value: shts
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: shww
+      - kind: grib-short-name
+        value: shww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: sea_ice_area_fraction
+      - kind: cf-short-name
+        value: siconc
+      - kind: grib-short-name
+        value: ci
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: skt
+      - kind: grib-short-name
+        value: skt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_upward_latent_heat_flux
+      - kind: cf-short-name
+        value: slhf
+      - kind: grib-short-name
+        value: slhf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1000.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: slor
+      - kind: grib-short-name
+        value: slor
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: smlt
+      - kind: grib-short-name
+        value: smlt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_air_pressure
+      - kind: cf-short-name
+        value: sp
+      - kind: grib-short-name
+        value: sp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1.0
+      - kind: max-pointwise-absolute-error-bound
+        value: 1.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: src
+      - kind: grib-short-name
+        value: src
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: sro
+      - kind: grib-short-name
+        value: sro
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_upward_sensible_heat_flux
+      - kind: cf-short-name
+        value: sshf
+      - kind: grib-short-name
+        value: sshf
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1000.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_net_downward_shortwave_flux
+      - kind: cf-short-name
+        value: ssr
+      - kind: grib-short-name
+        value: ssr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_net_downward_shortwave_flux_assuming_clear_sky
+      - kind: cf-short-name
+        value: ssrc
+      - kind: grib-short-name
+        value: ssrc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_downwelling_shortwave_flux_in_air
+      - kind: cf-short-name
+        value: ssrd
+      - kind: grib-short-name
+        value: ssrd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ssrdc
+      - kind: grib-short-name
+        value: ssrdc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ssro
+      - kind: grib-short-name
+        value: ssro
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: sst
+      - kind: grib-short-name
+        value: sst
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_temperature
+      - kind: cf-short-name
+        value: stl1
+      - kind: grib-short-name
+        value: stl1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: stl2
+      - kind: grib-short-name
+        value: stl2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: stl3
+      - kind: grib-short-name
+        value: stl3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: stl4
+      - kind: grib-short-name
+        value: stl4
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.002
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_net_upward_longwave_flux
+      - kind: cf-short-name
+        value: str
+      - kind: grib-short-name
+        value: str
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_net_downward_longwave_flux_assuming_clear_sky
+      - kind: cf-short-name
+        value: strc
+      - kind: grib-short-name
+        value: strc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: strd
+      - kind: grib-short-name
+        value: strd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: strdc
+      - kind: grib-short-name
+        value: strdc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swh
+      - kind: grib-short-name
+        value: swh
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swh1
+      - kind: grib-short-name
+        value: swh1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swh2
+      - kind: grib-short-name
+        value: swh2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swh3
+      - kind: grib-short-name
+        value: swh3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swvl1
+      - kind: grib-short-name
+        value: swvl1
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swvl2
+      - kind: grib-short-name
+        value: swvl2
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swvl3
+      - kind: grib-short-name
+        value: swvl3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: swvl4
+      - kind: grib-short-name
+        value: swvl4
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: t2m
+      - kind: grib-short-name
+        value: 2t
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tauoc
+      - kind: grib-short-name
+        value: tauoc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.0
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: cloud_area_fraction
+      - kind: cf-short-name
+        value: tcc
+      - kind: grib-short-name
+        value: tcc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tciw
+      - kind: grib-short-name
+        value: tciw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tclw
+      - kind: grib-short-name
+        value: tclw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: atmosphere_mass_content_of_ozone
+      - kind: cf-short-name
+        value: tco3
+      - kind: grib-short-name
+        value: tco3
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tcrw
+      - kind: grib-short-name
+        value: tcrw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tcslw
+      - kind: grib-short-name
+        value: tcslw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tcsw
+      - kind: grib-short-name
+        value: tcsw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tcw
+      - kind: grib-short-name
+        value: tcw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: lwe_thickness_of_atmosphere_mass_content_of_water_vapor
+      - kind: cf-short-name
+        value: tcwv
+      - kind: grib-short-name
+        value: tcwv
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tisr
+      - kind: grib-short-name
+        value: tisr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tmax
+      - kind: grib-short-name
+        value: tmax
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: totalx
+      - kind: grib-short-name
+        value: totalx
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tp
+      - kind: grib-short-name
+        value: tp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tplb
+      - kind: grib-short-name
+        value: tplb
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tplt
+      - kind: grib-short-name
+        value: tplt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: temperature_in_surface_snow
+      - kind: cf-short-name
+        value: tsn
+      - kind: grib-short-name
+        value: tsn
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: toa_net_upward_shortwave_flux
+      - kind: cf-short-name
+        value: tsr
+      - kind: grib-short-name
+        value: tsr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: tsrc
+      - kind: grib-short-name
+        value: tsrc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: toa_outgoing_longwave_flux
+      - kind: cf-short-name
+        value: ttr
+      - kind: grib-short-name
+        value: ttr
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ttrc
+      - kind: grib-short-name
+        value: ttrc
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: u10
+      - kind: grib-short-name
+        value: 10u
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.5
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.5
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: u100
+      - kind: grib-short-name
+        value: 100u
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: u10n
+      - kind: grib-short-name
+        value: u10n
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ust
+      - kind: grib-short-name
+        value: ust
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: uvb
+      - kind: grib-short-name
+        value: uvb
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 3600.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: v10
+      - kind: grib-short-name
+        value: 10v
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.5
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.5
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: v100
+      - kind: grib-short-name
+        value: 100v
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: v10n
+      - kind: grib-short-name
+        value: v10n
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: vimd
+      - kind: grib-short-name
+        value: vimd
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: vst
+      - kind: grib-short-name
+        value: vst
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wdw
+      - kind: grib-short-name
+        value: wdw
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wind
+      - kind: grib-short-name
+        value: wind
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wmb
+      - kind: grib-short-name
+        value: wmb
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wsk
+      - kind: grib-short-name
+        value: wsk
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wsp
+      - kind: grib-short-name
+        value: wsp
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wss
+      - kind: grib-short-name
+        value: wss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 1e-05
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: wstar
+      - kind: grib-short-name
+        value: wstar
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-absolute-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: geopotential
+      - kind: cf-short-name
+        value: z
+      - kind: grib-short-name
+        value: z
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 10.0
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: zust
+      - kind: grib-short-name
+        value: zust
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-pointwise-relative-error-bound
+        value: 0.01
+version: 0.1.0
+metadata:
+  commit: 4a911d11416fb5d7a923523618deb2145de0aafe
