@@ -1,0 +1,30 @@
+# Requirements for Convective snowfall
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Convective snowfall
+    filters:
+    - kind: cf-short-name
+      value: csf
+    - kind: grib-short-name
+      value: csf
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.419393811e-07 [m of water equivalent]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-05

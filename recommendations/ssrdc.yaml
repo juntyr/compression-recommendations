@@ -1,0 +1,30 @@
+# Requirements for Surface short-wave (solar) radiation downward clear-sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface short-wave (solar) radiation downward clear-sky
+    filters:
+    - kind: cf-short-name
+      value: ssrdc
+    - kind: grib-short-name
+      value: ssrdc
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 207.9179688 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

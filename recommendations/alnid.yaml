@@ -1,0 +1,30 @@
+# Requirements for Near IR albedo for diffuse radiation (climatological)
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Near IR albedo for diffuse radiation (climatological)
+    filters:
+    - kind: cf-short-name
+      value: alnid
+    - kind: grib-short-name
+      value: alnid
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 9.480165318e-06 [dimensionless]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.01

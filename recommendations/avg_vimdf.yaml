@@ -1,0 +1,30 @@
+# Requirements for Time-mean total column vertically-integrated moisture divergence flux
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-mean total column vertically-integrated moisture divergence flux
+    filters:
+    - kind: cf-short-name
+      value: avg_vimdf
+    - kind: grib-short-name
+      value: avg_vimdf
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.81e-07 [kg m**-2 s**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

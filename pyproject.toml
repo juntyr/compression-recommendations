@@ -1,0 +1,6 @@
+[dependency-groups]
+dev = [
+    "python-git-info ~= 0.8.3",
+    "strictyaml ~= 1.7.3",
+    "tqdm ~= 4.67.1",
+]

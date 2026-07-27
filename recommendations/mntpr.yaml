@@ -1,0 +1,30 @@
+# Requirements for Minimum total precipitation rate since previous post-processing
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Minimum total precipitation rate since previous post-processing
+    filters:
+    - kind: cf-short-name
+      value: mntpr
+    - kind: grib-short-name
+      value: mntpr
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 9.295945347e-08 [kg m**-2 s**-1]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

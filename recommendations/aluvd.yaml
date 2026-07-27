@@ -1,0 +1,30 @@
+# Requirements for UV visible albedo for diffuse radiation (climatological)
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # UV visible albedo for diffuse radiation (climatological)
+    filters:
+    - kind: cf-short-name
+      value: aluvd
+    - kind: grib-short-name
+      value: aluvd
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.381487618e-05 [dimensionless]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.01

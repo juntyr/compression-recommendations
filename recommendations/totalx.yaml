@@ -1,0 +1,30 @@
+# Requirements for Total totals index
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Total totals index
+    filters:
+    - kind: cf-short-name
+      value: totalx
+    - kind: grib-short-name
+      value: totalx
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.001861321973 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.1

@@ -1,0 +1,30 @@
+# Requirements for Total column rain water
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Total column rain water
+    filters:
+    - kind: cf-short-name
+      value: tcrw
+    - kind: grib-short-name
+      value: tcrw
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 9.662657976e-05 [kg m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.01

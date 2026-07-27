@@ -1,0 +1,30 @@
+# Requirements for Total column water
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Total column water
+    filters:
+    - kind: cf-short-name
+      value: tcw
+    - kind: grib-short-name
+      value: tcw
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.001543097897 [kg m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.1

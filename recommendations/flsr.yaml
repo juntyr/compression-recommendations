@@ -1,0 +1,30 @@
+# Requirements for Forecast logarithm of surface roughness for heat
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Forecast logarithm of surface roughness for heat
+    filters:
+    - kind: cf-short-name
+      value: flsr
+    - kind: grib-short-name
+      value: flsr
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.0001963195537 [Numeric]
+  requirements:
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

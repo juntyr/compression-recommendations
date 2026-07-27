@@ -1,0 +1,32 @@
+# Requirements for Top net long-wave (thermal) radiation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Top net long-wave (thermal) radiation
+    filters:
+    - kind: cf-standard-name
+      value: toa_outgoing_longwave_flux
+    - kind: cf-short-name
+      value: ttr
+    - kind: grib-short-name
+      value: ttr
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 56.13578796 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

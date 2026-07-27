@@ -1,0 +1,30 @@
+# Requirements for Mean direction of wind waves
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Mean direction of wind waves
+    filters:
+    - kind: cf-short-name
+      value: mdww
+    - kind: grib-short-name
+      value: mdww
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.005493217614 [degrees]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.1

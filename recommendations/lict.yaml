@@ -1,0 +1,35 @@
+# Requirements for Lake ice surface temperature
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Lake ice surface temperature
+    filters:
+    - kind: cf-short-name
+      value: lict
+    - kind: grib-short-name
+      value: lict
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.001155129401 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.0001
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

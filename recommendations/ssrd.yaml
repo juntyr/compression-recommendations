@@ -1,0 +1,37 @@
+# Requirements for Surface short-wave (solar) radiation downwards
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface short-wave (solar) radiation downwards
+    filters:
+    - kind: cf-standard-name
+      value: surface_downwelling_shortwave_flux_in_air
+    - kind: cf-short-name
+      value: ssrd
+    - kind: grib-short-name
+      value: ssrd
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # The maximum/minimum values quoted for this and all the accumulated values are
+  # not likely to be representative as it depends on the accumulation time and I think
+  # a 1-day accumulation has been used.  In seasonal forecast and climate experiments
+  # we accumulate over 13 months so the magnitudes can be nearly 400 times more.
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 210.6914063 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

@@ -1,0 +1,30 @@
+# Requirements for Time-mean surface downward long-wave radiation flux, clear sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-mean surface downward long-wave radiation flux, clear sky
+    filters:
+    - kind: cf-short-name
+      value: avg_sdlwrfcs
+    - kind: grib-short-name
+      value: avg_sdlwrfcs
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.007328500971 [W m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.1

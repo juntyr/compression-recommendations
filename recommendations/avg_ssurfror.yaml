@@ -1,0 +1,35 @@
+# Requirements for Time-mean sub-surface runoff rate
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-mean sub-surface runoff rate
+    filters:
+    - kind: cf-short-name
+      value: avg_ssurfror
+    - kind: grib-short-name
+      value: avg_ssurfror
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 3.794502845e-08 [kg m**-2 s**-1]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-06
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

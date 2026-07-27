@@ -1,0 +1,32 @@
+# Requirements for Surface net short-wave (solar) radiation, clear sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface net short-wave (solar) radiation, clear sky
+    filters:
+    - kind: cf-standard-name
+      value: surface_net_downward_shortwave_flux_assuming_clear_sky
+    - kind: cf-short-name
+      value: ssrc
+    - kind: grib-short-name
+      value: ssrc
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 178.9921875 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

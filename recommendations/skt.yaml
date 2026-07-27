@@ -1,0 +1,32 @@
+# Requirements for Skin temperature
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Skin temperature
+    filters:
+    - kind: cf-short-name
+      value: skt
+    - kind: grib-short-name
+      value: skt
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # Peter B. recommends 0.01K for T fields for long integrations to make budgets
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.002257309156 [K]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.05

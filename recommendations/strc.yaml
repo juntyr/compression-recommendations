@@ -1,0 +1,32 @@
+# Requirements for Surface net long-wave (thermal) radiation, clear sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface net long-wave (thermal) radiation, clear sky
+    filters:
+    - kind: cf-standard-name
+      value: surface_net_downward_longwave_flux_assuming_clear_sky
+    - kind: cf-short-name
+      value: strc
+    - kind: grib-short-name
+      value: strc
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 76.2371521 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

@@ -1,0 +1,30 @@
+# Requirements for Surface direct short-wave (solar) radiation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Surface direct short-wave (solar) radiation
+    filters:
+    - kind: cf-short-name
+      value: fdir
+    - kind: grib-short-name
+      value: fdir
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 200.234375 [J m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 3600.0

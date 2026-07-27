@@ -1,0 +1,37 @@
+# Requirements for Volumetric soil water layer 2
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Volumetric soil water layer 2
+    filters:
+    - kind: cf-short-name
+      value: swvl2
+    - kind: grib-short-name
+      value: swvl2
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # I am a bit concerned that a bounded variable can have negative values (CR)
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.17e-05 [m**3 m**-3]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-05
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

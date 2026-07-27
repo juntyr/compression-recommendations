@@ -1,0 +1,35 @@
+# Requirements for Time-mean snow evaporation rate water equivalent
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-mean snow evaporation rate water equivalent
+    filters:
+    - kind: cf-short-name
+      value: avg_esrwe
+    - kind: grib-short-name
+      value: avg_esrwe
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 1.610486411e-09 [kg m**-2 s**-1]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 1e-07
+  - kind: all
+    # relative error (0.01 = 1%)
+    requirements:
+    - kind: mean-pointwise-relative-error-bound
+      value: 0.01

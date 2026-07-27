@@ -1,0 +1,30 @@
+# Requirements for Time-mean top net long-wave radiation flux, clear sky
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Time-mean top net long-wave radiation flux, clear sky
+    filters:
+    - kind: cf-short-name
+      value: avg_tnlwrfcs
+    - kind: grib-short-name
+      value: avg_tnlwrfcs
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.004829425365 [W m**-2]
+  requirements:
+  - kind: all
+    # absolute error
+    requirements:
+    - kind: mean-pointwise-absolute-error-bound
+      value: 0.1
