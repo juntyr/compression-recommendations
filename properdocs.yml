@@ -1,0 +1,96 @@
+site_name: compression-recommendations
+site_author: Juniper Tyree
+site_url: !ENV READTHEDOCS_CANONICAL_URL
+repo_url: https://github.com/juntyr/compression-recommendations/
+edit_uri: blob/main/
+
+strict: true
+
+markdown_extensions:
+  - footnotes
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+      noclasses: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.details
+
+extra_javascript:
+  - js/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+theme:
+  name: readthedocs
+  custom_dir: docs/overrides
+  highlightjs: false
+  navigation_depth: 99
+
+nav:
+  - Home: index.md
+  - Links:
+      - GitHub: https://github.com/juntyr/compression-recommendations
+      - PyPI:
+          - compression-recommendations: https://pypi.org/project/compression-recommendations/
+
+plugins:
+  - exclude:
+      glob:
+        - hooks/*
+        - overrides/*
+  - search
+  - open-in-new-tab
+  - autorefs
+  - macros:
+      module_name: docs/hooks/macros
+      on_error_fail: true
+      on_undefined: strict
+      render_by_default: false
+  - mkdocstrings-python-generator:
+      source_dirs:
+        - nav_heading: [API Reference]
+          base: src
+          edit_uri: blob/main/src/
+  - mkdocs-simple-hooks:
+      hooks:
+        on_nav: "docs.hooks.section_index:on_nav"
+        on_page_context: "docs.hooks.edit_uri:on_page_context"
+  - section-index
+  - mkdocstrings:
+      enable_inventory: true
+      handlers:
+        python:
+          options:
+            docstring_section_style: list
+            docstring_style: numpy
+            show_if_no_docstring: true
+            filters: ["!^_$", "!^_[^_]", "!^__", "^__init__$", "^__call__$"]
+            members_order: source
+            group_by_category: false
+            show_source: false
+            separate_signature: true
+            show_signature_annotations: true
+            signature_crossrefs: true
+            relative_crossrefs: true
+            show_root_toc_entry: false
+            merge_init_into_class: true
+            summary:
+              attributes: false
+              classes: true
+              functions: true
+              modules: true
+            backlinks: tree
+            show_inheritance_diagram: true
+            inheritance_diagram_direction: LR
+            extensions: ["dataclasses"]
+          inventories:
+            - https://docs.python.org/3.11/objects.inv
+
+watch:
+  - docs
+  - src

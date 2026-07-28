@@ -1,10 +1,79 @@
-[dependency-groups]
-dev = [
-    "python-git-info ~= 0.8.3",
-    "strictyaml ~= 1.7.3",
-    "tqdm ~= 4.67.1",
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "compression-recommendations"
+version = "0.1.0"
+dependencies = [
+    "strictyaml~=1.7.3",
+]
+requires-python = ">=3.11"
+authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
+maintainers = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
+description = "Recommendations for Safe Lossy Compression of weather and climate data"
+readme = "README.md"
+license = "MPL-2.0"
+keywords = ["compression", "recommendations", "weather", "climate"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Topic :: System :: Archiving :: Compression",
+    "Typing :: Typed",
 ]
 
-book = [
-    "jupyter-book~=2.1.5",
+[project.urls]
+Documentation = "https://compression-requirements.readthedocs.io"
+Repository = "https://github.com/juntyr/compression-requirements.git"
+Issues = "https://github.com/juntyr/compression-requirements/issues"
+
+[dependency-groups]
+dev = ["ruff~=0.14"]
+tools = [
+    "python-git-info ~= 0.8.3",
+    "tqdm ~= 4.67.1",
 ]
+docs = [
+    "mkdocstrings[python]~=1.0",
+    "mkdocstrings-python-generator==1.0.0rc1",
+    "mkdocs-exclude~=1.0",
+    "mkdocs-macros-plugin~=1.5",
+    "mkdocs-section-index~=0.3.12",
+    "mkdocs-simple-hooks~=0.1.5",
+    "mkdocs-open-in-new-tab~=1.0",
+    "properdocs~=1.6.5",
+    "properdocs-theme-readthedocs~=1.6.5",
+    "Pygments~=2.19",
+    "ruff~=0.14",
+]
+test = [
+    "pytest~=9.0",
+]
+typecheck = ["mypy~=1.19"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"compression_requirements" = ["py.typed"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "NPY", "T20", "SLOT", "TC", "PLC", "UP", "FURB"]
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib", "--strict-markers"]
+xfail_strict = true
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]

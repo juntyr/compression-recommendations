@@ -66,3 +66,299 @@ jobs:
 
       - name: Validate .zenodo.json
         uses: vsoch/zenodo-validator@00643f085e550b329ab56bc79da510ba18b2d547
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build all packages
+        run: uv build --all-packages
+
+      - name: List the built dist files
+        run: ls -lh dist/
+
+      - name: Upload the package sdist and wheels
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        resolution: ["highest", "lowest-direct"]
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Install the test dependencies
+        run: |
+          uv sync --no-install-workspace \
+            --group test \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Install the workspace packages
+        run: |
+          uv pip install dist/*.whl \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Run tests
+        run: uv run --no-sync pytest -v -W error
+
+  typing:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        resolution: ["highest", "lowest-direct"]
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Install the typecheck dependencies
+        run: |
+          uv sync --no-install-workspace \
+            --group typecheck \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Install the workspace packages
+        run: |
+          uv pip install dist/*.whl \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Typecheck compression-recommendations
+        run: uv run --no-sync mypy -p compression_recommendations
+
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    needs: build
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Install the docs dependencies
+        run: |
+          uv sync --no-install-workspace \
+            --group docs \
+            --resolution highest \
+            --no-build
+
+      - name: Install the workspace packages
+        run: |
+          uv pip install dist/*.whl \
+            --resolution highest \
+            --no-build
+
+      - name: Check docs build
+        run: uv run --no-sync properdocs build
+
+  doctest:
+    name: Doctest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12", "3.13", "3.14"]
+        resolution: ["highest", "lowest-direct"]
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Install the doctest dependencies
+        run: |
+          uv sync --no-install-workspace \
+            --group doctest \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Install the workspace packages
+        run: |
+          uv pip install dist/*.whl \
+            --resolution ${{ matrix.resolution }} \
+            --no-build
+
+      - name: Compile all docs
+        run: |
+          cp README.md docs/
+          uv run --no-sync griffe2md src/compression_recommendations/ -o docs/compression_recommendations.md
+          find docs -type f -name "*.md" | xargs sed -i -e 's/```py/```python/g'
+
+      - name: Run doctests
+        run: uv run --no-sync pytest -v -W error --codeblocks docs/
+
+  pyodide-test:
+    name: Test on Pyodide
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    needs: [build]
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.13.2
+
+      - name: Install pyodide-build
+        run: python -m pip install pyodide-build
+
+      - name: Install the Pyodide build env
+        run: pyodide xbuildenv install 0.29.2
+
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Create the Pyodide venv
+        run: |
+          # Set up Pyodide venv
+          pyodide venv --pip 26.0.1 .venv-pyodide
+          source .venv-pyodide/bin/activate
+          # Install pre-built packages (for dependencies)
+          python -m pip install $(ls dist/*.whl)
+          # Install test dependencies
+          python -m pip install --group test
+          # Install pre-built packages (to override)
+          python -m pip install $(ls dist/*.whl)
+
+      - name: Run tests
+        run: |
+          source .venv-pyodide/bin/activate
+          python -m pytest -v -W error
+
+  combine:
+    name: Check recommendations
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Install the tools dependencies
+        run: |
+          uv sync --no-install-workspace \
+            --group tools \
+            --resolution highest \
+            --no-build
+
+      - name: Update the combined recommendations
+        run: uv run --no-sync python tools/compile.py
+
+      - name: Check the recommendations are up-to-date
+        run: git diff && git diff-index --quiet --cached HEAD --
+
+  publish:
+    name: Publish to PyPi
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+    if: ${{ github.event_name == 'release' }}
+    needs:
+      # require all jobs to succeed
+      - check
+      - spelling
+      - fmt
+      - build # includes the dist artifact
+      - test
+      - typing
+      - docs
+      - doctest
+      - pyodide-test
+      - combine
+    steps:
+      - name: Download the dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: List the built dist files
+        run: ls -lh dist/
+
+      - name: Publish the packages
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
