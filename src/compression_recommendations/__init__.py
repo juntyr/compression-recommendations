@@ -13,6 +13,8 @@ import sys
 
 import strictyaml
 
-_RECOMMENDATIONS: strictyaml.YAML = strictyaml.load(importlib.resources.files(
-    sys.modules[__name__]
-).joinpath("recommendations.yaml").read_text())
+_RECOMMENDATIONS: strictyaml.YAML = strictyaml.load(
+    importlib.resources.files(sys.modules[__name__])
+    .joinpath("recommendations.yaml")
+    .read_text()
+)

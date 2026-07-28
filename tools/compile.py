@@ -1,6 +1,8 @@
+import importlib.metadata
+import shlex
+import subprocess
 from pathlib import Path
 
-import gitinfo
 import strictyaml
 from tqdm import tqdm
 
@@ -8,11 +10,18 @@ recommendations = Path("recommendations")
 
 paths = sorted(recommendations.glob("*.yaml"))
 
+commit = subprocess.run(
+    shlex.split("git rev-list HEAD -1 -- recommendations tools"),
+    check=True,
+    capture_output=True,
+    text=True,
+).stdout.strip()
+
 combined = {
     "recommendations": [1] * len(paths),
-    "version": "0.1.0",
+    "version": importlib.metadata.version("compression_recommendations"),
     "metadata": {
-        "commit": gitinfo.get_git_info()["commit"],
+        "commit": commit,
     },
 }
 

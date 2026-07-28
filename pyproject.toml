@@ -41,7 +41,6 @@ Issues = "https://github.com/juntyr/compression-requirements/issues"
 [dependency-groups]
 dev = ["ruff~=0.14"]
 tools = [
-    "python-git-info ~= 0.8.3",
     "tqdm ~= 4.67.1",
 ]
 docs = [
