@@ -332,7 +332,7 @@ jobs:
       - name: Install the workspace packages
         run: |
           uv pip install dist/*.whl \
-            --resolution ${{ matrix.resolution }} \
+            --resolution highest \
             --no-build
 
       - name: Update the combined recommendations
