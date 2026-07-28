@@ -57,6 +57,7 @@ docs = [
     "Pygments~=2.19",
     "ruff~=0.14",
 ]
+doctest = ["griffe2md~=1.1", "pytest~=9.0", "pytest-codeblocks~=0.18.0"]
 test = [
     "pytest~=9.0",
 ]
