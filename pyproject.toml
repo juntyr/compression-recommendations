@@ -67,7 +67,7 @@ typecheck = ["mypy~=1.19"]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"compression_requirements" = ["py.typed"]
+"compression_requirements" = ["py.typed", "recommendations.yaml"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "NPY", "T20", "SLOT", "TC", "PLC", "UP", "FURB"]

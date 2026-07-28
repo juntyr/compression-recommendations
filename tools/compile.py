@@ -38,7 +38,7 @@ for i, path in tqdm(enumerate(paths)):
 
     combined["recommendations"][i] = strictyaml.load(yaml)
 
-Path("recommendations.yaml").write_text(
+Path("src").joinpath("compression_recommendations", "recommendations.yaml").write_text(
     """\
 # Automatically compiled from recommendations/*.yaml.
 # DO NOT EDIT
