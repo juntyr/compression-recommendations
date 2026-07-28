@@ -26,18 +26,15 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
 
-      - name: Download the dist artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: dist
-          path: dist
-
       - name: Install the docs dependencies
         run: |
           uv sync --no-install-workspace \
             --group docs \
             --resolution highest \
             --no-build
+
+      - name: Build all packages
+        run: uv build --all-packages
 
       - name: Install the workspace packages
         run: |
