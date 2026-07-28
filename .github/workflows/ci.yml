@@ -339,7 +339,7 @@ jobs:
         run: uv run --no-sync python tools/compile.py
 
       - name: Check the recommendations are up-to-date
-        run: git diff && git diff-index --quiet --cached HEAD --
+        run: git diff && git diff-index --quiet HEAD --
 
   publish:
     name: Publish to PyPi
