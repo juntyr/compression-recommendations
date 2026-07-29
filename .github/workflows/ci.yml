@@ -263,12 +263,64 @@ jobs:
       - name: Run doctests
         run: uv run --no-sync pytest -v -W error --codeblocks docs/
 
+  pyodide-build:
+    name: Build for Pyodide
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v7
+        with:
+          repository: juntyr/compression-safeguards
+          ref: 1.0.0rc1
+          sparse-checkout: |
+            tools/
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: 3.13.2
+
+      - name: Setup Emscripten
+        uses: emscripten-core/setup-emsdk@v16
+        with:
+          version: 4.0.9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install pyodide-build
+        run: python -m pip install pyodide-build==0.33.0
+
+      - name: Install the Pyodide build env
+        run: pyodide xbuildenv install 0.29.2
+
+      - name: Build compiled dependencies for Pyodide
+        run: |
+          pyodide build-recipes \
+            --recipe-dir tools/ci/pyodide-recipes/packages \
+            --install \
+            numcodecs numpy numpy-quaddtype
+
+      - name: Clean the Pyodide dist
+        run: find dist/ -type f ! -name '*.whl' -delete
+
+      - name: Upload the Pyodide wheels
+        uses: actions/upload-artifact@v7
+        with:
+          name: pyodide-dist
+          path: dist
+          retention-days: 1
+
   pyodide-test:
     name: Test on Pyodide
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    needs: [build]
+    needs: [build, pyodide-build]
     steps:
       - name: Checkout the Repository
         uses: actions/checkout@v7
@@ -290,14 +342,19 @@ jobs:
           name: dist
           path: dist
 
+      - name: Download the pyodide-dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: pyodide-dist
+          path: dist
+
       - name: Create the Pyodide venv
         run: |
           # Set up Pyodide venv
           pyodide venv --pip 26.0.1 .venv-pyodide
           source .venv-pyodide/bin/activate
           # Install pre-built packages (for dependencies)
-          python -m pip install $(ls dist/*.whl) \
-            --extra-index-url https://lab.climet.eu/v0.4.2/pypa/simple/{{package_name}}/
+          python -m pip install $(ls dist/*.whl)
           # Install test dependencies
           python -m pip install --group test
           # Install pre-built packages (to override)
