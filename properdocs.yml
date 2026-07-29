@@ -21,6 +21,7 @@ extra_javascript:
   - js/katex.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  - https://unpkg.com/mermaid@10.9.0/dist/mermaid.min.js
 
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
@@ -90,6 +91,7 @@ plugins:
             extensions: ["dataclasses"]
           inventories:
             - https://docs.python.org/3.11/objects.inv
+            - https://python-semver.readthedocs.io/en/3.0.0/objects.inv
 
 watch:
   - docs

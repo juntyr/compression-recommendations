@@ -6,7 +6,9 @@ build-backend = "hatchling.build"
 name = "compression-recommendations"
 version = "0.1.0"
 dependencies = [
+    "semver~=3.0",
     "strictyaml~=1.7.3",
+    "typed-classproperties~=1.1.0",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
