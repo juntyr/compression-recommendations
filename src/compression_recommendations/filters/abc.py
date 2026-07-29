@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
-from typing import ClassVar, Self, assert_never, override
+from typing import ClassVar, Self, assert_never
+
+from typing_extensions import override  # MSPV 3.12
 
 from ..config import Config
 from ..typing import JSON

@@ -1,6 +1,8 @@
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from typing import Self, override
+from typing import Self
+
+from typing_extensions import override  # MSPV 3.12
 
 from .config import Config
 from .filters.abc import Filter

@@ -13,11 +13,12 @@ import sys
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from functools import cache
-from typing import Self, override
+from typing import Self
 
 import strictyaml
 from semver import Version
 from typed_classproperties import classproperty
+from typing_extensions import override  # MSPV 3.12
 
 from .config import Config
 from .recommendation import Recommendation

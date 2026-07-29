@@ -1,7 +1,9 @@
 from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import ClassVar, Literal, Self, override
+from typing import ClassVar, Literal, Self
+
+from typing_extensions import override  # MSPV 3.12
 
 from ..typing import JSON
 from .abc import Filter
