@@ -297,7 +297,7 @@ jobs:
           source .venv-pyodide/bin/activate
           # Install pre-built packages (for dependencies)
           python -m pip install $(ls dist/*.whl) \
-            --index-url https://lab.climet.eu/v0.4.2/pypa/simple/{{package_name}}/
+            --extra-index-url https://lab.climet.eu/v0.4.2/pypa/simple/{{package_name}}/
           # Install test dependencies
           python -m pip install --group test
           # Install pre-built packages (to override)
