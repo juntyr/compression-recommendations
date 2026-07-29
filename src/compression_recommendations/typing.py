@@ -28,3 +28,13 @@ def _parse_yaml(yaml: strictyaml.YAML) -> JSON:
         )
 
     raise ValueError("unexpected yaml", yaml)
+
+
+# FIXME: use a schema for strictyaml instead
+def _parse_number(x: int | float | str) -> int | float:
+    if isinstance(x, int | float):
+        return x
+    try:
+        return int(x)
+    except ValueError:
+        return float(x)

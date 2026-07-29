@@ -3,7 +3,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ...typing import JSON
+from ...typing import JSON, _parse_number
 from ..abc import Requirement
 from ..kind import RequirementKind
 
@@ -28,7 +28,7 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
             "max-pointwise-absolute-error-bound"
         ] = RequirementKind.max_pointwise_absolute_error_bound.value,
     ) -> Self:
-        return cls(value=value)
+        return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> JSON:
@@ -50,7 +50,7 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
             "max-pointwise-relative-error-bound"
         ] = RequirementKind.max_pointwise_relative_error_bound.value,
     ) -> Self:
-        return cls(value=value)
+        return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> JSON:

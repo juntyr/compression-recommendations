@@ -176,6 +176,9 @@ jobs:
       - name: Typecheck compression-recommendations
         run: uv run --no-sync mypy -p compression_recommendations
 
+      - name: Typecheck compression-safeguards-recommendations
+        run: cd packages/compression-safeguards-recommendations && uv run --no-sync mypy -p compression_safeguards_recommendations
+
   docs:
     name: Docs
     runs-on: ubuntu-latest
@@ -254,6 +257,7 @@ jobs:
         run: |
           cp README.md docs/
           uv run --no-sync griffe2md src/compression_recommendations/ -o docs/compression_recommendations.md
+          uv run --no-sync griffe2md packages/compression-safeguards-recommendations/src/compression_safeguards_recommendations/ -o docs/compression_safeguards_recommendations.md
           find docs -type f -name "*.md" | xargs sed -i -e 's/```py/```python/g'
 
       - name: Run doctests

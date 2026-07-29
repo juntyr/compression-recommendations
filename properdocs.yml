@@ -38,6 +38,7 @@ nav:
       - GitHub: https://github.com/juntyr/compression-recommendations
       - PyPI:
           - compression-recommendations: https://pypi.org/project/compression-recommendations/
+          - compression-safeguards-recommendations: https://pypi.org/project/compression-safeguards-recommendations/
 
 plugins:
   - exclude:
@@ -57,6 +58,9 @@ plugins:
         - nav_heading: [API Reference]
           base: src
           edit_uri: blob/main/src/
+        - nav_heading: [API Reference]
+          base: packages/compression-safeguards-recommendations/src
+          edit_uri: blob/main/packages/compression-safeguards-recommendations/src/
   - mkdocs-simple-hooks:
       hooks:
         on_nav: "docs.hooks.section_index:on_nav"
@@ -91,6 +95,7 @@ plugins:
             extensions: ["dataclasses"]
           inventories:
             - https://docs.python.org/3.11/objects.inv
+            - https://compression-safeguards.readthedocs.io/en/1.0.0rc1/objects.inv
             - https://python-semver.readthedocs.io/en/3.0.0/objects.inv
 
 watch:
