@@ -92,9 +92,7 @@ def _safeguard_for_requirement(
             # conservatively bound the pointwise absolute error instead
             return ErrorBoundSafeguard(
                 type=ErrorBound.abs,
-                eb=cast(
-                    "MeanPointwiseAbsoluteErrorBoundRequirement", requirement
-                ).value,
+                eb=cast("MeanAbsoluteErrorBoundRequirement", requirement).value,
             )
         case RequirementKind.max_pointwise_relative_error_bound:
             return ErrorBoundSafeguard(
@@ -105,9 +103,7 @@ def _safeguard_for_requirement(
             # conservatively bound the pointwise absolute error instead
             return ErrorBoundSafeguard(
                 type=ErrorBound.abs,
-                eb=cast(
-                    "MeanRelativeErrorBoundRequirement", requirement
-                ).value,
+                eb=cast("MeanRelativeErrorBoundRequirement", requirement).value,
             )
         case RequirementKind.global_minimum:
             # slightly conservative since global minimum will be kept exactly
