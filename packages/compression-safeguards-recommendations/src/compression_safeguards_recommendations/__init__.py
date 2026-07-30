@@ -31,6 +31,7 @@ if TYPE_CHECKING:
         GlobalMaximumRequirement,
         GlobalMinimumRequirement,
     )
+    from compression_recommendations.requirements.isovalue import IsovalueRequirement
 
 __all__ = [
     "recommended_safeguards_for",
@@ -110,10 +111,32 @@ def _safeguard_for_requirement(
             return SignPreservingSafeguard(
                 offset=cast("GlobalMinimumRequirement", requirement).value
             )
+            # TODO: switch to pointwise QoI with early-bound param support
+            # return PointwiseQuantityOfInterestErrorBoundSafeguard(
+            #     qoi='x >= c["minimum"]',
+            #     type="abs",
+            #     eb=0,
+            #     early_bound=dict(
+            #         minimum=cast("GlobalMinimumRequirement", requirement).value
+            #     ),
+            # )
         case RequirementKind.global_maximum:
             # slightly conservative since global maximum will be kept exactly
             return SignPreservingSafeguard(
                 offset=cast("GlobalMaximumRequirement", requirement).value
+            )
+            # TODO: switch to pointwise QoI with early-bound param support
+            # return PointwiseQuantityOfInterestErrorBoundSafeguard(
+            #     qoi='x <= c["maximum"]',
+            #     type="abs",
+            #     eb=0,
+            #     early_bound=dict(
+            #         maximum=cast("GlobalMaximumRequirement", requirement).value
+            #     ),
+            # )
+        case RequirementKind.isovalue:
+            return SignPreservingSafeguard(
+                offset=cast("IsovalueRequirement", requirement).value
             )
         case _:
             assert_never(requirement.kind)

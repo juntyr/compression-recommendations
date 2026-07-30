@@ -15,6 +15,7 @@ class RequirementKind(StrEnum):
     mean_relative_error_bound = "mean-relative-error-bound"
     global_minimum = "global-minimum"
     global_maximum = "global-maximum"
+    isovalue = "isovalue"
 
     @classmethod
     def from_config(cls, kind: str) -> Self:

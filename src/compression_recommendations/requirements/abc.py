@@ -29,6 +29,7 @@ class Requirement(Config, ABC):
             GlobalMaximumRequirement,
             GlobalMinimumRequirement,
         )
+        from .isovalue import IsovalueRequirement  # noqa: PLC0415
 
         kind_ = RequirementKind.from_config(kind)
         match kind_:
@@ -62,6 +63,10 @@ class Requirement(Config, ABC):
                 )
             case RequirementKind.global_maximum:
                 return GlobalMaximumRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.isovalue:
+                return IsovalueRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case _:
