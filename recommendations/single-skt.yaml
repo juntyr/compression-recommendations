@@ -22,7 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Peter B. recommends 0.01K for T fields for long integrations to make budgets
+  # Peter B. (ECMWF) recommends 0.01K for T fields for long integrations to
+  # make budgets
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 0.002257309156 [K]

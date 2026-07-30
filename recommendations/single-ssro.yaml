@@ -19,11 +19,11 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
-  # The maximum error should be the smaller of either indicated absolute/relative
-  # errors
+  # The maximum error should be the smaller of either indicated absolute /
+  # relative errors (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 4.098037607e-07 [m]

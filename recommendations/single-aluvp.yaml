@@ -22,8 +22,9 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # There is no point in archiving these four components because they are straight
-  # from a climatology and are likely to be misinterpreted by users
+  # There is no point in archiving these four components because they are
+  # straight from a climatology and are likely to be misinterpreted by users
+  # (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 1.383165454e-05 [dimensionless]

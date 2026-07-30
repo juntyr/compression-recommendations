@@ -19,12 +19,13 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
-  # |-
-  # The maximum error should be the smaller of either indicated absolute/relative errors
-  # Once this is implemented, please communicate with Jasper Denissen/Michel Wortmann on the issues they solved for runoff
+  # The maximum error should be the smaller of either indicated absolute /
+  # relative errors (ECMWF)
+  # Please communicate with Jasper Denissen (UFZ) / Michel Wortmann (ECMWF)
+  # on the issues they solved for runoff (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 6.206246326e-07 [m]

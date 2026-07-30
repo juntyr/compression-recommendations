@@ -22,7 +22,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Margarita Choulga
+  # provided by Margarita Choulga (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 5.960464478e-08 [dimensionless]

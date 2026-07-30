@@ -22,7 +22,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Richard Forbes
+  # provided by Richard Forbes (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 0.00390625 [dimensionless]
@@ -32,3 +32,12 @@ requirements:
     requirements:
     - kind: max-pointwise-relative-error-bound
       value: 0.01
+- kind: all
+  # value range: 0 % <= cc <= 100 %
+  #
+  # provided by @juntyr
+  requirements:
+  - kind: global-minimum
+    value: 0.0
+  - kind: global-maximum
+    value: 1.0

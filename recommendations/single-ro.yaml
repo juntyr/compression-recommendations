@@ -22,7 +22,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # It could be considered to remove this value, as ro=sro+ssro
+  # It could be considered to remove this value, as ro=sro+ssro (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 8.138595149e-07 [m]

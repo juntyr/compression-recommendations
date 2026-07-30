@@ -22,7 +22,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Ask Gabriele Arduini
+  # Ask Gabriele Arduini (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 5.493286153e-06 [dimensionless]

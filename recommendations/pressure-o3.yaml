@@ -24,7 +24,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Johannes Flemming
+  # provided by Johannes Flemming (ECMWF)
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 1.278617767e-10 [kg kg**-1]

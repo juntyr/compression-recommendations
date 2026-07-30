@@ -24,8 +24,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Peter B. and Jean suggest to go lower, e.g. 0,01m/s or even 0.001m/s for wind
-  # fields
+  # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0,01m/s or
+  # even 0.001m/s for wind fields
   #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 0.002341713756 [m s**-1]

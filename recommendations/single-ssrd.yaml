@@ -24,11 +24,6 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # The maximum/minimum values quoted for this and all the accumulated values are
-  # not likely to be representative as it depends on the accumulation time and I think
-  # a 1-day accumulation has been used.  In seasonal forecast and climate experiments
-  # we accumulate over 13 months so the magnitudes can be nearly 400 times more.
-  #
   # GRIB adds in ERA5 a maximum pointwise absolute error of
   # 210.6914063 [J m**-2]
   requirements:
