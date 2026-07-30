@@ -31,7 +31,7 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: mean-pointwise-absolute-error-bound
+    - kind: mean-absolute-error-bound
       value: 0.01
     - kind: max-pointwise-absolute-error-bound
       value: 0.01

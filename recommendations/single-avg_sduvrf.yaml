@@ -28,10 +28,10 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: mean-pointwise-absolute-error-bound
+    - kind: mean-absolute-error-bound
       value: 0.1
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: mean-pointwise-relative-error-bound
+    - kind: mean-relative-error-bound
       value: 0.01

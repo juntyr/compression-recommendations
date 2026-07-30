@@ -28,7 +28,7 @@ requirements:
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: mean-pointwise-relative-error-bound
+    - kind: mean-relative-error-bound
       value: 0.05
     - kind: max-pointwise-relative-error-bound
       value: 0.05

@@ -28,5 +28,5 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: mean-pointwise-absolute-error-bound
+    - kind: mean-absolute-error-bound
       value: 1000.0
