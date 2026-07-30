@@ -25,6 +25,10 @@ class Requirement(Config, ABC):
             MeanPointwiseAbsoluteErrorBoundRequirement,
             MeanPointwiseRelativeErrorBoundRequirement,
         )
+        from .extrema import (  # noqa: PLC0415
+            GlobalMaximumRequirement,
+            GlobalMinimumRequirement,
+        )
 
         kind_ = RequirementKind.from_config(kind)
         match kind_:
@@ -50,6 +54,14 @@ class Requirement(Config, ABC):
                 )
             case RequirementKind.mean_pointwise_relative_error_bound:
                 return MeanPointwiseRelativeErrorBoundRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.global_minimum:
+                return GlobalMinimumRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.global_maximum:
+                return GlobalMaximumRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case _:

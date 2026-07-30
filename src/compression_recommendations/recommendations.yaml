@@ -20,6 +20,12 @@ recommendations:
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+  - kind: all
+    requirements:
+    - kind: global-minimum
+      value: 0.0
+    - kind: global-maximum
+      value: 1.0
 - filters:
   - kind: any
     filters:
@@ -38,6 +44,10 @@ recommendations:
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+  - kind: all
+    requirements:
+    - kind: global-minimum
+      value: 0.0
 - filters:
   - kind: any
     filters:
@@ -56,6 +66,10 @@ recommendations:
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+  - kind: all
+    requirements:
+    - kind: global-minimum
+      value: 0.0
 - filters:
   - kind: any
     filters:
@@ -74,6 +88,10 @@ recommendations:
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+  - kind: all
+    requirements:
+    - kind: global-minimum
+      value: 0.0
 - filters:
   - kind: any
     filters:
@@ -92,6 +110,10 @@ recommendations:
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+  - kind: all
+    requirements:
+    - kind: global-minimum
+      value: 0.0
 - filters:
   - kind: any
     filters:
@@ -3356,7 +3378,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3476,7 +3498,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:

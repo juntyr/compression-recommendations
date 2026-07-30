@@ -11,6 +11,7 @@ from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.eb import ErrorBound
 from compression_safeguards.safeguards.pointwise.abc import PointwiseSafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
+from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
 from compression_safeguards.safeguards.stencil.abc import StencilSafeguard
 
 if TYPE_CHECKING:
@@ -25,6 +26,10 @@ if TYPE_CHECKING:
     from compression_recommendations.requirements.error_bounds.mean import (
         MeanPointwiseAbsoluteErrorBoundRequirement,
         MeanPointwiseRelativeErrorBoundRequirement,
+    )
+    from compression_recommendations.requirements.extrema import (
+        GlobalMaximumRequirement,
+        GlobalMinimumRequirement,
     )
 
 __all__ = [
@@ -103,6 +108,16 @@ def _safeguard_for_requirement(
                 eb=cast(
                     "MeanPointwiseRelativeErrorBoundRequirement", requirement
                 ).value,
+            )
+        case RequirementKind.global_minimum:
+            # slightly conservative since global minimum will be kept exactly
+            return SignPreservingSafeguard(
+                offset=cast("GlobalMinimumRequirement", requirement).value
+            )
+        case RequirementKind.global_maximum:
+            # slightly conservative since global maximum will be kept exactly
+            return SignPreservingSafeguard(
+                offset=cast("GlobalMaximumRequirement", requirement).value
             )
         case _:
             assert_never(requirement.kind)
