@@ -10,9 +10,9 @@ class RequirementKind(StrEnum):
     any = "any"
     all = "all"
     max_pointwise_absolute_error_bound = "max-pointwise-absolute-error-bound"
-    mean_pointwise_absolute_error_bound = "mean-pointwise-absolute-error-bound"
+    mean_absolute_error_bound = "mean-absolute-error-bound"
     max_pointwise_relative_error_bound = "max-pointwise-relative-error-bound"
-    mean_pointwise_relative_error_bound = "mean-pointwise-relative-error-bound"
+    mean_relative_error_bound = "mean-relative-error-bound"
     global_minimum = "global-minimum"
     global_maximum = "global-maximum"
 

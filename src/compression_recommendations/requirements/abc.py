@@ -22,8 +22,8 @@ class Requirement(Config, ABC):
             MaxPointwiseRelativeErrorBoundRequirement,
         )
         from .error_bounds.mean import (  # noqa: PLC0415
-            MeanPointwiseAbsoluteErrorBoundRequirement,
-            MeanPointwiseRelativeErrorBoundRequirement,
+            MeanAbsoluteErrorBoundRequirement,
+            MeanRelativeErrorBoundRequirement,
         )
         from .extrema import (  # noqa: PLC0415
             GlobalMaximumRequirement,
@@ -44,16 +44,16 @@ class Requirement(Config, ABC):
                 return MaxPointwiseAbsoluteErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
-            case RequirementKind.mean_pointwise_absolute_error_bound:
-                return MeanPointwiseAbsoluteErrorBoundRequirement.from_config(
+            case RequirementKind.mean_absolute_error_bound:
+                return MeanAbsoluteErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case RequirementKind.max_pointwise_relative_error_bound:
                 return MaxPointwiseRelativeErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
-            case RequirementKind.mean_pointwise_relative_error_bound:
-                return MeanPointwiseRelativeErrorBoundRequirement.from_config(
+            case RequirementKind.mean_relative_error_bound:
+                return MeanRelativeErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case RequirementKind.global_minimum:

@@ -8,16 +8,14 @@ from ..abc import Requirement
 from ..kind import RequirementKind
 
 __all__ = [
-    "MeanPointwiseAbsoluteErrorBoundRequirement",
-    "MeanPointwiseRelativeErrorBoundRequirement",
+    "MeanAbsoluteErrorBoundRequirement",
+    "MeanRelativeErrorBoundRequirement",
 ]
 
 
 @dataclass(kw_only=True)
-class MeanPointwiseAbsoluteErrorBoundRequirement(Requirement):
-    kind: ClassVar[RequirementKind] = (
-        RequirementKind.mean_pointwise_absolute_error_bound
-    )
+class MeanAbsoluteErrorBoundRequirement(Requirement):
+    kind: ClassVar[RequirementKind] = RequirementKind.mean_absolute_error_bound
     value: int | float
 
     @override
@@ -27,8 +25,8 @@ class MeanPointwiseAbsoluteErrorBoundRequirement(Requirement):
         *,
         value: int | float,
         kind: Literal[
-            "mean-pointwise-absolute-error-bound"
-        ] = RequirementKind.mean_pointwise_absolute_error_bound.value,
+            "mean-absolute-error-bound"
+        ] = RequirementKind.mean_absolute_error_bound.value,
     ) -> Self:
         return cls(value=_parse_number(value))
 
@@ -38,10 +36,8 @@ class MeanPointwiseAbsoluteErrorBoundRequirement(Requirement):
 
 
 @dataclass(kw_only=True)
-class MeanPointwiseRelativeErrorBoundRequirement(Requirement):
-    kind: ClassVar[RequirementKind] = (
-        RequirementKind.mean_pointwise_relative_error_bound
-    )
+class MeanRelativeErrorBoundRequirement(Requirement):
+    kind: ClassVar[RequirementKind] = RequirementKind.mean_relative_error_bound
     value: int | float
 
     @override
@@ -51,8 +47,8 @@ class MeanPointwiseRelativeErrorBoundRequirement(Requirement):
         *,
         value: int | float,
         kind: Literal[
-            "mean-pointwise-relative-error-bound"
-        ] = RequirementKind.mean_pointwise_relative_error_bound.value,
+            "mean-relative-error-bound"
+        ] = RequirementKind.mean_relative_error_bound.value,
     ) -> Self:
         return cls(value=_parse_number(value))
 

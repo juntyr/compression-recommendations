@@ -24,8 +24,8 @@ if TYPE_CHECKING:
         MaxPointwiseRelativeErrorBoundRequirement,
     )
     from compression_recommendations.requirements.error_bounds.mean import (
-        MeanPointwiseAbsoluteErrorBoundRequirement,
-        MeanPointwiseRelativeErrorBoundRequirement,
+        MeanAbsoluteErrorBoundRequirement,
+        MeanRelativeErrorBoundRequirement,
     )
     from compression_recommendations.requirements.extrema import (
         GlobalMaximumRequirement,
@@ -88,7 +88,7 @@ def _safeguard_for_requirement(
                 type=ErrorBound.abs,
                 eb=cast("MaxPointwiseAbsoluteErrorBoundRequirement", requirement).value,
             )
-        case RequirementKind.mean_pointwise_absolute_error_bound:
+        case RequirementKind.mean_absolute_error_bound:
             # conservatively bound the pointwise absolute error instead
             return ErrorBoundSafeguard(
                 type=ErrorBound.abs,
@@ -101,12 +101,12 @@ def _safeguard_for_requirement(
                 type=ErrorBound.rel,
                 eb=cast("MaxPointwiseRelativeErrorBoundRequirement", requirement).value,
             )
-        case RequirementKind.mean_pointwise_relative_error_bound:
+        case RequirementKind.mean_relative_error_bound:
             # conservatively bound the pointwise absolute error instead
             return ErrorBoundSafeguard(
                 type=ErrorBound.abs,
                 eb=cast(
-                    "MeanPointwiseRelativeErrorBoundRequirement", requirement
+                    "MeanRelativeErrorBoundRequirement", requirement
                 ).value,
             )
         case RequirementKind.global_minimum:
