@@ -8,6 +8,7 @@ These recommendations can then be used by external tools to automatically recomm
 ## Contributing: What should be recommended?
 
 That is up to *you* to decide!
+
 - You can add comments to any recommendation to elaborate or discuss different requirements.
 - You can propose edits to any recommendation, which we accept once a new consensus has been reached.
 - You can create new recommendations for new variables or to specialise existing requirements for specific cases.
@@ -29,11 +30,14 @@ Filter
 Safety Requirement
 : A property, e.g. an error bound, that the lossy-compressed data must fulfil with respect to the original uncompressed data.
 
-Pointwise Absolute Error Bound
-: $|\hat{x} - x| <= \epsilon_{abs}$ for the original data $x$ and decompressed data $\hat{x}$
+Maximum Pointwise Absolute Error Bound
+: $\forall i \mathbin{.} |\hat{x_i} - x_i| <= \epsilon_{abs}$ for the original data $x$ and decompressed data $\hat{x}$
 
-Pointwise Relative Error Bound
-: $|\hat{x} - x| <= (|x| \cdot \epsilon_{rel})$ for the original data $x$ and decompressed data $\hat{x}$
+Mean Absolute Error Bound
+: $\frac{\sum_{i}^{N}{|\hat{x_i} - x_i|}}{N} <= \epsilon_{mean\text{-}abs}$ for the original data $x$ and decompressed data $\hat{x}$
+
+Maximum Pointwise Relative Error Bound
+: $\forall i \mathbin{.} |\hat{x_i} - x_i| <= (|x_i| \cdot \epsilon_{rel})$ for the original data $x$ and decompressed data $\hat{x}$
 
 
 ## Citation
