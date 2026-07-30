@@ -1,12 +1,13 @@
 ---
 edit_uri: docs/index.md
+render_macros: true
 ---
 
 # Recommendations for Safe Lossy Compression of weather and climate data
 
 What lossy compression is safe when using lossy compression on weather and climate data?
 
-This repository contains community-created recommendations that are automatically compiled into one machine-readable `recommendations.yaml` file.
+This repository contains community-created [recommendations](recommendations.md) that are automatically compiled into one machine-readable [`recommendations.yaml`]({{ config.repo_url }}/{{ config.edit_uri }}/src/compression_recommendations/recommendations.yaml) file.
 These recommendations can then be used by external tools to automatically recommend appropriate safety requirements for compressing various weather and climate data.
 
 ## Contributing: What should be recommended?
@@ -45,8 +46,7 @@ Maximum Pointwise Relative Error Bound
 
 
 ## Citation
-
-Please refer to the [CITATION.cff](https://github.com/juntyr/compression-recommendations/blob/main/CITATION.cff) file and refer to <https://citation-file-format.github.io> to extract the citation in a format of your choice.
+Please refer to the [CITATION.cff]({{ config.repo_url }}/{{ config.edit_uri }}/CITATION.cff) file and refer to <https://citation-file-format.github.io> to extract the citation in a format of your choice.
 
 
 ## Funding

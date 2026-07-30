@@ -34,6 +34,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Recommendations: recommendations.md
   - Links:
       - GitHub: https://github.com/juntyr/compression-recommendations
       - PyPI:
