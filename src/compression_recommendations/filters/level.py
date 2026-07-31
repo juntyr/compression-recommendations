@@ -1,3 +1,7 @@
+"""
+Filters for vertical levels.
+"""
+
 from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import StrEnum

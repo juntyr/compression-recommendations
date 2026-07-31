@@ -1,3 +1,7 @@
+"""
+Enumeration over all requirement kinds.
+"""
+
 from enum import StrEnum
 from typing import Self
 

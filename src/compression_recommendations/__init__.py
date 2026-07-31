@@ -16,9 +16,12 @@ from functools import cache
 from typing import Self
 
 import strictyaml
-from semver import Version
+from semver.version import Version
 from typed_classproperties import classproperty
-from typing_extensions import override  # MSPV 3.12
+from typing_extensions import (
+    Reader,  # MSPV 3.14
+    override,  # MSPV 3.12
+)
 
 from .config import Config
 from .recommendation import Recommendation
@@ -35,15 +38,12 @@ class Recommendations(Config):
     @classproperty
     @cache
     def provide(cls) -> Self:
-        return Recommendations.from_config(
-            **_parse_yaml(  # type: ignore
-                strictyaml.load(
-                    importlib.resources.files(sys.modules[__name__])
-                    .joinpath("recommendations.yaml")
-                    .read_text()
-                )
-            )
-        )
+        with (
+            importlib.resources.files(sys.modules[__name__])
+            .joinpath("recommendations.yaml")
+            .open() as f
+        ):
+            return cls.load(f)
 
     def search(
         self, *, markers: Mapping[str, None | bool | int | float | str]
@@ -60,6 +60,18 @@ class Recommendations(Config):
             return tuple(requirements)
 
         raise KeyError("failed to find a matching recommendation", markers)
+
+    @classmethod
+    def loads(cls, yaml: str) -> Self:
+        return cls.from_config(
+            **_parse_yaml(  # type: ignore
+                strictyaml.load(yaml)
+            )
+        )
+
+    @classmethod
+    def load(cls, reader: Reader[str]) -> Self:
+        return cls.loads(reader.read())
 
     @override
     @classmethod

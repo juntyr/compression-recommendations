@@ -1,3 +1,7 @@
+"""
+Abstract base class for JSON-configurable types.
+"""
+
 from abc import ABC, abstractmethod
 from typing import Self
 

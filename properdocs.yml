@@ -66,6 +66,7 @@ plugins:
       hooks:
         on_nav: "docs.hooks.section_index:on_nav"
         on_page_context: "docs.hooks.edit_uri:on_page_context"
+        on_page_markdown: "docs.hooks.api_index:on_page_markdown"
   - section-index
   - mkdocstrings:
       enable_inventory: true
@@ -83,7 +84,7 @@ plugins:
             show_signature_annotations: true
             signature_crossrefs: true
             relative_crossrefs: true
-            show_root_toc_entry: false
+            show_root_toc_entry: true
             merge_init_into_class: true
             summary:
               attributes: false
@@ -98,6 +99,7 @@ plugins:
             - https://docs.python.org/3.11/objects.inv
             - https://compression-safeguards.readthedocs.io/en/1.0.0rc1/objects.inv
             - https://python-semver.readthedocs.io/en/3.0.0/objects.inv
+            - https://typing-extensions.readthedocs.io/en/stable/objects.inv
 
 watch:
   - docs

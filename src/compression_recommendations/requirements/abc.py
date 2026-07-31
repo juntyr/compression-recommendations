@@ -1,3 +1,7 @@
+"""
+Abstract base class for requirements.
+"""
+
 from abc import ABC
 from typing import ClassVar, Self, assert_never
 

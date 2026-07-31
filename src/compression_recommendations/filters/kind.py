@@ -1,3 +1,7 @@
+"""
+Enumeration over all filter kinds.
+"""
+
 from enum import StrEnum
 from typing import Self
 

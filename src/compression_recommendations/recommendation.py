@@ -1,3 +1,7 @@
+"""
+Implementation of a single [`Requirement`][compression_recommendations.recommendation.Recommendation].
+"""
+
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import Self
