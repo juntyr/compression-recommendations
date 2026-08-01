@@ -3,12 +3,11 @@ import shlex
 import subprocess
 from pathlib import Path
 
-import strictyaml
+from semver import Version
 from tqdm import tqdm
 
-recommendations = Path("recommendations")
-
-paths = sorted(recommendations.glob("*.yaml"))
+from compression_recommendations import Recommendations
+from compression_recommendations.recommendation import Recommendation
 
 commit = subprocess.run(
     shlex.split("git rev-list HEAD -1 -- recommendations tools"),
@@ -17,41 +16,25 @@ commit = subprocess.run(
     text=True,
 ).stdout.strip()
 
-combined = {
-    "recommendations": [1] * len(paths),
-    "version": importlib.metadata.version("compression_recommendations"),
-    "metadata": {
-        "commit": commit,
-    },
-}
+recommendations = []
+for path in tqdm(sorted(Path("recommendations").glob("*.yaml"))):
+    with path.open("r") as f:
+        recommendations.append(Recommendation.load(f))
 
-combined = strictyaml.as_document(
-    data=combined,
-    schema=strictyaml.Map(
-        {
-            "recommendations": strictyaml.Seq(strictyaml.Any()),
-            "version": strictyaml.Str(),
-            "metadata": strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
-        }
-    ),
+recommendations = Recommendations(
+    recommendations=recommendations,
+    version=Version.parse(importlib.metadata.version("compression_recommendations")),
+    metadata={"commit": commit},
 )
 
-for i, path in tqdm(enumerate(paths)):
-    yaml = path.read_text()
-    yaml2 = []
-    for line in yaml.splitlines(keepends=True):
-        if line.lstrip().startswith("#"):
-            continue
-        yaml2.append(line)
-    yaml = "".join(yaml2)
-
-    combined["recommendations"][i] = strictyaml.load(yaml)
-
-Path("src").joinpath("compression_recommendations", "recommendations.yaml").write_text(
-    """\
+with (
+    Path("src")
+    .joinpath("compression_recommendations", "recommendations.yaml")
+    .open("w") as f
+):
+    f.write("""\
 # Automatically compiled from recommendations/*.yaml.
 # DO NOT EDIT
 
-"""
-    + combined.as_yaml()
-)
+""")
+    recommendations.dump(f)

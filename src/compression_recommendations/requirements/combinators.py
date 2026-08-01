@@ -41,9 +41,9 @@ class AnyRequirement(Requirement):
     def get_config(self) -> JSON:
         return dict(
             kind=type(self).kind.get_config(),
-            requirements=tuple(
+            requirements=[
                 requirement.get_config() for requirement in self.requirements
-            ),
+            ],
         )
 
 
@@ -73,7 +73,7 @@ class AllRequirements(Requirement):
     def get_config(self) -> JSON:
         return dict(
             kind=type(self).kind.get_config(),
-            requirements=tuple(
+            requirements=[
                 requirement.get_config() for requirement in self.requirements
-            ),
+            ],
         )

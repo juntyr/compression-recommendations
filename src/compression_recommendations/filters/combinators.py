@@ -51,7 +51,7 @@ class AnyFilter(Filter):
     def get_config(self) -> JSON:
         return dict(
             kind=type(self).kind.get_config(),
-            filters=tuple(filter.get_config() for filter in self.filters),
+            filters=[filter.get_config() for filter in self.filters],
         )
 
 
@@ -91,5 +91,5 @@ class AllFilters(Filter):
     def get_config(self) -> JSON:
         return dict(
             kind=type(self).kind.get_config(),
-            filters=tuple(filter.get_config() for filter in self.filters),
+            filters=[filter.get_config() for filter in self.filters],
         )

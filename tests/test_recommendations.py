@@ -20,7 +20,7 @@ def test_search():
     recs = compression_recommendations.Recommendations.provide
 
     single_u10_reqs = compression_recommendations.Recommendation.from_config(
-        **compression_recommendations.typing._parse_yaml(
+        **compression_recommendations.config._parse_yaml(
             strictyaml.load(
                 Path("recommendations").joinpath("single-u10.yaml").read_text()
             )

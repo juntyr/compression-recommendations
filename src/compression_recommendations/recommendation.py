@@ -55,8 +55,8 @@ class Recommendation(Config):
     @override
     def get_config(self) -> JSON:
         return dict(
-            filters=tuple(filter.get_config() for filter in self.filters),
-            requirements=tuple(
+            filters=[filter.get_config() for filter in self.filters],
+            requirements=[
                 requirement.get_config() for requirement in self.requirements
-            ),
+            ],
         )

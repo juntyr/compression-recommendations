@@ -7,7 +7,8 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..typing import JSON, _parse_number
+from ..config import _parse_number
+from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
 

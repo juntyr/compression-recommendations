@@ -54,4 +54,4 @@ class LevelKindFilter(Filter):
 
     @override
     def get_config(self) -> JSON:
-        return dict(kind=type(self).kind.get_config(), value=self.value.get_config)
+        return dict(kind=type(self).kind.get_config(), value=self.value.get_config())
