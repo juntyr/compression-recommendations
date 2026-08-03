@@ -12,7 +12,6 @@ import importlib.resources
 import sys
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from functools import cache
 from typing import Self
 
 from semver.version import Version
@@ -32,14 +31,16 @@ class Recommendations(Config):
     metadata: Mapping[str, JSON]
 
     @classproperty
-    @cache
-    def provide(cls) -> Self:
-        with (
-            importlib.resources.files(sys.modules[__name__])
-            .joinpath("recommendations.yaml")
-            .open() as f
-        ):
-            return cls.load(f)
+    def provide(cls) -> "Recommendations":
+        CACHED_ATTR = "_cached_recommendations"
+        if not hasattr(cls, CACHED_ATTR):
+            with (
+                importlib.resources.files(sys.modules[__name__])
+                .joinpath("recommendations.yaml")
+                .open() as f
+            ):
+                setattr(cls, CACHED_ATTR, cls.load(f))
+        return getattr(cls, CACHED_ATTR)
 
     def search(
         self, *, markers: Mapping[str, None | bool | int | float | str]

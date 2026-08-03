@@ -1,5 +1,5 @@
 from collections.abc import Collection, Mapping
-from typing import assert_never, cast
+from typing import assert_never
 
 from compression_recommendations import Recommendations
 from compression_recommendations.requirements.abc import Requirement
@@ -39,7 +39,7 @@ def recommended_safeguards_for(
     *, markers: Mapping[str, None | bool | int | float | str]
 ) -> Safeguards:
     return search_for_recommended_safeguards(
-        recommendations=cast("Recommendations", Recommendations.provide),
+        recommendations=Recommendations.provide,
         markers=markers,
     )
 
