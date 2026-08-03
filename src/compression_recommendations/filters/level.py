@@ -9,11 +9,12 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
+from ..config import _parse_number
 from ..typing import JSON
 from .abc import Filter
 from .kind import FilterKind
 
-__all__ = ["LevelKind", "LevelKindFilter"]
+__all__ = ["LevelKind", "LevelKindFilter", "LevelValueFilter"]
 
 
 class LevelKind(StrEnum):
@@ -48,10 +49,53 @@ class LevelKindFilter(Filter):
         cls,
         *,
         value: Literal["single"] | Literal["pressure"],
-        kind: Literal["grib-short-name"] = FilterKind.grib_short_name.value,
+        kind: Literal["level-kind"] = FilterKind.level_kind.value,
     ) -> Self:
         return cls(value=LevelKind.from_config(value))
 
     @override
     def get_config(self) -> JSON:
         return dict(kind=type(self).kind.get_config(), value=self.value.get_config())
+
+
+@dataclass(kw_only=True)
+class LevelValueFilter(Filter):
+    kind: ClassVar[FilterKind] = FilterKind.level_value
+    minimum: None | int | float
+    maximum: None | int | float
+
+    def matches(
+        self, *, markers: Mapping[str, None | bool | int | float | str]
+    ) -> bool:
+        if type(self).kind.value not in markers:
+            return False
+        level = markers[type(self).kind.value]
+        if not isinstance(level, int | float):
+            return False
+        if self.minimum is not None and level < self.minimum:
+            return False
+        if self.maximum is not None and level > self.maximum:
+            return False
+        return True
+
+    @override
+    @classmethod
+    def from_config(  # type: ignore
+        cls,
+        *,
+        minimum: None | int | float,
+        maximum: None | int | float,
+        kind: Literal["level-value"] = FilterKind.level_value.value,
+    ) -> Self:
+        return cls(
+            minimum=None if minimum is None else _parse_number(minimum),
+            maximum=None if maximum is None else _parse_number(maximum),
+        )
+
+    @override
+    def get_config(self) -> JSON:
+        return dict(
+            kind=type(self).kind.get_config(),
+            minimum=self.minimum,
+            maximum=self.maximum,
+        )

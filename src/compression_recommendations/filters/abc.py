@@ -30,7 +30,8 @@ class Filter(Config, ABC):
         from .cf import CfShortNameFilter, CfStandardNameFilter  # noqa: PLC0415
         from .combinators import AllFilters, AnyFilter  # noqa: PLC0415
         from .grib import GribShortNameFilter  # noqa: PLC0415
-        from .level import LevelKindFilter  # noqa: PLC0415
+        from .level import LevelKindFilter, LevelValueFilter  # noqa: PLC0415
+        from .tag import TagFilter  # noqa: PLC0415
 
         kind_ = FilterKind.from_config(kind)
         match kind_:
@@ -56,6 +57,14 @@ class Filter(Config, ABC):
                 )
             case FilterKind.level_kind:
                 return LevelKindFilter.from_config(
+                    **kwargs  # type: ignore
+                )
+            case FilterKind.level_value:
+                return LevelValueFilter.from_config(
+                    **kwargs  # type: ignore
+                )
+            case FilterKind.tag:
+                return TagFilter.from_config(
                     **kwargs  # type: ignore
                 )
             case _:

@@ -17,6 +17,8 @@ class FilterKind(StrEnum):
     cf_short_name = "cf-short-name"
     grib_short_name = "grib-short-name"
     level_kind = "level-kind"
+    level_value = "level-value"
+    tag = "tag"
 
     @classmethod
     def from_config(cls, kind: str) -> Self:
