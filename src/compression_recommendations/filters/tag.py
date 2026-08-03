@@ -15,7 +15,7 @@ from .kind import FilterKind
 __all__ = ["TagFilter"]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class TagFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.tag
     value: str
@@ -41,5 +41,5 @@ class TagFilter(Filter):
         return cls(value=value)
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)

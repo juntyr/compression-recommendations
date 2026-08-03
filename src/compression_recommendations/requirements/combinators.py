@@ -15,7 +15,7 @@ from .kind import RequirementKind
 __all__ = ["AnyRequirement", "AllRequirements"]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class AnyRequirement(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.any
     requirements: Collection[Requirement]
@@ -38,7 +38,7 @@ class AnyRequirement(Requirement):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             kind=type(self).kind.get_config(),
             requirements=[
@@ -47,7 +47,7 @@ class AnyRequirement(Requirement):
         )
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class AllRequirements(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.all
     requirements: Collection[Requirement]
@@ -70,7 +70,7 @@ class AllRequirements(Requirement):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             kind=type(self).kind.get_config(),
             requirements=[

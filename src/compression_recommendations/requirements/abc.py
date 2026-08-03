@@ -15,6 +15,8 @@ __all__ = ["Requirement"]
 
 
 class Requirement(Config, ABC):
+    __slots__: tuple[str, ...] = ("kind",)
+
     kind: ClassVar[RequirementKind]
 
     @override
@@ -29,11 +31,8 @@ class Requirement(Config, ABC):
             MeanAbsoluteErrorBoundRequirement,
             MeanRelativeErrorBoundRequirement,
         )
-        from .extrema import (  # noqa: PLC0415
-            GlobalMaximumRequirement,
-            GlobalMinimumRequirement,
-        )
         from .isovalue import IsovalueRequirement  # noqa: PLC0415
+        from .limits import DataLimitsRequirement  # noqa: PLC0415
 
         kind_ = RequirementKind.from_config(kind)
         match kind_:
@@ -61,12 +60,8 @@ class Requirement(Config, ABC):
                 return MeanRelativeErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
-            case RequirementKind.global_minimum:
-                return GlobalMinimumRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.global_maximum:
-                return GlobalMaximumRequirement.from_config(
+            case RequirementKind.data_limits:
+                return DataLimitsRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case RequirementKind.isovalue:

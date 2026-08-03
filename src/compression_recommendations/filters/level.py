@@ -31,7 +31,7 @@ class LevelKind(StrEnum):
         return self.value
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class LevelKindFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.level_kind
     value: LevelKind
@@ -54,15 +54,15 @@ class LevelKindFilter(Filter):
         return cls(value=LevelKind.from_config(value))
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value.get_config())
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class LevelValueFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.level_value
-    minimum: None | int | float
-    maximum: None | int | float
+    minimum: None | int | float = None
+    maximum: None | int | float = None
 
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
@@ -83,8 +83,8 @@ class LevelValueFilter(Filter):
     def from_config(  # type: ignore
         cls,
         *,
-        minimum: None | int | float,
-        maximum: None | int | float,
+        minimum: None | int | float = None,
+        maximum: None | int | float = None,
         kind: Literal["level-value"] = FilterKind.level_value.value,
     ) -> Self:
         return cls(
@@ -93,9 +93,10 @@ class LevelValueFilter(Filter):
         )
 
     @override
-    def get_config(self) -> JSON:
-        return dict(
-            kind=type(self).kind.get_config(),
-            minimum=self.minimum,
-            maximum=self.maximum,
-        )
+    def get_config(self) -> Mapping[str, JSON]:
+        config: dict[str, JSON] = dict(kind=type(self).kind.get_config())
+        if self.minimum is not None:
+            config["minimum"] = self.minimum
+        if self.maximum is not None:
+            config["maximum"] = self.maximum
+        return config

@@ -31,9 +31,9 @@ requirements:
     - kind: max-pointwise-relative-error-bound
       value: 0.01
 - kind: all
-  # value range: 0 % <= clwc
+  # valid value range: 0 % <= clwc
   #
   # provided by @juntyr
   requirements:
-  - kind: global-minimum
-    value: 0.0
+  - kind: data-limits
+    minimum: 0.0

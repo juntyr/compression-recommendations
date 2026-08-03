@@ -17,8 +17,7 @@ class RequirementKind(StrEnum):
     mean_absolute_error_bound = "mean-absolute-error-bound"
     max_pointwise_relative_error_bound = "max-pointwise-relative-error-bound"
     mean_relative_error_bound = "mean-relative-error-bound"
-    global_minimum = "global-minimum"
-    global_maximum = "global-maximum"
+    data_limits = "data-limits"
     isovalue = "isovalue"
 
     @classmethod

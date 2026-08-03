@@ -14,7 +14,7 @@ from .requirements.abc import Requirement
 from .typing import JSON
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class Recommendation(Config):
     filters: Collection[Filter]
     requirements: Collection[Requirement]
@@ -53,7 +53,7 @@ class Recommendation(Config):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             filters=[filter.get_config() for filter in self.filters],
             requirements=[

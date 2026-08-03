@@ -2,6 +2,7 @@
 Maximum pointwise error-bounding requirements.
 """
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Literal, Self
 
@@ -18,7 +19,7 @@ __all__ = [
 ]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_absolute_error_bound
     value: int | float
@@ -36,11 +37,11 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
         return cls(value=_parse_number(value))
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_relative_error_bound
     value: int | float
@@ -58,5 +59,5 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
         return cls(value=_parse_number(value))
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)

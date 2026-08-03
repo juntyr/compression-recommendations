@@ -15,7 +15,7 @@ from .kind import FilterKind
 __all__ = ["AnyFilter", "AllFilters"]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class AnyFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.any
     filters: Collection[Filter]
@@ -48,14 +48,14 @@ class AnyFilter(Filter):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             kind=type(self).kind.get_config(),
             filters=[filter.get_config() for filter in self.filters],
         )
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class AllFilters(Filter):
     kind: ClassVar[FilterKind] = FilterKind.all
     filters: Collection[Filter]
@@ -88,7 +88,7 @@ class AllFilters(Filter):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             kind=type(self).kind.get_config(),
             filters=[filter.get_config() for filter in self.filters],

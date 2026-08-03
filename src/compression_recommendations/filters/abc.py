@@ -16,6 +16,8 @@ __all__ = ["Filter"]
 
 
 class Filter(Config, ABC):
+    __slots__: tuple[str, ...] = ("kind",)
+
     kind: ClassVar[FilterKind]
 
     @abstractmethod

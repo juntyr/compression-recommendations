@@ -25,7 +25,7 @@ from .requirements.abc import Requirement
 from .typing import JSON
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class Recommendations(Config):
     recommendations: Collection[Recommendation]
     version: Version
@@ -78,7 +78,7 @@ class Recommendations(Config):
         )
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(
             recommendations=[
                 recommendation.get_config() for recommendation in self.recommendations

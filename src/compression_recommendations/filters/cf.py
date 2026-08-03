@@ -15,7 +15,7 @@ from .kind import FilterKind
 __all__ = ["CfStandardNameFilter", "CfShortNameFilter"]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class CfStandardNameFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.cf_standard_name
     value: str
@@ -38,11 +38,11 @@ class CfStandardNameFilter(Filter):
         return cls(value=value)
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class CfShortNameFilter(Filter):
     kind: ClassVar[FilterKind] = FilterKind.cf_short_name
     value: str
@@ -65,5 +65,5 @@ class CfShortNameFilter(Filter):
         return cls(value=value)
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)

@@ -3,6 +3,7 @@ Abstract base class for JSON-configurable types.
 """
 
 from abc import ABC, abstractmethod
+from collections.abc import Mapping
 from types import MappingProxyType, NoneType
 from typing import Self, final
 
@@ -15,13 +16,15 @@ __all__ = ["Config"]
 
 
 class Config(ABC):
+    __slots__: tuple[str, ...] = ()
+
     @classmethod
     @abstractmethod
     def from_config(cls, **kwargs: JSON) -> Self:
         pass
 
     @abstractmethod
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         pass
 
     @final

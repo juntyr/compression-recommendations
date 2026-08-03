@@ -2,6 +2,7 @@
 Isovalue-preserving requirements.
 """
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Literal, Self
 
@@ -17,7 +18,7 @@ __all__ = [
 ]
 
 
-@dataclass(kw_only=True)
+@dataclass(kw_only=True, slots=True)
 class IsovalueRequirement(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.isovalue
     value: int | float
@@ -33,5 +34,5 @@ class IsovalueRequirement(Requirement):
         return cls(value=_parse_number(value))
 
     @override
-    def get_config(self) -> JSON:
+    def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
