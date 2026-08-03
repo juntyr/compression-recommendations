@@ -22,10 +22,9 @@ recommendations:
         value: 0.01
   - kind: all
     requirements:
-    - kind: global-minimum
-      value: 0.0
-    - kind: global-maximum
-      value: 1.0
+    - kind: data-limits
+      minimum: 0.0
+      maximum: 1.0
 - filters:
   - kind: any
     filters:
@@ -46,8 +45,8 @@ recommendations:
         value: 0.01
   - kind: all
     requirements:
-    - kind: global-minimum
-      value: 0.0
+    - kind: data-limits
+      minimum: 0.0
 - filters:
   - kind: any
     filters:
@@ -68,8 +67,8 @@ recommendations:
         value: 0.01
   - kind: all
     requirements:
-    - kind: global-minimum
-      value: 0.0
+    - kind: data-limits
+      minimum: 0.0
 - filters:
   - kind: any
     filters:
@@ -90,8 +89,8 @@ recommendations:
         value: 0.01
   - kind: all
     requirements:
-    - kind: global-minimum
-      value: 0.0
+    - kind: data-limits
+      minimum: 0.0
 - filters:
   - kind: any
     filters:
@@ -112,8 +111,8 @@ recommendations:
         value: 0.01
   - kind: all
     requirements:
-    - kind: global-minimum
-      value: 0.0
+    - kind: data-limits
+      minimum: 0.0
 - filters:
   - kind: any
     filters:
@@ -4648,4 +4647,4 @@ recommendations:
         value: 0.01
 version: 0.1.0
 metadata:
-  commit: fbc4c3de8fa9dc706e80fd040502cd58efb9917a
+  commit: a21d47c0f409905c7bee0611d1c98383c417af8b
