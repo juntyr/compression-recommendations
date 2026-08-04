@@ -25,6 +25,7 @@ class Requirement(Config, ABC):
         from .combinators import AllRequirements, AnyRequirement  # noqa: PLC0415
         from .error_bounds.max import (  # noqa: PLC0415
             MaxPointwiseAbsoluteErrorBoundRequirement,
+            MaxPointwiseQuadraticErrorBoundRequirement,
             MaxPointwiseRelativeErrorBoundRequirement,
         )
         from .error_bounds.mean import (  # noqa: PLC0415
@@ -33,6 +34,7 @@ class Requirement(Config, ABC):
         )
         from .isovalue import IsovalueRequirement  # noqa: PLC0415
         from .limits import DataLimitsRequirement  # noqa: PLC0415
+        from .missing import MissingValueRequirement  # noqa: PLC0415
 
         kind_ = RequirementKind.from_config(kind)
         match kind_:
@@ -60,12 +62,20 @@ class Requirement(Config, ABC):
                 return MeanRelativeErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
+            case RequirementKind.max_pointwise_quadratic_error_bound:
+                return MaxPointwiseQuadraticErrorBoundRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
             case RequirementKind.data_limits:
                 return DataLimitsRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case RequirementKind.isovalue:
                 return IsovalueRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.missing_value:
+                return MissingValueRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case _:

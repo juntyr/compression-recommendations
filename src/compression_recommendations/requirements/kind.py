@@ -17,8 +17,10 @@ class RequirementKind(StrEnum):
     mean_absolute_error_bound = "mean-absolute-error-bound"
     max_pointwise_relative_error_bound = "max-pointwise-relative-error-bound"
     mean_relative_error_bound = "mean-relative-error-bound"
+    max_pointwise_quadratic_error_bound = "max-pointwise-quadratic-error-bound"
     data_limits = "data-limits"
     isovalue = "isovalue"
+    missing_value = "missing-value"
 
     @classmethod
     def from_config(cls, kind: str) -> Self:

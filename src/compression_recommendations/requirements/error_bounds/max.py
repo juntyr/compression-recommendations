@@ -16,6 +16,7 @@ from ..kind import RequirementKind
 __all__ = [
     "MaxPointwiseAbsoluteErrorBoundRequirement",
     "MaxPointwiseRelativeErrorBoundRequirement",
+    "MaxPointwiseQuadraticErrorBoundRequirement",
 ]
 
 
@@ -61,3 +62,40 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+
+@dataclass(kw_only=True, slots=True)
+class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
+    kind: ClassVar[RequirementKind] = (
+        RequirementKind.max_pointwise_quadratic_error_bound
+    )
+    value: int | float
+    minimum: int | float
+    maximum: int | float
+
+    @override
+    @classmethod
+    def from_config(  # type: ignore
+        cls,
+        *,
+        value: int | float,
+        minimum: int | float,
+        maximum: int | float,
+        kind: Literal[
+            "max-pointwise-quadratic-error-bound"
+        ] = RequirementKind.max_pointwise_quadratic_error_bound.value,
+    ) -> Self:
+        return cls(
+            value=_parse_number(value),
+            minimum=_parse_number(minimum),
+            maximum=_parse_number(maximum),
+        )
+
+    @override
+    def get_config(self) -> Mapping[str, JSON]:
+        return dict(
+            kind=type(self).kind.get_config(),
+            value=self.value,
+            minimum=self.minimum,
+            maximum=self.maximum,
+        )

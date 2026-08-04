@@ -1,8 +1,26 @@
 import compression_safeguards_recommendations
+import pytest
 from compression_safeguards.api import Safeguards
 from compression_safeguards.safeguards.combinators.all import AllSafeguards
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
+
+from compression_recommendations.requirements.combinators import (
+    AllRequirements,
+    AnyRequirement,
+)
+from compression_recommendations.requirements.error_bounds.max import (
+    MaxPointwiseAbsoluteErrorBoundRequirement,
+    MaxPointwiseQuadraticErrorBoundRequirement,
+    MaxPointwiseRelativeErrorBoundRequirement,
+)
+from compression_recommendations.requirements.error_bounds.mean import (
+    MeanAbsoluteErrorBoundRequirement,
+    MeanRelativeErrorBoundRequirement,
+)
+from compression_recommendations.requirements.isovalue import IsovalueRequirement
+from compression_recommendations.requirements.limits import DataLimitsRequirement
+from compression_recommendations.requirements.missing import MissingValueRequirement
 
 
 def test_requirements():
@@ -28,4 +46,88 @@ def test_requirements():
                 ),
             ]
         ).get_config()
+    )
+
+
+@pytest.mark.parametrize("cls", [AnyRequirement, AllRequirements])
+def test_combinator_requirement(cls):
+    with pytest.raises(
+        ValueError, match="can only combine over at least one safeguard"
+    ):
+        compression_safeguards_recommendations.safeguards_for_requirement(
+            cls(requirements=[])
+        )
+
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        cls(requirements=[IsovalueRequirement(value=0)])
+    )
+
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        cls(requirements=[IsovalueRequirement(value=0), IsovalueRequirement(value=1)])
+    )
+
+
+@pytest.mark.parametrize(
+    "cls",
+    [
+        MaxPointwiseAbsoluteErrorBoundRequirement,
+        MaxPointwiseRelativeErrorBoundRequirement,
+        MeanAbsoluteErrorBoundRequirement,
+        MeanRelativeErrorBoundRequirement,
+    ],
+)
+def test_error_bound_requirement(cls):
+    compression_safeguards_recommendations.safeguards_for_requirement(cls(value=4.2))
+
+
+def test_quadrartic_error_bound_requirement():
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        MaxPointwiseQuadraticErrorBoundRequirement(value=4.2, minimum=-10, maximum=10)
+    )
+
+
+def test_data_limits_requirement():
+    assert (
+        len(
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                DataLimitsRequirement()
+            )
+        )
+        == 0
+    )
+    assert (
+        len(
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                DataLimitsRequirement(minimum=-10)
+            )
+        )
+        == 1
+    )
+    assert (
+        len(
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                DataLimitsRequirement(maximum=10)
+            )
+        )
+        == 1
+    )
+    assert (
+        len(
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                DataLimitsRequirement(minimum=-10, maximum=10)
+            )
+        )
+        == 2
+    )
+
+
+def test_isovalue_requirement():
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        IsovalueRequirement(value=4.2)
+    )
+
+
+def test_missing_value_requirement():
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        MissingValueRequirement(value=99999)
     )
