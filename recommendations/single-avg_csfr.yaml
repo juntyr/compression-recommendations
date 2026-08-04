@@ -30,3 +30,10 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+- kind: all
+  requirements:
+  # valid value range: 0 kg m^-2 s^-1 <= avg_csfr
+  #
+  # provided by @juntyr
+  - kind: data-limits
+    minimum: 0.0

@@ -32,3 +32,10 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 3600.0
+- kind: all
+  requirements:
+  # valid value range: 0 J m^-2 <= ssrc
+  #
+  # provided by @juntyr
+  - kind: data-limits
+    minimum: 0.0

@@ -37,3 +37,11 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+- kind: all
+  # valid value range: 0 % <= cl <= 100 %
+  #
+  # provided by @juntyr
+  requirements:
+  - kind: data-limits
+    minimum: 0.0
+    maximum: 1.0

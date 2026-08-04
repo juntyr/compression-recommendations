@@ -32,3 +32,10 @@ requirements:
       value: 0.05
     - kind: max-pointwise-relative-error-bound
       value: 0.05
+- kind: all
+  requirements:
+  # valid value range: 0 m <= sdfor
+  #
+  # provided by @juntyr
+  - kind: data-limits
+    minimum: 0.0

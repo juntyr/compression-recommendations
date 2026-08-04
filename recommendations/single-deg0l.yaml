@@ -30,3 +30,10 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 1.0
+- kind: all
+  requirements:
+  # valid value range: 0 m <= deg0l
+  #
+  # provided by @juntyr
+  - kind: data-limits
+    minimum: 0.0
