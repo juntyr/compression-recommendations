@@ -1,0 +1,50 @@
+# Requirements for Land-sea mask
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Land-sea mask
+    filters:
+    - kind: cf-standard-name
+      value: land_binary_mask
+    - kind: cf-short-name
+      value: lsm
+    - kind: grib-short-name
+      value: lsm
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 5.960464478e-08 [dimensionless]
+  requirements:
+  - kind: all
+    # absolute error
+    # 
+    # conservative, provided by @juntyr
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.0
+- kind: all
+  # It is important that treshold of 0.5 can still be used to decide whether
+  # land or ocean (ECMWF)
+  requirements:
+  - kind: isovalue
+    value: 0.5
+- kind: all
+  # valid value range: 0 % <= lsm <= 100 %
+  #
+  # provided by @juntyr
+  requirements:
+  - kind: data-limits
+    minimum: 0.0
+    maximum: 1.0

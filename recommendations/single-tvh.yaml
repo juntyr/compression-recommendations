@@ -1,0 +1,42 @@
+# Requirements for Type of high vegetation
+#
+# Initialised by @juntyr and @SF-N.
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+
+filters:
+- kind: any
+  # variables
+  filters:
+  - kind: any
+    # Type of high vegetation
+    filters:
+    - kind: cf-short-name
+      value: tvh
+    - kind: grib-short-name
+      value: tvh
+- kind: level-kind
+  value: single
+requirements:
+- kind: any
+  # pointwise error bounds
+  #
+  # GRIB adds in ERA5 a maximum pointwise absolute error of
+  # 0.0002899169922 [Code table 4.234]
+  requirements:
+  - kind: all
+    # absolute error
+    #
+    # conservative, provided by @juntyr
+    requirements:
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.0
+- kind: all
+  # valid value range: 1 <= tvh <= 20
+  #
+  # provided by @juntyr
+  requirements:
+  - kind: data-limits
+    minimum: 0
+    maximum: 20
