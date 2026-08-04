@@ -35,7 +35,7 @@ requirements:
     - kind: max-pointwise-absolute-error-bound
       value: 0.0
 - kind: all
-  # It is important that treshold of 0.5 can still be used to decide whether
+  # It is important that threshold of 0.5 can still be used to decide whether
   # land or ocean (ECMWF)
   requirements:
   - kind: isovalue
