@@ -10,7 +10,9 @@ from compression_recommendations import Recommendations
 from compression_recommendations.recommendation import Recommendation
 
 commit = subprocess.run(
-    shlex.split("git rev-list HEAD -1 -- recommendations tools"),
+    shlex.split(
+        f"git rev-list HEAD -1 -- {Path('recommendations', '*.yaml')} {Path(__file__)}"
+    ),
     check=True,
     capture_output=True,
     text=True,
