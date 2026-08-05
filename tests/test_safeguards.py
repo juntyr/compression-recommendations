@@ -5,6 +5,7 @@ from compression_safeguards.safeguards.combinators.all import AllSafeguards
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
 
+from compression_recommendations import Recommendations
 from compression_recommendations.requirements.combinators import (
     AllRequirements,
     AnyRequirement,
@@ -12,10 +13,12 @@ from compression_recommendations.requirements.combinators import (
 from compression_recommendations.requirements.error_bounds.max import (
     MaxPointwiseAbsoluteErrorBoundRequirement,
     MaxPointwiseQuadraticErrorBoundRequirement,
+    MaxPointwiseRangeRelativeErrorBoundRequirement,
     MaxPointwiseRelativeErrorBoundRequirement,
 )
 from compression_recommendations.requirements.error_bounds.mean import (
     MeanAbsoluteErrorBoundRequirement,
+    MeanRangeRelativeErrorBoundRequirement,
     MeanRelativeErrorBoundRequirement,
 )
 from compression_recommendations.requirements.isovalue import IsovalueRequirement
@@ -23,7 +26,7 @@ from compression_recommendations.requirements.limits import DataLimitsRequiremen
 from compression_recommendations.requirements.missing import MissingValueRequirement
 
 
-def test_requirements():
+def test_recommended_safeguards_for_u10():
     assert (
         compression_safeguards_recommendations.recommended_safeguards_for(
             markers={"cf-short-name": "u10", "level-kind": "single"}
@@ -39,7 +42,7 @@ def test_requirements():
                         ),
                         AllSafeguards(
                             safeguards=[
-                                ErrorBoundSafeguard(type="abs", eb=0.5, equal_nan=False)
+                                ErrorBoundSafeguard(type="rel", eb=0.5, equal_nan=False)
                             ]
                         ),
                     ]
@@ -47,6 +50,14 @@ def test_requirements():
             ]
         ).get_config()
     )
+
+
+def test_all_recommendations():
+    for recommendation in Recommendations.provide.recommendations:
+        for requirement in recommendation.requirements:
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                requirement
+            )
 
 
 @pytest.mark.parametrize("cls", [AnyRequirement, AllRequirements])
@@ -72,8 +83,10 @@ def test_combinator_requirement(cls):
     [
         MaxPointwiseAbsoluteErrorBoundRequirement,
         MaxPointwiseRelativeErrorBoundRequirement,
+        MaxPointwiseRangeRelativeErrorBoundRequirement,
         MeanAbsoluteErrorBoundRequirement,
         MeanRelativeErrorBoundRequirement,
+        MeanRangeRelativeErrorBoundRequirement,
     ],
 )
 def test_error_bound_requirement(cls):
@@ -130,4 +143,10 @@ def test_isovalue_requirement():
 def test_missing_value_requirement():
     compression_safeguards_recommendations.safeguards_for_requirement(
         MissingValueRequirement(value=99999)
+    )
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        MissingValueRequirement(value=-0.0)
+    )
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        MissingValueRequirement(value=float("nan"))
     )

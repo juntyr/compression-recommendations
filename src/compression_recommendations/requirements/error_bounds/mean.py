@@ -16,6 +16,7 @@ from ..kind import RequirementKind
 __all__ = [
     "MeanAbsoluteErrorBoundRequirement",
     "MeanRelativeErrorBoundRequirement",
+    "MeanRangeRelativeErrorBoundRequirement",
 ]
 
 
@@ -55,6 +56,28 @@ class MeanRelativeErrorBoundRequirement(Requirement):
         kind: Literal[
             "mean-relative-error-bound"
         ] = RequirementKind.mean_relative_error_bound.value,
+    ) -> Self:
+        return cls(value=_parse_number(value))
+
+    @override
+    def get_config(self) -> Mapping[str, JSON]:
+        return dict(kind=type(self).kind.get_config(), value=self.value)
+
+
+@dataclass(kw_only=True, slots=True)
+class MeanRangeRelativeErrorBoundRequirement(Requirement):
+    kind: ClassVar[RequirementKind] = RequirementKind.mean_range_relative_error_bound
+    value: int | float
+
+    @override
+    @classmethod
+    def from_config(  # type: ignore
+        cls,
+        *,
+        value: int | float,
+        kind: Literal[
+            "mean-range-relative-error-bound"
+        ] = RequirementKind.mean_range_relative_error_bound.value,
     ) -> Self:
         return cls(value=_parse_number(value))
 

@@ -1,3 +1,4 @@
+import math
 from collections.abc import Collection, Mapping
 from typing import assert_never
 
@@ -10,10 +11,12 @@ from compression_recommendations.requirements.combinators import (
 from compression_recommendations.requirements.error_bounds.max import (
     MaxPointwiseAbsoluteErrorBoundRequirement,
     MaxPointwiseQuadraticErrorBoundRequirement,
+    MaxPointwiseRangeRelativeErrorBoundRequirement,
     MaxPointwiseRelativeErrorBoundRequirement,
 )
 from compression_recommendations.requirements.error_bounds.mean import (
     MeanAbsoluteErrorBoundRequirement,
+    MeanRangeRelativeErrorBoundRequirement,
     MeanRelativeErrorBoundRequirement,
 )
 from compression_recommendations.requirements.isovalue import IsovalueRequirement
@@ -100,14 +103,59 @@ def _safeguards_for_requirement(
         case RequirementKind.mean_absolute_error_bound:
             assert isinstance(requirement, MeanAbsoluteErrorBoundRequirement)
             # conservatively bound the pointwise absolute error instead
-            return [ErrorBoundSafeguard(type=ErrorBound.abs, eb=requirement.value)]
+            return _safeguards_for_requirement(
+                MaxPointwiseAbsoluteErrorBoundRequirement(value=requirement.value)
+            )
         case RequirementKind.max_pointwise_relative_error_bound:
             assert isinstance(requirement, MaxPointwiseRelativeErrorBoundRequirement)
             return [ErrorBoundSafeguard(type=ErrorBound.rel, eb=requirement.value)]
         case RequirementKind.mean_relative_error_bound:
             assert isinstance(requirement, MeanRelativeErrorBoundRequirement)
-            # conservatively bound the pointwise absolute error instead
-            return [ErrorBoundSafeguard(type=ErrorBound.abs, eb=requirement.value)]
+            # conservatively bound the pointwise relative error instead
+            return _safeguards_for_requirement(
+                MaxPointwiseRelativeErrorBoundRequirement(value=requirement.value)
+            )
+        case RequirementKind.max_pointwise_range_relative_error_bound:
+            assert isinstance(
+                requirement, MaxPointwiseRangeRelativeErrorBoundRequirement
+            )
+            return [
+                PointwiseQuantityOfInterestErrorBoundSafeguard(
+                    qoi="""
+                    # scale x to be relative to $x_max - $x_min
+                    v["x_rel"] = x / (c["$x_max"] - c["$x_min"]);
+
+                    return where(
+                        isfinite(v["x_rel"]),
+
+                        # if x_rel is finite, use it to fulfil the range-relative
+                        # error bound:
+                        #   |x - $x| <= eb_range_rel * ($x_max - $x_min)
+                        #   |x - $x| / ($x_max - $x_min) <= eb_range_rel
+                        #   | (x / ($x_max - $x_min)) - ($x / ($x_max - $x_min)) | <= eb_range_rel
+                        #   |qoi(x) - qoi($x)| <= eb_range_rel
+                        #     with qoi(x) = x / ($x_max - $x_min)
+                        v["x_rel"],
+
+                        # otherwise, if x could not be normalised,
+                        # ensure instead that x == $x
+                        #
+                        # use the fact that the error bound will always be
+                        # finite, and so the error bound can only be met if
+                        # x == $x, since this is true for $x
+                        where(x == c["$x"], Inf, 0),
+                    );
+                    """,  # type: ignore
+                    type=ErrorBound.abs,
+                    eb=requirement.value,
+                )
+            ]
+        case RequirementKind.mean_range_relative_error_bound:
+            assert isinstance(requirement, MeanRangeRelativeErrorBoundRequirement)
+            # conservatively bound the pointwise range-relative error instead
+            return _safeguards_for_requirement(
+                MaxPointwiseRangeRelativeErrorBoundRequirement(value=requirement.value)
+            )
         case RequirementKind.max_pointwise_quadratic_error_bound:
             assert isinstance(requirement, MaxPointwiseQuadraticErrorBoundRequirement)
             return [
@@ -120,8 +168,8 @@ def _safeguards_for_requirement(
 
                     return where(
                         all([
-                            c["$x"] > c["minimum"],
-                            c["$x"] < c["maximum"],
+                            c["x1"] > -1,
+                            c["x1"] < +1,
                             isfinite(v["x1"]),
                         ]),
 
@@ -187,7 +235,24 @@ def _safeguards_for_requirement(
             return [SignPreservingSafeguard(offset=requirement.value)]
         case RequirementKind.missing_value:
             assert isinstance(requirement, MissingValueRequirement)
-            # TODO: should be explicitly handle NaN here?
-            return [SameValueSafeguard(value=requirement.value)]
+            if math.isnan(requirement.value):
+                # SameValueSafeguard preserves same bits,
+                # but preserve all NaN bit patterns
+                return [
+                    PointwiseQuantityOfInterestErrorBoundSafeguard(
+                        qoi="isnan(x)",  # type: ignore
+                        type=ErrorBound.abs,
+                        eb=0,
+                    )
+                ]
+            if requirement.value == 0:
+                # preserve both -0.0 and +0.0, which have distinct bit patterns
+                return [
+                    SameValueSafeguard(value=requirement.value, exclusive=True),
+                    SameValueSafeguard(value=-requirement.value, exclusive=True),
+                ]
+            return [SameValueSafeguard(value=requirement.value, exclusive=True)]
+            # TODO: switch to equivalent value safeguard
+            # return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
         case _:
             assert_never(requirement.kind)

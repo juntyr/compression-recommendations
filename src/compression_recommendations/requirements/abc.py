@@ -26,10 +26,12 @@ class Requirement(Config, ABC):
         from .error_bounds.max import (  # noqa: PLC0415
             MaxPointwiseAbsoluteErrorBoundRequirement,
             MaxPointwiseQuadraticErrorBoundRequirement,
+            MaxPointwiseRangeRelativeErrorBoundRequirement,
             MaxPointwiseRelativeErrorBoundRequirement,
         )
         from .error_bounds.mean import (  # noqa: PLC0415
             MeanAbsoluteErrorBoundRequirement,
+            MeanRangeRelativeErrorBoundRequirement,
             MeanRelativeErrorBoundRequirement,
         )
         from .isovalue import IsovalueRequirement  # noqa: PLC0415
@@ -60,6 +62,14 @@ class Requirement(Config, ABC):
                 )
             case RequirementKind.mean_relative_error_bound:
                 return MeanRelativeErrorBoundRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.max_pointwise_range_relative_error_bound:
+                return MaxPointwiseRangeRelativeErrorBoundRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.mean_range_relative_error_bound:
+                return MeanRangeRelativeErrorBoundRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case RequirementKind.max_pointwise_quadratic_error_bound:
