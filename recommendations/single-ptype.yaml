@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Precipitation type
+    # Precipitation type [Code table 4.201]
     filters:
     - kind: cf-short-name
       value: ptype
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 0.0001220703125 [Code table 4.201]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

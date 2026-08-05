@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Sub-surface runoff
+    # Sub-surface runoff [m]
     filters:
     - kind: cf-short-name
       value: ssro
@@ -25,8 +25,8 @@ requirements:
   # The maximum error should be the smaller of either indicated absolute /
   # relative errors (ECMWF)
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 4.098037607e-07 [m]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

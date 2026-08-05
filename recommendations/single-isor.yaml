@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Anisotropy of sub-gridscale orography
+    # Anisotropy of sub-gridscale orography [Numeric]
     filters:
     - kind: cf-short-name
       value: isor
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 5.845686957e-08 [Numeric]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 5.960464477539063e-08 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

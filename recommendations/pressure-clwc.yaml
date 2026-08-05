@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Specific cloud liquid water content
+    # Specific cloud liquid water content [kg kg**-1]
     filters:
     - kind: cf-short-name
       value: clwc
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 7.31786713e-07 [kg kg**-1]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 0.000244140625 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

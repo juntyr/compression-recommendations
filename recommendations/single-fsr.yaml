@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Forecast surface roughness
+    # Forecast surface roughness [m]
     filters:
     - kind: cf-short-name
       value: fsr
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 1.183018483e-07 [m]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 5.960464477539063e-08 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # UV visible albedo for direct radiation (climatological)
+    # UV visible albedo for direct radiation (climatological) [dimensionless]
     filters:
     - kind: cf-short-name
       value: aluvp
@@ -26,8 +26,8 @@ requirements:
   # straight from a climatology and are likely to be misinterpreted by users
   # (ECMWF)
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 1.383165454e-05 [dimensionless]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

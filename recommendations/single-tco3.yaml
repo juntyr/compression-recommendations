@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Total column ozone
+    # Total column ozone [kg m**-2]
     filters:
     - kind: cf-standard-name
       value: atmosphere_mass_content_of_ozone
@@ -24,8 +24,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 1.524707898e-07 [kg m**-2]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

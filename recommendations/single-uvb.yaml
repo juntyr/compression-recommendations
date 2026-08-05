@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Surface downward UV radiation
+    # Surface downward UV radiation [J m**-2]
     filters:
     - kind: cf-short-name
       value: uvb
@@ -28,8 +28,8 @@ requirements:
   # a year long, and you might want the same error in hourly average or daily
   # average flux for the final day as the beginning. (ECMWF)
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 24.82275391 [J m**-2]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

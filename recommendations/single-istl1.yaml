@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Ice temperature layer 1
+    # Ice temperature layer 1 [K]
     filters:
     - kind: cf-short-name
       value: istl1
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 0.0006493856199 [K]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

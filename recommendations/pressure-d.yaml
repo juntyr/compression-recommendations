@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Divergence
+    # Divergence [s**-1]
     filters:
     - kind: cf-standard-name
       value: divergence_of_wind
@@ -24,8 +24,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 1.318390908e-08 [s**-1]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

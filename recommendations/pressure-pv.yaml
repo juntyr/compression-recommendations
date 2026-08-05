@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Potential vorticity
+    # Potential vorticity [K m**2 kg**-1 s**-1]
     filters:
     - kind: cf-short-name
       value: pv
@@ -24,8 +24,8 @@ requirements:
   #
   # 0,1 PVU = 1e-7
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 7.056142337e-09 [K m**2 kg**-1 s**-1]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

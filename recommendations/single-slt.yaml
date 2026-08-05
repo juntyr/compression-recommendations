@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Soil type
+    # Soil type [Code table 4.213]
     filters:
     - kind: cf-short-name
       value: slt
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 4.172325134e-07 [Code table 4.213]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 5.960464477539063e-08 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

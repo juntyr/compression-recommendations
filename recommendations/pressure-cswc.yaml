@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Specific snow water content
+    # Specific snow water content [kg kg**-1]
     filters:
     - kind: cf-short-name
       value: cswc
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 6.541631592e-08 [kg kg**-1]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

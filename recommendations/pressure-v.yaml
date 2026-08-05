@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # V component of wind
+    # V component of wind [m s**-1]
     filters:
     - kind: cf-standard-name
       value: northward_wind
@@ -27,8 +27,8 @@ requirements:
   # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0,01m/s or
   # even 0.001m/s for wind fields
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 0.00208951463 [m s**-1]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error

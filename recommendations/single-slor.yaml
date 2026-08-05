@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Slope of sub-gridscale orography
+    # Slope of sub-gridscale orography [Numeric]
     filters:
     - kind: cf-short-name
       value: slor
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 8.045953237e-09 [Numeric]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 5.960464477539063e-08 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

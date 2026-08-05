@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Fraction of cloud cover
+    # Fraction of cloud cover [dimensionless]
     filters:
     - kind: cf-short-name
       value: cc
@@ -24,8 +24,8 @@ requirements:
   #
   # provided by Richard Forbes (ECMWF)
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 0.00390625 [dimensionless]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 0.00390625 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)

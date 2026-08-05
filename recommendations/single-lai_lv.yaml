@@ -10,7 +10,7 @@ filters:
   # variables
   filters:
   - kind: any
-    # Leaf area index, low vegetation
+    # Leaf area index, low vegetation [m**2 m**-2]
     filters:
     - kind: cf-short-name
       value: lai_lv
@@ -22,8 +22,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # GRIB adds in ERA5 a maximum pointwise absolute error of
-  # 7.082894444e-05 [m**2 m**-2]
+  # In ERA5 GRIB linear packing adds a maximum pointwise
+  # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error
