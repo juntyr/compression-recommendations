@@ -54,6 +54,12 @@ class AnyFilter(Filter):
             filters=[filter.get_config() for filter in self.filters],
         )
 
+    @override
+    def humanise(self) -> str:
+        if len(self.filters) == 0:
+            return "False"
+        return f"{type(self).kind.value}({', '.join(filter.humanise() for filter in self.filters)})"
+
 
 @dataclass(kw_only=True, slots=True)
 class AllFilters(Filter):
@@ -93,3 +99,9 @@ class AllFilters(Filter):
             kind=type(self).kind.get_config(),
             filters=[filter.get_config() for filter in self.filters],
         )
+
+    @override
+    def humanise(self) -> str:
+        if len(self.filters) == 0:
+            return "True"
+        return f"{type(self).kind.value}({', '.join(filter.humanise() for filter in self.filters)})"

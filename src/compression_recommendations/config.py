@@ -20,12 +20,13 @@ class Config(ABC):
 
     @classmethod
     @abstractmethod
-    def from_config(cls, **kwargs: JSON) -> Self:
-        pass
+    def from_config(cls, **kwargs: JSON) -> Self: ...
 
     @abstractmethod
-    def get_config(self) -> Mapping[str, JSON]:
-        pass
+    def get_config(self) -> Mapping[str, JSON]: ...
+
+    @abstractmethod
+    def humanise(self) -> str: ...
 
     @final
     @classmethod

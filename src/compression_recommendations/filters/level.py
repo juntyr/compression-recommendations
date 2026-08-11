@@ -57,6 +57,10 @@ class LevelKindFilter(Filter):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value.get_config())
 
+    @override
+    def humanise(self) -> str:
+        return f"{type(self).kind.value} == {self.value.value!r}"
+
 
 @dataclass(kw_only=True, slots=True)
 class LevelValueFilter(Filter):
@@ -100,3 +104,7 @@ class LevelValueFilter(Filter):
         if self.maximum is not None:
             config["maximum"] = self.maximum
         return config
+
+    @override
+    def humanise(self) -> str:
+        return f"{self.minimum!r} <= {type(self).kind.value} <= {self.maximum!r}"

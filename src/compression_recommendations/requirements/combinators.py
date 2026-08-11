@@ -46,6 +46,12 @@ class AnyRequirement(Requirement):
             ],
         )
 
+    @override
+    def humanise(self) -> str:
+        if len(self.requirements) == 0:
+            return "False"
+        return f"{type(self).kind.value}({', '.join(requirement.humanise() for requirement in self.requirements)})"
+
 
 @dataclass(kw_only=True, slots=True)
 class AllRequirements(Requirement):
@@ -77,3 +83,9 @@ class AllRequirements(Requirement):
                 requirement.get_config() for requirement in self.requirements
             ],
         )
+
+    @override
+    def humanise(self) -> str:
+        if len(self.requirements) == 0:
+            return "True"
+        return f"{type(self).kind.value}({', '.join(requirement.humanise() for requirement in self.requirements)})"

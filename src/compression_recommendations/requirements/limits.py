@@ -46,3 +46,15 @@ class DataLimitsRequirement(Requirement):
         if self.maximum is not None:
             config["maximum"] = self.maximum
         return config
+
+    @override
+    def humanise(self) -> str:
+        match (self.minimum, self.maximum):
+            case (None, None):
+                return "True"
+            case (None, maximum):
+                return f"x'_i <= {maximum!r} forall i"
+            case (minimum, None):
+                return f"{minimum!r} <= x'_i forall i"
+            case (minimum, maximum):
+                return f"{minimum!r} <= x'_i <= {maximum!r} forall i"

@@ -60,3 +60,7 @@ class Recommendation(Config):
                 requirement.get_config() for requirement in self.requirements
             ],
         )
+
+    @override
+    def humanise(self) -> str:
+        return f"all({', '.join(filter.humanise() for filter in self.filters)}) -> all({', '.join(requirement.humanise() for requirement in self.requirements)})"

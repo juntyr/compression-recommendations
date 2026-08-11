@@ -42,6 +42,10 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        return f"|x'_i - x_i| <= {self.value!r} forall i"
+
 
 @dataclass(kw_only=True, slots=True)
 class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
@@ -63,6 +67,10 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"|x'_i - x_i| <= {self.value!r} * |x_i| forall i"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -87,6 +95,10 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"|x'_i - x_i| <= {self.value!r} * (max(x) - min(x)) forall i"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -124,3 +136,7 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
             minimum=self.minimum,
             maximum=self.maximum,
         )
+
+    @override
+    def humanise(self) -> str:
+        return f"|x'_i - x_i| <= {self.value!r} * max(0, 1 - (xn_i)^2) forall i where xn_i = -1 + 2 * (x_i - {self.minimum!r}) / ({self.maximum!r} - {self.minimum!r})"

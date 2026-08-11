@@ -87,3 +87,7 @@ class Recommendations(Config):
             version=str(self.version),
             metadata=self.metadata,
         )
+
+    @override
+    def humanise(self) -> str:
+        return f"all({', '.join(recommendation.humanise() for recommendation in self.recommendations)})"

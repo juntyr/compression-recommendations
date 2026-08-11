@@ -41,6 +41,10 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        return f"sum(|x'_i - x_i| forall i) <= {self.value!r} * N"
+
 
 @dataclass(kw_only=True, slots=True)
 class MeanRelativeErrorBoundRequirement(Requirement):
@@ -63,6 +67,11 @@ class MeanRelativeErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        # TODO: is this what we want? should zeros just be allowed like this?
+        return f"sum(|x'_i - x_i| forall i) <= sum({self.value!r} * |x_i| forall i)"
+
 
 @dataclass(kw_only=True, slots=True)
 class MeanRangeRelativeErrorBoundRequirement(Requirement):
@@ -84,3 +93,7 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"sum(|x'_i - x_i| forall i) <= {self.value!r} * (max(x) - min(x)) * N"
