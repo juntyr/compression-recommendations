@@ -4,7 +4,7 @@ Data limit-preserving requirements.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Literal, Self, assert_never
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -58,3 +58,5 @@ class DataLimitsRequirement(Requirement):
                 return f"{minimum!r} <= x'_i forall i"
             case (minimum, maximum):
                 return f"{minimum!r} <= x'_i <= {maximum!r} forall i"
+            case never:
+                assert_never(never)
