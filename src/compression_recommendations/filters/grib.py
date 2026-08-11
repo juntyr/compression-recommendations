@@ -27,6 +27,10 @@ class GribShortNameFilter(Filter):
             return False
         return markers[type(self).kind.value] == self.value
 
+    @classmethod
+    def marker_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+        return {cls.kind.value: value}
+
     @override
     @classmethod
     def from_config(  # type: ignore

@@ -30,6 +30,10 @@ class TagFilter(Filter):
             return False
         return self.value in tags.split(",")
 
+    @classmethod
+    def marker_for(cls, *values: str) -> Mapping[str, None | bool | int | float | str]:
+        return {"tags": ",".join(values)}
+
     @override
     @classmethod
     def from_config(  # type: ignore

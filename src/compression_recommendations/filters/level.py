@@ -43,6 +43,12 @@ class LevelKindFilter(Filter):
             return False
         return markers[type(self).kind.value] == self.value.value
 
+    @classmethod
+    def marker_for(
+        cls, value: LevelKind
+    ) -> Mapping[str, None | bool | int | float | str]:
+        return {cls.kind.value: value.value}
+
     @override
     @classmethod
     def from_config(  # type: ignore
@@ -77,6 +83,12 @@ class LevelValueFilter(Filter):
         if self.maximum is not None and level > self.maximum:
             return False
         return True
+
+    @classmethod
+    def marker_for(
+        cls, value: int | float
+    ) -> Mapping[str, None | bool | int | float | str]:
+        return {cls.kind.value: value}
 
     @override
     @classmethod
