@@ -22,6 +22,7 @@ from compression_recommendations.requirements.error_bounds.mean import (
 from compression_recommendations.requirements.isovalue import IsovalueRequirement
 from compression_recommendations.requirements.kind import RequirementKind
 from compression_recommendations.requirements.limits import DataLimitsRequirement
+from compression_recommendations.requirements.lossless import LosslessRequirement
 from compression_recommendations.requirements.missing import MissingValueRequirement
 from compression_safeguards.api import Safeguards
 from compression_safeguards.safeguards.abc import Safeguard
@@ -30,6 +31,7 @@ from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.eb import ErrorBound
 from compression_safeguards.safeguards.pointwise.abc import PointwiseSafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
+from compression_safeguards.safeguards.pointwise.lossless import LosslessSafeguard
 from compression_safeguards.safeguards.pointwise.qoi.eb import (
     PointwiseQuantityOfInterestErrorBoundSafeguard,
 )
@@ -254,5 +256,8 @@ def _safeguards_for_requirement(
             return [SameValueSafeguard(value=requirement.value, exclusive=True)]
             # TODO: switch to equivalent value safeguard
             # return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
+        case RequirementKind.lossless:
+            assert isinstance(requirement, LosslessRequirement)
+            return [LosslessSafeguard()]
         case _:
             assert_never(requirement.kind)

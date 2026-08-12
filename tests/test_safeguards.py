@@ -23,6 +23,7 @@ from compression_recommendations.requirements.error_bounds.mean import (
 )
 from compression_recommendations.requirements.isovalue import IsovalueRequirement
 from compression_recommendations.requirements.limits import DataLimitsRequirement
+from compression_recommendations.requirements.lossless import LosslessRequirement
 from compression_recommendations.requirements.missing import MissingValueRequirement
 
 
@@ -149,4 +150,10 @@ def test_missing_value_requirement():
     )
     compression_safeguards_recommendations.safeguards_for_requirement(
         MissingValueRequirement(value=float("nan"))
+    )
+
+
+def test_lossless_requirement():
+    compression_safeguards_recommendations.safeguards_for_requirement(
+        LosslessRequirement()
     )

@@ -24,6 +24,8 @@ requirements:
   #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 1.52587890625e-05 (0.01 = 1%)
+  #
+  # @juntyr: Is the zero mean absolute error bound necessary?
   requirements:
   - kind: all
     # absolute error

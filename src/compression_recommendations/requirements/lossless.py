@@ -1,5 +1,5 @@
 """
-Isovalue-preserving requirements.
+Lossless compression requirement.
 """
 
 from collections.abc import Mapping
@@ -8,29 +8,26 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import _parse_number
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
 
-__all__ = ["IsovalueRequirement"]
+__all__ = ["LosslessRequirement"]
 
 
 @dataclass(kw_only=True, slots=True)
-class IsovalueRequirement(Requirement):
-    kind: ClassVar[RequirementKind] = RequirementKind.isovalue
-    value: int | float
+class LosslessRequirement(Requirement):
+    kind: ClassVar[RequirementKind] = RequirementKind.lossless
 
     @override
     @classmethod
     def from_config(  # type: ignore
         cls,
         *,
-        value: int | float,
-        kind: Literal["isovalue"] = RequirementKind.isovalue.value,
+        kind: Literal["lossless"] = RequirementKind.lossless.value,
     ) -> Self:
-        return cls(value=_parse_number(value))
+        return cls()
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
-        return dict(kind=type(self).kind.get_config(), value=self.value)
+        return dict(kind=type(self).kind.get_config())

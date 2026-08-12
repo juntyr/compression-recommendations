@@ -13,9 +13,7 @@ from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
 
-__all__ = [
-    "DataLimitsRequirement",
-]
+__all__ = ["DataLimitsRequirement"]
 
 
 @dataclass(kw_only=True, slots=True)

@@ -36,6 +36,7 @@ class Requirement(Config, ABC):
         )
         from .isovalue import IsovalueRequirement  # noqa: PLC0415
         from .limits import DataLimitsRequirement  # noqa: PLC0415
+        from .lossless import LosslessRequirement  # noqa: PLC0415
         from .missing import MissingValueRequirement  # noqa: PLC0415
 
         kind_ = RequirementKind.from_config(kind)
@@ -86,6 +87,10 @@ class Requirement(Config, ABC):
                 )
             case RequirementKind.missing_value:
                 return MissingValueRequirement.from_config(
+                    **kwargs  # type: ignore
+                )
+            case RequirementKind.lossless:
+                return LosslessRequirement.from_config(
                     **kwargs  # type: ignore
                 )
             case _:

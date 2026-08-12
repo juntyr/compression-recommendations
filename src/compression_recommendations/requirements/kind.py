@@ -25,6 +25,7 @@ class RequirementKind(StrEnum):
     data_limits = "data-limits"
     isovalue = "isovalue"
     missing_value = "missing-value"
+    lossless = "lossless"
 
     @classmethod
     def from_config(cls, kind: str) -> Self:
