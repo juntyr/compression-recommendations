@@ -2508,12 +2508,9 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
-    - kind: all
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0
+    - kind: lossless
   - kind: all
     requirements:
     - kind: isovalue
@@ -3272,12 +3269,9 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
-    - kind: all
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0
+    - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -3596,12 +3590,9 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
-    - kind: all
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0
+    - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -4676,12 +4667,9 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
-    - kind: all
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0
+    - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -4699,12 +4687,9 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
-    - kind: all
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0
+    - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -5092,4 +5077,4 @@ recommendations:
         value: 0.01
 version: 0.1.0
 metadata:
-  commit: 6ba81c929c3f318f9dc4e34f7319cebb21784128
+  commit: 412bd990e9dddea28aecf9f213e43b29d2d53f36
