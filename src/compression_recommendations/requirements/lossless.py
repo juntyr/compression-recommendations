@@ -8,6 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
+from ..config import _to_camel_case
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -17,6 +18,19 @@ __all__ = ["LosslessRequirement"]
 
 @dataclass(kw_only=True, slots=True)
 class LosslessRequirement(Requirement):
+    r"""
+    Require that data is preserved exactly.
+
+    \[
+    R_{\text{lossless}}(x_i, \hat{x}_i) := bits(x_i) = bits(\hat{x}_i)
+    \]
+
+    Requirements $R$ are defined for each data point $x_i$ and its decompressed
+    reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
+    See the [`AnyRequirement`][...combinators.AnyRequirement] for more
+    information.
+    """
+
     kind: ClassVar[RequirementKind] = RequirementKind.lossless
 
     @override
@@ -31,3 +45,7 @@ class LosslessRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config())
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}"

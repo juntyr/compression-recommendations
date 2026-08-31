@@ -20,12 +20,13 @@ class Config(ABC):
 
     @classmethod
     @abstractmethod
-    def from_config(cls, **kwargs: JSON) -> Self:
-        pass
+    def from_config(cls, **kwargs: JSON) -> Self: ...
 
     @abstractmethod
-    def get_config(self) -> Mapping[str, JSON]:
-        pass
+    def get_config(self) -> Mapping[str, JSON]: ...
+
+    @abstractmethod
+    def humanise(self) -> str: ...
 
     @final
     @classmethod
@@ -73,3 +74,8 @@ def _parse_number(x: int | float | str) -> int | float:
         return int(x)
     except ValueError:
         return float(x)
+
+
+# based on https://stackoverflow.com/a/19053800
+def _to_camel_case(kebap_case: str) -> str:
+    return "".join(x.capitalize() for x in kebap_case.lower().split("-"))

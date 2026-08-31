@@ -5,11 +5,11 @@ Filters for vertical levels.
 from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import StrEnum
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Literal, Self, assert_never
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import _parse_number
+from ..config import _parse_number, _to_camel_case
 from ..typing import JSON
 from .abc import Filter
 from .kind import FilterKind
@@ -28,6 +28,9 @@ class LevelKind(StrEnum):
         return cls[kind.replace("-", "_")]
 
     def get_config(self) -> JSON:
+        return self.value
+
+    def humanise(self) -> str:
         return self.value
 
 
@@ -62,6 +65,10 @@ class LevelKindFilter(Filter):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value.get_config())
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value.humanise()})"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -112,3 +119,18 @@ class LevelValueFilter(Filter):
         if self.maximum is not None:
             config["maximum"] = self.maximum
         return config
+
+    @override
+    def humanise(self) -> str:
+        limits = (self.minimum, self.maximum)
+        match limits:
+            case (None, None):
+                return f"{_to_camel_case(type(self).kind)}()"
+            case (minimum, None):
+                return f"{_to_camel_case(type(self).kind)}(minimum={minimum})"
+            case (None, maximum):
+                return f"{_to_camel_case(type(self).kind)}(maximum={maximum})"
+            case (minimum, maximum):
+                return f"{_to_camel_case(type(self).kind)}(minimum={minimum}, maximum={maximum})"
+            case _:
+                assert_never(limits)

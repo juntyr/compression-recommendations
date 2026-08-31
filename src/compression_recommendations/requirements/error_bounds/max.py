@@ -8,7 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ...config import _parse_number
+from ...config import _parse_number, _to_camel_case
 from ...typing import JSON
 from ..abc import Requirement
 from ..kind import RequirementKind
@@ -42,6 +42,10 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"
+
 
 @dataclass(kw_only=True, slots=True)
 class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
@@ -63,6 +67,10 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -87,6 +95,10 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -124,3 +136,7 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
             minimum=self.minimum,
             maximum=self.maximum,
         )
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value}, minimum={self.minimum}, maximum={self.maximum})"

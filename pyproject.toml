@@ -42,7 +42,7 @@ Repository = "https://github.com/juntyr/compression-requirements.git"
 Issues = "https://github.com/juntyr/compression-requirements/issues"
 
 [dependency-groups]
-dev = ["ruff~=0.14"]
+dev = ["ruff~=0.16"]
 tools = [
     "tqdm ~= 4.67.1",
 ]
@@ -56,14 +56,14 @@ docs = [
     "mkdocs-open-in-new-tab~=1.0",
     "properdocs~=1.6.5",
     "properdocs-theme-readthedocs~=1.6.5",
-    "Pygments~=2.19",
-    "ruff~=0.14",
+    "Pygments~=2.20",
+    "ruff~=0.16",
 ]
-doctest = ["griffe2md~=1.1", "pytest~=9.0", "pytest-codeblocks~=0.18.0"]
+doctest = ["griffe2md~=1.5", "pytest~=9.1", "pytest-codeblocks~=0.18.0"]
 test = [
-    "pytest~=9.0",
+    "pytest~=9.1",
 ]
-typecheck = ["mypy~=1.19"]
+typecheck = ["mypy~=2.3"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

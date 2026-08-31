@@ -8,7 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import _parse_number
+from ..config import _parse_number, _to_camel_case
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -18,6 +18,23 @@ __all__ = ["IsovalueRequirement"]
 
 @dataclass(kw_only=True, slots=True)
 class IsovalueRequirement(Requirement):
+    r"""
+    Require that the iso`value` is preserved.
+
+    \[
+    \begin{align*}
+    R_{\text{isovalue}(v)}(x_i, \hat{x}_i) &:= ((\hat{x}_i < v) \iff (x_i < v)) \\
+        &\land ((\hat{x}_i = v) \iff (x_i = v)) \\
+        &\land ((\hat{x}_i > v) \iff (x_i > v))
+    \end{align*}
+    \]
+
+    Requirements $R$ are defined for each data point $x_i$ and its decompressed
+    reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
+    See the [`AnyRequirement`][...combinators.AnyRequirement] for more
+    information.
+    """
+
     kind: ClassVar[RequirementKind] = RequirementKind.isovalue
     value: int | float
 
@@ -34,3 +51,7 @@ class IsovalueRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"

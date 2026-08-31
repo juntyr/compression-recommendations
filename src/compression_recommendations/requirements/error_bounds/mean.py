@@ -8,7 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ...config import _parse_number
+from ...config import _parse_number, _to_camel_case
 from ...typing import JSON
 from ..abc import Requirement
 from ..kind import RequirementKind
@@ -41,6 +41,10 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"
+
 
 @dataclass(kw_only=True, slots=True)
 class MeanRelativeErrorBoundRequirement(Requirement):
@@ -63,6 +67,10 @@ class MeanRelativeErrorBoundRequirement(Requirement):
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"
+
 
 @dataclass(kw_only=True, slots=True)
 class MeanRangeRelativeErrorBoundRequirement(Requirement):
@@ -84,3 +92,7 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
     @override
     def get_config(self) -> Mapping[str, JSON]:
         return dict(kind=type(self).kind.get_config(), value=self.value)
+
+    @override
+    def humanise(self) -> str:
+        return f"{_to_camel_case(type(self).kind)}({self.value})"

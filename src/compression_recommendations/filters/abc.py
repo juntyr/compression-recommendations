@@ -23,8 +23,7 @@ class Filter(Config, ABC):
     @abstractmethod
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
-    ) -> bool:
-        pass
+    ) -> bool: ...
 
     @override
     @classmethod
