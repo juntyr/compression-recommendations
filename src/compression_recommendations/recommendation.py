@@ -8,7 +8,7 @@ from typing import Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from .config import Config
+from .config import Config, Format, LiteralFormat
 from .filters.abc import Filter
 from .requirements.abc import Requirement
 from .typing import JSON
@@ -62,5 +62,13 @@ class Recommendation(Config):
         )
 
     @override
-    def humanise(self) -> str:
-        return f"({' and '.join(filter.humanise() for filter in self.filters)}) -> ({' and '.join(requirement.humanise() for requirement in self.requirements)})"
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        from .filters.combinators import AllFilters  # noqa: PLC0415
+        from .requirements.combinators import AllRequirements  # noqa: PLC0415
+
+        humanised_filters = AllFilters(filters=self.filters).humanise(format=format)
+        humanised_requirements = AllRequirements(
+            requirements=self.requirements
+        ).humanise(format=format)
+
+        return f"{humanised_filters} -> {humanised_requirements}"

@@ -15,7 +15,7 @@ __all__ = ["Requirement"]
 
 
 class Requirement(Config, ABC):
-    __slots__: tuple[str, ...] = ("kind",)
+    __slots__: tuple[str, ...] = ()
 
     kind: ClassVar[RequirementKind]
 

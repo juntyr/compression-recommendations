@@ -8,6 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
+from ..config import Format, LiteralFormat, _humanise_labelled_type
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -69,14 +70,15 @@ class AnyRequirement(Requirement):
         )
 
     @override
-    def humanise(self) -> str:
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
         match self.requirements:
             case ():
-                return "False"
+                return _humanise_labelled_type(self, label="False", format=format)
             case (requirement,):
-                return requirement.humanise()
+                return requirement.humanise(format=format)
             case requirements:
-                return f"({' or '.join(requirement.humanise() for requirement in requirements)})"
+                or_ = _humanise_labelled_type(self, label="or", format=format)
+                return f"({f' {or_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -124,11 +126,12 @@ class AllRequirements(Requirement):
         )
 
     @override
-    def humanise(self) -> str:
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
         match self.requirements:
             case ():
-                return "True"
+                return _humanise_labelled_type(self, label="True", format=format)
             case (requirement,):
-                return requirement.humanise()
+                return requirement.humanise(format=format)
             case requirements:
-                return f"({' and '.join(requirement.humanise() for requirement in requirements)})"
+                and_ = _humanise_labelled_type(self, label="and", format=format)
+                return f"({f' {and_} '.join(requirement.humanise(format=format) for requirement in requirements)})"

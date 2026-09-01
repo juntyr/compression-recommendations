@@ -8,6 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
+from ..config import Format, LiteralFormat, _humanise_labelled_type
 from ..typing import JSON
 from .abc import Filter
 from .kind import FilterKind
@@ -55,14 +56,15 @@ class AnyFilter(Filter):
         )
 
     @override
-    def humanise(self) -> str:
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
         match self.filters:
             case ():
-                return "False"
+                return _humanise_labelled_type(self, label="False", format=format)
             case (filter,):
-                return filter.humanise()
+                return filter.humanise(format=format)
             case filters:
-                return f"({' or '.join(filter.humanise() for filter in filters)})"
+                or_ = _humanise_labelled_type(self, label="or", format=format)
+                return f"({f' {or_} '.join(filter.humanise(format=format) for filter in filters)})"
 
 
 @dataclass(kw_only=True, slots=True)
@@ -105,11 +107,12 @@ class AllFilters(Filter):
         )
 
     @override
-    def humanise(self) -> str:
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
         match self.filters:
             case ():
-                return "True"
+                return _humanise_labelled_type(self, label="True", format=format)
             case (filter,):
-                return filter.humanise()
+                return filter.humanise(format=format)
             case filters:
-                return f"({' and '.join(filter.humanise() for filter in filters)})"
+                and_ = _humanise_labelled_type(self, label="and", format=format)
+                return f"({f' {and_} '.join(filter.humanise(format=format) for filter in filters)})"

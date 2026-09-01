@@ -8,7 +8,7 @@ from typing import ClassVar, Literal, Self, assert_never
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import _parse_number, _to_camel_case
+from ..config import Format, LiteralFormat, _humanise_kinded_type, _parse_number
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -70,16 +70,17 @@ class DataLimitsRequirement(Requirement):
         return config
 
     @override
-    def humanise(self) -> str:
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        ty = _humanise_kinded_type(self, format=format)
         limits = (self.minimum, self.maximum)
         match limits:
             case (None, None):
-                return f"{_to_camel_case(type(self).kind)}()"
+                return f"{ty}()"
             case (minimum, None):
-                return f"{_to_camel_case(type(self).kind)}(minimum={minimum})"
+                return f"{ty}(minimum={minimum})"
             case (None, maximum):
-                return f"{_to_camel_case(type(self).kind)}(maximum={maximum})"
+                return f"{ty}(maximum={maximum})"
             case (minimum, maximum):
-                return f"{_to_camel_case(type(self).kind)}(minimum={minimum}, maximum={maximum})"
+                return f"{ty}(minimum={minimum}, maximum={maximum})"
             case _:
                 assert_never(limits)

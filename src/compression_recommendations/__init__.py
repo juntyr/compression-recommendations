@@ -18,7 +18,7 @@ from semver.version import Version
 from typed_classproperties import classproperty
 from typing_extensions import override  # MSPV 3.12
 
-from .config import Config
+from .config import Config, Format, LiteralFormat
 from .recommendation import Recommendation
 from .requirements.abc import Requirement
 from .typing import JSON
@@ -89,6 +89,6 @@ class Recommendations(Config):
         )
 
     @override
-    def humanise(self) -> str:
-        joiner = "\nand\n"
-        return f"{joiner.join(recommendation.humanise() for recommendation in self.recommendations)}"
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        joiner = "\n\nand\n\n"
+        return f"{joiner.join(recommendation.humanise(format=format) for recommendation in self.recommendations)}"

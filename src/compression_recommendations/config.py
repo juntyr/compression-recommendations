@@ -4,15 +4,35 @@ Abstract base class for JSON-configurable types.
 
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
+from enum import StrEnum
 from types import MappingProxyType, NoneType
-from typing import Self, final
+from typing import TYPE_CHECKING, Literal, Self, TypeAlias, assert_never, final
+
+if TYPE_CHECKING:
+    from .filters.abc import Filter
+    from .requirements.abc import Requirement
 
 import strictyaml
 from typing_extensions import Reader, Writer  # MSPV 3.14
 
 from .typing import JSON
 
-__all__ = ["Config"]
+__all__ = ["Config", "Format", "LiteralFormat"]
+
+
+LiteralFormat: TypeAlias = Literal["plain", "terminal"]
+
+
+class Format(StrEnum):
+    plain = "plain"
+    terminal = "terminal"
+
+    @classmethod
+    def from_literal(cls, format: LiteralFormat | Self) -> Self:
+        return cls[format]
+
+    def as_literal(self) -> LiteralFormat:
+        return self.value
 
 
 class Config(ABC):
@@ -26,7 +46,7 @@ class Config(ABC):
     def get_config(self) -> Mapping[str, JSON]: ...
 
     @abstractmethod
-    def humanise(self) -> str: ...
+    def humanise(self, *, format: LiteralFormat | Format = Format.plain) -> str: ...
 
     @final
     @classmethod
@@ -76,6 +96,44 @@ def _parse_number(x: int | float | str) -> int | float:
         return float(x)
 
 
+def _humanise_kinded_type(
+    this: "Filter | Requirement", *, format: LiteralFormat | Format = Format.plain
+) -> str:
+    kind_kebap = type(this).kind.value
+    kind_camel = _to_camel_case(kind_kebap)
+
+    return _humanise_labelled_type(this, label=kind_camel, format=format)
+
+
+def _humanise_labelled_type(
+    this: object, *, label: str, format: LiteralFormat | Format = Format.plain
+) -> str:
+    ty = type(this)
+    format = Format.from_literal(format)
+
+    match format:
+        case Format.plain:
+            return label
+        case Format.terminal:
+            uri = f"https://juntyr.github.io/compression-recommendations/_ref/{ty.__module__.replace('.', '/')}/#{ty.__module__}.{ty.__name__}"
+            return _hyperlink(uri, label)
+        case _:
+            assert_never(format)
+
+
 # based on https://stackoverflow.com/a/19053800
 def _to_camel_case(kebap_case: str) -> str:
     return "".join(x.capitalize() for x in kebap_case.lower().split("-"))
+
+
+# based on https://stackoverflow.com/a/71309268
+def _hyperlink(uri: str, label: None | str = None):
+    if label is None:
+        label = uri
+
+    parameters = ""
+
+    # OSC 8 ; params ; URI ST <name> OSC 8 ;; ST
+    escape_mask = "\033]8;{};{}\033\\{}\033]8;;\033\\"
+
+    return escape_mask.format(parameters, uri, label)

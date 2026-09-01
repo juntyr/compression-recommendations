@@ -8,7 +8,7 @@ from typing import ClassVar, Literal, Self
 
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import _parse_number, _to_camel_case
+from ..config import Format, LiteralFormat, _humanise_kinded_type, _parse_number
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -52,5 +52,5 @@ class MissingValueRequirement(Requirement):
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
-    def humanise(self) -> str:
-        return f"{_to_camel_case(type(self).kind)}({self.value})"
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        return f"{_humanise_kinded_type(self, format=format)}({self.value})"
