@@ -1,3 +1,31 @@
+r"""
+# Recommended Compression Safeguards for Safe Lossy Compression of weather and climate data
+
+What lossy compression is safe when using lossy compression on weather and
+climate data?
+
+This package translates compression safety
+[`Requirement`][compression_recommendations.requirements.abc.Requirement]s
+into compression
+[`Safeguards`][compression_safeguards.api.Safeguards], which can be wrapped
+around any compressor to guarantee that the requirements are fulfilled.
+
+The recommended safeguards for a given use case can be found via the three
+provided functions:
+
+- [`recommended_safeguards_for`][.recommended_safeguards_for] finds the
+  [community-recommended][compression_recommendations.Recommendations.provide]
+  safeguards,
+- [`search_for_recommended_safeguards`][.search_for_recommended_safeguards]
+  finds the safeguards recommended by the given
+  [`Recommendations`][compression_recommendations.Recommendations], and
+- [`safeguards_for_requirement`][.safeguards_for_requirement] translates a
+  single
+  [`Requirement`][compression_recommendations.requirements.abc.Requirement]
+  into a collection of
+  [`Safeguard`][compression_safeguards.safeguards.abc.Safeguard]s.
+"""
+
 import math
 from collections.abc import Collection, Mapping
 from typing import assert_never
@@ -49,6 +77,42 @@ __all__ = [
 def recommended_safeguards_for(
     *, markers: Mapping[str, None | bool | int | float | str]
 ) -> Safeguards:
+    """
+    Find the [community-recommended][compression_recommendations.Recommendations.provide] safeguards for the given use case, identified by the `markers`.
+
+    Parameters
+    ----------
+    markers : Mapping[str, None | bool | int | float | str]
+        The markers that identify the use case, e.g. the variable, for which
+        safeguards are produced.
+
+        Please refer to
+        [`compression_recommendations.Recommendations.search`][compression_recommendations.Recommendations.search]
+        for an explanation of the markers.
+
+    Returns
+    -------
+    safeguards : Safeguards
+        The safeguards that guarantee that the recommended safety requirements
+        are met.
+
+    Raises
+    ------
+    KeyError
+        if no recommendations could be found for the provided `markers`.
+
+    Examples
+    -------
+    ```py
+    import compression_safeguards_recommendations
+
+    compression_safeguards_recommendations.recommended_safeguards_for(
+        markers={"cf-short-name": "u10", "level-kind": "single"},
+    )
+    ```
+    finds the recommended safeguards for 10 metre u wind.
+    """
+
     return search_for_recommended_safeguards(
         recommendations=Recommendations.provide,
         markers=markers,
@@ -60,6 +124,46 @@ def search_for_recommended_safeguards(
     recommendations: Recommendations,
     markers: Mapping[str, None | bool | int | float | str],
 ) -> Safeguards:
+    """
+    Find the safeguards recommended by the given `recommendations` for the given use case, identified by the `markers`.
+
+    Parameters
+    ----------
+    recommendations : Recommendations
+        The recommendations that will be searched for the safety requirements.
+    markers : Mapping[str, None | bool | int | float | str]
+        The markers that identify the use case, e.g. the variable, for which
+        safeguards are produced.
+
+        Please refer to
+        [`compression_recommendations.Recommendations.search`][compression_recommendations.Recommendations.search]
+        for an explanation of the markers.
+
+    Returns
+    -------
+    safeguards : Safeguards
+        The safeguards that guarantee that the recommended safety requirements
+        are met.
+
+    Raises
+    ------
+    KeyError
+        if no `recommendations` could be found for the provided `markers`.
+
+    Examples
+    --------
+    ```py
+    import compression_safeguards_recommendations
+    from compression_recommendations import Recommendations
+
+    compression_safeguards_recommendations.search_for_recommended_safeguards(
+        recommendations=Recommendations.provide,
+        markers={"cf-short-name": "u10", "level-kind": "single"},
+    )
+    ```
+    finds the recommended safeguards for 10 metre u wind.
+    """
+
     return Safeguards(
         safeguards=[
             sg
@@ -70,6 +174,20 @@ def search_for_recommended_safeguards(
 
 
 def safeguards_for_requirement(requirement: Requirement) -> Collection[Safeguard]:
+    """
+    Translate the given `requirement` into a collection of safeguards.
+
+    Parameters
+    ----------
+    requirement : Requirement
+        The safety requirement to translate into safeguards.
+
+    Returns
+    -------
+    safeguards : Collection[Safeguard]
+        The safeguards required to guarantee that the `requirement` is met.
+    """
+
     return _safeguards_for_requirement(requirement)
 
 
