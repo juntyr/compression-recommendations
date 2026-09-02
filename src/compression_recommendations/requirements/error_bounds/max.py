@@ -43,6 +43,11 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite maximum pointwise absolute error bound.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_absolute_error_bound
@@ -91,6 +96,11 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite maximum relative absolute error bound.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_relative_error_bound
@@ -150,6 +160,12 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite maximum pointwise range-relative error
+        bound.
     """
 
     kind: ClassVar[RequirementKind] = (
@@ -204,6 +220,17 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite maximum pointwise quadratic error bound.
+    minimum : int | float
+        The minimum for the quadratic error bound, at and below which data
+        values are preserved exactly.
+    maximum : int | float
+        The maximum for the quadratic error bound, at and above which data
+        values are preserved exactly.
     """
 
     kind: ClassVar[RequirementKind] = (

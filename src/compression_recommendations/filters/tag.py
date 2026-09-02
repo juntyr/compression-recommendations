@@ -18,6 +18,15 @@ __all__ = ["TagFilter"]
 
 @dataclass(kw_only=True, slots=True)
 class TagFilter(Filter):
+    """
+    Filter that matches on the given arbitrary tag.
+
+    Parameters
+    ----------
+    value : str
+        The arbitrary tag to match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.tag
     value: str
 
@@ -32,7 +41,24 @@ class TagFilter(Filter):
         return self.value in tags.split(",")
 
     @classmethod
-    def marker_for(cls, *values: str) -> Mapping[str, None | bool | int | float | str]:
+    def markers_for(cls, *values: str) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given tags.
+
+        Parameters
+        ----------
+        *values : str
+            The tags to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match any of the given tags.
+        """
+
         return {"tags": ",".join(values)}
 
     @override

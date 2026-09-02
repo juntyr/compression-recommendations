@@ -38,6 +38,11 @@ class AnyRequirement(Requirement):
     For global requirements, each point $x_i$ thus requires the global
     requirement to be fulfilled, i.e.
     $R(x_i, \hat{x}_i) = R_{global}(x, \hat{x})$.
+
+    Parameters
+    ----------
+    requirements : Collection[Requirement]
+        The sub-requirements for this any-requirement combinator.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.any
@@ -94,6 +99,11 @@ class AllRequirements(Requirement):
     Requirements $R$ are defined for each data point $x_i$ and its decompressed
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][..AnyRequirement] for more information.
+
+    Parameters
+    ----------
+    requirements : Collection[Requirement]
+        The sub-requirements for this all-requirements combinator.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.all

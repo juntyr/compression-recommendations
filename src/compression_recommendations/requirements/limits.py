@@ -40,6 +40,13 @@ class DataLimitsRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][...combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    minimum : None | int | float
+        The optional lower data limit to preserve.
+    maximum : None | int | float
+        The optional upper data limit to preserve.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.data_limits

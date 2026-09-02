@@ -33,6 +33,11 @@ class IsovalueRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][...combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The isovalue to preserve.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.isovalue

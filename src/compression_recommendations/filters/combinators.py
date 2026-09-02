@@ -18,6 +18,15 @@ __all__ = ["AnyFilter", "AllFilters"]
 
 @dataclass(kw_only=True, slots=True)
 class AnyFilter(Filter):
+    """
+    Filter that matches if at least one of the provided sub-`filters` matches.
+
+    Parameters
+    ----------
+    filters : Collection[Filter]
+        The sub-filters for this any-filter combinator.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.any
     filters: Collection[Filter]
 
@@ -69,6 +78,15 @@ class AnyFilter(Filter):
 
 @dataclass(kw_only=True, slots=True)
 class AllFilters(Filter):
+    """
+    Filter that matches if all of the provided sub-`filters` matches.
+
+    Parameters
+    ----------
+    filters : Collection[Filter]
+        The sub-filters for this all-filters combinator.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.all
     filters: Collection[Filter]
 

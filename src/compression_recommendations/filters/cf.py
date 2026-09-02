@@ -18,6 +18,15 @@ __all__ = ["CfStandardNameFilter", "CfShortNameFilter"]
 
 @dataclass(kw_only=True, slots=True)
 class CfStandardNameFilter(Filter):
+    """
+    Filter that matches on the [CF Standard Name](https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html) of a variable.
+
+    Parameters
+    ----------
+    value : str
+        The CF Standard Name to match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.cf_standard_name
     value: str
 
@@ -29,7 +38,24 @@ class CfStandardNameFilter(Filter):
         return markers[type(self).kind.value] == self.value
 
     @classmethod
-    def marker_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+    def markers_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given CF Standard Name.
+
+        Parameters
+        ----------
+        value : str
+            The CF Standard Name to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match the given CF Standard Name.
+        """
+
         return {cls.kind.value: value}
 
     @override
@@ -53,6 +79,15 @@ class CfStandardNameFilter(Filter):
 
 @dataclass(kw_only=True, slots=True)
 class CfShortNameFilter(Filter):
+    """
+    Filter that matches on the non-standard CF short name of a variable.
+
+    Parameters
+    ----------
+    value : str
+        The non-standard CF short name to match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.cf_short_name
     value: str
 
@@ -64,7 +99,24 @@ class CfShortNameFilter(Filter):
         return markers[type(self).kind.value] == self.value
 
     @classmethod
-    def marker_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+    def markers_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given non-standard CF short name.
+
+        Parameters
+        ----------
+        value : str
+            The CF short name to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match the given CF short name.
+        """
+
         return {cls.kind.value: value}
 
     @override

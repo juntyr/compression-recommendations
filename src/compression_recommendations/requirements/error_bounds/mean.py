@@ -49,6 +49,11 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite mean absolute error bound.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_absolute_error_bound
@@ -108,6 +113,11 @@ class MeanRelativeErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite mean relative error bound.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_relative_error_bound
@@ -168,6 +178,11 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][....combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The non-negative and finite mean range-relative error bound.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_range_relative_error_bound

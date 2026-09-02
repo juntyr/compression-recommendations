@@ -19,7 +19,7 @@ __all__ = ["MissingValueRequirement"]
 @dataclass(kw_only=True, slots=True)
 class MissingValueRequirement(Requirement):
     r"""
-    Require that the missing value sentinel `v` is preserved.
+    Require that the missing `value` sentinel is preserved.
 
     \[
     R_{\text{missing-value}(v)}(x_i, \hat{x}_i) := (\hat{x}_i \equiv v) \iff (x_i \equiv v)
@@ -32,6 +32,11 @@ class MissingValueRequirement(Requirement):
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][...combinators.AnyRequirement] for more
     information.
+
+    Parameters
+    ----------
+    value : int | float
+        The missing value sentinel to preserve.
     """
 
     kind: ClassVar[RequirementKind] = RequirementKind.missing_value

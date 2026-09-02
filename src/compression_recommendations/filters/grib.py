@@ -18,6 +18,15 @@ __all__ = ["GribShortNameFilter"]
 
 @dataclass(kw_only=True, slots=True)
 class GribShortNameFilter(Filter):
+    """
+    Filter that matches on the non-standard [GRIB short name](https://codes.ecmwf.int/grib/param-db) of a variable.
+
+    Parameters
+    ----------
+    value : str
+        The GRIB short name to match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.grib_short_name
     value: str
 
@@ -29,7 +38,24 @@ class GribShortNameFilter(Filter):
         return markers[type(self).kind.value] == self.value
 
     @classmethod
-    def marker_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+    def markers_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given GRIB short name.
+
+        Parameters
+        ----------
+        value : str
+            The GRIB short name to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match the given GRIB short name.
+        """
+
         return {cls.kind.value: value}
 
     @override

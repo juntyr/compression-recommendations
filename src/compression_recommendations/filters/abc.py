@@ -28,7 +28,7 @@ class Filter(Config, ABC):
         Check if this filter matches the `markers`.
 
         Please refer to the individual filter implementations, or use their
-        `Filter.marker_for` method, to see which markers they match.
+        `Filter.markers_for` method, to see which markers they match.
 
         Parameters
         ----------

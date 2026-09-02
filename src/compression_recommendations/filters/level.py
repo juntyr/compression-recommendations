@@ -36,6 +36,15 @@ class LevelKind(StrEnum):
 
 @dataclass(kw_only=True, slots=True)
 class LevelKindFilter(Filter):
+    """
+    Filter that matches on the kind of vertical level of the data.
+
+    Parameters
+    ----------
+    value : LevelKind
+        The level kind to match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.level_kind
     value: LevelKind
 
@@ -47,9 +56,26 @@ class LevelKindFilter(Filter):
         return markers[type(self).kind.value] == self.value.value
 
     @classmethod
-    def marker_for(
+    def markers_for(
         cls, value: LevelKind
     ) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given level kind.
+
+        Parameters
+        ----------
+        value : LevelKind
+            The level kind to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match the given level kind.
+        """
+
         return {cls.kind.value: value.value}
 
     @override
@@ -73,6 +99,28 @@ class LevelKindFilter(Filter):
 
 @dataclass(kw_only=True, slots=True)
 class LevelValueFilter(Filter):
+    """
+    Filter that matches within a range of vertical level values of the data.
+
+    If no `minimum` and no `maximum` are given, all vertical level values
+    match.
+
+    Parameters
+    ----------
+    minimum : None | int | float
+        The optional inclusive minimum of the range of vertical levels that
+        match.
+
+        If no `minimum` is given, all level values below and inclusive the
+        `maximum` match.
+    maximum : None | int | float
+        The optional inclusive maximum of the range of vertical levels that
+        match.
+
+        If no `maximum` is given, all level values above and inclusive the
+        `minimum` match.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.level_value
     minimum: None | int | float = None
     maximum: None | int | float = None
@@ -92,9 +140,26 @@ class LevelValueFilter(Filter):
         return True
 
     @classmethod
-    def marker_for(
+    def markers_for(
         cls, value: int | float
     ) -> Mapping[str, None | bool | int | float | str]:
+        """
+        Construct the markers that can be passed to
+        [`Recommendations.search`][.....Recommendations.search] or
+        [`Filter.matches`][....abc.Filter.matches]
+        to find recommendations for the given vertical level value.
+
+        Parameters
+        ----------
+        value : int | float
+            The vertical level value to match.
+
+        Returns
+        -------
+        marker : Mapping[str, None | bool | int | float | str]
+            The markers that will match the given vertical level value.
+        """
+
         return {cls.kind.value: value}
 
     @override
