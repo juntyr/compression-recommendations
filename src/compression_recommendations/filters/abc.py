@@ -23,7 +23,23 @@ class Filter(Config, ABC):
     @abstractmethod
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
-    ) -> bool: ...
+    ) -> bool:
+        """
+        Check if this filter matches the `markers`.
+
+        Please refer to the individual filter implementations, or use their
+        `Filter.marker_for` method, to see which markers they match.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers that identify the use case, e.g. the variable.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the filter matches, [`False`][False] otherwise.
+        """
 
     @override
     @classmethod
