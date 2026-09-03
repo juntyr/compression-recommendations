@@ -3,7 +3,10 @@ Enumeration over all requirement kinds.
 """
 
 from enum import StrEnum
-from typing import Self
+from typing import TYPE_CHECKING, Self, assert_never
+
+if TYPE_CHECKING:
+    from .abc import Requirement
 
 from ..typing import JSON
 
@@ -33,3 +36,75 @@ class RequirementKind(StrEnum):
 
     def get_config(self) -> JSON:
         return self.value
+
+    @property
+    def cls(self) -> type["Requirement"]:
+        match self:
+            case RequirementKind.any:
+                from .combinators import AnyRequirement  # noqa: PLC0415
+
+                return AnyRequirement
+            case RequirementKind.all:
+                from .combinators import AllRequirements  # noqa: PLC0415
+
+                return AllRequirements
+            case RequirementKind.max_pointwise_absolute_error_bound:
+                from .error_bounds.max import (  # noqa: PLC0415
+                    MaxPointwiseAbsoluteErrorBoundRequirement,
+                )
+
+                return MaxPointwiseAbsoluteErrorBoundRequirement
+            case RequirementKind.mean_absolute_error_bound:
+                from .error_bounds.mean import (  # noqa: PLC0415
+                    MeanAbsoluteErrorBoundRequirement,
+                )
+
+                return MeanAbsoluteErrorBoundRequirement
+            case RequirementKind.max_pointwise_relative_error_bound:
+                from .error_bounds.max import (  # noqa: PLC0415
+                    MaxPointwiseRelativeErrorBoundRequirement,
+                )
+
+                return MaxPointwiseRelativeErrorBoundRequirement
+            case RequirementKind.mean_relative_error_bound:
+                from .error_bounds.mean import (  # noqa: PLC0415
+                    MeanRelativeErrorBoundRequirement,
+                )
+
+                return MeanRelativeErrorBoundRequirement
+            case RequirementKind.max_pointwise_range_relative_error_bound:
+                from .error_bounds.max import (  # noqa: PLC0415
+                    MaxPointwiseRangeRelativeErrorBoundRequirement,
+                )
+
+                return MaxPointwiseRangeRelativeErrorBoundRequirement
+            case RequirementKind.mean_range_relative_error_bound:
+                from .error_bounds.mean import (  # noqa: PLC0415
+                    MeanRangeRelativeErrorBoundRequirement,
+                )
+
+                return MeanRangeRelativeErrorBoundRequirement
+            case RequirementKind.max_pointwise_quadratic_error_bound:
+                from .error_bounds.max import (  # noqa: PLC0415
+                    MaxPointwiseQuadraticErrorBoundRequirement,
+                )
+
+                return MaxPointwiseQuadraticErrorBoundRequirement
+            case RequirementKind.data_limits:
+                from .limits import DataLimitsRequirement  # noqa: PLC0415
+
+                return DataLimitsRequirement
+            case RequirementKind.isovalue:
+                from .isovalue import IsovalueRequirement  # noqa: PLC0415
+
+                return IsovalueRequirement
+            case RequirementKind.missing_value:
+                from .missing import MissingValueRequirement  # noqa: PLC0415
+
+                return MissingValueRequirement
+            case RequirementKind.lossless:
+                from .lossless import LosslessRequirement  # noqa: PLC0415
+
+                return LosslessRequirement
+            case _:
+                assert_never(self)
