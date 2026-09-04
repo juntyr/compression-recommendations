@@ -24,6 +24,9 @@ class FilterKind(StrEnum):
     all = "all"
     """ See the [`AllFilters`][....combinators.AllFilters]. """
 
+    not_ = "not"
+    """ See the [`NotFilter`][....combinators.NotFilter]. """
+
     cf_standard_name = "cf-standard-name"
     """ See the [`CfStandardNameFilter`][....cf.CfStandardNameFilter]. """
 
@@ -57,6 +60,10 @@ class FilterKind(StrEnum):
                 from .combinators import AllFilters  # noqa: PLC0415
 
                 return AllFilters
+            case FilterKind.not_:
+                from .combinators import NotFilter  # noqa: PLC0415
+
+                return NotFilter
             case FilterKind.cf_standard_name:
                 from .cf import CfStandardNameFilter  # noqa: PLC0415
 
@@ -99,6 +106,9 @@ class FilterKind(StrEnum):
         kind : Self
             The instantiated filter kind.
         """
+
+        if kind == "not":
+            kind = "not_"
 
         return cls[kind.replace("-", "_")]
 
