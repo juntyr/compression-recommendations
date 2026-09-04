@@ -91,7 +91,6 @@ plugins:
               classes: true
               functions: true
               modules: true
-            backlinks: tree
             show_inheritance_diagram: true
             inheritance_diagram_direction: LR
             extensions: ["dataclasses"]

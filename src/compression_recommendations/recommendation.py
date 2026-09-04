@@ -1,5 +1,5 @@
 """
-Implementation of a single [`Requirement`][compression_recommendations.recommendation.Recommendation].
+Implementation of a single [`Recommendation`][compression_recommendations.recommendation.Recommendation].
 """
 
 from collections.abc import Collection, Mapping
@@ -16,12 +16,57 @@ from .typing import JSON
 
 @dataclass(kw_only=True, slots=True)
 class Recommendation(Config):
+    """
+    A recommendation for safe lossy compression for a specific use case.
+
+    Each recommendation connects a set of [`Filter`][...filters.abc.Filter]s to
+    a set of safety [`Requirement`][...requirements.abc.Requirement]s.
+
+    For example, an error bound can be applied to one or more variables,
+    possibly limited to a specific vertical level range or a specific
+    downstream application.
+
+    Parameters
+    ----------
+    filters : Collection[Filter]
+        The collection of filters that decide when the recommendation applies.
+        All filters must [`match`][...filters.abc.Filter.matches] for the
+        recommendation to apply.
+
+        Please refer to the [`FilterKind`][...filters.kind.FilterKind] for an
+        enumeration of all supported filters.
+    requirements : Collection[Requirement]
+        The collection of safety requirements that are recommended to all be
+        upheld by lossy compression.
+
+        Please refer to the
+        [`RequirementKind`][...requirements.kind.RequirementKind] for an
+        enumeration of all supported requirements.
+    """
+
     filters: Collection[Filter]
     requirements: Collection[Requirement]
 
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
     ) -> bool:
+        """
+        Check if the `markers` match this recommendation.
+
+        All filters must [`match`][....filters.abc.Filter.matches] for the
+        recommendation to apply.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers that identify the use case, e.g. the variable.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the `markers` match, [`False`][False] otherwise.
+        """
+
         all_match = True
 
         for filter in self.filters:
@@ -37,6 +82,24 @@ class Recommendation(Config):
         filters: Collection[Mapping[str, JSON]],
         requirements: Collection[Mapping[str, JSON]],
     ) -> Self:
+        """
+        Construct the recommendation from the [`JSON`][compression_recommendations.typing.JSON] configurations for its `filters` and `requirements`.
+
+        Parameters
+        ----------
+        filters : Collection[Mapping[str, JSON]]
+            The configurations for the collection of filters that decide when
+            the recommendation applies.
+        requirements : Collection[Mapping[str, JSON]]
+            The configurations for the collection of safety requirements that
+            are recommended to all be upheld by lossy compression.
+
+        Returns
+        -------
+        filter : Self
+            The instantiated recommendation.
+        """
+
         return cls(
             filters=tuple(
                 Filter.from_config(
@@ -54,6 +117,15 @@ class Recommendation(Config):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this recommendation.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             filters=[filter.get_config() for filter in self.filters],
             requirements=[
@@ -63,6 +135,20 @@ class Recommendation(Config):
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this recommendation.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this recommendation.
+        """
+
         from .filters.combinators import AllFilters  # noqa: PLC0415
         from .requirements.combinators import AllRequirements  # noqa: PLC0415
 

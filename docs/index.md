@@ -7,7 +7,7 @@ render_macros: true
 
 What lossy compression is safe when using lossy compression on weather and climate data?
 
-This repository contains community-created [recommendations](recommendations.md) that are automatically compiled into one machine-readable [`recommendations.yaml`]({{ config.repo_url }}/{{ config.edit_uri }}/src/compression_recommendations/recommendations.yaml) file.
+This repository contains community-provided [recommendations](recommendations.md) that are automatically compiled into one machine-readable [`recommendations.yaml`]({{ config.repo_url }}/{{ config.edit_uri }}/src/compression_recommendations/recommendations.yaml) file.
 These recommendations can then be used by external tools to automatically recommend appropriate safety requirements for compressing various weather and climate data.
 
 This repository also provides the [`compression-recommendations`][compression_recommendations] Python package for loading these recommendations and inspecting them in the strongly typed [`Recommendations`][compression_recommendations.Recommendations] data structure.
