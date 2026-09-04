@@ -4,7 +4,7 @@ Logical combinations of multiple requirements.
 
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -54,8 +54,22 @@ class AnyRequirement(Requirement):
         cls,
         *,
         requirements: Collection[Mapping[str, JSON]],
-        kind: Literal["any"] = RequirementKind.any.value,
     ) -> Self:
+        """
+        Construct the any-requirement combinator from its configuration.
+
+        Parameters
+        ----------
+        requirements : Collection[Mapping[str, JSON]]
+            The configuration for the sub-requirements for this
+            any-requirement combinator.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated any-requirement combinator.
+        """
+
         return cls(
             requirements=tuple(
                 Requirement.from_config(
@@ -67,6 +81,15 @@ class AnyRequirement(Requirement):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this any-requirement combinator.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             kind=type(self).kind.get_config(),
             requirements=[
@@ -76,6 +99,20 @@ class AnyRequirement(Requirement):
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this any-requirement combinator.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this any-requirement combinator.
+        """
+
         match self.requirements:
             case ():
                 return _humanise_labelled_type(self, label="False", format=format)
@@ -115,8 +152,22 @@ class AllRequirements(Requirement):
         cls,
         *,
         requirements: Collection[Mapping[str, JSON]],
-        kind: Literal["all"] = RequirementKind.all.value,
     ) -> Self:
+        """
+        Construct the all-requirements combinator from its configuration.
+
+        Parameters
+        ----------
+        requirements : Collection[Mapping[str, JSON]]
+            The configuration for the sub-requirements for this
+            all-requirements combinator.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated all-requirements combinator.
+        """
+
         return cls(
             requirements=tuple(
                 Requirement.from_config(
@@ -128,6 +179,15 @@ class AllRequirements(Requirement):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this all-requirements combinator.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             kind=type(self).kind.get_config(),
             requirements=[
@@ -137,6 +197,20 @@ class AllRequirements(Requirement):
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this all-requirements combinator.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this all-requirements combinator.
+        """
+
         match self.requirements:
             case ():
                 return _humanise_labelled_type(self, label="True", format=format)

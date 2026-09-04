@@ -15,6 +15,10 @@ __all__ = ["Requirement"]
 
 
 class Requirement(Config, ABC):
+    """
+    Abstract base class for requirements, which define the safety requirements that lossy compression must uphold.
+    """
+
     __slots__: tuple[str, ...] = ()
 
     kind: ClassVar[RequirementKind]
@@ -22,6 +26,22 @@ class Requirement(Config, ABC):
     @override
     @classmethod
     def from_config(cls, *, kind: str, **kwargs: JSON) -> Self:  # type: ignore
+        """
+        Construct the specific requirement from its `kind` and [`JSON`][compression_recommendations.typing.JSON] configuration.
+
+        Parameters
+        ----------
+        kind : str
+            The requirement kind.
+        **kwargs : JSON
+            The requirement configuration.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated requirement.
+        """
+
         return RequirementKind.from_config(kind).cls.from_config(
             **kwargs  # type: ignore
         )

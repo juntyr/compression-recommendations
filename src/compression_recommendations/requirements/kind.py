@@ -14,6 +14,10 @@ __all__ = ["RequirementKind"]
 
 
 class RequirementKind(StrEnum):
+    """
+    Enumeration over all requirement kinds.
+    """
+
     any = "any"
     all = "all"
     max_pointwise_absolute_error_bound = "max-pointwise-absolute-error-bound"
@@ -30,15 +34,12 @@ class RequirementKind(StrEnum):
     missing_value = "missing-value"
     lossless = "lossless"
 
-    @classmethod
-    def from_config(cls, kind: str) -> Self:
-        return cls[kind.replace("-", "_")]
-
-    def get_config(self) -> JSON:
-        return self.value
-
     @property
     def cls(self) -> type["Requirement"]:
+        """
+        The concrete requirement class associated with this requirement kind.
+        """
+
         match self:
             case RequirementKind.any:
                 from .combinators import AnyRequirement  # noqa: PLC0415
@@ -108,3 +109,33 @@ class RequirementKind(StrEnum):
                 return LosslessRequirement
             case _:
                 assert_never(self)
+
+    @classmethod
+    def from_config(cls, kind: str) -> Self:
+        """
+        Construct the requirement kind from its configuration.
+
+        Parameters
+        ----------
+        kind : str
+            The requirement kind name.
+
+        Returns
+        -------
+        kind : Self
+            The instantiated requirement kind.
+        """
+
+        return cls[kind.replace("-", "_")]
+
+    def get_config(self) -> JSON:
+        """
+        Get the configuration of this requirement kind.
+
+        Returns
+        -------
+        config : JSIN
+            Configuration in JSON format.
+        """
+
+        return self.value

@@ -4,7 +4,7 @@ Maximum pointwise error-bounding requirements.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -59,18 +59,54 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "max-pointwise-absolute-error-bound"
-        ] = RequirementKind.max_pointwise_absolute_error_bound.value,
     ) -> Self:
+        """
+        Construct the maximum pointwise absolute error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite maximum pointwise absolute error bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated maximum pointwise absolute error bound
+            requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this maximum pointwise absolute error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this maximum pointwise absolute error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this maximum pointwise absolute
+            error bound requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
 
 
@@ -112,18 +148,54 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "max-pointwise-relative-error-bound"
-        ] = RequirementKind.max_pointwise_relative_error_bound.value,
     ) -> Self:
+        """
+        Construct the maximum pointwise relative error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite maximum pointwise relative error bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated maximum pointwise relative error bound
+            requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this maximum pointwise relative error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this maximum pointwise relative error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this maximum pointwise relative
+            error bound requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
 
 
@@ -179,18 +251,55 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "max-pointwise-range-relative-error-bound"
-        ] = RequirementKind.max_pointwise_range_relative_error_bound.value,
     ) -> Self:
+        """
+        Construct the maximum pointwise range-relative error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite maximum pointwise range-relative error
+            bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated maximum pointwise range-relative error bound
+            requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this maximum pointwise range-relative error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this maximum pointwise range-relative error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this maximum pointwise
+            range-relative error bound requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
 
 
@@ -248,10 +357,28 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
         value: int | float,
         minimum: int | float,
         maximum: int | float,
-        kind: Literal[
-            "max-pointwise-quadratic-error-bound"
-        ] = RequirementKind.max_pointwise_quadratic_error_bound.value,
     ) -> Self:
+        """
+        Construct the maximum pointwise quadratic error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite maximum pointwise quadratic error bound.
+        minimum : int | float
+            The minimum for the quadratic error bound, at and below which data
+            values are preserved exactly.
+        maximum : int | float
+            The maximum for the quadratic error bound, at and above which data
+            values are preserved exactly.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated maximum pointwise quadratic error bound
+            requirement.
+        """
+
         return cls(
             value=_parse_number(value),
             minimum=_parse_number(minimum),
@@ -260,6 +387,15 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this maximum pointwise quadratic error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             kind=type(self).kind.get_config(),
             value=self.value,
@@ -269,4 +405,19 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this maximum pointwise quadratic error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this maximum pointwise quadratic
+            error bound requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value}, minimum={self.minimum}, maximum={self.maximum})"

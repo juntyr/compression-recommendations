@@ -4,7 +4,7 @@ Missing value preserving requirements.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -48,14 +48,50 @@ class MissingValueRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal["missing-value"] = RequirementKind.missing_value.value,
     ) -> Self:
+        """
+        Construct the missing value requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The missing value sentinel to preserve.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated missing value requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this missing value requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this missing value requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this missing value requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"

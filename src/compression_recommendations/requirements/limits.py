@@ -4,7 +4,7 @@ Data limit-preserving requirements.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self, assert_never
+from typing import ClassVar, Self, assert_never
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -60,8 +60,23 @@ class DataLimitsRequirement(Requirement):
         *,
         minimum: None | int | float = None,
         maximum: None | int | float = None,
-        kind: Literal["data-limits"] = RequirementKind.data_limits.value,
     ) -> Self:
+        """
+        Construct the data limits requirement from its configuration.
+
+        Parameters
+        ----------
+        minimum : None | int | float
+            The optional lower data limit to preserve.
+        maximum : None | int | float
+            The optional upper data limit to preserve.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated data limits requirement.
+        """
+
         return cls(
             minimum=None if minimum is None else _parse_number(minimum),
             maximum=None if maximum is None else _parse_number(maximum),
@@ -69,6 +84,15 @@ class DataLimitsRequirement(Requirement):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this data limits requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         config: dict[str, JSON] = dict(kind=type(self).kind.get_config())
         if self.minimum is not None:
             config["minimum"] = self.minimum
@@ -78,6 +102,20 @@ class DataLimitsRequirement(Requirement):
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this data limits requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this data limits requirement.
+        """
+
         ty = _humanise_kinded_type(self, format=format)
         limits = (self.minimum, self.maximum)
         match limits:

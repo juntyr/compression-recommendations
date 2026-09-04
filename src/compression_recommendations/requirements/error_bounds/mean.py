@@ -4,7 +4,7 @@ Mean error-bounding requirements.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -65,18 +65,53 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "mean-absolute-error-bound"
-        ] = RequirementKind.mean_absolute_error_bound.value,
     ) -> Self:
+        """
+        Construct the mean absolute error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite mean absolute error bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated mean absolute error bound requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this mean absolute error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this mean absolute error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this mean absolute error bound
+            requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
 
 
@@ -129,18 +164,53 @@ class MeanRelativeErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "mean-relative-error-bound"
-        ] = RequirementKind.mean_relative_error_bound.value,
     ) -> Self:
+        """
+        Construct the mean relative error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite mean relative error bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated mean relative error bound requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this mean relative error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this mean relative error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this mean relative error bound
+            requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
 
 
@@ -194,16 +264,51 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
         cls,
         *,
         value: int | float,
-        kind: Literal[
-            "mean-range-relative-error-bound"
-        ] = RequirementKind.mean_range_relative_error_bound.value,
     ) -> Self:
+        """
+        Construct the mean range-relative error bound requirement from its configuration.
+
+        Parameters
+        ----------
+        value : int | float
+            The non-negative and finite mean range-relative error bound.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated mean range-relative error bound requirement.
+        """
+
         return cls(value=_parse_number(value))
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this mean range-relative error bound requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config(), value=self.value)
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this mean range-relative error bound requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this mean range-relative error
+            bound requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"

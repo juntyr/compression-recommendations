@@ -4,7 +4,7 @@ Lossless compression requirement.
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -35,17 +35,45 @@ class LosslessRequirement(Requirement):
 
     @override
     @classmethod
-    def from_config(  # type: ignore
-        cls,
-        *,
-        kind: Literal["lossless"] = RequirementKind.lossless.value,
-    ) -> Self:
+    def from_config(cls) -> Self:  # type: ignore
+        """
+        Construct the lossless requirement from its empty configuration.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated lossless requirement.
+        """
+
         return cls()
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this lossless requirement.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(kind=type(self).kind.get_config())
 
     @override
     def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this lossless requirement.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this lossless requirement.
+        """
+
         return f"{_humanise_kinded_type(self, format=format)}"
