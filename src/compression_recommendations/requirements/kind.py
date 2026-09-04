@@ -19,20 +19,45 @@ class RequirementKind(StrEnum):
     """
 
     any = "any"
+    """ See the [`AnyRequirement`][....combinators.AnyRequirement]. """
+
     all = "all"
+    """ See the [`AllRequirements`][....combinators.AllRequirements]. """
+
     max_pointwise_absolute_error_bound = "max-pointwise-absolute-error-bound"
+    """ See the [`MaxPointwiseAbsoluteErrorBoundRequirement`][....error_bounds.max.MaxPointwiseAbsoluteErrorBoundRequirement]. """
+
     mean_absolute_error_bound = "mean-absolute-error-bound"
+    """ See the [`MeanAbsoluteErrorBoundRequirement`][....error_bounds.mean.MeanAbsoluteErrorBoundRequirement]. """
+
     max_pointwise_relative_error_bound = "max-pointwise-relative-error-bound"
+    """ See the [`MaxPointwiseRelativeErrorBoundRequirement`][....error_bounds.max.MaxPointwiseRelativeErrorBoundRequirement]. """
+
     mean_relative_error_bound = "mean-relative-error-bound"
+    """ See the [`MeanRelativeErrorBoundRequirement`][....error_bounds.mean.MeanRelativeErrorBoundRequirement]. """
+
     max_pointwise_range_relative_error_bound = (
         "max-pointwise-range-relative-error-bound"
     )
+    """ See the [`MaxPointwiseRangeRelativeErrorBoundRequirement`][....error_bounds.max.MaxPointwiseRangeRelativeErrorBoundRequirement]. """
+
     mean_range_relative_error_bound = "mean-range-relative-error-bound"
+    """ See the [`MeanRangeRelativeErrorBoundRequirement`][....error_bounds.mean.MeanRangeRelativeErrorBoundRequirement]. """
+
     max_pointwise_quadratic_error_bound = "max-pointwise-quadratic-error-bound"
+    """ See the [`MaxPointwiseQuadraticErrorBoundRequirement`][....error_bounds.max.MaxPointwiseQuadraticErrorBoundRequirement]. """
+
     data_limits = "data-limits"
+    """ See the [`DataLimitsRequirement`][....limits.DataLimitsRequirement]. """
+
     isovalue = "isovalue"
+    """ See the [`IsovalueRequirement`][....isovalue.IsovalueRequirement]. """
+
     missing_value = "missing-value"
+    """ See the [`MissingValueRequirement`][....missing.MissingValueRequirement]. """
+
     lossless = "lossless"
+    """ See the [`LosslessRequirement`][....lossless.LosslessRequirement]. """
 
     @property
     def cls(self) -> type["Requirement"]:

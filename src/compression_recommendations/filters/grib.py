@@ -54,10 +54,11 @@ class GribShortNameFilter(Filter):
     @classmethod
     def markers_for(cls, value: str) -> Mapping[str, None | bool | int | float | str]:
         """
-        Construct the markers that can be passed to
+        Construct the markers to find recommendations for the given GRIB short name.
+
+        The markers can be passed to
         [`Recommendations.search`][.....Recommendations.search] or
-        [`Filter.matches`][....abc.Filter.matches]
-        to find recommendations for the given GRIB short name.
+        [`Filter.matches`][....abc.Filter.matches].
 
         Parameters
         ----------

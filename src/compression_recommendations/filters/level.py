@@ -124,10 +124,11 @@ class LevelKindFilter(Filter):
         cls, value: LevelKind
     ) -> Mapping[str, None | bool | int | float | str]:
         """
-        Construct the markers that can be passed to
+        Construct the markers to find recommendations for the given level kind.
+
+        The markers can be passed to
         [`Recommendations.search`][.....Recommendations.search] or
-        [`Filter.matches`][....abc.Filter.matches]
-        to find recommendations for the given level kind.
+        [`Filter.matches`][....abc.Filter.matches].
 
         Parameters
         ----------
@@ -258,10 +259,11 @@ class LevelValueFilter(Filter):
         cls, value: int | float
     ) -> Mapping[str, None | bool | int | float | str]:
         """
-        Construct the markers that can be passed to
+        Construct the markers to find recommendations for the given vertical level value.
+
+        The markers can be passed to
         [`Recommendations.search`][.....Recommendations.search] or
-        [`Filter.matches`][....abc.Filter.matches]
-        to find recommendations for the given vertical level value.
+        [`Filter.matches`][....abc.Filter.matches].
 
         Parameters
         ----------
