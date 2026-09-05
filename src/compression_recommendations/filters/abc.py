@@ -4,7 +4,7 @@ Abstract base class for filters.
 
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
-from typing import ClassVar, Self, assert_never
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -16,7 +16,11 @@ __all__ = ["Filter"]
 
 
 class Filter(Config, ABC):
-    __slots__: tuple[str, ...] = ("kind",)
+    """
+    Abstract base class for filters, which decide which [`Requirement`][compression_recommendations.requirements.abc.Requirement]s apply.
+    """
+
+    __slots__: tuple[str, ...] = ()
 
     kind: ClassVar[FilterKind]
 
@@ -24,50 +28,42 @@ class Filter(Config, ABC):
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
     ) -> bool:
-        pass
+        """
+        Check if the `markers` match this filter.
+
+        Please refer to the individual filter implementations, or use their
+        `Filter.markers_for` method, to see which markers they match.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers that identify the use case, e.g. the variable.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the `markers` match, [`False`][False] otherwise.
+        """
 
     @override
     @classmethod
     def from_config(cls, *, kind: str, **kwargs: JSON) -> Self:  # type: ignore
-        from .cf import CfShortNameFilter, CfStandardNameFilter  # noqa: PLC0415
-        from .combinators import AllFilters, AnyFilter  # noqa: PLC0415
-        from .grib import GribShortNameFilter  # noqa: PLC0415
-        from .level import LevelKindFilter, LevelValueFilter  # noqa: PLC0415
-        from .tag import TagFilter  # noqa: PLC0415
+        """
+        Construct the specific filter from its `kind` and [`JSON`][compression_recommendations.typing.JSON] configuration.
 
-        kind_ = FilterKind.from_config(kind)
-        match kind_:
-            case FilterKind.any:
-                return AnyFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.all:
-                return AllFilters.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.cf_standard_name:
-                return CfStandardNameFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.cf_short_name:
-                return CfShortNameFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.grib_short_name:
-                return GribShortNameFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.level_kind:
-                return LevelKindFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.level_value:
-                return LevelValueFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case FilterKind.tag:
-                return TagFilter.from_config(
-                    **kwargs  # type: ignore
-                )
-            case _:
-                assert_never(kind_)
+        Parameters
+        ----------
+        kind : str
+            The filter kind.
+        **kwargs : JSON
+            The filter configuration.
+
+        Returns
+        -------
+        filter : Self
+            The instantiated filter.
+        """
+
+        return FilterKind.from_config(kind=kind).cls.from_config(
+            **kwargs  # type: ignore
+        )

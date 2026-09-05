@@ -3,7 +3,7 @@ Abstract base class for requirements.
 """
 
 from abc import ABC
-from typing import ClassVar, Self, assert_never
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -15,83 +15,33 @@ __all__ = ["Requirement"]
 
 
 class Requirement(Config, ABC):
-    __slots__: tuple[str, ...] = ("kind",)
+    """
+    Abstract base class for requirements, which define the safety requirements that lossy compression must uphold.
+    """
+
+    __slots__: tuple[str, ...] = ()
 
     kind: ClassVar[RequirementKind]
 
     @override
     @classmethod
     def from_config(cls, *, kind: str, **kwargs: JSON) -> Self:  # type: ignore
-        from .combinators import AllRequirements, AnyRequirement  # noqa: PLC0415
-        from .error_bounds.max import (  # noqa: PLC0415
-            MaxPointwiseAbsoluteErrorBoundRequirement,
-            MaxPointwiseQuadraticErrorBoundRequirement,
-            MaxPointwiseRangeRelativeErrorBoundRequirement,
-            MaxPointwiseRelativeErrorBoundRequirement,
-        )
-        from .error_bounds.mean import (  # noqa: PLC0415
-            MeanAbsoluteErrorBoundRequirement,
-            MeanRangeRelativeErrorBoundRequirement,
-            MeanRelativeErrorBoundRequirement,
-        )
-        from .isovalue import IsovalueRequirement  # noqa: PLC0415
-        from .limits import DataLimitsRequirement  # noqa: PLC0415
-        from .lossless import LosslessRequirement  # noqa: PLC0415
-        from .missing import MissingValueRequirement  # noqa: PLC0415
+        """
+        Construct the specific requirement from its `kind` and [`JSON`][compression_recommendations.typing.JSON] configuration.
 
-        kind_ = RequirementKind.from_config(kind)
-        match kind_:
-            case RequirementKind.any:
-                return AnyRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.all:
-                return AllRequirements.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.max_pointwise_absolute_error_bound:
-                return MaxPointwiseAbsoluteErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.mean_absolute_error_bound:
-                return MeanAbsoluteErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.max_pointwise_relative_error_bound:
-                return MaxPointwiseRelativeErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.mean_relative_error_bound:
-                return MeanRelativeErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.max_pointwise_range_relative_error_bound:
-                return MaxPointwiseRangeRelativeErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.mean_range_relative_error_bound:
-                return MeanRangeRelativeErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.max_pointwise_quadratic_error_bound:
-                return MaxPointwiseQuadraticErrorBoundRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.data_limits:
-                return DataLimitsRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.isovalue:
-                return IsovalueRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.missing_value:
-                return MissingValueRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case RequirementKind.lossless:
-                return LosslessRequirement.from_config(
-                    **kwargs  # type: ignore
-                )
-            case _:
-                assert_never(kind_)
+        Parameters
+        ----------
+        kind : str
+            The requirement kind.
+        **kwargs : JSON
+            The requirement configuration.
+
+        Returns
+        -------
+        requirement : Self
+            The instantiated requirement.
+        """
+
+        return RequirementKind.from_config(kind).cls.from_config(
+            **kwargs  # type: ignore
+        )

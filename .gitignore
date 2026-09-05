@@ -1,5 +1,6 @@
 /uv.lock
 /_build
+/site
 
 **/__pycache__
 **/.ipynb_checkpoints

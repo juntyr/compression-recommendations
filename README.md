@@ -2,42 +2,40 @@
 
 What lossy compression is safe when using lossy compression on weather and climate data?
 
-This repository contains community-created [recommendations](recommendations) that are automatically compiled into one machine-readable [`recommendations.yaml`](src/compression_recommendations/recommendations.yaml) file.
+This repository contains community-provided [recommendations](recommendations) that are automatically compiled into one machine-readable [`recommendations.yaml`](src/compression_recommendations/recommendations.yaml) file.
 These recommendations can then be used by external tools to automatically recommend appropriate safety requirements for compressing various weather and climate data.
+
+This repository also provides the `compression-recommendations` Python package for loading these recommendations and inspecting them in the strongly typed `Recommendations` data structure.
+
+Furthermore, we provide the following integrations:
+
+- `compression-safeguards-recommendations` translates the recommended safety requirements into [compression safeguards](https://compression-safeguards.readthedocs.io) that can be wrapped around any compressor to guarantee that the requirements are fulfilled.
+
 
 ## Contributing: What should be recommended?
 
-That is up to *you* to decide!
+That is up to *you*, the community, to decide!
 
-- You can add comments to any recommendation to elaborate or discuss different requirements.
-- You can propose edits to any recommendation, which we accept once a new consensus has been reached.
-- You can create new recommendations for new variables or to specialise existing requirements for specific cases.
-- You can merge multiple recommendations to generalise them.
-- You can propose new filters to select which recommendations should apply, or new kinds of requirements.
+- You can *add comments* to any recommendation to elaborate or discuss different requirements.
+- You can *propose edits* to any recommendation, which we accept once a new consensus has been reached.
+- You can *create new recommendations* for new variables or to specialise existing requirements for specific cases.
+- You can *merge multiple recommendations* to generalise them.
+- You can *propose new filters* to select which recommendations should apply, or *new kinds of requirements*.
 
 
 ## Glossary
 
-Compression
+**Compression**
 : Reducing the number of bits needed to store some data.
 
-Lossy Compression
+**Lossy Compression**
 : Compression that may only produce an approximation of the original data during decompression.
 
-Filter
+**Filter**
 : Criteria, or a composition of multiple criteria, that select which requirements should apply.
 
-Safety Requirement
-: A property, e.g. an error bound, that the lossy-compressed data must fulfil with respect to the original uncompressed data.
-
-Maximum Pointwise Absolute Error Bound
-: $\forall i \mathbin{.} |\hat{x_i} - x_i| <= \epsilon_{abs}$ for the original data $x$ and decompressed data $\hat{x}$
-
-Mean Absolute Error Bound
-: $\frac{\sum_{i}^{N}{|\hat{x_i} - x_i|}}{N} <= \epsilon_{mean\text{-}abs}$ for the original data $x$ and decompressed data $\hat{x}$
-
-Maximum Pointwise Relative Error Bound
-: $\forall i \mathbin{.} |\hat{x_i} - x_i| <= (|x_i| \cdot \epsilon_{rel})$ for the original data $x$ and decompressed data $\hat{x}$
+**Safety Requirement**
+: A property, e.g. an error bound, or a composition of multiple properties, that the lossy-compressed data must fulfil with respect to the original uncompressed data.
 
 
 ## Citation

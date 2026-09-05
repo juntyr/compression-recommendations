@@ -4,25 +4,49 @@ Logical combinations of multiple filters.
 
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Literal, Self
+from typing import ClassVar, Self
 
 from typing_extensions import override  # MSPV 3.12
 
+from ..config import Format, LiteralFormat, _humanise_labelled_type
 from ..typing import JSON
 from .abc import Filter
 from .kind import FilterKind
 
-__all__ = ["AnyFilter", "AllFilters"]
+__all__ = ["AnyFilter", "AllFilters", "NotFilter"]
 
 
 @dataclass(kw_only=True, slots=True)
 class AnyFilter(Filter):
+    """
+    Filter that matches if at least one of the provided sub-`filters` matches.
+
+    Parameters
+    ----------
+    filters : Collection[Filter]
+        The sub-filters for this any-filter combinator.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.any
     filters: Collection[Filter]
 
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
     ) -> bool:
+        """
+        Check if the `markers` match at least one of the sub-filters of this any-filter combinator.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers to check.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the `markers` match, [`False`][False] otherwise.
+        """
+
         any_match = False
 
         for filter in self.filters:
@@ -36,8 +60,22 @@ class AnyFilter(Filter):
         cls,
         *,
         filters: Collection[Mapping[str, JSON]],
-        kind: Literal["any"] = FilterKind.any.value,
     ) -> Self:
+        """
+        Construct the any-filter combinator from its configuration.
+
+        Parameters
+        ----------
+        filters : Collection[Mapping[str, JSON]]
+            The configuration for the sub-filters for this any-filter
+            combinator.
+
+        Returns
+        -------
+        filter : Self
+            The instantiated any-filter combinator.
+        """
+
         return cls(
             filters=tuple(
                 Filter.from_config(
@@ -49,20 +87,77 @@ class AnyFilter(Filter):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this any-filter combinator.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             kind=type(self).kind.get_config(),
             filters=[filter.get_config() for filter in self.filters],
         )
 
+    @override
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this any-filter combinator.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this any-filter combinator.
+        """
+
+        match self.filters:
+            case ():
+                return _humanise_labelled_type(self, label="False", format=format)
+            case (filter,):
+                return filter.humanise(format=format)
+            case filters:
+                or_ = _humanise_labelled_type(self, label="or", format=format)
+                return f"({f' {or_} '.join(filter.humanise(format=format) for filter in filters)})"
+
 
 @dataclass(kw_only=True, slots=True)
 class AllFilters(Filter):
+    """
+    Filter that matches if all of the provided sub-`filters` matches.
+
+    Parameters
+    ----------
+    filters : Collection[Filter]
+        The sub-filters for this all-filters combinator.
+    """
+
     kind: ClassVar[FilterKind] = FilterKind.all
     filters: Collection[Filter]
 
     def matches(
         self, *, markers: Mapping[str, None | bool | int | float | str]
     ) -> bool:
+        """
+        Check if the `markers` match all of the sub-filters of this all-filters combinator.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers to check.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the `markers` match, [`False`][False] otherwise.
+        """
+
         all_match = True
 
         for filter in self.filters:
@@ -76,8 +171,22 @@ class AllFilters(Filter):
         cls,
         *,
         filters: Collection[Mapping[str, JSON]],
-        kind: Literal["all"] = FilterKind.all.value,
     ) -> Self:
+        """
+        Construct the all-filters combinator from its configuration.
+
+        Parameters
+        ----------
+        filters : Collection[Mapping[str, JSON]]
+            The configuration for the sub-filters for this all-filters
+            combinator.
+
+        Returns
+        -------
+        filter : Self
+            The instantiated all-filters combinator.
+        """
+
         return cls(
             filters=tuple(
                 Filter.from_config(
@@ -89,7 +198,135 @@ class AllFilters(Filter):
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this all-filters combinator.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
         return dict(
             kind=type(self).kind.get_config(),
             filters=[filter.get_config() for filter in self.filters],
         )
+
+    @override
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this all-filters combinator.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this all-filters combinator.
+        """
+
+        match self.filters:
+            case ():
+                return _humanise_labelled_type(self, label="True", format=format)
+            case (filter,):
+                return filter.humanise(format=format)
+            case filters:
+                and_ = _humanise_labelled_type(self, label="and", format=format)
+                return f"({f' {and_} '.join(filter.humanise(format=format) for filter in filters)})"
+
+
+@dataclass(kw_only=True, slots=True)
+class NotFilter(Filter):
+    """
+    Filter that matches if the provided sub-`filter` does not match.
+
+    Parameters
+    ----------
+    filter : Filter
+        The sub-filter that is negated by this not-filter combinator.
+    """
+
+    kind: ClassVar[FilterKind] = FilterKind.not_
+    filter: Filter
+
+    def matches(
+        self, *, markers: Mapping[str, None | bool | int | float | str]
+    ) -> bool:
+        """
+        Check if the `markers` do not match the sub-filter of this not-filter combinator.
+
+        Parameters
+        ----------
+        markers : Mapping[str, None | bool | int | float | str]
+            The markers to check.
+
+        Returns
+        -------
+        matches : bool
+            [`True`][True] if the `markers` match, [`False`][False] otherwise.
+        """
+
+        return not self.filter.matches(markers=markers)
+
+    @override
+    @classmethod
+    def from_config(  # type: ignore
+        cls,
+        *,
+        filter: Mapping[str, JSON],
+    ) -> Self:
+        """
+        Construct the not-filter combinator from its configuration.
+
+        Parameters
+        ----------
+        filter : Mapping[str, JSON]
+            The configuration for the sub-filter that is negated by this
+            not-filter combinator.
+
+        Returns
+        -------
+        filter : Self
+            The instantiated not-filter combinator.
+        """
+
+        return cls(
+            filter=Filter.from_config(
+                **filter  # type: ignore
+            )
+        )
+
+    @override
+    def get_config(self) -> Mapping[str, JSON]:
+        """
+        Get the configuration of this not-filter combinator.
+
+        Returns
+        -------
+        config : Mapping[str, JSON]
+            Configuration in JSON object format.
+        """
+
+        return dict(kind=type(self).kind.get_config(), filter=self.filter.get_config())
+
+    @override
+    def humanise(self, *, format: Format | LiteralFormat = Format.plain) -> str:
+        """
+        Humanise the representation of this not-filter combinator.
+
+        Parameters
+        ----------
+        format : Format | LiteralFormat
+            The format of the humanised representation.
+
+        Returns
+        -------
+        humanised : str
+            The humanised representation of this not-filter combinator.
+        """
+
+        not_ = _humanise_labelled_type(self, label="not", format=format)
+        return f"{not_} {self.filter.humanise(format=format)}"
