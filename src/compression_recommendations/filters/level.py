@@ -29,7 +29,7 @@ class LevelKind(StrEnum):
     """
 
     single = "single"
-    """ Single-level 2D data represents conditions at the Earth's surface, specific near-surface heights, or vertical integrals across all vertical levels. """
+    """ Single-level 2D data represents conditions at Earth's surface, specific near-surface heights, or integrals across all vertical levels. """
 
     pressure = "pressure"
     """ Pressure-level data represents conditions at one (2D) or more (3D) specific atmospheric pressure levels. """
@@ -60,7 +60,7 @@ class LevelKind(StrEnum):
 
         Returns
         -------
-        config : JSIN
+        config : JSON
             Configuration in JSON format.
         """
 

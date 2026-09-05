@@ -118,7 +118,7 @@ class FilterKind(StrEnum):
 
         Returns
         -------
-        config : JSIN
+        config : JSON
             Configuration in JSON format.
         """
 

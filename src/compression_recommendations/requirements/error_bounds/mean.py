@@ -31,7 +31,7 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
     &\quad := \begin{cases}
         \hat{x}_i \equiv \text{NaN} \quad &\text{if } x_i \equiv \text{NaN} \\
         \hat{x}_i = x_i \quad &\text{if } x_i \in \{ -\infty, \infty \} \\
-        \Epsilon_{\text{mean-absolute}}(x, \hat{x}) \leq \epsilon_{\text{mean-abs}} \quad &\text{otherwise}
+        \Epsilon_{\text{sum-absolute}}(x, \hat{x}) \leq C_{\text{num-finite}}(x) \cdot \epsilon_{\text{mean-abs}} \quad &\text{otherwise}
     \end{cases}
     \end{align*}
     \]
@@ -39,7 +39,10 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
     where
 
     \[
-    \Epsilon_{\text{mean-absolute}}(x, \hat{x}) := \frac{\sum_{i} \{ (|\hat{x}_i - x_i|) \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}}{\sum_{i} \{ 1 \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}}
+    \begin{align*}
+    \Epsilon_{\text{sum-absolute}}(x, \hat{x}) &:= \sum_{i} \{ (|\hat{x}_i - x_i|) \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \} \\
+    C_{\text{num-finite}}(x) &:= \sum_{i} \{ 1 \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}
+    \end{align*}
     \]
 
     The absolute error bound $\epsilon_{\text{mean-abs}}$ must be non-negative
@@ -225,7 +228,7 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
     &\quad := \begin{cases}
         \hat{x}_i \equiv \text{NaN} \quad &\text{if } x_i \equiv \text{NaN} \\
         \hat{x}_i = x_i \quad &\text{if } x_i \in \{ -\infty, \infty \} \\
-        \Epsilon_{\text{mean-absolute}}(x, \hat{x}) \leq x_{\text{range}} \cdot \epsilon_{\text{mean-range-rel}} \quad &\text{otherwise}
+        \Epsilon_{\text{sum-absolute}}(x, \hat{x}) \leq C_{\text{num-finite}}(x) \cdot x_{\text{range}} \cdot \epsilon_{\text{mean-range-rel}} \quad &\text{otherwise}
     \end{cases}
     \end{align*}
     \]
@@ -234,10 +237,11 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
 
     \[
     \begin{align*}
-    \Epsilon_{\text{mean-absolute}}(x, \hat{x}) &:= \frac{\sum_{i} \{ (|\hat{x}_i - x_i|) \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}}{\sum_{i} \{ 1 \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}} \\
+    \Epsilon_{\text{sum-absolute}}(x, \hat{x}) &:= \sum_{i} \{ (|\hat{x}_i - x_i|) \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \} \\
+    C_{\text{num-finite}}(x) &:= \sum_{i} \{ 1 \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \} \\
     x_{\text{range}} &:= x_{\text{finite-max}} - x_{\text{finite-min}} \\
-    x_{\text{finite-max}} &:= \max_i \{ x_i \mathbin{|} x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \} \} \\
-    x_{\text{finite-min}} &:= \min_i \{ x_i \mathbin{|} x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \} \}
+    x_{\text{finite-max}} &:= \max_i \{ x_i \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \} \\
+    x_{\text{finite-min}} &:= \min_i \{ x_i \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}
     \end{align*}
     \]
 

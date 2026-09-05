@@ -220,8 +220,8 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
     \[
     \begin{align*}
         x_{\text{range}} &:= x_{\text{finite-max}} - x_{\text{finite-min}} \\
-        x_{\text{finite-max}} &:= \max_i \{ x_i \mathbin{|} x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \} \} \\
-        x_{\text{finite-min}} &:= \min_i \{ x_i \mathbin{|} x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \} \}
+        x_{\text{finite-max}} &:= \max_i \{ x_i \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \} \\
+        x_{\text{finite-min}} &:= \min_i \{ x_i \mathbin{|} (x_i \not \equiv \text{NaN} \land x_i \not \in \{ -\infty, \infty \}) \}
     \end{align*}
     \]
 
@@ -320,7 +320,7 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
     \end{align*}
     \]
 
-    The quadratic error bound $\epsilon_{\text{rel}}$ must be non-negative and
+    The quadratic error bound $\epsilon_{\text{qua}}$ must be non-negative and
     finite.
     The limits `minimum` and `maximum` and their difference should be finite,
     with $max > min$, otherwise $\forall i \mathbin{.} (\hat{x}_i \equiv x_i)$.

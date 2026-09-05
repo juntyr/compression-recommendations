@@ -159,7 +159,7 @@ class RequirementKind(StrEnum):
 
         Returns
         -------
-        config : JSIN
+        config : JSON
             Configuration in JSON format.
         """
 
