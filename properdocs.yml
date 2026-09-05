@@ -94,6 +94,9 @@ plugins:
             show_inheritance_diagram: true
             inheritance_diagram_direction: LR
             extensions: ["dataclasses"]
+            preload_modules:
+              - abc
+              - enum
           inventories:
             - https://docs.python.org/3.11/objects.inv
             - https://compression-safeguards.readthedocs.io/en/1.0.0rc1/objects.inv
