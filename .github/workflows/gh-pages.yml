@@ -26,6 +26,9 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
 
+      - name: Replace symlinks with file copies
+        run: find ./ -type l -exec sh -c 'for i in "$@"; do cp --preserve --remove-destination "$(readlink -f "$i")" "$i"; done' sh {} +
+
       - name: Install the docs dependencies
         run: |
           uv sync --no-install-workspace \
