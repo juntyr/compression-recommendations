@@ -33,6 +33,8 @@ class DataLimitsRequirement(Requirement):
     \end{align}
     \]
 
+    The limits must not be NaN.
+
     If an original data value $x_i$ is not within the limits, no requirement is
     imposed on the decompressed data value $\hat{x}_i$.
 

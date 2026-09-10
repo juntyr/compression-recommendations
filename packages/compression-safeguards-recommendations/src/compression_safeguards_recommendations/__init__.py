@@ -1,4 +1,4 @@
-r"""
+"""
 # Recommended Compression Safeguards for Safe Lossy Compression of weather and climate data
 
 What lossy compression is safe when using lossy compression on weather and
