@@ -60,6 +60,11 @@ docs = [
     "ruff~=0.16",
 ]
 doctest = ["griffe2md~=1.5", "pytest~=9.1", "pytest-codeblocks~=0.18.0"]
+fuzz = [
+    "atheris==3.0; python_version == '3.11'",
+    "atheris~=3.0; python_version >= '3.12'",
+    "setuptools~=80.0",
+]
 test = [
     "pytest~=9.1",
 ]
