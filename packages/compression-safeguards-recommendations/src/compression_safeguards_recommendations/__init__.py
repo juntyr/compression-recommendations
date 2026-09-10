@@ -243,11 +243,12 @@ def _safeguards_for_requirement(
                     qoi="""
                     # scale x to be relative to $x_max - $x_min
                     v["x_rel"] = x / (c["$x_max"] - c["$x_min"]);
+                    v["x_orig_rel"] = c["$x"] / (c["$x_max"] - c["$x_min"]);
 
                     return where(
-                        isfinite(v["x_rel"]),
+                        isfinite(v["x_orig_rel"]),
 
-                        # if x_rel is finite, use it to fulfil the range-relative
+                        # if $x_rel is finite, use it to fulfil the range-relative
                         # error bound:
                         #   |x - $x| <= eb_range_rel * ($x_max - $x_min)
                         #   |x - $x| / ($x_max - $x_min) <= eb_range_rel
@@ -256,7 +257,7 @@ def _safeguards_for_requirement(
                         #     with qoi(x) = x / ($x_max - $x_min)
                         v["x_rel"],
 
-                        # otherwise, if x could not be normalised,
+                        # otherwise, if $x could not be normalised,
                         # ensure instead that x == $x
                         #
                         # use the fact that the error bound will always be
@@ -326,7 +327,7 @@ def _safeguards_for_requirement(
             if requirement.minimum is not None:
                 safeguards.append(
                     PointwiseQuantityOfInterestErrorBoundSafeguard(
-                        qoi='x >= c["minimum"]',
+                        qoi='x >= c["minimum"]',  # type: ignore
                         type="abs",
                         eb=0,
                         early_bound=dict(minimum=requirement.minimum),
@@ -335,13 +336,13 @@ def _safeguards_for_requirement(
             if requirement.maximum is not None:
                 safeguards.append(
                     PointwiseQuantityOfInterestErrorBoundSafeguard(
-                        qoi='x <= c["maximum"]',
+                        qoi='x <= c["maximum"]',  # type: ignore
                         type="abs",
                         eb=0,
                         early_bound=dict(maximum=requirement.maximum),
                     )
                 )
-            return safeguards
+            return [AllSafeguards(safeguards=safeguards)]
         case RequirementKind.isovalue:
             assert isinstance(requirement, IsovalueRequirement)
             return [SignPreservingSafeguard(offset=requirement.value)]
