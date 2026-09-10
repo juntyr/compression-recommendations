@@ -2,6 +2,7 @@
 Mean error-bounding requirements.
 """
 
+import math
 from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
@@ -61,6 +62,14 @@ class MeanAbsoluteErrorBoundRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_absolute_error_bound
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
 
     @override
     @classmethod
@@ -160,6 +169,14 @@ class MeanRelativeErrorBoundRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_relative_error_bound
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
 
     @override
     @classmethod
@@ -261,6 +278,14 @@ class MeanRangeRelativeErrorBoundRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.mean_range_relative_error_bound
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
 
     @override
     @classmethod

@@ -5,10 +5,8 @@ import numpy as np
 from ..._compat import (
     _abs,
     _abs_fraction,
-    _assign_and,
     _assign_or,
     _equal,
-    _equal_bool,
     _full,
     _isfinite,
     _isnan,
@@ -105,12 +103,11 @@ def _check_mean_relative_error_bound(
     )
     _assign_or(ok, _equal(original, reconstructed))
     _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
-    _assign_and(
+    _logical_and(
         ok,
-        _equal_bool(
-            _equal(original, original.dtype.type(0)),
-            _equal(reconstructed, original.dtype.type(0)),
-        ),
+        _equal(reconstructed, original.dtype.type(0)),
+        out=ok,
+        where=_equal(original, original.dtype.type(0)),
     )
 
     return ok
@@ -139,6 +136,7 @@ def _check_mean_range_relative_error_bound(
 
         return ok
 
+    # FIXME: $x_min and $x_max use non-NaN, here we use finite
     finite_min: _F_co = np.amin(
         original_float, where=is_finite, initial=ftype.type(np.inf)
     )

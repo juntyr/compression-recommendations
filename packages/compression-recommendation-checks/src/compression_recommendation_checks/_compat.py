@@ -1,4 +1,5 @@
 from fractions import Fraction
+from typing import Literal
 
 import numpy as np
 
@@ -165,7 +166,7 @@ def _logical_and(
     y: np.ndarray[S_co, np.dtype[np.bool]],
     *,
     out: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
-    where: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[np.bool]]:
     return np.logical_and(x, y, out=out, where=where)  # type: ignore
 
@@ -188,7 +189,7 @@ def _nextafter(
     y: _F_co | np.ndarray[S_co, np.dtype[_F_co]],
     *,
     out: None | np.ndarray[S_co, np.dtype[_F_co]] = None,
-    where: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[_F_co]]:
     return np.nextafter(x, y, out=out, where=where)  # type: ignore
 
@@ -216,7 +217,7 @@ def _rsubtract_fraction(
 def _sum_fraction(
     x: np.ndarray[S_co, np.dtype[_Fraction]],
     *,
-    where: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> Fraction:
     if x.size > 0:
         return np.sum(x, initial=Fraction(0), where=where)  # type: ignore

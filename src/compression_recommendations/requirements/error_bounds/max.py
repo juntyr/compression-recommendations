@@ -2,6 +2,7 @@
 Maximum pointwise error-bounding requirements.
 """
 
+import math
 from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
@@ -52,6 +53,14 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_absolute_error_bound
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
 
     @override
     @classmethod
@@ -141,6 +150,14 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.max_pointwise_relative_error_bound
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
 
     @override
     @classmethod
@@ -245,6 +262,14 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
     )
     value: int | float
 
+    def __init__(self, *, value: int | float) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+
+        self.value = value
+
     @override
     @classmethod
     def from_config(  # type: ignore
@@ -348,6 +373,24 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
     value: int | float
     minimum: int | float
     maximum: int | float
+
+    def __init__(
+        self, *, value: int | float, minimum: int | float, maximum: int | float
+    ) -> None:
+        if value < 0:
+            raise ValueError("error bound must be non-negative")
+        if not math.isfinite(value):
+            raise ValueError("error bound most be finite")
+        if not math.isfinite(minimum):
+            raise ValueError("minimum must be finite")
+        if not math.isfinite(maximum):
+            raise ValueError("maximum must be finite")
+        if maximum <= minimum:
+            raise ValueError("maximum must be greater than minimum")
+
+        self.value = value
+        self.minimum = minimum
+        self.maximum = maximum
 
     @override
     @classmethod

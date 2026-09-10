@@ -26,7 +26,6 @@ provided functions:
   [`Safeguard`][compression_safeguards.safeguards.abc.Safeguard]s.
 """
 
-import math
 from collections.abc import Collection, Mapping
 from typing import assert_never
 
@@ -63,7 +62,7 @@ from compression_safeguards.safeguards.pointwise.lossless import LosslessSafegua
 from compression_safeguards.safeguards.pointwise.qoi.eb import (
     PointwiseQuantityOfInterestErrorBoundSafeguard,
 )
-from compression_safeguards.safeguards.pointwise.same import SameValueSafeguard
+from compression_safeguards.safeguards.pointwise.same import EquivalentValueSafeguard
 from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
 from compression_safeguards.safeguards.stencil.abc import StencilSafeguard
 
@@ -288,8 +287,8 @@ def _safeguards_for_requirement(
 
                     return where(
                         all([
-                            c["x1"] > -1,
-                            c["x1"] < +1,
+                            v["x1"] > -1,
+                            v["x1"] < +1,
                             isfinite(v["x1"]),
                         ]),
 
@@ -316,64 +315,39 @@ def _safeguards_for_requirement(
                     """,  # type: ignore
                     type=ErrorBound.abs,
                     eb=requirement.value,
-                    # TODO: provide limits as early-bound parameters once supported
-                    # early_bound=dict(
-                    #     minimum=requirement.minimum, maximum=requirement.maximum
-                    # ),
+                    early_bound=dict(
+                        minimum=requirement.minimum, maximum=requirement.maximum
+                    ),
                 ),
             ]
         case RequirementKind.data_limits:
             assert isinstance(requirement, DataLimitsRequirement)
-            # slightly conservative since global minimum will be kept exactly
             safeguards = []
             if requirement.minimum is not None:
-                safeguards.append(SignPreservingSafeguard(offset=requirement.minimum))
+                safeguards.append(
+                    PointwiseQuantityOfInterestErrorBoundSafeguard(
+                        qoi='x >= c["minimum"]',
+                        type="abs",
+                        eb=0,
+                        early_bound=dict(minimum=requirement.minimum),
+                    )
+                )
             if requirement.maximum is not None:
-                safeguards.append(SignPreservingSafeguard(offset=requirement.maximum))
+                safeguards.append(
+                    PointwiseQuantityOfInterestErrorBoundSafeguard(
+                        qoi='x <= c["maximum"]',
+                        type="abs",
+                        eb=0,
+                        early_bound=dict(maximum=requirement.maximum),
+                    )
+                )
             return safeguards
-            # TODO: switch to pointwise QoI with early-bound param support
-            # if requirement.minimum is not None:
-            #     safeguards.append(
-            #         PointwiseQuantityOfInterestErrorBoundSafeguard(
-            #             qoi='x >= c["minimum"]',
-            #             type="abs",
-            #             eb=0,
-            #             early_bound=dict(minimum=requirement.minimum),
-            #         )
-            #     )
-            # if requirement.maximum is not None:
-            #     safeguards.append(
-            #         PointwiseQuantityOfInterestErrorBoundSafeguard(
-            #             qoi='x <= c["maximum"]',
-            #             type="abs",
-            #             eb=0,
-            #             early_bound=dict(maximum=requirement.maximum),
-            #         )
-            #     )
         case RequirementKind.isovalue:
             assert isinstance(requirement, IsovalueRequirement)
             return [SignPreservingSafeguard(offset=requirement.value)]
         case RequirementKind.missing_value:
             assert isinstance(requirement, MissingValueRequirement)
-            if math.isnan(requirement.value):
-                # SameValueSafeguard preserves same bits,
-                # but preserve all NaN bit patterns
-                return [
-                    PointwiseQuantityOfInterestErrorBoundSafeguard(
-                        qoi="isnan(x)",  # type: ignore
-                        type=ErrorBound.abs,
-                        eb=0,
-                    )
-                ]
-            if requirement.value == 0:
-                # preserve both -0.0 and +0.0, which have distinct bit patterns
-                return [
-                    SameValueSafeguard(value=requirement.value, exclusive=True),
-                    SameValueSafeguard(value=-requirement.value, exclusive=True),
-                ]
-            return [SameValueSafeguard(value=requirement.value, exclusive=True)]
-            # TODO: switch to equivalent value safeguard
-            # return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
+            return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
         case RequirementKind.lossless:
             assert isinstance(requirement, LosslessRequirement)
             return [LosslessSafeguard()]

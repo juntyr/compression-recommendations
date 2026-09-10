@@ -1,5 +1,5 @@
 from fractions import Fraction
-from typing import TypeGuard
+from typing import Literal, TypeGuard
 
 import numpy as np
 
@@ -26,30 +26,32 @@ def _as_bits(
     return a.view(a.dtype.str.replace("f", "u").replace("i", "u"))
 
 
-@np.vectorize(otypes=[Fraction], signature="()->()")
-def _as_fraction_(x: np.float16 | np.float32 | np.float64) -> Fraction:
+def _as_fraction_py(x: np.float16 | np.float32 | np.float64) -> Fraction:
     return Fraction(float(x))
+
+
+_as_fraction_ufunc = np.frompyfunc(_as_fraction_py, nin=1, nout=1)
 
 
 def _as_fraction(
     x: np.ndarray[S_co, np.dtype[_F_co]],
     *,
     out: None | np.ndarray[S_co, np.dtype[_Fraction]] = None,
-    where: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[_Fraction]]:
-    return _as_fraction_(x, out=out, where=where)  # type: ignore
+    return _as_fraction_ufunc(x, out=out, where=where)  # type: ignore
 
 
 def _array_to_finite_fractions_or_zero(
     x: np.ndarray[S_co, np.dtype[_F_co]],
 ) -> np.ndarray[S_co, np.dtype[_Fraction]]:
-    assert x.dtype in (np.dtype(np.float16), np.dtype(np.float64), np.dtype(np.float64))
+    assert x.dtype in (np.dtype(np.float16), np.dtype(np.float32), np.dtype(np.float64))
 
     return _as_fraction(_to_finite_or_zero(x))
 
 
 def _fraction_to_float_exact(x: Fraction, ftype: np.dtype[_F_co]) -> None | _F_co:
-    assert ftype in (np.dtype(np.float16), np.dtype(np.float64), np.dtype(np.float64))
+    assert ftype in (np.dtype(np.float16), np.dtype(np.float32), np.dtype(np.float64))
 
     try:
         x_float = float(x)
@@ -68,7 +70,7 @@ def _fraction_to_float_exact(x: Fraction, ftype: np.dtype[_F_co]) -> None | _F_c
 
 
 def _fraction_to_float_round_ties_down(x: Fraction, ftype: np.dtype[_F_co]) -> _F_co:
-    assert ftype in (np.dtype(np.float16), np.dtype(np.float64), np.dtype(np.float64))
+    assert ftype in (np.dtype(np.float16), np.dtype(np.float32), np.dtype(np.float64))
 
     try:
         x_float = float(x)
@@ -90,7 +92,7 @@ def _fraction_to_float_round_ties_down(x: Fraction, ftype: np.dtype[_F_co]) -> _
 
 
 def _fraction_to_float_round_ties_up(x: Fraction, ftype: np.dtype[_F_co]) -> _F_co:
-    assert ftype in (np.dtype(np.float16), np.dtype(np.float64), np.dtype(np.float64))
+    assert ftype in (np.dtype(np.float16), np.dtype(np.float32), np.dtype(np.float64))
 
     try:
         x_float = float(x)
@@ -142,7 +144,7 @@ def _get_lossless_floating_point_type(
 def _to_float(
     x: np.ndarray[S_co, np.dtype[T_co]], ftype: np.dtype[_F_co]
 ) -> np.ndarray[S_co, np.dtype[_F_co]]:
-    assert ftype in (np.dtype(np.float16), np.dtype(np.float64), np.dtype(np.float64))
+    assert ftype in (np.dtype(np.float16), np.dtype(np.float32), np.dtype(np.float64))
 
     if np.issubdtype(x.dtype, np.floating):
         assert ftype.itemsize >= x.dtype.itemsize

@@ -114,6 +114,7 @@ def _check_maximum_pointwise_range_relative_error_bound(
 
         return ok
 
+    # FIXME: $x_min and $x_max use non-NaN, here we use finite
     finite_min: _F_co = np.amin(
         original_float, where=is_finite, initial=ftype.type(np.inf)
     )
@@ -170,8 +171,8 @@ def _check_maximum_pointwise_quadratic_error_bound(
     maximum_fraction = Fraction(maximum)
     range_fraction = maximum_fraction - minimum_fraction
 
-    if range_fraction < 0:
-        raise ValueError("maximum must be greater than or equal to minimum")
+    if range_fraction <= 0:
+        raise ValueError("maximum must be greater than minimum")
 
     ok: np.ndarray[S_co, np.dtype[np.bool]]
 

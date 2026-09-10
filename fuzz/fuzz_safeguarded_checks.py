@@ -1,6 +1,6 @@
 import atheris
 
-with atheris.instrument_imports():
+if True: # with atheris.instrument_imports():
     import sys
     import types
     import typing
@@ -12,12 +12,15 @@ with atheris.instrument_imports():
     from compression_recommendation_checks import check_safety_requirement
     from compression_safeguards import Safeguards
     from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
+    from compression_safeguards.utils._compat import _ensure_array
+    from compression_safeguards.utils.bindings import Bindings
     from compression_safeguards.utils.error import (
         ErrorContextMixin,
         LateBoundParameterContextLayer,
         ParameterContextLayer,
         SafeguardTypeContextLayer,
     )
+    from compression_safeguards.utils.typing import S, T
     from compression_safeguards_recommendations import safeguards_for_requirement
 
     from compression_recommendations.requirements.abc import Requirement
@@ -28,6 +31,35 @@ warnings.filterwarnings("error")
 
 
 np.set_printoptions(floatmode="unique")
+
+
+# the fuzzer *somehow* messes up np.nanmin and np.nanmax, so patch them
+def nanmin(x: np.ndarray[S]) -> T:
+    x = _ensure_array(x)
+    if np.all(np.isnan(x)):
+        warnings.warn("All-NaN slice encountered", RuntimeWarning)
+        return x.dtype.type(np.nan)
+    if np.any(np.isnan(x)):
+        x = _ensure_array(x, copy=True)
+        x[np.isnan(x)] = np.inf
+    return np.amin(x)
+
+
+np.nanmin = nanmin
+
+
+def nanmax(x: np.ndarray[S, np.dtype[T]]) -> T:
+    x = _ensure_array(x)
+    if np.all(np.isnan(x)):
+        warnings.warn("All-NaN slice encountered", RuntimeWarning)
+        return x.dtype.type(np.nan)
+    if np.any(np.isnan(x)):
+        x = _ensure_array(x, copy=True)
+        x[np.isnan(x)] = -np.inf
+    return np.amax(x)
+
+
+np.nanmax = nanmax
 
 
 def generate_parameter(data: atheris.FuzzedDataProvider, ty: type, depth: int):
@@ -72,7 +104,21 @@ def generate_requirement(data: atheris.FuzzedDataProvider, depth: int):
 def check_one_input(data) -> None:
     data = atheris.FuzzedDataProvider(data)
 
-    requirement = generate_requirement(data, 0)
+    try:
+        requirement = generate_requirement(data, 0)
+    except ValueError as err:
+        if str(err) in [
+            "minimum must not be NaN",
+            "maximum must not be NaN",
+            "minimum must be finite",
+            "maximum must be finite",
+            "maximum must be greater than minimum",
+            "maximum must be greater than or equal to minimum",
+            "error bound most be finite",
+            "error bound must be non-negative",
+        ]:
+            return
+        raise
 
     supported_dtypes = {
         np.dtype(np.uint8),
@@ -117,8 +163,30 @@ def check_one_input(data) -> None:
     except ValueError:
         return
 
+    late_bound_reqs = safeguards.late_bound
+    late_bound = Bindings()
+
+    if "$x_min" in late_bound_reqs:
+        late_bound = late_bound.update(
+            **{
+                "$x_min": np.nanmin(raw)
+                if raw.size > 0 and not np.all(np.isnan(raw))
+                else raw.dtype.type(0)
+            }
+        )
+    if "$x_max" in late_bound_reqs:
+        late_bound = late_bound.update(
+            **{
+                "$x_max": np.nanmax(raw)
+                if raw.size > 0 and not np.all(np.isnan(raw))
+                else raw.dtype.type(0)
+            }
+        )
+
     try:
-        correction = safeguards.compute_correction(data=raw, approximation=decoded)
+        correction = safeguards.compute_correction(
+            data=raw, approximation=decoded, late_bound=late_bound
+        )
 
         corrected = safeguards.apply_correction(
             approximation=decoded, correction=correction
@@ -164,17 +232,20 @@ def check_one_input(data) -> None:
                 case _:
                     pass
         print(  # noqa: T201
-            f"\n===\n\nrequirement = {requirement!r}\n\nsafeguards = {safeguards!r}\n\n===\n"
+            f"\n===\n\nrequirement = {requirement!r}\n\nsafeguards = {safeguards!r}\n\noriginal = {raw!r}\n\ndecompressed = {decoded!r}\n\n===\n"
         )
         raise
 
-    if not check_safety_requirement(
-        original=raw, reconstructed=corrected, requirement=requirement
-    ):
+    try:
+        if not check_safety_requirement(
+            original=raw, reconstructed=corrected, requirement=requirement
+        ):
+            raise RuntimeError("safeguards do not preserve safety requirement")
+    except Exception:
         print(  # noqa: T201
-            f"\n===\n\nrequirement = {requirement!r}\n\nsafeguards = {safeguards!r}\n\n===\n"
+            f"\n===\n\nrequirement = {requirement!r}\n\nsafeguards = {safeguards!r}\n\noriginal = {raw!r}\n\ndecompressed = {decoded!r}\n\ncorrected = {corrected!r}\n\n===\n"
         )
-        raise RuntimeError("safeguards do not preserve safety requirement")
+        raise
 
 
 atheris.Setup(sys.argv, check_one_input)

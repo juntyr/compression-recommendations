@@ -53,7 +53,10 @@ def _check_data_limits(
             raise ValueError("maximum must not be NaN")
 
         # conservative conversion
-        maximum_float = _fraction_to_float_round_ties_down(Fraction(maximum), ftype)
+        if math.isinf(maximum):
+            maximum_float = ftype.type(maximum)
+        else:
+            maximum_float = _fraction_to_float_round_ties_down(Fraction(maximum), ftype)
 
         ok = _logical_and(
             ok,
