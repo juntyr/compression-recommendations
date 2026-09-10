@@ -23,6 +23,7 @@ __all__ = [
     "_greater_equal",
     "_greater_equal_fraction",
     "_isfinite",
+    "_isinf",
     "_isnan",
     "_less",
     "_less_fraction",
@@ -73,9 +74,13 @@ def _divide_fraction(
 
 
 def _equal(
-    x: np.ndarray[S_co, np.dtype[T_co]], y: T_co | np.ndarray[S_co, np.dtype[T_co]]
+    x: np.ndarray[S_co, np.dtype[T_co]],
+    y: T_co | np.ndarray[S_co, np.dtype[T_co]],
+    *,
+    out: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[np.bool]]:
-    return x == y  # type: ignore
+    return np.equal(x, y, out=out, where=where)  # type: ignore
 
 
 def _equal_bool(
@@ -132,8 +137,19 @@ def _isfinite(
     return np.isfinite(x)  # type: ignore
 
 
-def _isnan(x: np.ndarray[S_co, np.dtype[T_co]]) -> np.ndarray[S_co, np.dtype[np.bool]]:
-    return np.isnan(x)  # type: ignore
+def _isinf(
+    x: np.ndarray[S_co, np.dtype[T_co]],
+) -> np.ndarray[S_co, np.dtype[np.bool]]:
+    return np.isinf(x)  # type: ignore
+
+
+def _isnan(
+    x: np.ndarray[S_co, np.dtype[T_co]],
+    *,
+    out: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
+) -> np.ndarray[S_co, np.dtype[np.bool]]:
+    return np.isnan(x, out=out, where=where)  # type: ignore
 
 
 def _less(

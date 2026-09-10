@@ -1,9 +1,15 @@
 import compression_safeguards_recommendations
 import pytest
 from compression_safeguards.api import Safeguards
-from compression_safeguards.safeguards.combinators.all import AllSafeguards
+from compression_safeguards.safeguards.combinators.all import (
+    AllSafeguards,
+    _AllSafeguardsBase,
+)
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
+from compression_safeguards.safeguards.pointwise.qoi.eb import (
+    PointwiseQuantityOfInterestErrorBoundSafeguard,
+)
 
 from compression_recommendations import Recommendations
 from compression_recommendations.requirements.combinators import (
@@ -30,7 +36,7 @@ from compression_recommendations.requirements.missing import MissingValueRequire
 def test_recommended_safeguards_for_u10():
     assert (
         compression_safeguards_recommendations.recommended_safeguards_for(
-            markers={"cf-short-name": "u10", "level-kind": "single"}
+            markers={"cf-short-name": "cc", "level-kind": "pressure"}
         ).get_config()
         == Safeguards(
             safeguards=[
@@ -38,12 +44,29 @@ def test_recommended_safeguards_for_u10():
                     safeguards=[
                         AllSafeguards(
                             safeguards=[
-                                ErrorBoundSafeguard(type="abs", eb=0.5, equal_nan=False)
+                                ErrorBoundSafeguard(
+                                    type="rel", eb=0.01, equal_nan=False
+                                )
                             ]
                         ),
+                    ]
+                ),
+                AllSafeguards(
+                    safeguards=[
                         AllSafeguards(
                             safeguards=[
-                                ErrorBoundSafeguard(type="rel", eb=0.5, equal_nan=False)
+                                PointwiseQuantityOfInterestErrorBoundSafeguard(
+                                    qoi='x >= c["minimum"]',  # type: ignore
+                                    type="abs",
+                                    eb=0,
+                                    early_bound=dict(minimum=0.0),
+                                ),
+                                PointwiseQuantityOfInterestErrorBoundSafeguard(
+                                    qoi='x <= c["maximum"]',  # type: ignore
+                                    type="abs",
+                                    eb=0,
+                                    early_bound=dict(maximum=1.0),
+                                ),
                             ]
                         ),
                     ]
@@ -130,6 +153,24 @@ def test_data_limits_requirement():
             compression_safeguards_recommendations.safeguards_for_requirement(
                 DataLimitsRequirement(minimum=-10, maximum=10)
             )
+        )
+        == 1
+    )
+    assert isinstance(
+        list(
+            compression_safeguards_recommendations.safeguards_for_requirement(
+                DataLimitsRequirement(minimum=-10, maximum=10)
+            )
+        )[0],
+        _AllSafeguardsBase,
+    )
+    assert (
+        len(
+            list(
+                compression_safeguards_recommendations.safeguards_for_requirement(
+                    DataLimitsRequirement(minimum=-10, maximum=10)
+                )
+            )[0].safeguards  # type: ignore
         )
         == 2
     )

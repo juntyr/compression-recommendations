@@ -9,6 +9,7 @@ from ..._compat import (
     _equal,
     _full,
     _isfinite,
+    _isinf,
     _isnan,
     _logical_and,
     _multiply_fraction,
@@ -59,8 +60,8 @@ def _check_mean_absolute_error_bound(
     ok: np.ndarray[S_co, np.dtype[np.bool]] = _full(
         original.shape, err_sum <= bound_sum
     )
-    _assign_or(ok, _equal(original, reconstructed))
-    _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
+    ok = _equal(original, reconstructed, out=ok, where=_isinf(original))
+    ok = _isnan(reconstructed, out=ok, where=_isnan(original))
 
     return ok
 
@@ -101,11 +102,11 @@ def _check_mean_relative_error_bound(
     ok: np.ndarray[S_co, np.dtype[np.bool]] = _full(
         original.shape, err_sum <= bound_sum
     )
-    _assign_or(ok, _equal(original, reconstructed))
-    _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
-    _logical_and(
-        ok,
-        _equal(reconstructed, original.dtype.type(0)),
+    ok = _equal(original, reconstructed, out=ok, where=_isinf(original))
+    ok = _isnan(reconstructed, out=ok, where=_isnan(original))
+    ok = _equal(
+        reconstructed,
+        original.dtype.type(0),
         out=ok,
         where=_equal(original, original.dtype.type(0)),
     )
@@ -163,7 +164,7 @@ def _check_mean_range_relative_error_bound(
     )
 
     ok = _full(original.shape, err_sum <= bound_sum)
-    _assign_or(ok, _equal(original, reconstructed))
-    _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
+    ok = _equal(original, reconstructed, out=ok, where=_isinf(original))
+    ok = _isnan(reconstructed, out=ok, where=_isnan(original))
 
     return ok
