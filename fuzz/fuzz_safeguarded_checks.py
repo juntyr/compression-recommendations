@@ -1,6 +1,6 @@
 import atheris
 
-if True: # with atheris.instrument_imports():
+with atheris.instrument_imports():
     import sys
     import types
     import typing
