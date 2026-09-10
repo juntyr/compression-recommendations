@@ -92,6 +92,3 @@ include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]
 
 [tool.uv.workspace]
 members = ["packages/compression-safeguards-recommendations", "packages/compression-recommendation-checks"]
-
-[tool.uv.sources]
-compression-safeguards = { git = "https://github.com/juntyr/compression-safeguards", rev = "c5588991b2bdf77b1f7d43d2fbdad7cc77195ad1" }
