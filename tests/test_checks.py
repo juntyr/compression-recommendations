@@ -3,7 +3,10 @@ from compression_recommendation_checks import check_safety_requirement
 from compression_safeguards.api import Safeguards
 from compression_safeguards_recommendations import safeguards_for_requirement
 
-from compression_recommendations.requirements.combinators import AnyRequirement
+from compression_recommendations.requirements.combinators import (
+    AllRequirements,
+    AnyRequirement,
+)
 from compression_recommendations.requirements.error_bounds.max import (
     MaxPointwiseQuadraticErrorBoundRequirement,
     MaxPointwiseRangeRelativeErrorBoundRequirement,
@@ -426,6 +429,184 @@ def test_fuzzer_found_max_relative_1():
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_data_limits_outside_both_1():
+    original = np.array([[1.308e01], [-2.928e-04], [-2.775e-04]], dtype=np.float16)
+
+    decompressed = np.array([[-2.775e-04], [-2.775e-04], [-8.380e02]], dtype=np.float16)
+
+    requirement = AnyRequirement(
+        requirements=[
+            DataLimitsRequirement(minimum=0, maximum=0.0),
+            AllRequirements(
+                requirements=[
+                    MaxPointwiseRangeRelativeErrorBoundRequirement(value=38),
+                    MeanRelativeErrorBoundRequirement(value=38),
+                ]
+            ),
+            MeanRelativeErrorBoundRequirement(value=38),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_min": np.float16(-2.928e-04),
+            "$x_max": np.float16(1.308e01),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_range_relative_zero_error_bound_1():
+    original = np.array(
+        [
+            [0.000e00],
+            [-3.200e02],
+            [2.092e-05],
+            [-1.920e01],
+            [np.nan],
+            [3.058e04],
+            [1.010e-01],
+            [2.135e-02],
+            [2.928e04],
+            [7.093e-06],
+            [9.656e-02],
+            [9.601e-02],
+            [np.nan],
+            [-1.384e-04],
+            [-4.362e01],
+            [np.nan],
+            [-3.942e04],
+        ],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [
+            [np.nan],
+            [9.656e-02],
+            [9.656e-02],
+            [9.656e-02],
+            [2.023e-02],
+            [9.656e-02],
+            [9.656e-02],
+            [-1.276e-04],
+            [3.275e04],
+            [-2.278e-04],
+            [2.023e-02],
+            [9.375e-02],
+            [np.nan],
+            [1.093e-01],
+            [-1.276e-04],
+            [-1.268e-04],
+            [-2.354e-01],
+        ],
+        dtype=np.float16,
+    )
+
+    requirement = MeanRangeRelativeErrorBoundRequirement(value=0)
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_min": np.float16(-3.942e04),
+            "$x_max": np.float16(3.058e04),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_range_relative_zero_error_bound_2():
+    original = np.array(
+        [[0.000e00], [9.600e01], [1.633e-05], [-np.inf]], dtype=np.float16
+    )
+
+    decompressed = np.array(
+        [[-3.315e02], [0.000e00], [9.900e-02], [9.656e-02]], dtype=np.float16
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MeanRangeRelativeErrorBoundRequirement(value=0),
+            MeanRangeRelativeErrorBoundRequirement(value=0),
+            MeanRangeRelativeErrorBoundRequirement(value=0),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_min": np.float16(-np.inf),
+            "$x_max": np.float16(9.600e01),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_data_limits_outside_both_2():
+    original = np.array([[-1.876e-04], [-1.716e01], [np.nan]], dtype=np.float16)
+
+    decompressed = np.array([[7.739e-04], [-5.256e03], [np.nan]], dtype=np.float16)
+
+    requirement = AnyRequirement(
+        requirements=[
+            DataLimitsRequirement(minimum=0, maximum=0.0),
+            AllRequirements(
+                requirements=[
+                    MaxPointwiseRangeRelativeErrorBoundRequirement(value=38),
+                    MeanRelativeErrorBoundRequirement(value=38),
+                ]
+            ),
+            MeanAbsoluteErrorBoundRequirement(value=38),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_min": np.float16(-np.inf),
+            "$x_max": np.float16(9.600e01),
+        },
     )
     corrected = safeguards.apply_correction(
         approximation=decompressed, correction=correction

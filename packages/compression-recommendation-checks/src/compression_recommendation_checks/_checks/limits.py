@@ -31,7 +31,12 @@ def _check_data_limits(
 
     ok: np.ndarray[S_co, np.dtype[np.bool]] = _true(original.shape)
 
-    if minimum is not None:
+    minimum_float: None | _F_co
+    maximum_float: None | _F_co
+
+    if minimum is None:
+        minimum_float = None
+    else:
         if math.isnan(minimum):
             raise ValueError("minimum must not be NaN")
 
@@ -41,14 +46,9 @@ def _check_data_limits(
         else:
             minimum_float = _fraction_to_float_round_ties_up(Fraction(minimum), ftype)
 
-        ok = _logical_and(
-            ok,
-            _greater_equal(reconstructed_float, minimum_float),
-            out=ok,
-            where=_greater_equal(original_float, minimum_float),
-        )
-
-    if maximum is not None:
+    if maximum is None:
+        maximum_float = None
+    else:
         if math.isnan(maximum):
             raise ValueError("maximum must not be NaN")
 
@@ -58,11 +58,35 @@ def _check_data_limits(
         else:
             maximum_float = _fraction_to_float_round_ties_down(Fraction(maximum), ftype)
 
-        ok = _logical_and(
-            ok,
-            _less_equal(reconstructed_float, maximum_float),
-            out=ok,
-            where=_less_equal(original_float, maximum_float),
-        )
+    match (minimum_float, maximum_float):
+        case (None, None):
+            pass
+        case (minimum_float, None):
+            ok = _logical_and(
+                ok,
+                _greater_equal(reconstructed_float, minimum_float),
+                out=ok,
+                where=_greater_equal(original_float, minimum_float),
+            )
+        case (None, maximum_float):
+            ok = _logical_and(
+                ok,
+                _less_equal(reconstructed_float, maximum_float),
+                out=ok,
+                where=_less_equal(original_float, maximum_float),
+            )
+        case (minimum_float, maximum_float):
+            ok = _logical_and(
+                ok,
+                _logical_and(
+                    _greater_equal(reconstructed_float, minimum_float),
+                    _less_equal(reconstructed_float, maximum_float),
+                ),
+                out=ok,
+                where=_logical_and(
+                    _greater_equal(original_float, minimum_float),
+                    _less_equal(original_float, maximum_float),
+                ),
+            )
 
     return ok

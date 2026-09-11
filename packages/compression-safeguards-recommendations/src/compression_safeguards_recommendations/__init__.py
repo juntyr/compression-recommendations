@@ -259,10 +259,10 @@ def _safeguards_for_requirement(
                     v["x_orig_rel"] = c["$x"] / (c["$x_max"] - c["$x_min"]);
 
                     return where(
-                        isfinite(v["x_orig_rel"]),
+                        all([isfinite(v["x_orig_rel"]), not(c["eb_is_zero"])]),
 
                         # if $x_rel is finite, use it to fulfil the range-relative
-                        # error bound:
+                        # error bound, as long as eb_range_rel > 0:
                         #   |x - $x| <= eb_range_rel * ($x_max - $x_min)
                         #   |x - $x| / ($x_max - $x_min) <= eb_range_rel
                         #   | (x / ($x_max - $x_min)) - ($x / ($x_max - $x_min)) | <= eb_range_rel
@@ -289,6 +289,7 @@ def _safeguards_for_requirement(
                     """,  # type: ignore
                     type=ErrorBound.abs,
                     eb=requirement.value,
+                    early_bound=dict(eb_is_zero=requirement.value == 0),
                 )
             ]
         case RequirementKind.mean_range_relative_error_bound:
@@ -313,10 +314,11 @@ def _safeguards_for_requirement(
                             v["x1"] > -1,
                             v["x1"] < +1,
                             isfinite(v["x1"]),
+                            not(c["eb_is_zero"]),
                         ]),
 
                         # if $x is in bounds, scale x to fulfil the quadratic
-                        # error bound:
+                        # error bound, as long as eb_qua > 0:
                         #   |x - $x| <= (1 - x1^2) * eb_qua
                         #   |x - $x| / (1 - x1^2) <= eb_qua
                         #   | (x / (1 - x1^2)) - ($x / (1 - x1^2)) | <= eb_qua
@@ -347,7 +349,9 @@ def _safeguards_for_requirement(
                     type=ErrorBound.abs,
                     eb=requirement.value,
                     early_bound=dict(
-                        minimum=requirement.minimum, maximum=requirement.maximum
+                        minimum=requirement.minimum,
+                        maximum=requirement.maximum,
+                        eb_is_zero=requirement.value == 0,
                     ),
                 ),
             ]
