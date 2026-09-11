@@ -166,27 +166,18 @@ def _check_maximum_pointwise_quadratic_error_bound(
         raise ValueError("minimum must be finite")
     if not math.isfinite(maximum):
         raise ValueError("maximum must be finite")
+    if maximum <= minimum:
+        raise ValueError("maximum must be greater than minimum")
 
     minimum_fraction = Fraction(minimum)
     maximum_fraction = Fraction(maximum)
     range_fraction = maximum_fraction - minimum_fraction
 
-    if range_fraction <= 0:
-        raise ValueError("maximum must be greater than minimum")
-
-    ok: np.ndarray[S_co, np.dtype[np.bool]]
-
-    if range_fraction == 0:
-        ok = _equal(original, reconstructed)
-        _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
-
-        return ok
-
     original_norm = _subtract_fraction(
         _multiply_fraction(
             _divide_fraction(
                 _subtract_fraction(
-                    _array_to_finite_fractions_or_zero(_abs(original_float)),
+                    _array_to_finite_fractions_or_zero(original_float),
                     minimum_fraction,
                 ),
                 range_fraction,
@@ -203,7 +194,7 @@ def _check_maximum_pointwise_quadratic_error_bound(
         _check_error_bound(eb_qua),
     )
 
-    ok = _less_equal_fraction(err, bound)
+    ok: np.ndarray[S_co, np.dtype[np.bool]] = _less_equal_fraction(err, bound)
     _assign_or(ok, _equal(original, reconstructed))
     _assign_or(ok, _logical_and(_isnan(original), _isnan(reconstructed)))
 

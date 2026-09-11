@@ -5,7 +5,9 @@ from compression_safeguards_recommendations import safeguards_for_requirement
 
 from compression_recommendations.requirements.combinators import AnyRequirement
 from compression_recommendations.requirements.error_bounds.max import (
+    MaxPointwiseQuadraticErrorBoundRequirement,
     MaxPointwiseRangeRelativeErrorBoundRequirement,
+    MaxPointwiseRelativeErrorBoundRequirement,
 )
 from compression_recommendations.requirements.error_bounds.mean import (
     MeanAbsoluteErrorBoundRequirement,
@@ -304,6 +306,121 @@ def test_fuzzer_found_any_mean_2():
             MeanRelativeErrorBoundRequirement(value=36),
         ]
     )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_max_quadratic_error_1():
+    original = np.array([[49, 66, -35, 1, 3], [50, -1, -1, -1, 85]], dtype=np.int8)
+
+    decompressed = np.array([[85, 0, -43, 4, 49], [66, -35, 1, 3, 0]], dtype=np.int8)
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=2.3407183170921814e305, minimum=-43, maximum=4
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_max_quadratic_error_2():
+    original = np.array([[49, 66, -35, 9, 3], [0, 18, -115, 18, 85]], dtype=np.int8)
+
+    decompressed = np.array(
+        [[0, -11, 4, 49, 66], [86, 18, -115, 18, 85]], dtype=np.int8
+    )
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1.7204576235615554e308, minimum=-43, maximum=4
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_max_quadratic_error_3():
+    original = np.array([[-1, -1], [-2, -1]], dtype=np.int8)
+
+    decompressed = np.array([[-1, -1], [65, 48]], dtype=np.int8)
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=2.1340915476744706e306, minimum=-81, maximum=-1
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_max_quadratic_error_4():
+    original = np.array([[0, 0, 0, 0, 0], [0, 18, 85, 0, -11]], dtype=np.int8)
+
+    decompressed = np.array([[4, 49, 86, 66, 18], [-115, 18, 85, 5, 86]], dtype=np.int8)
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1.7204576235615554e308, minimum=-115, maximum=0
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_max_relative_1():
+    original = np.array([[-8.647088e17]], dtype=np.float32)
+
+    decompressed = np.array([[3.1675382e-38]], dtype=np.float32)
+
+    requirement = MaxPointwiseRelativeErrorBoundRequirement(value=1)
 
     safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
 
