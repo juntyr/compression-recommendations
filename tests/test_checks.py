@@ -152,8 +152,8 @@ def test_fuzzer_found_mean_range_relative_error_1():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float16(0.0007434),
-            "$x_max": np.float16(0.001731),
+            "$x_finite_min": np.float16(0.0007434),
+            "$x_finite_max": np.float16(0.001731),
         },
     )
     corrected = safeguards.apply_correction(
@@ -180,8 +180,8 @@ def test_fuzzer_found_max_range_relative_error_nan_1():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float32(0.0),
-            "$x_max": np.float32(0.0),
+            "$x_finite_min": np.float32(0.0),
+            "$x_finite_max": np.float32(0.0),
         },
     )
     corrected = safeguards.apply_correction(
@@ -208,8 +208,8 @@ def test_fuzzer_found_max_range_relative_error_nan_2():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float32(0.0),
-            "$x_max": np.float32(0.0),
+            "$x_finite_min": np.float32(0.0),
+            "$x_finite_max": np.float32(0.0),
         },
     )
     corrected = safeguards.apply_correction(
@@ -234,8 +234,8 @@ def test_fuzzer_found_mean_range_relative_error_nan_1():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float32(0.0),
-            "$x_max": np.float32(0.0),
+            "$x_finite_min": np.float32(0.0),
+            "$x_finite_max": np.float32(0.0),
         },
     )
     corrected = safeguards.apply_correction(
@@ -463,8 +463,8 @@ def test_fuzzer_found_data_limits_outside_both_1():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float16(-2.928e-04),
-            "$x_max": np.float16(1.308e01),
+            "$x_finite_min": np.float16(-2.928e-04),
+            "$x_finite_max": np.float16(1.308e01),
         },
     )
     corrected = safeguards.apply_correction(
@@ -531,8 +531,8 @@ def test_fuzzer_found_range_relative_zero_error_bound_1():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float16(-3.942e04),
-            "$x_max": np.float16(3.058e04),
+            "$x_finite_min": np.float16(-3.942e04),
+            "$x_finite_max": np.float16(3.058e04),
         },
     )
     corrected = safeguards.apply_correction(
@@ -567,8 +567,8 @@ def test_fuzzer_found_range_relative_zero_error_bound_2():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float16(-np.inf),
-            "$x_max": np.float16(9.600e01),
+            "$x_finite_min": np.float16(0.0),
+            "$x_finite_max": np.float16(9.600e01),
         },
     )
     corrected = safeguards.apply_correction(
@@ -604,8 +604,177 @@ def test_fuzzer_found_data_limits_outside_both_2():
         data=original,
         approximation=decompressed,
         late_bound={
-            "$x_min": np.float16(-np.inf),
-            "$x_max": np.float16(9.600e01),
+            "$x_finite_min": np.float16(-1.716e01),
+            "$x_finite_max": np.float16(-1.876e-04),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_foo():
+    original = np.array(
+        [
+            [-721420288],
+            [-707406379],
+            [6346069],
+            [-721420288],
+            [-863371051],
+            [826105198],
+            [1641403861],
+            [1596577132],
+            [16223],
+            [-863371264],
+            [826105198],
+            [1641403861],
+            [-707406484],
+            [-718482125],
+            [14013909],
+            [0],
+            [-721420288],
+            [-707406379],
+            [6346069],
+        ],
+        dtype=np.int32,
+    )
+
+    decompressed = np.array(
+        [
+            [-721420288],
+            [-43],
+            [1596550399],
+            [16223],
+            [-863371264],
+            [826105198],
+            [-100608555],
+            [869651967],
+            [-707449643],
+            [54741],
+            [0],
+            [-707461120],
+            [1440077269],
+            [24789],
+            [-707461120],
+            [-1],
+            [1600072044],
+            [63],
+            [1858898432],
+        ],
+        dtype=np.int32,
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MeanAbsoluteErrorBoundRequirement(value=96),
+            # AnyRequirement(
+            #     requirements=[
+            #         # MeanAbsoluteErrorBoundRequirement(value=0.0),
+            #         MeanAbsoluteErrorBoundRequirement(value=108),
+            #     ]
+            # ),
+            MeanRelativeErrorBoundRequirement(value=1.5809822920694217e293),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_range_relative_finite_range_1():
+    original = np.array(
+        [[0.0], [-np.inf], [np.nan]],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [[0.1093], [0.1931], [-0.1562]],
+        dtype=np.float16,
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            LosslessRequirement(),
+            MeanRangeRelativeErrorBoundRequirement(value=46),
+            MeanRangeRelativeErrorBoundRequirement(value=1),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_finite_min": np.float16(0.0),
+            "$x_finite_max": np.float16(0.0),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_range_relative_finite_range_2():
+    original = np.array(
+        [
+            [-np.inf, 1.01e-06],
+            [np.nan, 1.52e-05],
+            [0.00e00, 0.00e00],
+            [0.00e00, 0.00e00],
+        ],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [
+            [0.000e00, 0.000e00],
+            [0.000e00, 0.000e00],
+            [-4.272e-04, -2.560e03],
+            [-2.048e03, -8.376e03],
+        ],
+        dtype=np.float16,
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MeanRangeRelativeErrorBoundRequirement(value=78),
+            MeanRangeRelativeErrorBoundRequirement(value=44),
+            AnyRequirement(
+                requirements=[
+                    MeanRangeRelativeErrorBoundRequirement(value=0),
+                    MeanRangeRelativeErrorBoundRequirement(value=0),
+                ]
+            ),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_finite_min": np.float16(0.0),
+            "$x_finite_max": np.float16(1.52e-05),
         },
     )
     corrected = safeguards.apply_correction(

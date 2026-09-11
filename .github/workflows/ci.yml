@@ -130,7 +130,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution ${{ matrix.resolution }} \
             --no-build
@@ -173,7 +173,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution ${{ matrix.resolution }} \
             --no-build
@@ -232,7 +232,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution ${{ matrix.resolution }} \
             --no-build
@@ -296,7 +296,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution highest \
             --no-build
@@ -339,7 +339,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution ${{ matrix.resolution }} \
             --no-build
@@ -486,7 +486,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
-          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@d401213b2e21c9d551ed58b04432edbc8458111b"
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@8de8d0e1b89c377e0263801bd05c6c2c413bbf02"
           uv pip install dist/*.whl \
             --resolution highest \
             --no-build

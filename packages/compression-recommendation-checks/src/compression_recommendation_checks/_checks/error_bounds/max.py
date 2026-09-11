@@ -114,7 +114,6 @@ def _check_maximum_pointwise_range_relative_error_bound(
 
         return ok
 
-    # FIXME: $x_min and $x_max use non-NaN, here we use finite
     finite_min: _F_co = np.amin(
         original_float, where=is_finite, initial=ftype.type(np.inf)
     )

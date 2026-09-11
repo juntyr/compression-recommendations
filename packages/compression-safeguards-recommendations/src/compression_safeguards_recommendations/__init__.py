@@ -254,20 +254,21 @@ def _safeguards_for_requirement(
             return [
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi="""
-                    # scale x to be relative to $x_max - $x_min
-                    v["x_rel"] = x / (c["$x_max"] - c["$x_min"]);
-                    v["x_orig_rel"] = c["$x"] / (c["$x_max"] - c["$x_min"]);
+                    # scale x to be relative to $x_finite_max - $x_finite_min
+                    v["x_finite_range"] = c["$x_finite_max"] - c["$x_finite_min"];
+                    v["x_rel"] = x / v["x_finite_range"];
+                    v["x_orig_rel"] = c["$x"] / v["x_finite_range"];
 
                     return where(
                         all([isfinite(v["x_orig_rel"]), not(c["eb_is_zero"])]),
 
                         # if $x_rel is finite, use it to fulfil the range-relative
                         # error bound, as long as eb_range_rel > 0:
-                        #   |x - $x| <= eb_range_rel * ($x_max - $x_min)
-                        #   |x - $x| / ($x_max - $x_min) <= eb_range_rel
-                        #   | (x / ($x_max - $x_min)) - ($x / ($x_max - $x_min)) | <= eb_range_rel
+                        #   |x - $x| <= eb_range_rel * x_finite_range
+                        #   |x - $x| / x_finite_range <= eb_range_rel
+                        #   | (x / x_finite_range) - ($x / x_finite_range) | <= eb_range_rel
                         #   |qoi(x) - qoi($x)| <= eb_range_rel
-                        #     with qoi(x) = x / ($x_max - $x_min)
+                        #     with qoi(x) = x / x_finite_range
                         v["x_rel"],
 
                         # otherwise, if $x could not be normalised,
