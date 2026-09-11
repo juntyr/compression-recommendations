@@ -166,6 +166,8 @@ def check_one_input(data) -> None:
     late_bound_reqs = safeguards.late_bound
     late_bound = Bindings()
 
+    info = np.finfo(dtype) if np.issubdtype(dtype, np.floating) else np.iinfo(dtype)
+
     if "$x_min" in late_bound_reqs:
         late_bound = late_bound.update(
             **{
@@ -179,6 +181,22 @@ def check_one_input(data) -> None:
             **{
                 "$x_max": np.nanmax(raw)
                 if raw.size > 0 and not np.all(np.isnan(raw))
+                else raw.dtype.type(0)
+            }
+        )
+    if "$x_finite_min" in late_bound_reqs:
+        late_bound = late_bound.update(
+            **{
+                "$x_finite_min": np.amin(raw, where=np.isfinite(raw), initial=info.max)
+                if raw.size > 0 and np.any(np.isfinite(raw))
+                else raw.dtype.type(0)
+            }
+        )
+    if "$x_finite_max" in late_bound_reqs:
+        late_bound = late_bound.update(
+            **{
+                "$x_finite_max": np.amax(raw, where=np.isfinite(raw), initial=info.min)
+                if raw.size > 0 and np.any(np.isfinite(raw))
                 else raw.dtype.type(0)
             }
         )
