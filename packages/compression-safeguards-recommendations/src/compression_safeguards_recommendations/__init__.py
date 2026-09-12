@@ -289,7 +289,7 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    # FIXME: artifically decrease the error bound by
+                    # FIXME: artificially decrease the error bound by
                     #  nextafter(np.float16(1), np.float16(2))
                     # to account for rounding errors in the QoI
                     eb=requirement.value / 1.001,
@@ -351,7 +351,7 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    # FIXME: artifically decrease the error bound by
+                    # FIXME: artificially decrease the error bound by
                     #  nextafter(np.float16(1), np.float16(2))
                     # to account for rounding errors in the QoI
                     eb=requirement.value / 1.001,
