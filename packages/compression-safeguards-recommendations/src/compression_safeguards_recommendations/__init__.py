@@ -476,9 +476,12 @@ class GlobalSafeguard(StencilSafeguard):
         where: Literal[True] | np.ndarray[S, np.dtype[np.bool]] = True,
     ) -> np.ndarray[S, np.dtype[np.bool]]:
         # check everywhere, no matter where
-        return self._safeguard.check_pointwise(
+        ok = self._safeguard.check_pointwise(
             data, approximation, late_bound=late_bound, where=True
         )
+        # global safeguards are only ok in any point if all points are ok
+        ok.fill(np.all(ok))
+        return ok
 
     @override
     def compute_footprint(
@@ -510,3 +513,7 @@ class GlobalSafeguard(StencilSafeguard):
     @override
     def get_config(self) -> dict[str, JSON]:
         return dict(kind=type(self).kind, safeguard=self._safeguard.get_config())
+
+    @override
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(safeguard={self.safeguard!r})"

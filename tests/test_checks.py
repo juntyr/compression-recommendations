@@ -17,6 +17,7 @@ from compression_recommendations.requirements.error_bounds.mean import (
     MeanRangeRelativeErrorBoundRequirement,
     MeanRelativeErrorBoundRequirement,
 )
+from compression_recommendations.requirements.isovalue import IsovalueRequirement
 from compression_recommendations.requirements.limits import DataLimitsRequirement
 from compression_recommendations.requirements.lossless import LosslessRequirement
 
@@ -617,7 +618,7 @@ def test_fuzzer_found_data_limits_outside_both_2():
     )
 
 
-def test_fuzzer_found_foo():
+def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_1():
     original = np.array(
         [
             [-721420288],
@@ -671,13 +672,108 @@ def test_fuzzer_found_foo():
     requirement = AnyRequirement(
         requirements=[
             MeanAbsoluteErrorBoundRequirement(value=96),
-            # AnyRequirement(
-            #     requirements=[
-            #         # MeanAbsoluteErrorBoundRequirement(value=0.0),
-            #         MeanAbsoluteErrorBoundRequirement(value=108),
-            #     ]
-            # ),
             MeanRelativeErrorBoundRequirement(value=1.5809822920694217e293),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_foo_2():
+    original = np.array(
+        [
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [3.450e01],
+            [2.915e-05],
+            [np.nan],
+            [np.nan],
+            [1.874e-01],
+        ],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [np.nan],
+            [4.768e-07],
+            [1.276e-04],
+            [0.000e00],
+            [1.526e-05],
+            [4.308e-04],
+            [1.221e-04],
+            [1.230e-04],
+        ],
+        dtype=np.float16,
+    )
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1, minimum=0, maximum=95
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_2():
+    original = np.array(
+        [
+            [-1.157e01, 1.788e-05, 4.484e03],
+            [-1.157e01, -1.157e01, -1.157e01],
+            [-1.157e01, -1.157e01, -1.157e01],
+        ],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [
+            [-1.157e01, -1.808e-01, 2.402e-02],
+            [2.402e-02, 1.520e-05, 1.876e-04],
+            [1.698e-04, -1.157e01, -1.157e01],
+        ],
+        dtype=np.float16,
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MeanAbsoluteErrorBoundRequirement(value=44),
+            IsovalueRequirement(value=-0.0),
         ]
     )
 

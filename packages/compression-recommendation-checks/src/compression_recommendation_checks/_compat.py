@@ -106,9 +106,13 @@ def _full(shape: S_in, x: bool) -> np.ndarray[S_in, np.dtype[np.bool]]:
 
 
 def _greater(
-    x: np.ndarray[S_co, np.dtype[T_co]], y: T_co | np.ndarray[S_co, np.dtype[T_co]]
+    x: np.ndarray[S_co, np.dtype[T_co]],
+    y: T_co | np.ndarray[S_co, np.dtype[T_co]],
+    *,
+    out: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[np.bool]]:
-    return x > y  # type: ignore
+    return np.greater(x, y, out=out, where=where)  # type: ignore
 
 
 def _greater_fraction(
@@ -153,9 +157,13 @@ def _isnan(
 
 
 def _less(
-    x: np.ndarray[S_co, np.dtype[T_co]], y: T_co | np.ndarray[S_co, np.dtype[T_co]]
+    x: np.ndarray[S_co, np.dtype[T_co]],
+    y: T_co | np.ndarray[S_co, np.dtype[T_co]],
+    *,
+    out: None | np.ndarray[S_co, np.dtype[np.bool]] = None,
+    where: Literal[True] | np.ndarray[S_co, np.dtype[np.bool]] = True,
 ) -> np.ndarray[S_co, np.dtype[np.bool]]:
-    return x < y  # type: ignore
+    return np.less(x, y, out=out, where=where)  # type: ignore
 
 
 def _less_fraction(
