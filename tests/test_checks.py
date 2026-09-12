@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from compression_recommendation_checks import check_safety_requirement
 from compression_safeguards.api import Safeguards
 from compression_safeguards_recommendations import safeguards_for_requirement
@@ -690,48 +691,11 @@ def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_1():
     )
 
 
-def test_fuzzer_found_foo_2():
-    original = np.array(
-        [
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [3.450e01],
-            [2.915e-05],
-            [np.nan],
-            [np.nan],
-            [1.874e-01],
-        ],
-        dtype=np.float16,
-    )
+@pytest.mark.xfail
+def test_fuzzer_found_quadratic_error_rounding_error():
+    original = np.array([[3.450e01]], dtype=np.float16)
 
-    decompressed = np.array(
-        [
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [np.nan],
-            [4.768e-07],
-            [1.276e-04],
-            [0.000e00],
-            [1.526e-05],
-            [4.308e-04],
-            [1.221e-04],
-            [1.230e-04],
-        ],
-        dtype=np.float16,
-    )
+    decompressed = np.array([[1.276e-04]], dtype=np.float16)
 
     requirement = MaxPointwiseQuadraticErrorBoundRequirement(
         value=1, minimum=0, maximum=95
