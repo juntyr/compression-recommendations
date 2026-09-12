@@ -289,7 +289,10 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    eb=requirement.value,
+                    # FIXME: artifically decrease the error bound by
+                    #  nextafter(np.float16(1), np.float16(2))
+                    # to account for rounding errors in the QoI
+                    eb=requirement.value / 1.001,
                     early_bound=dict(eb_is_zero=requirement.value == 0),
                 )
             ]
@@ -348,7 +351,10 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    eb=requirement.value,
+                    # FIXME: artifically decrease the error bound by
+                    #  nextafter(np.float16(1), np.float16(2))
+                    # to account for rounding errors in the QoI
+                    eb=requirement.value / 1.001,
                     early_bound=dict(
                         minimum=requirement.minimum,
                         maximum=requirement.maximum,

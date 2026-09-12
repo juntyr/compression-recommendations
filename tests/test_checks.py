@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 from compression_recommendation_checks import check_safety_requirement
 from compression_safeguards.api import Safeguards
 from compression_safeguards_recommendations import safeguards_for_requirement
@@ -691,14 +690,81 @@ def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_1():
     )
 
 
-@pytest.mark.xfail
-def test_fuzzer_found_quadratic_error_rounding_error():
+def test_fuzzer_found_quadratic_error_rounding_error_1():
     original = np.array([[3.450e01]], dtype=np.float16)
 
     decompressed = np.array([[1.276e-04]], dtype=np.float16)
 
     requirement = MaxPointwiseQuadraticErrorBoundRequirement(
         value=1, minimum=0, maximum=95
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_quadratic_error_rounding_error_2():
+    original = np.array(
+        [
+            [249, 255],
+            [255, 44],
+            [255, 255],
+            [255, 255],
+            [255, 255],
+            [255, 255],
+            [255, 255],
+            [255, 255],
+        ],
+        dtype=np.uint8,
+    )
+
+    decompressed = np.array(
+        [[255, 255], [255, 255], [251, 255], [8, 0], [46, 8], [0, 0], [0, 1], [15, 15]],
+        dtype=np.uint8,
+    )
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1, minimum=-23, maximum=95
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_quadratic_error_rounding_error_3():
+    original = np.array(
+        [[74, 1, 0, 16, -113, 86], [86, 86, 86, 86, -1, -1]], dtype=np.int8
+    )
+
+    decompressed = np.array(
+        [[-1, -1, -1, -1, -1, -1], [86, 86, 86, 86, 86, 36]], dtype=np.int8
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MaxPointwiseQuadraticErrorBoundRequirement(value=21, minimum=0, maximum=41),
+            MaxPointwiseQuadraticErrorBoundRequirement(value=0, minimum=0, maximum=3),
+        ]
     )
 
     safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
