@@ -26,10 +26,9 @@ provided functions:
   [`Safeguard`][compression_safeguards.safeguards.abc.Safeguard]s.
 """
 
-from collections.abc import Collection, Mapping, Set
-from typing import ClassVar, Literal, assert_never
+from collections.abc import Collection, Mapping
+from typing import assert_never
 
-import numpy as np
 from compression_recommendations import Recommendations
 from compression_recommendations.requirements.abc import Requirement
 from compression_recommendations.requirements.combinators import (
@@ -53,10 +52,10 @@ from compression_recommendations.requirements.limits import DataLimitsRequiremen
 from compression_recommendations.requirements.lossless import LosslessRequirement
 from compression_recommendations.requirements.missing import MissingValueRequirement
 from compression_safeguards.api import Safeguards
-from compression_safeguards.safeguards import SafeguardKind
 from compression_safeguards.safeguards.abc import Safeguard
 from compression_safeguards.safeguards.combinators.all import AllSafeguards
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
+from compression_safeguards.safeguards.combinators.everywhere import EverywhereSafeguard
 from compression_safeguards.safeguards.eb import ErrorBound
 from compression_safeguards.safeguards.pointwise.abc import PointwiseSafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
@@ -66,16 +65,7 @@ from compression_safeguards.safeguards.pointwise.qoi.eb import (
 )
 from compression_safeguards.safeguards.pointwise.same import EquivalentValueSafeguard
 from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
-from compression_safeguards.safeguards.stencil import (
-    BoundaryCondition,
-    NeighbourhoodAxis,
-)
 from compression_safeguards.safeguards.stencil.abc import StencilSafeguard
-from compression_safeguards.utils.bindings import Bindings, Parameter
-from compression_safeguards.utils.error import TypeCheckError
-from compression_safeguards.utils.intervals import IntervalUnion
-from compression_safeguards.utils.typing import JSON, S, T
-from typing_extensions import override  # MSPV 3.12
 
 __all__ = [
     "recommended_safeguards_for",
@@ -236,7 +226,7 @@ def _safeguards_for_requirement(
             (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseAbsoluteErrorBoundRequirement(value=requirement.value)
             )
-            return [GlobalSafeguard(safeguard=safeguard)]
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_relative_error_bound:
             assert isinstance(requirement, MaxPointwiseRelativeErrorBoundRequirement)
             return [ErrorBoundSafeguard(type=ErrorBound.rel, eb=requirement.value)]
@@ -246,7 +236,7 @@ def _safeguards_for_requirement(
             (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseRelativeErrorBoundRequirement(value=requirement.value)
             )
-            return [GlobalSafeguard(safeguard=safeguard)]
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_range_relative_error_bound:
             assert isinstance(
                 requirement, MaxPointwiseRangeRelativeErrorBoundRequirement
@@ -302,7 +292,7 @@ def _safeguards_for_requirement(
             (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseRangeRelativeErrorBoundRequirement(value=requirement.value)
             )
-            return [GlobalSafeguard(safeguard=safeguard)]
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_quadratic_error_bound:
             assert isinstance(requirement, MaxPointwiseQuadraticErrorBoundRequirement)
             return [
@@ -401,125 +391,3 @@ def _safeguards_for_requirement(
             return [LosslessSafeguard()]
         case _:
             assert_never(requirement.kind)
-
-
-# FIXME: upstream
-# TODO: adjust docs to mention that global safeguards need to be wrapped
-class GlobalSafeguard(StencilSafeguard):
-    __slots__: tuple[str, ...] = ("_safeguard",)
-    _safeguard: PointwiseSafeguard | StencilSafeguard
-
-    kind: ClassVar[str] = "global"
-
-    def __init__(
-        self,
-        *,
-        safeguard: dict[str, JSON] | PointwiseSafeguard | StencilSafeguard,
-    ) -> None:
-        TypeCheckError.check_instance_or_raise(
-            safeguard, dict | PointwiseSafeguard | StencilSafeguard
-        )
-        safeguard_: Safeguard
-        if isinstance(safeguard, dict):
-            safeguard_ = SafeguardKind.from_config(safeguard)
-        else:
-            safeguard_ = safeguard
-        TypeCheckError.check_instance_or_raise(
-            safeguard_, PointwiseSafeguard | StencilSafeguard
-        )
-        self._safeguard = safeguard_  # type: ignore
-
-    @property
-    def safeguard(self) -> PointwiseSafeguard | StencilSafeguard:
-        return self._safeguard
-
-    @override
-    def compute_safe_intervals(
-        self,
-        data: np.ndarray[S, np.dtype[T]],
-        *,
-        late_bound: Bindings,
-        where: Literal[True] | np.ndarray[S, np.dtype[np.bool]] = True,
-    ) -> IntervalUnion[T, int, int]:
-        # needs to be safe everywhere
-        return self._safeguard.compute_safe_intervals(
-            data, late_bound=late_bound, where=True
-        )
-
-    @override
-    def compute_check_neighbourhood_for_data_shape(
-        self, data_shape: tuple[int, ...]
-    ) -> tuple[dict[BoundaryCondition, NeighbourhoodAxis], ...]:
-        neighbourhood: tuple[dict[BoundaryCondition, NeighbourhoodAxis], ...]
-        if isinstance(self._safeguard, PointwiseSafeguard):
-            neighbourhood = tuple(dict() for _ in data_shape)
-        else:
-            neighbourhood = self._safeguard.compute_check_neighbourhood_for_data_shape(
-                data_shape
-            )
-
-        boundary = BoundaryCondition.valid
-
-        # force a valid neighbourhood that spans the entire data
-        for i, s in enumerate(data_shape):
-            ni = neighbourhood[i]
-            if boundary in ni:
-                ni[boundary] = NeighbourhoodAxis(
-                    max(ni[boundary].before, s), max(ni[boundary].after, s)
-                )
-            else:
-                ni[boundary] = NeighbourhoodAxis(s, s)
-
-        return neighbourhood
-
-    @override
-    def check_pointwise(
-        self,
-        data: np.ndarray[S, np.dtype[T]],
-        approximation: np.ndarray[S, np.dtype[T]],
-        *,
-        late_bound: Bindings,
-        where: Literal[True] | np.ndarray[S, np.dtype[np.bool]] = True,
-    ) -> np.ndarray[S, np.dtype[np.bool]]:
-        # check everywhere, no matter where
-        ok = self._safeguard.check_pointwise(
-            data, approximation, late_bound=late_bound, where=True
-        )
-        # global safeguards are only ok in any point if all points are ok
-        ok.fill(np.all(ok))
-        return ok
-
-    @override
-    def compute_footprint(
-        self,
-        foot: np.ndarray[S, np.dtype[np.bool]],
-        *,
-        late_bound: Bindings,
-        where: Literal[True] | np.ndarray[S, np.dtype[np.bool]] = True,
-    ) -> np.ndarray[S, np.dtype[np.bool]]:
-        # everything is contributed to
-        return np.ones_like(foot)
-
-    @override
-    def compute_inverse_footprint(
-        self,
-        foot: np.ndarray[S, np.dtype[np.bool]],
-        *,
-        late_bound: Bindings,
-        where: Literal[True] | np.ndarray[S, np.dtype[np.bool]] = True,
-    ) -> np.ndarray[S, np.dtype[np.bool]]:
-        # everything contributes to
-        return np.ones_like(foot)
-
-    @property
-    @override
-    def late_bound(self) -> Set[Parameter]:
-        return self._safeguard.late_bound
-
-    @override
-    def get_config(self) -> dict[str, JSON]:
-        return dict(kind=type(self).kind, safeguard=self._safeguard.get_config())
-
-    @override
-    def __repr__(self) -> str:
-        return f"{type(self).__name__}(safeguard={self.safeguard!r})"
