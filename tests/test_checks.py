@@ -1,5 +1,4 @@
 import numpy as np
-import pytest
 from compression_recommendation_checks import check_safety_requirement
 from compression_safeguards.api import Safeguards
 from compression_safeguards_recommendations import safeguards_for_requirement
@@ -782,7 +781,6 @@ def test_fuzzer_found_quadratic_error_rounding_error_3():
     )
 
 
-@pytest.mark.xfail
 def test_fuzzer_found_quadratic_error_rounding_error_4():
     original = np.array(
         [
@@ -814,6 +812,61 @@ def test_fuzzer_found_quadratic_error_rounding_error_4():
 
     requirement = MaxPointwiseQuadraticErrorBoundRequirement(
         value=49, minimum=-35, maximum=95
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_quadratic_error_rounding_error_5():
+    original = np.array(
+        [[0.000e00, 1.628e-04], [3.000e00, 9.600e01], [2.475e-02, 1.014e02]],
+        dtype=np.float16,
+    )
+
+    decompressed = np.array(
+        [[6.384e-02, 1.014e02], [9.838e01, 1.547e-03], [1.507e-03, 1.014e02]],
+        dtype=np.float16,
+    )
+
+    requirement = AnyRequirement(
+        requirements=[
+            MaxPointwiseQuadraticErrorBoundRequirement(value=47, minimum=0, maximum=1),
+            AllRequirements(
+                requirements=[
+                    MaxPointwiseQuadraticErrorBoundRequirement(
+                        value=21, minimum=0, maximum=74
+                    ),
+                    AnyRequirement(
+                        requirements=[
+                            MaxPointwiseQuadraticErrorBoundRequirement(
+                                value=17, minimum=-35, maximum=0
+                            )
+                        ]
+                    ),
+                ]
+            ),
+            AllRequirements(
+                requirements=[
+                    MaxPointwiseQuadraticErrorBoundRequirement(
+                        value=0, minimum=0, maximum=86
+                    ),
+                    MaxPointwiseQuadraticErrorBoundRequirement(
+                        value=49, minimum=-35, maximum=126
+                    ),
+                ]
+            ),
+        ]
     )
 
     safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))

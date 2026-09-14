@@ -245,9 +245,12 @@ def _safeguards_for_requirement(
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi="""
                     # scale x to be relative to $x_finite_max - $x_finite_min
-                    v["x_finite_range"] = c["$x_finite_max"] - c["$x_finite_min"];
-                    v["x_rel"] = x / v["x_finite_range"];
-                    v["x_orig_rel"] = c["$x"] / v["x_finite_range"];
+                    # nudge to conservatively inflate the error so that
+                    #  rounding errors cannot cause a violation
+                    # TODO: use operations with rounding modes instead
+                    v["x_finite_range"] = nextafter(c["$x_finite_max"] - c["$x_finite_min"], 0);
+                    v["x_rel"] = nextafter(x / v["x_finite_range"], Inf);
+                    v["x_orig_rel"] = nextafter(c["$x"] / v["x_finite_range"], Inf);
 
                     return where(
                         all([isfinite(v["x_orig_rel"]), not(c["eb_is_zero"])]),
@@ -279,10 +282,7 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    # FIXME: artificially decrease the error bound by
-                    #  nextafter(np.float16(1), np.float16(2))
-                    # to account for rounding errors in the QoI
-                    eb=requirement.value / 1.001,
+                    eb=requirement.value,
                     early_bound=dict(eb_is_zero=requirement.value == 0),
                 )
             ]
@@ -298,9 +298,22 @@ def _safeguards_for_requirement(
             return [
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi="""
-                    # scale $x to [-1; +1]
-                    v["x1"] = -1 + 2 * (
-                        (c["$x"] - c["minimum"]) / (c["maximum"] - c["minimum"])
+                    # scale $x to [-1; +1] via ($x - min / (max - min)) * 2 - 1
+                    # nudge at every step to conservatively inflate the error
+                    #  so that rounding errors should not cause a violation
+                    # TODO: use operations with rounding modes instead
+                    v["x_2"] = (c["$x"] - c["minimum"]) / (c["maximum"] - c["minimum"]);
+                    v["x_1"] = where(
+                        v["x_2"] <= 0.5,
+                        # FIXME: no double nudging
+                        nextafter(nextafter(v["x_2"], 0), 0),
+                        nextafter(nextafter(v["x_2"], 1), 1),
+                    );
+                    v["x0"] = v["x_1"] * 2 - 1;
+                    v["x1"] = where(
+                        v["x0"] <= 0,
+                        nextafter(v["x0"], -1),
+                        nextafter(v["x0"], +1),
                     );
 
                     return where(
@@ -318,7 +331,16 @@ def _safeguards_for_requirement(
                         #   | (x / (1 - x1^2)) - ($x / (1 - x1^2)) | <= eb_qua
                         #   |qoi(x) - qoi($x)| <= eb_qua
                         #     with qoi(x) = x / (1 - x1^2)
-                        x / (1 - square(v["x1"])),
+                        # nudge to conservatively inflate the error so that
+                        #  rounding errors cannot cause a violation
+                        # TODO: use operations with rounding modes instead
+                        nextafter(
+                            x / (1 - nextafter(
+                                square(v["x1"]),
+                                1
+                            )),
+                            Inf,
+                        ),
 
                         # otherwise, if $x is
                         #  (a) at the bounds,
@@ -341,10 +363,7 @@ def _safeguards_for_requirement(
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
-                    # FIXME: artificially decrease the error bound by
-                    #  nextafter(np.float16(1), np.float16(2))
-                    # to account for rounding errors in the QoI
-                    eb=requirement.value / 1.001,
+                    eb=requirement.value,
                     early_bound=dict(
                         minimum=requirement.minimum,
                         maximum=requirement.maximum,

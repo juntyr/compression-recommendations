@@ -8,7 +8,7 @@ version = "0.1.0"
 dependencies = [
     "compression-recommendations==0.1.0",
     # FIXME: remove version pin in CI and in hatch metadata below
-    "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@63e634b59b63795f38e08c25b37d26112fca1a51",
+    "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@249129f861cb6bb08864830649cea5001095f5f0",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
