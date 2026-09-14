@@ -2,6 +2,7 @@
 Data limit-preserving requirements.
 """
 
+import math
 from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self, assert_never
@@ -33,6 +34,8 @@ class DataLimitsRequirement(Requirement):
     \end{align}
     \]
 
+    The limits must not be NaN.
+
     If an original data value $x_i$ is not within the limits, no requirement is
     imposed on the decompressed data value $\hat{x}_i$.
 
@@ -52,6 +55,19 @@ class DataLimitsRequirement(Requirement):
     kind: ClassVar[RequirementKind] = RequirementKind.data_limits
     minimum: None | int | float = None
     maximum: None | int | float = None
+
+    def __init__(
+        self, *, minimum: None | int | float = None, maximum: None | int | float = None
+    ) -> None:
+        if minimum is not None and math.isnan(minimum):
+            raise ValueError("minimum must not be NaN")
+        if maximum is not None and math.isnan(maximum):
+            raise ValueError("maximum must not be NaN")
+        if (minimum is not None) and (maximum is not None) and (maximum < minimum):
+            raise ValueError("maximum must be greater than or equal to minimum")
+
+        self.minimum = minimum
+        self.maximum = maximum
 
     @override
     @classmethod

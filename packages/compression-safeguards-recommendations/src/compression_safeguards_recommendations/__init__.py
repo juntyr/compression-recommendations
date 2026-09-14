@@ -1,4 +1,4 @@
-r"""
+"""
 # Recommended Compression Safeguards for Safe Lossy Compression of weather and climate data
 
 What lossy compression is safe when using lossy compression on weather and
@@ -26,7 +26,6 @@ provided functions:
   [`Safeguard`][compression_safeguards.safeguards.abc.Safeguard]s.
 """
 
-import math
 from collections.abc import Collection, Mapping
 from typing import assert_never
 
@@ -56,6 +55,7 @@ from compression_safeguards.api import Safeguards
 from compression_safeguards.safeguards.abc import Safeguard
 from compression_safeguards.safeguards.combinators.all import AllSafeguards
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
+from compression_safeguards.safeguards.combinators.everywhere import EverywhereSafeguard
 from compression_safeguards.safeguards.eb import ErrorBound
 from compression_safeguards.safeguards.pointwise.abc import PointwiseSafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
@@ -63,7 +63,7 @@ from compression_safeguards.safeguards.pointwise.lossless import LosslessSafegua
 from compression_safeguards.safeguards.pointwise.qoi.eb import (
     PointwiseQuantityOfInterestErrorBoundSafeguard,
 )
-from compression_safeguards.safeguards.pointwise.same import SameValueSafeguard
+from compression_safeguards.safeguards.pointwise.same import EquivalentValueSafeguard
 from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
 from compression_safeguards.safeguards.stencil.abc import StencilSafeguard
 
@@ -223,18 +223,20 @@ def _safeguards_for_requirement(
         case RequirementKind.mean_absolute_error_bound:
             assert isinstance(requirement, MeanAbsoluteErrorBoundRequirement)
             # conservatively bound the pointwise absolute error instead
-            return _safeguards_for_requirement(
+            (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseAbsoluteErrorBoundRequirement(value=requirement.value)
             )
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_relative_error_bound:
             assert isinstance(requirement, MaxPointwiseRelativeErrorBoundRequirement)
             return [ErrorBoundSafeguard(type=ErrorBound.rel, eb=requirement.value)]
         case RequirementKind.mean_relative_error_bound:
             assert isinstance(requirement, MeanRelativeErrorBoundRequirement)
             # conservatively bound the pointwise relative error instead
-            return _safeguards_for_requirement(
+            (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseRelativeErrorBoundRequirement(value=requirement.value)
             )
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_range_relative_error_bound:
             assert isinstance(
                 requirement, MaxPointwiseRangeRelativeErrorBoundRequirement
@@ -242,138 +244,186 @@ def _safeguards_for_requirement(
             return [
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi="""
-                    # scale x to be relative to $x_max - $x_min
-                    v["x_rel"] = x / (c["$x_max"] - c["$x_min"]);
+                    # scale x to be relative to $x_finite_max - $x_finite_min
+                    # nudge to conservatively inflate the error so that
+                    #  rounding errors cannot cause a violation
+                    # TODO: use operations with rounding modes instead
+                    v["x_finite_range"] = nextafter(c["$x_finite_max"] - c["$x_finite_min"], 0);
+                    v["x_rel_1"] = x / v["x_finite_range"];
+                    v["x_rel"] = where(
+                        v["x_rel_1"] < 0,
+                        nextafter(v["x_rel_1"], -Inf),
+                        nextafter(v["x_rel_1"], +Inf),
+                    );
+                    v["x_orig_rel_1"] = c["$x"] / v["x_finite_range"];
+                    v["x_orig_rel"] = where(
+                        v["x_orig_rel_1"] < 0,
+                        nextafter(v["x_orig_rel_1"], -Inf),
+                        nextafter(v["x_orig_rel_1"], +Inf),
+                    );
 
                     return where(
-                        isfinite(v["x_rel"]),
+                        all([isfinite(v["x_orig_rel"]), not(c["eb_is_zero"])]),
 
-                        # if x_rel is finite, use it to fulfil the range-relative
-                        # error bound:
-                        #   |x - $x| <= eb_range_rel * ($x_max - $x_min)
-                        #   |x - $x| / ($x_max - $x_min) <= eb_range_rel
-                        #   | (x / ($x_max - $x_min)) - ($x / ($x_max - $x_min)) | <= eb_range_rel
+                        # if $x_rel is finite, use it to fulfil the range-relative
+                        # error bound, as long as eb_range_rel > 0:
+                        #   |x - $x| <= eb_range_rel * x_finite_range
+                        #   |x - $x| / x_finite_range <= eb_range_rel
+                        #   | (x / x_finite_range) - ($x / x_finite_range) | <= eb_range_rel
                         #   |qoi(x) - qoi($x)| <= eb_range_rel
-                        #     with qoi(x) = x / ($x_max - $x_min)
+                        #     with qoi(x) = x / x_finite_range
                         v["x_rel"],
 
-                        # otherwise, if x could not be normalised,
+                        # otherwise, if $x could not be normalised,
                         # ensure instead that x == $x
-                        #
-                        # use the fact that the error bound will always be
-                        # finite, and so the error bound can only be met if
-                        # x == $x, since this is true for $x
-                        where(x == c["$x"], Inf, 0),
+                        where(
+                            isnan(c["$x"]),
+
+                            # use the fact that NaN results will always be
+                            # preserved, and so if $x is NaN and we return x
+                            # then the error bound can only be for x is NaN
+                            x,
+
+                            # use the fact that the error bound will always be
+                            # finite, and so the error bound can only be met if
+                            # x == $x, since this is true for $x
+                            where(x == c["$x"], Inf, 0),
+                        ),
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
                     eb=requirement.value,
+                    early_bound=dict(eb_is_zero=requirement.value == 0),
                 )
             ]
         case RequirementKind.mean_range_relative_error_bound:
             assert isinstance(requirement, MeanRangeRelativeErrorBoundRequirement)
             # conservatively bound the pointwise range-relative error instead
-            return _safeguards_for_requirement(
+            (safeguard,) = _safeguards_for_requirement(
                 MaxPointwiseRangeRelativeErrorBoundRequirement(value=requirement.value)
             )
+            return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_quadratic_error_bound:
             assert isinstance(requirement, MaxPointwiseQuadraticErrorBoundRequirement)
             return [
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi="""
-                    # scale $x to [-1; +1]
-                    v["x1"] = -1 + 2 * (
-                        (c["$x"] - c["minimum"]) / (c["maximum"] - c["minimum"])
+                    # scale $x to [-1; +1] via ($x - min / (max - min)) * 2 - 1
+                    # nudge at every step to conservatively inflate the error
+                    #  so that rounding errors should not cause a violation
+                    # TODO: use operations with rounding modes instead
+                    v["x_2"] = (c["$x"] - c["minimum"]) / (c["maximum"] - c["minimum"]);
+                    v["x_1"] = where(
+                        v["x_2"] <= 0.5,
+                        # FIXME: no double nudging
+                        nextafter(nextafter(v["x_2"], 0), 0),
+                        nextafter(nextafter(v["x_2"], 1), 1),
                     );
+                    v["x0"] = v["x_1"] * 2 - 1;
+                    v["x1"] = where(
+                        v["x0"] <= 0,
+                        nextafter(v["x0"], -1),
+                        nextafter(v["x0"], +1),
+                    );
+
+                    v["x1_2"] = nextafter(
+                        square(v["x1"]),
+                        1,
+                    );
+                    v["x1_2_1"] = nextafter(
+                        1 - v["x1_2"],
+                        0,
+                    );
+
+                    v["x_x1_2_1"] = x / v["x1_2_1"];
 
                     return where(
                         all([
-                            c["x1"] > -1,
-                            c["x1"] < +1,
+                            v["x1"] > -1,
+                            v["x1"] < +1,
                             isfinite(v["x1"]),
+                            not(c["eb_is_zero"]),
                         ]),
 
                         # if $x is in bounds, scale x to fulfil the quadratic
-                        # error bound:
+                        # error bound, as long as eb_qua > 0:
                         #   |x - $x| <= (1 - x1^2) * eb_qua
                         #   |x - $x| / (1 - x1^2) <= eb_qua
                         #   | (x / (1 - x1^2)) - ($x / (1 - x1^2)) | <= eb_qua
                         #   |qoi(x) - qoi($x)| <= eb_qua
                         #     with qoi(x) = x / (1 - x1^2)
-                        x / (1 - square(v["x1"])),
+                        # nudge to conservatively inflate the error so that
+                        #  rounding errors cannot cause a violation
+                        # TODO: use operations with rounding modes instead
+                        where(
+                            x < 0,
+                            nextafter(v["x_x1_2_1"], -Inf),
+                            nextafter(v["x_x1_2_1"], +Inf),
+                        ),
 
                         # otherwise, if $x is
                         #  (a) at the bounds,
                         #  (b) out of bounds, or
                         #  (c) x could not be normalised,
                         # ensure instead that x == $x
-                        #
-                        # use the fact that the error bound will always be
-                        # finite, and so the error bound can only be met if
-                        # x == $x, since this is true for $x
-                        where(x == c["$x"], Inf, 0),
+                        where(
+                            isnan(c["$x"]),
+
+                            # use the fact that NaN results will always be
+                            # preserved, and so if $x is NaN and we return x
+                            # then the error bound can only be for x is NaN
+                            x,
+
+                            # use the fact that the error bound will always be
+                            # finite, and so the error bound can only be met if
+                            # x == $x, since this is true for $x
+                            where(x == c["$x"], Inf, 0),
+                        )
                     );
                     """,  # type: ignore
                     type=ErrorBound.abs,
                     eb=requirement.value,
-                    # TODO: provide limits as early-bound parameters once supported
-                    # early_bound=dict(
-                    #     minimum=requirement.minimum, maximum=requirement.maximum
-                    # ),
+                    early_bound=dict(
+                        minimum=requirement.minimum,
+                        maximum=requirement.maximum,
+                        eb_is_zero=requirement.value == 0,
+                    ),
                 ),
             ]
         case RequirementKind.data_limits:
             assert isinstance(requirement, DataLimitsRequirement)
-            # slightly conservative since global minimum will be kept exactly
-            safeguards = []
+            safeguards: list[PointwiseSafeguard | StencilSafeguard] = []
             if requirement.minimum is not None:
-                safeguards.append(SignPreservingSafeguard(offset=requirement.minimum))
+                safeguards.append(
+                    PointwiseQuantityOfInterestErrorBoundSafeguard(
+                        qoi='x >= c["minimum"]',  # type: ignore
+                        type="abs",
+                        eb=0,
+                        early_bound=dict(minimum=requirement.minimum),
+                    )
+                )
             if requirement.maximum is not None:
-                safeguards.append(SignPreservingSafeguard(offset=requirement.maximum))
+                safeguards.append(
+                    PointwiseQuantityOfInterestErrorBoundSafeguard(
+                        qoi='x <= c["maximum"]',  # type: ignore
+                        type="abs",
+                        eb=0,
+                        early_bound=dict(maximum=requirement.maximum),
+                    )
+                )
+            if len(safeguards) > 1:
+                return [
+                    AllSafeguards(  # type: ignore
+                        safeguards=safeguards
+                    )
+                ]
             return safeguards
-            # TODO: switch to pointwise QoI with early-bound param support
-            # if requirement.minimum is not None:
-            #     safeguards.append(
-            #         PointwiseQuantityOfInterestErrorBoundSafeguard(
-            #             qoi='x >= c["minimum"]',
-            #             type="abs",
-            #             eb=0,
-            #             early_bound=dict(minimum=requirement.minimum),
-            #         )
-            #     )
-            # if requirement.maximum is not None:
-            #     safeguards.append(
-            #         PointwiseQuantityOfInterestErrorBoundSafeguard(
-            #             qoi='x <= c["maximum"]',
-            #             type="abs",
-            #             eb=0,
-            #             early_bound=dict(maximum=requirement.maximum),
-            #         )
-            #     )
         case RequirementKind.isovalue:
             assert isinstance(requirement, IsovalueRequirement)
             return [SignPreservingSafeguard(offset=requirement.value)]
         case RequirementKind.missing_value:
             assert isinstance(requirement, MissingValueRequirement)
-            if math.isnan(requirement.value):
-                # SameValueSafeguard preserves same bits,
-                # but preserve all NaN bit patterns
-                return [
-                    PointwiseQuantityOfInterestErrorBoundSafeguard(
-                        qoi="isnan(x)",  # type: ignore
-                        type=ErrorBound.abs,
-                        eb=0,
-                    )
-                ]
-            if requirement.value == 0:
-                # preserve both -0.0 and +0.0, which have distinct bit patterns
-                return [
-                    SameValueSafeguard(value=requirement.value, exclusive=True),
-                    SameValueSafeguard(value=-requirement.value, exclusive=True),
-                ]
-            return [SameValueSafeguard(value=requirement.value, exclusive=True)]
-            # TODO: switch to equivalent value safeguard
-            # return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
+            return [EquivalentValueSafeguard(value=requirement.value, exclusive=True)]
         case RequirementKind.lossless:
             assert isinstance(requirement, LosslessRequirement)
             return [LosslessSafeguard()]

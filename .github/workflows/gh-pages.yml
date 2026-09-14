@@ -41,6 +41,7 @@ jobs:
 
       - name: Install the workspace packages
         run: |
+          uv pip install "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@249129f861cb6bb08864830649cea5001095f5f0"
           uv pip install dist/*.whl \
             --resolution highest \
             --no-build

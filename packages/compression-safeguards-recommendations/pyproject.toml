@@ -7,7 +7,8 @@ name = "compression-safeguards-recommendations"
 version = "0.1.0"
 dependencies = [
     "compression-recommendations==0.1.0",
-    "compression-safeguards==1.0.0rc1",
+    # FIXME: remove version pin in CI and in hatch metadata below
+    "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@249129f861cb6bb08864830649cea5001095f5f0",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
@@ -53,6 +54,10 @@ xfail_strict = true
 
 [tool.hatch.build.targets.sdist]
 include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]
+
+# FIXME: depend on next published safeguards version
+[tool.hatch.metadata]
+allow-direct-references = true
 
 [tool.uv.sources]
 compression-recommendations = { workspace = true }

@@ -3,25 +3,22 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "compression-recommendations"
+name = "compression-recommendation-checks"
 version = "0.1.0"
 dependencies = [
-    "semver~=3.0",
-    "strictyaml~=1.7.3",
-    "typed-classproperties~=1.5.1",
-    "typing-extensions~=4.14",
+    "compression-recommendations==0.1.0",
+    "numpy~=2.0",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
 maintainers = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
-description = "Recommendations for Safe Lossy Compression of weather and climate data"
+description = "Check Safety requirements for Safe Lossy Compression of weather and climate data"
 readme = "README.md"
 license = "MPL-2.0"
-keywords = ["compression", "recommendations", "weather", "climate"]
+keywords = ["compression", "recommendations", "checks", "weather", "climate"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
-    "Intended Audience :: Developers",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Natural Language :: English",
     "Operating System :: OS Independent",
@@ -41,54 +38,21 @@ Documentation = "https://compression-requirements.readthedocs.io"
 Repository = "https://github.com/juntyr/compression-requirements.git"
 Issues = "https://github.com/juntyr/compression-requirements/issues"
 
-[dependency-groups]
-dev = ["ruff~=0.16"]
-tools = [
-    "tqdm ~= 4.67.1",
-]
-docs = [
-    "mkdocstrings[python]~=1.0",
-    "mkdocstrings-python-generator==1.0.0rc1",
-    "mkdocs-exclude~=1.0",
-    "mkdocs-macros-plugin~=1.5",
-    "mkdocs-section-index~=0.3.12",
-    "mkdocs-simple-hooks~=0.1.5",
-    "mkdocs-open-in-new-tab~=1.0",
-    "properdocs~=1.6.5",
-    "properdocs-theme-readthedocs~=1.6.5",
-    "Pygments~=2.20",
-    "ruff~=0.16",
-]
-doctest = ["griffe2md~=1.5", "pytest~=9.1", "pytest-codeblocks~=0.18.0"]
-fuzz = [
-    "atheris==3.0; python_version == '3.11'",
-    "atheris~=3.0; python_version >= '3.12'",
-    "setuptools~=80.0",
-]
-test = [
-    "pytest~=9.1",
-]
-typecheck = ["mypy~=2.3"]
-
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"compression_requirements" = ["py.typed", "recommendations.yaml"]
+"compression_recommendation_checks" = ["py.typed"]
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "NPY", "T20", "SLOT", "TC", "PLC", "UP", "FURB"]
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib", "--strict-markers"]
+addopts = ["--import-mode=importlib"]
 xfail_strict = true
-
-[[tool.mypy.overrides]]
-module = ["strictyaml.*"]
-follow_untyped_imports = true
 
 [tool.hatch.build.targets.sdist]
 include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]
 
-[tool.uv.workspace]
-members = ["packages/compression-safeguards-recommendations", "packages/compression-recommendation-checks"]
+[tool.uv.sources]
+compression-recommendations = { workspace = true }
