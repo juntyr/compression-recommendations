@@ -1012,3 +1012,35 @@ def test_fuzzer_found_range_relative_finite_range_2():
     assert check_safety_requirement(
         original=original, reconstructed=corrected, requirement=requirement
     )
+
+
+def test_fuzzer_found_range_relative_rounding_error_1():
+    original = np.array([[-0.1175]], dtype=np.float16)
+
+    decompressed = np.array([[-0.12006]], dtype=np.float16)
+
+    requirement = requirement = AnyRequirement(
+        requirements=[
+            MaxPointwiseRangeRelativeErrorBoundRequirement(value=10),
+            MaxPointwiseRangeRelativeErrorBoundRequirement(value=18),
+            MeanRelativeErrorBoundRequirement(value=0),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original,
+        approximation=decompressed,
+        late_bound={
+            "$x_finite_min": np.float16(-0.1175),
+            "$x_finite_max": np.float16(-0.1175),
+        },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
