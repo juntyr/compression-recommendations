@@ -37,9 +37,9 @@ classifiers = [
 ]
 
 [project.urls]
-Documentation = "https://compression-requirements.readthedocs.io"
-Repository = "https://github.com/juntyr/compression-requirements.git"
-Issues = "https://github.com/juntyr/compression-requirements/issues"
+Documentation = "https://compression-recommendations.readthedocs.io"
+Repository = "https://github.com/juntyr/compression-recommendations.git"
+Issues = "https://github.com/juntyr/compression-recommendations/issues"
 
 [dependency-groups]
 dev = ["ruff~=0.16"]
