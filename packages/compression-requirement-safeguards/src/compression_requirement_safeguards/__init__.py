@@ -17,12 +17,12 @@ For example, the following finds the
 safeguards for 10 metre u wind:
 
 ```py
-import compression_safeguards_recommendations
+import compression_requirement_safeguards
 from compression_recommendations import Recommendations
 from compression_safeguards import Safeguards
 
 Safeguards(
-    safeguards = compression_safeguards_recommendations.safeguards_for_requirements(
+    safeguards = compression_requirement_safeguards.safeguards_for_requirements(
         *Recommendations.provide.search(
             markers={"cf-short-name": "u10", "level-kind": "single"},
         )
@@ -79,13 +79,13 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
 
     Parameters
     ----------
-    requirement : Requirement
-        The safety requirement to translate into safeguards.
+    *requirements : Requirement
+        The safety requirement(s) to translate into safeguards.
 
     Returns
     -------
     safeguards : Collection[Safeguard]
-        The safeguards required to guarantee that the `requirement` is met.
+        The safeguards required to guarantee that the `requirements` are met.
 
         These safeguards can be passed to the
         [`Safeguards(safeguards=safeguards)`][compression_safeguards.api.Safeguards]

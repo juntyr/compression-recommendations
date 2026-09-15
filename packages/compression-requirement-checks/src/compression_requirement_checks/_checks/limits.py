@@ -62,6 +62,7 @@ def _check_data_limits(
         case (None, None):
             pass
         case (minimum_float, None):
+            assert minimum_float is not None  # TODO: remove
             ok = _logical_and(
                 ok,
                 _greater_equal(reconstructed_float, minimum_float),
@@ -69,6 +70,7 @@ def _check_data_limits(
                 where=_greater_equal(original_float, minimum_float),
             )
         case (None, maximum_float):
+            assert maximum_float is not None  # TODO: remove
             ok = _logical_and(
                 ok,
                 _less_equal(reconstructed_float, maximum_float),

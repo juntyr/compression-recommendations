@@ -10,6 +10,7 @@ with atheris.instrument_imports():
 
     import numpy as np
     from compression_requirement_checks import check_safety_requirement
+    from compression_requirement_safeguards import safeguards_for_requirements
     from compression_safeguards import Safeguards
     from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
     from compression_safeguards.utils._compat import _ensure_array
@@ -21,7 +22,6 @@ with atheris.instrument_imports():
         SafeguardTypeContextLayer,
     )
     from compression_safeguards.utils.typing import S, T
-    from compression_safeguards_recommendations import safeguards_for_requirement
 
     from compression_recommendations.requirements.abc import Requirement
     from compression_recommendations.requirements.kind import RequirementKind
@@ -159,7 +159,7 @@ def check_one_input(data) -> None:
         decoded = decoded.reshape((sizea, sizeb))
 
     try:
-        safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+        safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
     except ValueError:
         return
 

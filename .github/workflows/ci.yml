@@ -346,7 +346,8 @@ jobs:
         run: |
           cp README.md docs/
           uv run --no-sync griffe2md src/compression_recommendations/ -o docs/compression_recommendations.md
-          uv run --no-sync griffe2md packages/compression-safeguards-recommendations/src/compression_safeguards_recommendations/ -o docs/compression_safeguards_recommendations.md
+          uv run --no-sync griffe2md packages/compression-requirement-checks/src/compression_requirement_checks/ -o docs/compression_requirement_checks.md
+          uv run --no-sync griffe2md packages/compression-requirement-safeguards/src/compression_requirement_safeguards/ -o docs/compression_requirement_safeguards.md
           find docs -type f -name "*.md" | xargs sed -i -e 's/```py/```python/g'
 
       - name: Run doctests
