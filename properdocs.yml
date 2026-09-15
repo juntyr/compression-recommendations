@@ -39,8 +39,8 @@ nav:
       - GitHub: https://github.com/juntyr/compression-recommendations
       - PyPI:
           - compression-recommendations: https://pypi.org/project/compression-recommendations/
-          - compression-recommendation-checks: https://pypi.org/project/compression-recommendation-checks/  
-          - compression-safeguards-recommendations: https://pypi.org/project/compression-safeguards-recommendations/
+          - compression-requirement-checks: https://pypi.org/project/compression-requirement-checks/  
+          - compression-requirement-safeguards: https://pypi.org/project/compression-requirement-safeguards/
 
 plugins:
   - exclude:
@@ -61,12 +61,12 @@ plugins:
           base: src
           edit_uri: blob/main/src/
         - nav_heading: [API Reference]
-          base: packages/compression-recommendation-checks/src
-          edit_uri: blob/main/packages/compression-recommendation-checks/src/
+          base: packages/compression-requirement-checks/src
+          edit_uri: blob/main/packages/compression-requirement-checks/src/
           ignore: ["_checks", "_compat.py", "_convert.py", "_typing.py"]
         - nav_heading: [API Reference]
-          base: packages/compression-safeguards-recommendations/src
-          edit_uri: blob/main/packages/compression-safeguards-recommendations/src/
+          base: packages/compression-requirement-safeguards/src
+          edit_uri: blob/main/packages/compression-requirement-safeguards/src/
   - mkdocs-simple-hooks:
       hooks:
         on_nav: "docs.hooks.section_index:on_nav"

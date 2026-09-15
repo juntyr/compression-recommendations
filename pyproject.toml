@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "compression-recommendations"
-version = "0.1.0"
+version = "0.1.0a1"
 dependencies = [
     "semver~=3.0",
     "strictyaml~=1.7.3",
@@ -19,7 +19,7 @@ readme = "README.md"
 license = "MPL-2.0"
 keywords = ["compression", "recommendations", "weather", "climate"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
@@ -44,6 +44,7 @@ Issues = "https://github.com/juntyr/compression-requirements/issues"
 [dependency-groups]
 dev = ["ruff~=0.16"]
 tools = [
+    "packaging~=26.2",
     "tqdm ~= 4.67.1",
 ]
 docs = [
@@ -66,6 +67,7 @@ fuzz = [
     "setuptools~=80.0",
 ]
 test = [
+    "packaging~=26.2",
     "pytest~=9.1",
 ]
 typecheck = ["mypy~=2.3"]
@@ -91,4 +93,4 @@ follow_untyped_imports = true
 include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]
 
 [tool.uv.workspace]
-members = ["packages/compression-safeguards-recommendations", "packages/compression-recommendation-checks"]
+members = ["packages/compression-requirement-safeguards", "packages/compression-requirement-checks"]

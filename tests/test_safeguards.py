@@ -1,4 +1,4 @@
-import compression_safeguards_recommendations
+import compression_requirement_safeguards
 import pytest
 from compression_safeguards.api import Safeguards
 from compression_safeguards.safeguards.combinators.all import (
@@ -35,8 +35,12 @@ from compression_recommendations.requirements.missing import MissingValueRequire
 
 def test_recommended_safeguards_for_u10():
     assert (
-        compression_safeguards_recommendations.recommended_safeguards_for(
-            markers={"cf-short-name": "cc", "level-kind": "pressure"}
+        Safeguards(
+            safeguards=compression_requirement_safeguards.safeguards_for_requirements(
+                *Recommendations.provide.search(
+                    markers={"cf-short-name": "cc", "level-kind": "pressure"}
+                )
+            )
         ).get_config()
         == Safeguards(
             safeguards=[
@@ -79,9 +83,7 @@ def test_recommended_safeguards_for_u10():
 def test_all_recommendations():
     for recommendation in Recommendations.provide.recommendations:
         for requirement in recommendation.requirements:
-            compression_safeguards_recommendations.safeguards_for_requirement(
-                requirement
-            )
+            compression_requirement_safeguards.safeguards_for_requirements(requirement)
 
 
 @pytest.mark.parametrize("cls", [AnyRequirement, AllRequirements])
@@ -89,15 +91,15 @@ def test_combinator_requirement(cls):
     with pytest.raises(
         ValueError, match="can only combine over at least one safeguard"
     ):
-        compression_safeguards_recommendations.safeguards_for_requirement(
+        compression_requirement_safeguards.safeguards_for_requirements(
             cls(requirements=[])
         )
 
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         cls(requirements=[IsovalueRequirement(value=0)])
     )
 
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         cls(requirements=[IsovalueRequirement(value=0), IsovalueRequirement(value=1)])
     )
 
@@ -114,11 +116,11 @@ def test_combinator_requirement(cls):
     ],
 )
 def test_error_bound_requirement(cls):
-    compression_safeguards_recommendations.safeguards_for_requirement(cls(value=4.2))
+    compression_requirement_safeguards.safeguards_for_requirements(cls(value=4.2))
 
 
 def test_quadrartic_error_bound_requirement():
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         MaxPointwiseQuadraticErrorBoundRequirement(value=4.2, minimum=-10, maximum=10)
     )
 
@@ -126,7 +128,7 @@ def test_quadrartic_error_bound_requirement():
 def test_data_limits_requirement():
     assert (
         len(
-            compression_safeguards_recommendations.safeguards_for_requirement(
+            compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement()
             )
         )
@@ -134,7 +136,7 @@ def test_data_limits_requirement():
     )
     assert (
         len(
-            compression_safeguards_recommendations.safeguards_for_requirement(
+            compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement(minimum=-10)
             )
         )
@@ -142,7 +144,7 @@ def test_data_limits_requirement():
     )
     assert (
         len(
-            compression_safeguards_recommendations.safeguards_for_requirement(
+            compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement(maximum=10)
             )
         )
@@ -150,7 +152,7 @@ def test_data_limits_requirement():
     )
     assert (
         len(
-            compression_safeguards_recommendations.safeguards_for_requirement(
+            compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement(minimum=-10, maximum=10)
             )
         )
@@ -158,7 +160,7 @@ def test_data_limits_requirement():
     )
     assert isinstance(
         list(
-            compression_safeguards_recommendations.safeguards_for_requirement(
+            compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement(minimum=-10, maximum=10)
             )
         )[0],
@@ -167,7 +169,7 @@ def test_data_limits_requirement():
     assert (
         len(
             list(
-                compression_safeguards_recommendations.safeguards_for_requirement(
+                compression_requirement_safeguards.safeguards_for_requirements(
                     DataLimitsRequirement(minimum=-10, maximum=10)
                 )
             )[0].safeguards  # type: ignore
@@ -177,24 +179,24 @@ def test_data_limits_requirement():
 
 
 def test_isovalue_requirement():
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         IsovalueRequirement(value=4.2)
     )
 
 
 def test_missing_value_requirement():
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         MissingValueRequirement(value=99999)
     )
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         MissingValueRequirement(value=-0.0)
     )
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         MissingValueRequirement(value=float("nan"))
     )
 
 
 def test_lossless_requirement():
-    compression_safeguards_recommendations.safeguards_for_requirement(
+    compression_requirement_safeguards.safeguards_for_requirements(
         LosslessRequirement()
     )

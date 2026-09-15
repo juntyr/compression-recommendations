@@ -14,7 +14,8 @@ This repository also provides the [`compression-recommendations`][compression_re
 
 Furthermore, we provide the following integrations:
 
-- [`compression-safeguards-recommendations`][compression_safeguards_recommendations] translates the recommended safety requirements into [compression safeguards](https://compression-safeguards.readthedocs.io) that can be wrapped around any compressor to guarantee that the requirements are fulfilled.
+- [`compression-requirement-safeguards`][compression_requirement_safeguards] translates safety requirements into [compression safeguards](https://compression-safeguards.readthedocs.io) that can be wrapped around any compressor to guarantee that the requirements are fulfilled.
+- [`compression-requirement-checks`][compression_requirement_checks] checks whether safety requirements are upheld by a lossy-decompressed reconstruction of the original data.
 
 
 ## Contributing: What should be recommended?

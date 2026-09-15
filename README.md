@@ -9,7 +9,8 @@ This repository also provides the `compression-recommendations` Python package f
 
 Furthermore, we provide the following integrations:
 
-- `compression-safeguards-recommendations` translates the recommended safety requirements into [compression safeguards](https://compression-safeguards.readthedocs.io) that can be wrapped around any compressor to guarantee that the requirements are fulfilled.
+- `compression-safeguards-recommendations` translates safety requirements into [compression safeguards](https://compression-safeguards.readthedocs.io) that can be wrapped around any compressor to guarantee that the requirements are fulfilled.
+- `compression-recommendation-checks` checks whether safety requirements are upheld by a lossy-decompressed reconstruction of the original data.
 
 
 ## Contributing: What should be recommended?

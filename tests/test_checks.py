@@ -1,7 +1,7 @@
 import numpy as np
-from compression_recommendation_checks import check_safety_requirement
+from compression_requirement_checks import check_safety_requirement
+from compression_requirement_safeguards import safeguards_for_requirements
 from compression_safeguards.api import Safeguards
-from compression_safeguards_recommendations import safeguards_for_requirement
 
 from compression_recommendations.requirements.combinators import (
     AllRequirements,
@@ -51,7 +51,7 @@ def test_fuzzer_found_mean_relative_error_1():
 
     requirement = MeanRelativeErrorBoundRequirement(value=10)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -72,7 +72,7 @@ def test_fuzzer_found_mean_relative_error_2():
 
     requirement = MeanRelativeErrorBoundRequirement(value=1.7976657046605298e308)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -99,7 +99,7 @@ def test_fuzzer_found_any_data_limits_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -126,7 +126,7 @@ def test_fuzzer_found_any_data_limits_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -147,7 +147,7 @@ def test_fuzzer_found_mean_range_relative_error_1():
 
     requirement = MeanRangeRelativeErrorBoundRequirement(value=44)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -175,7 +175,7 @@ def test_fuzzer_found_max_range_relative_error_nan_1():
         requirements=[MaxPointwiseRangeRelativeErrorBoundRequirement(value=58)]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -203,7 +203,7 @@ def test_fuzzer_found_max_range_relative_error_nan_2():
         value=1.797637952589245e308
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -229,7 +229,7 @@ def test_fuzzer_found_mean_range_relative_error_nan_1():
 
     requirement = MeanRangeRelativeErrorBoundRequirement(value=1.797665811814156e308)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -264,7 +264,7 @@ def test_fuzzer_found_any_mean_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -311,7 +311,7 @@ def test_fuzzer_found_any_mean_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -334,7 +334,7 @@ def test_fuzzer_found_max_quadratic_error_1():
         value=2.3407183170921814e305, minimum=-43, maximum=4
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -359,7 +359,7 @@ def test_fuzzer_found_max_quadratic_error_2():
         value=1.7204576235615554e308, minimum=-43, maximum=4
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -382,7 +382,7 @@ def test_fuzzer_found_max_quadratic_error_3():
         value=2.1340915476744706e306, minimum=-81, maximum=-1
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -405,7 +405,7 @@ def test_fuzzer_found_max_quadratic_error_4():
         value=1.7204576235615554e308, minimum=-115, maximum=0
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -426,7 +426,7 @@ def test_fuzzer_found_max_relative_1():
 
     requirement = MaxPointwiseRelativeErrorBoundRequirement(value=1)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -458,7 +458,7 @@ def test_fuzzer_found_data_limits_outside_both_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -526,7 +526,7 @@ def test_fuzzer_found_range_relative_zero_error_bound_1():
 
     requirement = MeanRangeRelativeErrorBoundRequirement(value=0)
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -562,7 +562,7 @@ def test_fuzzer_found_range_relative_zero_error_bound_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -599,7 +599,7 @@ def test_fuzzer_found_data_limits_outside_both_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -676,7 +676,7 @@ def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -699,7 +699,7 @@ def test_fuzzer_found_quadratic_error_rounding_error_1():
         value=1, minimum=0, maximum=95
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -737,7 +737,7 @@ def test_fuzzer_found_quadratic_error_rounding_error_2():
         value=1, minimum=-23, maximum=95
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -767,7 +767,7 @@ def test_fuzzer_found_quadratic_error_rounding_error_3():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -814,7 +814,7 @@ def test_fuzzer_found_quadratic_error_rounding_error_4():
         value=49, minimum=-35, maximum=95
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -869,7 +869,7 @@ def test_fuzzer_found_quadratic_error_rounding_error_5():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -909,7 +909,7 @@ def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original, approximation=decompressed
@@ -942,7 +942,7 @@ def test_fuzzer_found_range_relative_finite_range_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -995,7 +995,7 @@ def test_fuzzer_found_range_relative_finite_range_2():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,
@@ -1027,7 +1027,7 @@ def test_fuzzer_found_range_relative_rounding_error_1():
         ]
     )
 
-    safeguards = Safeguards(safeguards=safeguards_for_requirement(requirement))
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
 
     correction = safeguards.compute_correction(
         data=original,

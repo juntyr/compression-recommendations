@@ -3,22 +3,21 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "compression-safeguards-recommendations"
-version = "0.1.0"
+name = "compression-requirement-safeguards"
+version = "0.1.0a1"
 dependencies = [
-    "compression-recommendations==0.1.0",
-    # FIXME: remove version pin in CI and in hatch metadata below
-    "compression-safeguards @ git+https://github.com/juntyr/compression-safeguards.git@249129f861cb6bb08864830649cea5001095f5f0",
+    "compression-recommendations==0.1.0a1",
+    "compression-safeguards==1.0.0rc3",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
 maintainers = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]
-description = "Recommendations for Safeguards for Safe Lossy Compression of weather and climate data"
+description = "Safeguard safety requirements for Safe Lossy Compression of scientific data"
 readme = "README.md"
 license = "MPL-2.0"
-keywords = ["compression", "safeguards", "recommendations", "weather", "climate"]
+keywords = ["compression", "requirement", "safeguards", "weather", "climate"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
     "Natural Language :: English",
@@ -54,10 +53,6 @@ xfail_strict = true
 
 [tool.hatch.build.targets.sdist]
 include = ["/src", "/CITATION.cff", "/LICENSE", "/pyproject.toml", "/README.md"]
-
-# FIXME: depend on next published safeguards version
-[tool.hatch.metadata]
-allow-direct-references = true
 
 [tool.uv.sources]
 compression-recommendations = { workspace = true }

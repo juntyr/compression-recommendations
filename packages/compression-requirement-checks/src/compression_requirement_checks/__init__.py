@@ -1,9 +1,15 @@
 """
-# Check Safety requirements for Safe Lossy Compression of weather and climate data
+# Check safety requirements for Safe Lossy Compression of scientific data
 
-This package allows checking whether lossy compression, or any other data
-reconstruction procedure, meets compression safety
+What lossy compression is safe when using lossy compression on scientific data?
+
+This package allows checking whether data after lossy decompression, or any
+other data reconstruction procedure, meets the given safety
 [`Requirement`][compression_recommendations.requirements.abc.Requirement]s.
+
+The recommended safety checks for a given use case can be found using the
+[`compression_recommendations.Recommendations.search`][compression_recommendations.Recommendations.search]
+method.
 """
 
 from collections.abc import Collection

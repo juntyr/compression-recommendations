@@ -9,7 +9,7 @@ with atheris.instrument_imports():
     from inspect import signature
 
     import numpy as np
-    from compression_recommendation_checks import check_safety_requirement
+    from compression_requirement_checks import check_safety_requirement
     from compression_safeguards import Safeguards
     from compression_safeguards.safeguards.pointwise.sign import SignPreservingSafeguard
     from compression_safeguards.utils._compat import _ensure_array

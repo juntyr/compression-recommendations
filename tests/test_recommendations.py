@@ -2,6 +2,7 @@ import importlib.metadata
 from pathlib import Path
 
 import strictyaml
+from packaging.version import Version as PyPIVersion
 from semver import Version
 
 import compression_recommendations
@@ -13,7 +14,12 @@ def test_version():
         compression_recommendations.Recommendations.provide.version
     )
 
-    assert Version.parse(package_version) == recommendations_version
+    # based on https://python-semver.readthedocs.io/en/latest/advanced/convert-pypi-to-semver.html#from-pypi-to-semver
+    pyversion = PyPIVersion(package_version)
+    pre = None if not pyversion.pre else "".join([str(i) for i in pyversion.pre])
+    version = Version(*pyversion.release, prerelease=pre, build=pyversion.dev)
+
+    assert version == recommendations_version
 
 
 def test_search():

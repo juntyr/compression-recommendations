@@ -3,6 +3,7 @@ import shlex
 import subprocess
 from pathlib import Path
 
+from packaging.version import Version as PyPIVersion
 from semver import Version
 from tqdm import tqdm
 
@@ -23,9 +24,16 @@ for path in tqdm(sorted(Path("recommendations").glob("*.yaml"))):
     with path.open("r") as f:
         recommendations.append(Recommendation.load(f))
 
+package_version = importlib.metadata.version("compression_recommendations")
+
+# based on https://python-semver.readthedocs.io/en/latest/advanced/convert-pypi-to-semver.html#from-pypi-to-semver
+pyversion = PyPIVersion(package_version)
+pre = None if not pyversion.pre else "".join([str(i) for i in pyversion.pre])
+version = Version(*pyversion.release, prerelease=pre, build=pyversion.dev)
+
 recommendations = Recommendations(
     recommendations=recommendations,
-    version=Version.parse(importlib.metadata.version("compression_recommendations")),
+    version=version,
     metadata={"commit": commit},
 )
 
