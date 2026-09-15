@@ -1,0 +1,23 @@
+version: 2
+
+build:
+  os: ubuntu-24.04
+  tools:
+    python: "3.11"
+  jobs:
+    post_checkout:
+      - grep "main" properdocs.yml
+      - sed -i "s/main/${READTHEDOCS_GIT_IDENTIFIER}/g" properdocs.yml
+      - grep "edit_uri" properdocs.yml
+      - git update-index --assume-unchanged properdocs.yml
+    pre_create_environment:
+      - asdf plugin add uv
+      - asdf install uv latest
+      - asdf global uv latest
+    create_environment:
+      - uv venv "${READTHEDOCS_VIRTUALENV_PATH}"
+    install:
+      - UV_PROJECT_ENVIRONMENT="${READTHEDOCS_VIRTUALENV_PATH}" uv sync --all-packages --group docs --link-mode=copy
+    build:
+      html:
+        - python -m properdocs build --clean --site-dir "${READTHEDOCS_OUTPUT}/html"
