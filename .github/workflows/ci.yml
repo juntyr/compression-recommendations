@@ -511,11 +511,14 @@ jobs:
       - check
       - spelling
       - fmt
+      - citation
       - build # includes the dist artifact
       - test
       - typing
+      - fuzz
       - docs
       - doctest
+      - pyodide-build
       - pyodide-test
       - combine
     steps:

@@ -29,6 +29,14 @@ authors:
     affiliation: European Centre for Medium-Range Weather Forecasts
     orcid: 'https://orcid.org/0000-0002-4610-3326'
 repository-code: 'https://github.com/juntyr/compression-recommendations'
+url: 'https://compression-recommendations.readthedocs.io/en/latest/'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22761209
+    description: Zenodo
+abstract: >-
+  What lossy compression is safe when using lossy
+  compression on weather and climate data?
 keywords:
   - compression
   - recommendations

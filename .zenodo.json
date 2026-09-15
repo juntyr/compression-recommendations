@@ -26,13 +26,13 @@
   "keywords": ["compression", "recommendations", "weather", "climate"],
   "related_identifiers": [
     {
-      "identifier": "https://github.com/juntyr/compression-recommendations/tree/0.1.0",
+      "identifier": "https://github.com/juntyr/compression-recommendations/tree/0.1.0a1",
       "relation": "isSupplementTo",
       "resource_type": "software",
       "scheme": "url"
     }
   ],
-  "version": "1.0.0",
+  "version": "0.1.0a1",
   "upload_type": "software",
   "license": "cc-by-4.0",
   "grants": [

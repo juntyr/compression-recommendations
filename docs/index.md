@@ -10,6 +10,7 @@ render_macros: true
 [![image](https://img.shields.io/pypi/l/compression-recommendations.svg)](https://github.com/juntyr/compression-recommendations/blob/main/LICENSE)
 [![image](https://img.shields.io/pypi/pyversions/compression-recommendations.svg)](https://pypi.python.org/pypi/compression-recommendations)
 [![image](https://readthedocs.org/projects/compression-recommendations/badge/?version=latest)](https://compression-recommendations.readthedocs.io/en/latest/?badge=latest)
+[![image](https://zenodo.org/badge/DOI/10.5281/zenodo.22761209.svg)](https://doi.org/10.5281/zenodo.22761209)
 
 
 What lossy compression is safe when using lossy compression on weather and climate data?
