@@ -1,5 +1,12 @@
 # Recommendations for Safe Lossy Compression of weather and climate data
 
+[![image](https://img.shields.io/github/actions/workflow/status/juntyr/compression-recommendations/ci.yml?branch=main)](https://github.com/juntyr/compression-recommendations/actions/workflows/ci.yml?query=branch%3Amain)
+[![image](https://img.shields.io/pypi/v/compression-recommendations.svg)](https://pypi.python.org/pypi/compression-recommendations)
+[![image](https://img.shields.io/pypi/l/compression-recommendations.svg)](https://github.com/juntyr/compression-recommendations/blob/main/LICENSE)
+[![image](https://img.shields.io/pypi/pyversions/compression-recommendations.svg)](https://pypi.python.org/pypi/compression-recommendations)
+[![image](https://readthedocs.org/projects/compression-recommendations/badge/?version=latest)](https://compression-recommendations.readthedocs.io/en/latest/?badge=latest)
+
+
 What lossy compression is safe when using lossy compression on weather and climate data?
 
 This repository contains community-provided [recommendations](recommendations) that are automatically compiled into one machine-readable [`recommendations.yaml`](src/compression_recommendations/recommendations.yaml) file.

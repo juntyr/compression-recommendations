@@ -104,7 +104,7 @@ plugins:
               - enum
           inventories:
             - https://docs.python.org/3.11/objects.inv
-            - https://compression-safeguards.readthedocs.io/en/1.0.0rc1/objects.inv
+            - https://compression-safeguards.readthedocs.io/en/1.0.0rc3/objects.inv
             - https://numpy.org/doc/2.4/objects.inv
             - https://python-semver.readthedocs.io/en/3.0.0/objects.inv
             - https://typing-extensions.readthedocs.io/en/stable/objects.inv

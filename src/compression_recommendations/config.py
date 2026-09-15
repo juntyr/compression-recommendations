@@ -5,6 +5,7 @@ Abstract base class for JSON-configurable types.
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
 from enum import StrEnum
+from importlib.metadata import version
 from types import MappingProxyType, NoneType
 from typing import TYPE_CHECKING, Literal, Self, TypeAlias, assert_never, final
 
@@ -226,10 +227,13 @@ def _humanise_labelled_type(
         case Format.plain:
             return label
         case Format.terminal:
-            uri = f"https://juntyr.github.io/compression-recommendations/_ref/{ty.__module__.replace('.', '/')}/#{ty.__module__}.{ty.__name__}"
+            uri = f"https://compression-recommendations.readthedocs.io/en/{_package_version}/_ref/{ty.__module__.replace('.', '/')}/#{ty.__module__}.{ty.__name__}"
             return _terminal_hyperlink(uri, label)
         case _:
             assert_never(format)
+
+
+_package_version = version("compression_recommendations")
 
 
 # based on https://stackoverflow.com/a/19053800
