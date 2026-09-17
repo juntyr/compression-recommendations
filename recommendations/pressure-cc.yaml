@@ -24,15 +24,13 @@ requirements:
   #
   # provided by Richard Forbes (ECMWF)
   #
-  # Peter Dueben: changed from pointwise-relative to range-relative
-  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 0.00390625 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: max-pointwise-range-relative-error-bound
+    - kind: max-pointwise-relative-error-bound
       value: 0.01
 - kind: all
   # valid value range: 0 % <= cc <= 100 %
