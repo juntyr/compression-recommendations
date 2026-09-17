@@ -633,7 +633,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -2074,7 +2074,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: data-limits
     minimum: 0.0
@@ -5077,4 +5077,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-a1
 metadata:
-  commit: 35f19befbb9baf29fe7b1da79d7c5de49c741cfd
+  commit: 31c1eaa1ff19949af721b4f27577c5ace1c2ed23
