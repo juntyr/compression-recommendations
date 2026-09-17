@@ -18,7 +18,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: max-pointwise-range-relative-error-bound
+      - kind: max-pointwise-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -633,7 +633,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-absolute-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -1466,7 +1466,7 @@ recommendations:
         value: 1e-05
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -1583,7 +1583,7 @@ recommendations:
         value: 1e-05
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -1610,7 +1610,7 @@ recommendations:
         value: 1e-05
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -1979,7 +1979,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -2337,7 +2337,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -2648,7 +2648,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -3513,9 +3513,9 @@ recommendations:
         value: 0.05
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
-      - kind: max-pointwise-range-relative-error-bound
+      - kind: max-pointwise-relative-error-bound
         value: 0.05
   - kind: all
     requirements:
@@ -4260,7 +4260,7 @@ recommendations:
         value: 0.05
     - kind: all
       requirements:
-      - kind: mean-range-relative-error-bound
+      - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
     requirements:
@@ -5077,4 +5077,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-a1
 metadata:
-  commit: 6c5c2d1d90765f32e8a4c46288578ec89d31705f
+  commit: 35f19befbb9baf29fe7b1da79d7c5de49c741cfd

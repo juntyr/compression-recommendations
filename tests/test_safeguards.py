@@ -33,7 +33,7 @@ from compression_recommendations.requirements.lossless import LosslessRequiremen
 from compression_recommendations.requirements.missing import MissingValueRequirement
 
 
-def test_recommended_safeguards_for_u10():
+def test_recommended_safeguards_for_cc():
     assert (
         Safeguards(
             safeguards=compression_requirement_safeguards.safeguards_for_requirements(
