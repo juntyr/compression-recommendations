@@ -4,7 +4,7 @@ Implementation of a single [`Recommendation`][compression_recommendations.recomm
 
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from typing import Self
+from typing import Self, assert_never
 
 from typing_extensions import override  # MSPV 3.12
 
@@ -157,4 +157,16 @@ class Recommendation(Config):
             requirements=self.requirements
         ).humanise(format=format)
 
-        return f"{humanised_filters} -> {humanised_requirements}"
+        format = Format.from_literal(format)
+
+        match format:
+            case Format.plain | Format.terminal:
+                return f"{humanised_filters} -> {humanised_requirements}"
+            case Format.markdown:
+                return f"""\
+/// details | {humanised_filters}
+    type: note
+{humanised_requirements}
+///"""
+            case _:
+                assert_never(format)

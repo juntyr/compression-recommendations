@@ -35,7 +35,7 @@ import importlib.resources
 import sys
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass
-from typing import Self
+from typing import Self, assert_never
 
 from semver.version import Version
 from typed_classproperties import classproperty
@@ -233,5 +233,14 @@ class Recommendations(Config):
             The humanised representation of these recommendations.
         """
 
-        joiner = "\n\nand\n\n"
-        return f"{joiner.join(recommendation.humanise(format=format) for recommendation in self.recommendations)}"
+        format = Format.from_literal(format)
+
+        match format:
+            case Format.plain | Format.terminal:
+                joiner = "\n\nand\n\n"
+                return f"{joiner.join(recommendation.humanise(format=format) for recommendation in self.recommendations)}"
+            case Format.markdown:
+                joiner = "\n"
+                return f"{joiner.join(recommendation.humanise(format=format) for recommendation in self.recommendations)}"
+            case _:
+                assert_never(format)

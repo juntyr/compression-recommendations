@@ -21,7 +21,7 @@ from .typing import JSON
 __all__ = ["Config", "Format", "LiteralFormat"]
 
 
-LiteralFormat: TypeAlias = Literal["plain", "terminal"]
+LiteralFormat: TypeAlias = Literal["plain", "terminal", "markdown"]
 """ Literal strings representing the humanised representation [`Format`][..Format]s. """
 
 
@@ -35,6 +35,9 @@ class Format(StrEnum):
 
     terminal = "terminal"
     """ Format for printing to the terminal, which uses ANSII escape sequences. """
+
+    markdown = "markdown"
+    """ Format for printing to Markdown. """
 
     @classmethod
     def from_literal(cls, format: LiteralFormat | Self) -> Self:
@@ -223,12 +226,15 @@ def _humanise_labelled_type(
     ty = type(this)
     format = Format.from_literal(format)
 
+    uri = f"https://compression-recommendations.readthedocs.io/en/{_package_version}/_ref/{ty.__module__.replace('.', '/')}/#{ty.__module__}.{ty.__name__}"
+
     match format:
         case Format.plain:
             return label
         case Format.terminal:
-            uri = f"https://compression-recommendations.readthedocs.io/en/{_package_version}/_ref/{ty.__module__.replace('.', '/')}/#{ty.__module__}.{ty.__name__}"
             return _terminal_hyperlink(uri, label)
+        case Format.markdown:
+            return _markdown_hyperlink(uri, label)
         case _:
             assert_never(format)
 
@@ -252,3 +258,10 @@ def _terminal_hyperlink(uri: str, label: None | str = None):
     escape_mask = "\033]8;{};{}\033\\{}\033]8;;\033\\"
 
     return escape_mask.format(parameters, uri, label)
+
+
+def _markdown_hyperlink(uri: str, label: None | str = None):
+    if label is None:
+        label = uri
+
+    return f"[{label}]({uri})"
