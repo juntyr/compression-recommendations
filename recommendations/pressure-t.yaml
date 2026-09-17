@@ -40,5 +40,5 @@ requirements:
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: max-range-relative-error-bound
+    - kind: max-pointwise-range-relative-error-bound
       value: 0.01

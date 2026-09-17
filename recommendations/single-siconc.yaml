@@ -39,7 +39,7 @@ requirements:
     requirements:
     - kind: mean-range-relative-error-bound
       value: 0.01
-    - kind: max-range-relative-error-bound
+    - kind: max-pointwise-range-relative-error-bound
       value: 0.05
 - kind: all
   # valid value range: 0 % <= siconc <= 100 %
