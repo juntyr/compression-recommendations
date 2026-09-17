@@ -153,18 +153,8 @@ def _safeguards_for_requirement(
                     #  rounding errors cannot cause a violation
                     # TODO: use operations with rounding modes instead
                     v["x_finite_range"] = nextafter(c["$x_finite_max"] - c["$x_finite_min"], 0);
-                    v["x_rel_1"] = x / v["x_finite_range"];
-                    v["x_rel"] = where(
-                        v["x_rel_1"] < 0,
-                        nextafter(v["x_rel_1"], -Inf),
-                        nextafter(v["x_rel_1"], +Inf),
-                    );
-                    v["x_orig_rel_1"] = c["$x"] / v["x_finite_range"];
-                    v["x_orig_rel"] = where(
-                        v["x_orig_rel_1"] < 0,
-                        nextafter(v["x_orig_rel_1"], -Inf),
-                        nextafter(v["x_orig_rel_1"], +Inf),
-                    );
+                    v["x_rel"] = x / v["x_finite_range"];
+                    v["x_orig_rel"] = c["$x"] / v["x_finite_range"];
 
                     return where(
                         all([isfinite(v["x_orig_rel"]), not(c["eb_is_zero"])]),
@@ -176,7 +166,13 @@ def _safeguards_for_requirement(
                         #   | (x / x_finite_range) - ($x / x_finite_range) | <= eb_range_rel
                         #   |qoi(x) - qoi($x)| <= eb_range_rel
                         #     with qoi(x) = x / x_finite_range
-                        v["x_rel"],
+                        # nudge to conservatively inflate the error so that
+                        #  rounding errors cannot cause a violation
+                        # TODO: use operations with rounding modes instead
+                        v["x_rel"] - (nextafter(
+                            v["x_rel"],
+                            v["x_orig_rel"],
+                        ) - v["x_rel"]),
 
                         # otherwise, if $x could not be normalised,
                         # ensure instead that x == $x
@@ -219,9 +215,8 @@ def _safeguards_for_requirement(
                     v["x_2"] = (c["$x"] - c["minimum"]) / (c["maximum"] - c["minimum"]);
                     v["x_1"] = where(
                         v["x_2"] <= 0.5,
-                        # FIXME: no double nudging
-                        nextafter(nextafter(v["x_2"], 0), 0),
-                        nextafter(nextafter(v["x_2"], 1), 1),
+                        nextafter(v["x_2"], 0),
+                        nextafter(v["x_2"], 1),
                     );
                     v["x0"] = v["x_1"] * 2 - 1;
                     v["x1"] = where(
@@ -240,6 +235,7 @@ def _safeguards_for_requirement(
                     );
 
                     v["x_x1_2_1"] = x / v["x1_2_1"];
+                    v["x_x1_2_1_orig"] = c["$x"] / v["x1_2_1"];
 
                     return where(
                         all([
@@ -259,11 +255,10 @@ def _safeguards_for_requirement(
                         # nudge to conservatively inflate the error so that
                         #  rounding errors cannot cause a violation
                         # TODO: use operations with rounding modes instead
-                        where(
-                            x < 0,
-                            nextafter(v["x_x1_2_1"], -Inf),
-                            nextafter(v["x_x1_2_1"], +Inf),
-                        ),
+                        v["x_x1_2_1"] - (nextafter(
+                            v["x_x1_2_1"],
+                            v["x_x1_2_1_orig"],
+                        ) - v["x_x1_2_1"]),
 
                         # otherwise, if $x is
                         #  (a) at the bounds,

@@ -237,7 +237,7 @@ recommendations:
         value: 0.05
     - kind: all
       requirements:
-      - kind: max-pointwise-relative-error-bound
+      - kind: max-pointwise-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -459,7 +459,7 @@ recommendations:
         value: 0.001
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.001
 - filters:
   - kind: any
@@ -1651,7 +1651,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2161,7 +2161,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2183,7 +2183,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2205,7 +2205,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2227,7 +2227,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2319,7 +2319,7 @@ recommendations:
         value: 0.0001
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2404,7 +2404,7 @@ recommendations:
         value: 0.0001
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2448,7 +2448,7 @@ recommendations:
         value: 0.0001
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2630,7 +2630,7 @@ recommendations:
         value: 0.0001
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2903,7 +2903,7 @@ recommendations:
         value: 0.1
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2925,7 +2925,7 @@ recommendations:
         value: 0.1
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2947,7 +2947,7 @@ recommendations:
         value: 0.1
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -3650,7 +3650,7 @@ recommendations:
         value: 1.0
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -3878,7 +3878,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -3900,7 +3900,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -3922,7 +3922,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -3944,7 +3944,7 @@ recommendations:
         value: 0.002
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -4531,7 +4531,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -4549,7 +4549,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
+      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -5077,4 +5077,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-a1
 metadata:
-  commit: 83c9f870835ee867f54a37ccebc5cf927a9261ba
+  commit: 31c1eaa1ff19949af721b4f27577c5ace1c2ed23

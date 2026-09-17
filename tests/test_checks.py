@@ -883,6 +883,85 @@ def test_fuzzer_found_quadratic_error_rounding_error_5():
     )
 
 
+def test_fuzzer_found_quadratic_error_rounding_error_6():
+    original = np.array([[12, 66, 185]], dtype=np.uint8)
+
+    decompressed = np.array([[12, 43, 66]], dtype=np.uint8)
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1, minimum=1, maximum=122
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_quadratic_error_rounding_error_7():
+    original = np.array([[66, 185, 12]], dtype=np.uint8)
+
+    decompressed = np.array([[43, 66, 29]], dtype=np.uint8)
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=1, minimum=1, maximum=126
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_quadratic_error_rounding_error_8():
+    original = np.array(
+        [[236, 236, 236, 1, 65, 41], [0, 0, 0, 0, 0, 0], [0, 254, 44, 64, 0, 0]],
+        dtype=np.uint8,
+    )
+
+    decompressed = np.array(
+        [
+            [0, 0, 0, 54, 0, 0],
+            [255, 255, 83, 254, 255, 255],
+            [255, 255, 255, 236, 236, 235],
+        ],
+        dtype=np.uint8,
+    )
+
+    requirement = MaxPointwiseQuadraticErrorBoundRequirement(
+        value=4, minimum=10, maximum=116
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
 def test_fuzzer_found_global_safeguard_any_ok_if_any_ok_2():
     original = np.array(
         [

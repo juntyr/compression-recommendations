@@ -27,6 +27,8 @@ requirements:
   # Peter B. (ECMWF) recommends 0.01K for T fields for long integrations to
   # make budgets
   #
+  # Peter Dueben: changed from pointwise-relative to range-relative
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
@@ -38,5 +40,5 @@ requirements:
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: max-pointwise-relative-error-bound
+    - kind: max-pointwise-range-relative-error-bound
       value: 0.01
