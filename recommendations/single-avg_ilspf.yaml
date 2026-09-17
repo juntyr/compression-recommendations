@@ -28,7 +28,7 @@ requirements:
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
-    - kind: mean-absolute-error-bound
+    - kind: mean-relative-error-bound
       value: 0.01
 - kind: all
   # valid value range: 0 % <= avg_ilspf <= 100 %
