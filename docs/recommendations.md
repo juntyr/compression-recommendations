@@ -3,9 +3,9 @@ edit_uri: docs/recommendations.md
 render_macros: true
 ---
 
-# Recommendations
+# Community Recommendations
 
-## Community Recommendations
+You can also [interatively explore](try-repl.md) the following community-provided recommendations:
 
 {{ recommendations().humanise(format='markdown') }}
 

@@ -34,12 +34,14 @@ theme:
 
 nav:
   - Home: index.md
-  - Recommendations: recommendations.md
+  - Recommendations:
+      - Community Recommendations: recommendations.md
+      - Explore the Recommendations: try-repl.md
   - Links:
       - GitHub: https://github.com/juntyr/compression-recommendations
       - PyPI:
           - compression-recommendations: https://pypi.org/project/compression-recommendations/
-          - compression-requirement-checks: https://pypi.org/project/compression-requirement-checks/  
+          - compression-requirement-checks: https://pypi.org/project/compression-requirement-checks/
           - compression-requirement-safeguards: https://pypi.org/project/compression-requirement-safeguards/
 
 plugins:
