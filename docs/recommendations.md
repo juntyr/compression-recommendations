@@ -5,7 +5,7 @@ render_macros: true
 
 # Community Recommendations
 
-You can also [interatively explore](try-repl.md) the following community-provided recommendations:
+You can also [interactively explore](try-repl.md) the following community-provided recommendations:
 
 {{ recommendations().humanise(format='markdown') }}
 
