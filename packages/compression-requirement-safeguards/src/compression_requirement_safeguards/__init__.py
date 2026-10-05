@@ -242,6 +242,7 @@ def _safeguards_for_requirement(
                             v["x1"] > -1,
                             v["x1"] < +1,
                             isfinite(v["x1"]),
+                            c["maximum"] > c["minimum"],
                             not(c["eb_is_zero"]),
                         ]),
 

@@ -112,7 +112,6 @@ def check_one_input(data) -> None:
             "maximum must not be NaN",
             "minimum must be finite",
             "maximum must be finite",
-            "maximum must be greater than minimum",
             "maximum must be greater than or equal to minimum",
             "error bound most be finite",
             "error bound must be non-negative",

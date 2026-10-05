@@ -385,8 +385,8 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
             raise ValueError("minimum must be finite")
         if not math.isfinite(maximum):
             raise ValueError("maximum must be finite")
-        if maximum <= minimum:
-            raise ValueError("maximum must be greater than minimum")
+        if maximum < minimum:
+            raise ValueError("maximum must be greater than or equal to minimum")
 
         self.value = value
         self.minimum = minimum
