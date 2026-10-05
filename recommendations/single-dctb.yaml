@@ -24,6 +24,9 @@ requirements:
   #
   # Peter Dueben: changed from pointwise-relative to range-relative
   #
+  # Contact people:
+  # - Nils Wedi (ECMWF)
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:

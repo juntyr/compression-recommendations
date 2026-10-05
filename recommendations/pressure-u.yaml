@@ -27,6 +27,9 @@ requirements:
   # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0.01m/s or
   # even 0.001m/s for wind fields
   #
+  # Contact people:
+  # - Nils Wedi (ECMWF)
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:

@@ -28,6 +28,9 @@ requirements:
   # a year long, and you might want the same error in hourly average or daily
   # average flux for the final day as the beginning. (ECMWF)
   #
+  # Contact people:
+  # - Robin Hogan (ECMWF)
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 1.52587890625e-05 (0.01 = 1%)
   requirements:
