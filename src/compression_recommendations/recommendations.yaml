@@ -2157,6 +2157,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -2179,6 +2181,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -2201,6 +2205,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -2223,6 +2229,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -2315,6 +2323,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.0001
     - kind: all
@@ -2367,6 +2377,36 @@ recommendations:
     filters:
     - kind: any
       filters:
+      - kind: grib-short-name
+        value: litoti
+      - kind: grib-short-name
+        value: litota1
+      - kind: grib-short-name
+        value: licgi
+      - kind: grib-short-name
+        value: licga1
+      - kind: grib-short-name
+        value: litota3
+      - kind: grib-short-name
+        value: litota6
+      - kind: grib-short-name
+        value: licga3
+      - kind: grib-short-name
+        value: licga6
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: any
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
       - kind: cf-short-name
         value: licd
       - kind: grib-short-name
@@ -2400,6 +2440,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.0001
     - kind: all
@@ -2444,6 +2486,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.0001
     - kind: all
@@ -2626,6 +2670,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.0001
     - kind: all
@@ -3874,6 +3920,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -3896,6 +3944,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -3918,6 +3968,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -3940,6 +3992,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.05
       - kind: mean-absolute-error-bound
         value: 0.002
     - kind: all
@@ -5077,4 +5131,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-a2
 metadata:
-  commit: 56aa5ee18f4c27ad8adccd5690ac5a15d8de906f
+  commit: d5a7aa9bd43755c04324aae789eaee3ea7b01935
