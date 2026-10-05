@@ -24,7 +24,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Peter Dueben: changed from pointwise-relative to range-relative
+  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
   # Contact people:
   # - Nils Wedi (ECMWF)
