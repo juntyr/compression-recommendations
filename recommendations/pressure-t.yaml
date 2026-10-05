@@ -27,7 +27,7 @@ requirements:
   # Peter B. (ECMWF) recommends 0.01K for T fields for long integrations to
   # make budgets
   #
-  # Peter Dueben: changed from pointwise-relative to range-relative
+  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
   # Contact people:
   # - Nils Wedi (ECMWF)

@@ -24,7 +24,7 @@ requirements:
   #
   # Ask Gabriele Arduini (ECMWF)
   #
-  # Peter Dueben: changed from pointwise-relative to range-relative
+  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
   # Contact people:
   # - Gabriele Arduini (ECMWF)
