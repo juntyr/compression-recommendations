@@ -24,7 +24,7 @@ requirements:
 - kind: any
   # pointwise error bounds
   #
-  # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0,01m/s or
+  # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0.01m/s or
   # even 0.001m/s for wind fields
   #
   # In ERA5 GRIB linear packing adds a maximum pointwise
