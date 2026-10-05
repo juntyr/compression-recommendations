@@ -24,6 +24,9 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
+  # Contact people:
+  # - Kristian Mogensen (ECMWF)
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 5.960464477539063e-08 (0.01 = 1%)
   requirements:

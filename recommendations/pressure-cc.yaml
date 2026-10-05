@@ -24,6 +24,9 @@ requirements:
   #
   # provided by Richard Forbes (ECMWF)
   #
+  # Contact people:
+  # - Robin Hogan (ECMWF)
+  #
   # In ERA5 GRIB linear packing adds a maximum pointwise
   # range-relative error of 0.00390625 (0.01 = 1%)
   requirements:

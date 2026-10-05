@@ -41,7 +41,8 @@ requirements:
 - kind: any
   # pointwise error bounds
   # 
-  # Provided by Philippe Lopez (ECMWF)
+  # Contact people:
+  # - Philippe Lopez (ECMWF)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)
