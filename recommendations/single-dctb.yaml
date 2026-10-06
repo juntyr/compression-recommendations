@@ -19,7 +19,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
@@ -31,7 +31,7 @@ requirements:
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
-    # relative error (0.01 = 1%)
+    # range-relative error (0.01 = 1%)
     requirements:
     - kind: mean-range-relative-error-bound
       value: 0.01

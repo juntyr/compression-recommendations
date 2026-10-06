@@ -21,7 +21,7 @@ filters:
 - kind: level-kind
   value: pressure
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # Peter B. (ECMWF) recommends 0.01K for T fields for long integrations to
@@ -41,7 +41,7 @@ requirements:
     - kind: max-pointwise-absolute-error-bound
       value: 0.05
   - kind: all
-    # relative error (0.01 = 1%)
+    # range-relative error (0.01 = 1%)
     requirements:
     - kind: max-pointwise-range-relative-error-bound
       value: 0.01

@@ -21,7 +21,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # Contact people:
@@ -33,7 +33,5 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: mean-absolute-error-bound
-      value: 1.0
     - kind: max-pointwise-absolute-error-bound
       value: 1.0

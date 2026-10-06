@@ -32,7 +32,7 @@ Safeguards(
 """
 
 from collections.abc import Collection
-from typing import assert_never
+from typing import TypeGuard, assert_never
 
 from compression_recommendations.requirements.abc import Requirement
 from compression_recommendations.requirements.combinators import (
@@ -77,6 +77,14 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
     """
     Translate the given `requirements` into a collection of safeguards.
 
+    All safeguards must be used in conjunction to ensure that all
+    `requirements` are met, e.g. by passing them to the
+    [`Safeguards(safeguards=safeguards)`][compression_safeguards.api.Safeguards],
+    similarly to other compression safeguards backends,
+    or to the
+    [`AllSafeguards(safeguards=safeguards)`][compression_safeguards.safeguards.combinators.all.AllSafeguards]
+    combinator.
+
     Parameters
     ----------
     *requirements : Requirement
@@ -86,41 +94,89 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
     -------
     safeguards : Collection[Safeguard]
         The safeguards required to guarantee that the `requirements` are met.
-
-        These safeguards can be passed to the
-        [`Safeguards(safeguards=safeguards)`][compression_safeguards.api.Safeguards]
-        or similarly to other compression safeguards backends.
     """
 
-    return [sg for req in requirements for sg in _safeguards_for_requirement(req)]
+    safeguards = [sg for req in requirements for sg in _safeguards_for_requirement(req)]
+
+    # collapse nested AllRequirements into the outer one
+    safeguards = [
+        sg
+        for safeguard in safeguards
+        for sg in (
+            safeguard.safeguards
+            if _isinstance_all_safeguards(safeguard)
+            else [safeguard]
+        )
+    ]
+
+    return safeguards
 
 
 def _safeguards_for_requirement(
     requirement: Requirement,
 ) -> Collection[PointwiseSafeguard | StencilSafeguard]:
+    safeguards: list[PointwiseSafeguard | StencilSafeguard]
+
     match requirement.kind:
         case RequirementKind.any:
             assert isinstance(requirement, AnyRequirement)
-            return [
-                AnySafeguard(  # type: ignore
-                    safeguards=[
-                        sg
-                        for req in requirement.requirements
-                        for sg in _safeguards_for_requirement(req)
-                    ]
+            safeguards = [
+                sg
+                for req in requirement.requirements
+                # wrap each individual requirement inside an AllRequirements
+                # combinator to ensure that their safeguards will be combined
+                # into an AllSafeguards combinator
+                for sg in _safeguards_for_requirement(
+                    AllRequirements(requirements=[req])
                 )
             ]
+            # collapse nested AnyRequirement's into the outer one
+            safeguards = [
+                sg
+                for safeguard in safeguards
+                for sg in (
+                    safeguard.safeguards
+                    if _isinstance_any_safeguard(safeguard)
+                    else [safeguard]
+                )
+            ]
+            # collapse a directly-wrapped safeguard
+            match safeguards:
+                case [safeguard]:
+                    return [safeguard]
+                case safeguards:
+                    return [
+                        AnySafeguard(  # type: ignore
+                            safeguards=safeguards
+                        )
+                    ]
         case RequirementKind.all:
             assert isinstance(requirement, AllRequirements)
-            return [
-                AllSafeguards(  # type: ignore
-                    safeguards=[
-                        sg
-                        for req in requirement.requirements
-                        for sg in _safeguards_for_requirement(req)
-                    ]
+            safeguards = [
+                sg
+                for req in requirement.requirements
+                for sg in _safeguards_for_requirement(req)
+            ]
+            # collapse nested AllRequirements into the outer one
+            safeguards = [
+                sg
+                for safeguard in safeguards
+                for sg in (
+                    safeguard.safeguards
+                    if _isinstance_all_safeguards(safeguard)
+                    else [safeguard]
                 )
             ]
+            # collapse a directly-wrapped safeguard
+            match safeguards:
+                case [safeguard]:
+                    return [safeguard]
+                case safeguards:
+                    return [
+                        AllSafeguards(  # type: ignore
+                            safeguards=safeguards
+                        )
+                    ]
         case RequirementKind.max_pointwise_absolute_error_bound:
             assert isinstance(requirement, MaxPointwiseAbsoluteErrorBoundRequirement)
             return [ErrorBoundSafeguard(type=ErrorBound.abs, eb=requirement.value)]
@@ -292,7 +348,7 @@ def _safeguards_for_requirement(
             ]
         case RequirementKind.data_limits:
             assert isinstance(requirement, DataLimitsRequirement)
-            safeguards: list[PointwiseSafeguard | StencilSafeguard] = []
+            safeguards = []
             if requirement.minimum is not None:
                 safeguards.append(
                     PointwiseQuantityOfInterestErrorBoundSafeguard(
@@ -311,12 +367,6 @@ def _safeguards_for_requirement(
                         early_bound=dict(maximum=requirement.maximum),
                     )
                 )
-            if len(safeguards) > 1:
-                return [
-                    AllSafeguards(  # type: ignore
-                        safeguards=safeguards
-                    )
-                ]
             return safeguards
         case RequirementKind.isovalue:
             assert isinstance(requirement, IsovalueRequirement)
@@ -329,3 +379,23 @@ def _safeguards_for_requirement(
             return [LosslessSafeguard()]
         case _:
             assert_never(requirement.kind)
+
+
+# TODO: https://github.com/juntyr/compression-safeguards/pull/149
+def _isinstance_any_safeguard(obj: object) -> TypeGuard[AnySafeguard]:
+    any_safeguard_class: type[AnySafeguard]
+    any_safeguard_class, *_ = AnySafeguard(
+        safeguards=[LosslessSafeguard()]
+    ).__class__.__bases__
+
+    return isinstance(obj, any_safeguard_class)
+
+
+# TODO: https://github.com/juntyr/compression-safeguards/pull/149
+def _isinstance_all_safeguards(obj: object) -> TypeGuard[AllSafeguards]:
+    all_safeguard_class: type[AllSafeguards]
+    all_safeguard_class, *_ = AllSafeguards(
+        safeguards=[LosslessSafeguard()]
+    ).__class__.__bases__
+
+    return isinstance(obj, all_safeguard_class)

@@ -19,7 +19,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # There is no point in archiving these four components because they are

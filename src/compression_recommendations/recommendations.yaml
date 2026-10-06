@@ -14,7 +14,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -37,7 +37,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -59,7 +59,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -81,7 +81,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -103,7 +103,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -127,7 +127,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -147,7 +147,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -165,7 +165,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -189,7 +189,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -209,7 +209,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -229,7 +229,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -253,7 +253,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -273,7 +273,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -293,7 +293,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -313,7 +313,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -337,7 +337,7 @@ recommendations:
   - kind: level-kind
     value: pressure
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -357,7 +357,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -375,7 +375,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -393,7 +393,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -411,7 +411,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -429,7 +429,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -451,7 +451,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -473,7 +473,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -495,7 +495,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -517,7 +517,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -539,7 +539,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -557,7 +557,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -575,7 +575,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -593,7 +593,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -611,7 +611,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -629,7 +629,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -652,7 +652,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -670,7 +670,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -688,7 +688,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -706,7 +706,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -728,7 +728,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -750,7 +750,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -768,7 +768,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -790,7 +790,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -812,7 +812,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -834,7 +834,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -852,7 +852,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -870,7 +870,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -892,7 +892,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -914,7 +914,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -940,7 +940,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -958,7 +958,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -984,7 +984,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1002,7 +1002,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1020,7 +1020,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1038,7 +1038,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1060,7 +1060,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1086,7 +1086,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1112,7 +1112,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1134,7 +1134,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1152,7 +1152,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1170,7 +1170,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1192,7 +1192,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1214,7 +1214,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1236,7 +1236,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1258,7 +1258,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1276,7 +1276,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1300,7 +1300,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1318,7 +1318,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1338,7 +1338,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1360,7 +1360,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1378,7 +1378,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1400,7 +1400,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1422,7 +1422,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1440,7 +1440,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1458,7 +1458,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1487,7 +1487,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1509,7 +1509,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1531,7 +1531,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1553,7 +1553,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1575,7 +1575,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1602,7 +1602,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1629,7 +1629,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1647,7 +1647,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1665,7 +1665,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1687,7 +1687,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1705,7 +1705,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1723,7 +1723,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1741,7 +1741,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1759,7 +1759,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1777,7 +1777,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1801,7 +1801,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1819,7 +1819,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1843,7 +1843,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1861,7 +1861,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1879,7 +1879,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1901,7 +1901,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1921,7 +1921,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1939,7 +1939,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1957,7 +1957,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1975,7 +1975,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -1998,7 +1998,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2016,7 +2016,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2034,7 +2034,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2052,7 +2052,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2070,7 +2070,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2091,7 +2091,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2109,7 +2109,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2127,7 +2127,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2153,7 +2153,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2177,7 +2177,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2201,7 +2201,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2225,7 +2225,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2249,7 +2249,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2267,7 +2267,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2293,7 +2293,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2319,7 +2319,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2343,7 +2343,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2366,7 +2366,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2396,7 +2396,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2414,7 +2414,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2436,7 +2436,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2460,7 +2460,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2482,7 +2482,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2506,7 +2506,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2528,7 +2528,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2578,7 +2578,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2600,7 +2600,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2622,7 +2622,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2644,7 +2644,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2666,7 +2666,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2690,7 +2690,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2713,7 +2713,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2731,7 +2731,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2749,7 +2749,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2767,7 +2767,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2785,7 +2785,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2807,7 +2807,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2825,7 +2825,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2843,7 +2843,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2861,7 +2861,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2881,7 +2881,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2901,7 +2901,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2923,7 +2923,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2941,7 +2941,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2963,7 +2963,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -2985,7 +2985,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3007,7 +3007,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3025,7 +3025,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3051,7 +3051,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3077,7 +3077,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3099,7 +3099,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3117,7 +3117,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3141,7 +3141,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3159,7 +3159,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3177,7 +3177,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3195,7 +3195,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3213,7 +3213,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3235,7 +3235,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3253,7 +3253,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3275,7 +3275,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3297,7 +3297,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3337,7 +3337,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3359,7 +3359,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3385,7 +3385,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3409,7 +3409,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3435,7 +3435,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3459,7 +3459,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3487,7 +3487,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3509,7 +3509,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3531,7 +3531,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3551,7 +3551,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3580,7 +3580,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3600,7 +3600,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3618,7 +3618,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3658,7 +3658,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3686,7 +3686,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3710,7 +3710,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3760,7 +3760,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3780,7 +3780,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3800,7 +3800,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3824,7 +3824,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3846,7 +3846,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3894,7 +3894,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3916,7 +3916,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3940,7 +3940,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3964,7 +3964,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -3988,7 +3988,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4014,7 +4014,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4034,7 +4034,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4052,7 +4052,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4070,7 +4070,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4088,7 +4088,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4106,7 +4106,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4128,7 +4128,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4154,7 +4154,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4176,7 +4176,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4198,7 +4198,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4220,7 +4220,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4242,7 +4242,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4264,7 +4264,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4282,7 +4282,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4306,7 +4306,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4333,7 +4333,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4355,7 +4355,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4379,7 +4379,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4397,7 +4397,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4419,7 +4419,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4441,7 +4441,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4463,7 +4463,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4483,7 +4483,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4501,7 +4501,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4523,7 +4523,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4541,7 +4541,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4559,7 +4559,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4581,7 +4581,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4599,7 +4599,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4619,7 +4619,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4639,7 +4639,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4661,7 +4661,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4685,7 +4685,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4703,7 +4703,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4761,7 +4761,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4783,7 +4783,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4801,7 +4801,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4819,7 +4819,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4841,7 +4841,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4863,7 +4863,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4885,7 +4885,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4903,7 +4903,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4921,7 +4921,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4939,7 +4939,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4961,7 +4961,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4979,7 +4979,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -4997,7 +4997,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5015,7 +5015,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5037,7 +5037,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5059,7 +5059,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5081,7 +5081,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5105,7 +5105,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
@@ -5123,7 +5123,7 @@ recommendations:
   - kind: level-kind
     value: single
   requirements:
-  - kind: any
+  - kind: all
     requirements:
     - kind: all
       requirements:
