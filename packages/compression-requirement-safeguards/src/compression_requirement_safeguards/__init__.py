@@ -115,6 +115,8 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
 def _safeguards_for_requirement(
     requirement: Requirement,
 ) -> Collection[PointwiseSafeguard | StencilSafeguard]:
+    safeguards: list[PointwiseSafeguard | StencilSafeguard]
+
     match requirement.kind:
         case RequirementKind.any:
             assert isinstance(requirement, AnyRequirement)
@@ -143,7 +145,11 @@ def _safeguards_for_requirement(
                 case [safeguard]:
                     return [safeguard]
                 case safeguards:
-                    return [AnySafeguard(safeguards=safeguards)]
+                    return [
+                        AnySafeguard(  # type: ignore
+                            safeguards=safeguards
+                        )
+                    ]
         case RequirementKind.all:
             assert isinstance(requirement, AllRequirements)
             safeguards = [
@@ -166,7 +172,11 @@ def _safeguards_for_requirement(
                 case [safeguard]:
                     return [safeguard]
                 case safeguards:
-                    return [AllSafeguards(safeguards=safeguards)]
+                    return [
+                        AllSafeguards(  # type: ignore
+                            safeguards=safeguards
+                        )
+                    ]
         case RequirementKind.max_pointwise_absolute_error_bound:
             assert isinstance(requirement, MaxPointwiseAbsoluteErrorBoundRequirement)
             return [ErrorBoundSafeguard(type=ErrorBound.abs, eb=requirement.value)]
@@ -338,7 +348,7 @@ def _safeguards_for_requirement(
             ]
         case RequirementKind.data_limits:
             assert isinstance(requirement, DataLimitsRequirement)
-            safeguards: list[PointwiseSafeguard | StencilSafeguard] = []
+            safeguards = []
             if requirement.minimum is not None:
                 safeguards.append(
                     PointwiseQuantityOfInterestErrorBoundSafeguard(
