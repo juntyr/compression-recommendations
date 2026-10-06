@@ -1,11 +1,6 @@
 import compression_requirement_safeguards
 import pytest
 from compression_safeguards.api import Safeguards
-from compression_safeguards.safeguards.combinators.all import (
-    AllSafeguards,
-    _AllSafeguardsBase,
-)
-from compression_safeguards.safeguards.combinators.any import AnySafeguard
 from compression_safeguards.safeguards.pointwise.eb import ErrorBoundSafeguard
 from compression_safeguards.safeguards.pointwise.qoi.eb import (
     PointwiseQuantityOfInterestErrorBoundSafeguard,
@@ -44,36 +39,18 @@ def test_recommended_safeguards_for_cc():
         ).get_config()
         == Safeguards(
             safeguards=[
-                AnySafeguard(
-                    safeguards=[
-                        AllSafeguards(
-                            safeguards=[
-                                ErrorBoundSafeguard(
-                                    type="rel", eb=0.01, equal_nan=False
-                                )
-                            ]
-                        ),
-                    ]
+                ErrorBoundSafeguard(type="rel", eb=0.01, equal_nan=False),
+                PointwiseQuantityOfInterestErrorBoundSafeguard(
+                    qoi='x >= c["minimum"]',  # type: ignore
+                    type="abs",
+                    eb=0,
+                    early_bound=dict(minimum=0.0),
                 ),
-                AllSafeguards(
-                    safeguards=[
-                        AllSafeguards(
-                            safeguards=[
-                                PointwiseQuantityOfInterestErrorBoundSafeguard(
-                                    qoi='x >= c["minimum"]',  # type: ignore
-                                    type="abs",
-                                    eb=0,
-                                    early_bound=dict(minimum=0.0),
-                                ),
-                                PointwiseQuantityOfInterestErrorBoundSafeguard(
-                                    qoi='x <= c["maximum"]',  # type: ignore
-                                    type="abs",
-                                    eb=0,
-                                    early_bound=dict(maximum=1.0),
-                                ),
-                            ]
-                        ),
-                    ]
+                PointwiseQuantityOfInterestErrorBoundSafeguard(
+                    qoi='x <= c["maximum"]',  # type: ignore
+                    type="abs",
+                    eb=0,
+                    early_bound=dict(maximum=1.0),
                 ),
             ]
         ).get_config()
@@ -155,24 +132,6 @@ def test_data_limits_requirement():
             compression_requirement_safeguards.safeguards_for_requirements(
                 DataLimitsRequirement(minimum=-10, maximum=10)
             )
-        )
-        == 1
-    )
-    assert isinstance(
-        list(
-            compression_requirement_safeguards.safeguards_for_requirements(
-                DataLimitsRequirement(minimum=-10, maximum=10)
-            )
-        )[0],
-        _AllSafeguardsBase,
-    )
-    assert (
-        len(
-            list(
-                compression_requirement_safeguards.safeguards_for_requirements(
-                    DataLimitsRequirement(minimum=-10, maximum=10)
-                )
-            )[0].safeguards  # type: ignore
         )
         == 2
     )
