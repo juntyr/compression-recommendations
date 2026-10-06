@@ -21,7 +21,7 @@ filters:
 - kind: level-kind
   value: pressure
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0.01m/s or

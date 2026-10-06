@@ -19,7 +19,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # It could be considered to remove this value, as ro=sro+ssro (ECMWF)

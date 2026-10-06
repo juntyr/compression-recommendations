@@ -21,7 +21,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative

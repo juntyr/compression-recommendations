@@ -19,7 +19,7 @@ filters:
 - kind: level-kind
   value: single
 requirements:
-- kind: any
+- kind: all
   # pointwise error bounds
   #
   # I am a bit concerned that a bounded variable can have negative values (CR)
