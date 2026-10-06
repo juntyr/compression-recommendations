@@ -22,13 +22,13 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
+  # @juntyr: Is the zero mean absolute error bound necessary?
+  #
   # Contact people:
   # - Josh Kousal (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
-  #
-  # @juntyr: Is the zero mean absolute error bound necessary?
   requirements:
   - kind: all
     # absolute error

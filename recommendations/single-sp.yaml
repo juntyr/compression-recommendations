@@ -35,12 +35,10 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: mean-absolute-error-bound
-      value: 1.0
     - kind: max-pointwise-absolute-error-bound
       value: 1.0
   - kind: all
-    # relative error (0.01 = 1%)
+    # range-relative error (0.01 = 1%)
     requirements:
     - kind: mean-range-relative-error-bound
       value: 0.01
