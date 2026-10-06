@@ -1905,8 +1905,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.5
       - kind: max-pointwise-absolute-error-bound
         value: 0.5
 - filters:
@@ -2885,8 +2883,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1.0
       - kind: max-pointwise-absolute-error-bound
         value: 1.0
 - filters:
@@ -3690,8 +3686,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1.0
       - kind: max-pointwise-absolute-error-bound
         value: 1.0
     - kind: all
@@ -3898,8 +3892,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.01
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
 - filters:
@@ -5131,4 +5123,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-a2
 metadata:
-  commit: bf9fbb6b55f5db3f65fd4a17f2f336fbe0b1abcc
+  commit: f6c504339340709abb2ef4c32ce3e1db7f0113c7
