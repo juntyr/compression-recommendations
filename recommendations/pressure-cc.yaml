@@ -27,8 +27,8 @@ requirements:
   # Contact people:
   # - Robin Hogan (ECMWF)
   #
-  # In ERA5 GRIB linear packing adds a maximum pointwise
-  # range-relative error of 0.00390625 (0.01 = 1%)
+  # In ERA5, GRIB linear packing with 8 bits adds a maximum pointwise
+  # range-relative error of 2^(-8) = 0.00390625 (0.01 = 1%)
   requirements:
   - kind: all
     # relative error (0.01 = 1%)
