@@ -1,4 +1,4 @@
-# Requirements for Volumetric soil water layer 4
+# Requirements for Volumetric soil water layers 1-4
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -9,6 +9,27 @@ filters:
 - kind: any
   # variables
   filters:
+  - kind: any
+    # Volumetric soil water layer 1 [m**3 m**-3]
+    filters:
+    - kind: cf-short-name
+      value: swvl1
+    - kind: grib-short-name
+      value: swvl1
+  - kind: any
+    # Volumetric soil water layer 2 [m**3 m**-3]
+    filters:
+    - kind: cf-short-name
+      value: swvl2
+    - kind: grib-short-name
+      value: swvl2
+  - kind: any
+    # Volumetric soil water layer 3 [m**3 m**-3]
+    filters:
+    - kind: cf-short-name
+      value: swvl3
+    - kind: grib-short-name
+      value: swvl3
   - kind: any
     # Volumetric soil water layer 4 [m**3 m**-3]
     filters:
@@ -22,7 +43,8 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
-  # I am a bit concerned that a bounded variable can have negative values (CR)
+  # Christoph Ruediger (ECMWF) is a bit concerned that these bounded variables
+  # can have negative values in ERA5
   #
   # Contact people:
   # - Christoph Ruediger (ECMWF)

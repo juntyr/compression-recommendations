@@ -22,8 +22,6 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
-  # Ask Gabriele Arduini (ECMWF)
-  #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
   # Contact people:

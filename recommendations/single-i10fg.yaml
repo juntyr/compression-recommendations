@@ -21,6 +21,9 @@ filters:
 requirements:
 - kind: all
   # pointwise error bounds
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or even
+  # 0.001m/s for wind fields
   #
   # Contact people:
   # - Nils Wedi (ECMWF)
@@ -32,4 +35,4 @@ requirements:
     # absolute error
     requirements:
     - kind: mean-absolute-error-bound
-      value: 0.01
+      value: 0.001

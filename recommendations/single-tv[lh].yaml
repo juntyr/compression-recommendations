@@ -1,4 +1,4 @@
-# Requirements for Type of high vegetation
+# Requirements for Type of low/high vegetation
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -9,6 +9,13 @@ filters:
 - kind: any
   # variables
   filters:
+  - kind: any
+    # Type of low vegetation [Code table 4.234]
+    filters:
+    - kind: cf-short-name
+      value: tvl
+    - kind: grib-short-name
+      value: tvl
   - kind: any
     # Type of high vegetation [Code table 4.234]
     filters:
@@ -31,7 +38,7 @@ requirements:
     # conservative, provided by @juntyr
   - kind: lossless
 - kind: all
-  # valid value range: 1 <= tvh <= 20
+  # valid value range: 1 <= tv[lh] <= 20
   #
   # provided by @juntyr
   requirements:

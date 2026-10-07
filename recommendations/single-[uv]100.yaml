@@ -1,4 +1,4 @@
-# Requirements for Soil temperature level 3
+# Requirements for 100 metre U/V wind components
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,22 +10,30 @@ filters:
   # variables
   filters:
   - kind: any
-    # Soil temperature level 3 [K]
+    # 100 metre U wind component [m s**-1]
     filters:
     - kind: cf-short-name
-      value: stl3
+      value: u100
     - kind: grib-short-name
-      value: stl3
+      value: 100u
+  - kind: any
+    # 100 metre V wind component [m s**-1]
+    filters:
+    - kind: cf-short-name
+      value: v100
+    - kind: grib-short-name
+      value: 100v
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
-  #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or
+  # even 0.001m/s for wind fields
   #
   # Contact people:
-  # - Christoph Ruediger (ECMWF)
+  # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -33,12 +41,5 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: max-pointwise-absolute-error-bound
-      value: 0.05
     - kind: mean-absolute-error-bound
-      value: 0.002
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
-    - kind: mean-range-relative-error-bound
       value: 0.01

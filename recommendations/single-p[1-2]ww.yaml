@@ -1,4 +1,4 @@
-# Requirements for 10 metre u-component of neutral wind
+# Requirements for Mean wave period based on first/second moment for wind waves
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,12 +10,19 @@ filters:
   # variables
   filters:
   - kind: any
-    # 10 metre u-component of neutral wind [m s**-1]
+    # Mean wave period based on first moment for wind waves [s]
     filters:
     - kind: cf-short-name
-      value: u10n
+      value: p1ww
     - kind: grib-short-name
-      value: u10n
+      value: p1ww
+  - kind: any
+    # Mean wave period based on second moment for wind waves [s]
+    filters:
+    - kind: cf-short-name
+      value: p2ww
+    - kind: grib-short-name
+      value: p2ww
 - kind: level-kind
   value: single
 requirements:
@@ -23,7 +30,7 @@ requirements:
   # pointwise error bounds
   #
   # Contact people:
-  # - Nils Wedi (ECMWF)
+  # - Josh Kousal (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -33,3 +40,10 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 0.01
+- kind: all
+  requirements:
+  # valid value range: 0 s <= p[1-2]ww
+  #
+  # provided by @juntyr
+  - kind: data-limits
+    minimum: 0.0

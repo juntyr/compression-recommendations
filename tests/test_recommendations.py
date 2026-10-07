@@ -28,7 +28,7 @@ def test_search():
     single_u10_reqs = compression_recommendations.Recommendation.from_config(
         **compression_recommendations.config._parse_yaml(
             strictyaml.load(
-                Path("recommendations").joinpath("single-u10.yaml").read_text()
+                Path("recommendations").joinpath("single-[uv]10.yaml").read_text()
             )
         )
     ).requirements

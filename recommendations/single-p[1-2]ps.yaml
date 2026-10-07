@@ -1,4 +1,4 @@
-# Requirements for Ice temperature layer 3
+# Requirements for Mean wave period based on first/second moment for swell
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,22 +10,27 @@ filters:
   # variables
   filters:
   - kind: any
-    # Ice temperature layer 3 [K]
+    # Mean wave period based on first moment for swell [s]
     filters:
     - kind: cf-short-name
-      value: istl3
+      value: p1ps
     - kind: grib-short-name
-      value: istl3
+      value: p1ps
+  - kind: any
+    # Mean wave period based on second moment for swell [s]
+    filters:
+    - kind: cf-short-name
+      value: p2ps
+    - kind: grib-short-name
+      value: p2ps
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
   #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
-  #
   # Contact people:
-  # - Christoph Ruediger (ECMWF)
+  # - Josh Kousal (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -33,12 +38,5 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: max-pointwise-absolute-error-bound
-      value: 0.05
     - kind: mean-absolute-error-bound
-      value: 0.002
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
-    - kind: mean-range-relative-error-bound
       value: 0.01

@@ -22,9 +22,8 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
-  # provided by Richard Forbes (ECMWF)
-  #
   # Contact people:
+  # - Richard Forbes (ECMWF)
   # - Robin Hogan (ECMWF)
   #
   # In ERA5, GRIB linear packing with 8 bits adds a maximum pointwise

@@ -1,4 +1,4 @@
-# Requirements for Ice temperature layer 4
+# Requirements for 10 metre U/V wind components
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,22 +10,30 @@ filters:
   # variables
   filters:
   - kind: any
-    # Ice temperature layer 4 [K]
+    # 10 metre U wind component [m s**-1]
     filters:
     - kind: cf-short-name
-      value: istl4
+      value: u10
     - kind: grib-short-name
-      value: istl4
+      value: 10u
+  - kind: any
+    # 10 metre V wind component [m s**-1]
+    filters:
+    - kind: cf-short-name
+      value: v10
+    - kind: grib-short-name
+      value: 10v
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
-  #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
+  # e.g. 0.01m/s or even 0.001m/s for wind fields
   #
   # Contact people:
-  # - Christoph Ruediger (ECMWF)
+  # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -33,12 +41,10 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: max-pointwise-absolute-error-bound
-      value: 0.05
     - kind: mean-absolute-error-bound
-      value: 0.002
+      value: 0.001
   - kind: all
-    # range-relative error (0.01 = 1%)
+    # relative error (0.01 = 1%)
     requirements:
-    - kind: mean-range-relative-error-bound
-      value: 0.01
+    - kind: mean-relative-error-bound
+      value: 0.5

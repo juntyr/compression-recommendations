@@ -1,4 +1,4 @@
-# Requirements for High cloud cover
+# Requirements for 10 metre u/v-components of neutral wind
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,34 +10,36 @@ filters:
   # variables
   filters:
   - kind: any
-    # High cloud cover [dimensionless]
+    # 10 metre u-component of neutral wind [m s**-1]
     filters:
     - kind: cf-short-name
-      value: hcc
+      value: u10n
     - kind: grib-short-name
-      value: hcc
+      value: u10n
+  - kind: any
+    # 10 metre v-component of neutral wind [m s**-1]
+    filters:
+    - kind: cf-short-name
+      value: v10n
+    - kind: grib-short-name
+      value: v10n
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or
+  # even 0.001m/s for wind fields
   #
   # Contact people:
-  # - Peter Bechtold (ECMWF)
+  # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
   requirements:
   - kind: all
-    # relative error (0.01 = 1%)
+    # absolute error
     requirements:
-    - kind: mean-relative-error-bound
+    - kind: mean-absolute-error-bound
       value: 0.01
-- kind: all
-  # valid value range: 0 % <= hcc <= 100 %
-  #
-  # provided by @juntyr
-  requirements:
-  - kind: data-limits
-    minimum: 0.0
-    maximum: 1.0
