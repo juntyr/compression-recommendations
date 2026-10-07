@@ -21,6 +21,8 @@ filters:
 requirements:
 - kind: all
   # pointwise error bounds
+  # 
+  # Robin Hogan (ECMWF): See uvb for reasoning on 3600 J/m2
   #
   # Contact people:
   # - Robin Hogan (ECMWF)

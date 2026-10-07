@@ -1,4 +1,4 @@
-# Requirements for Ice temperature layer 4
+# Requirements for Mean wave direction of first-third swell partition
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,12 +10,26 @@ filters:
   # variables
   filters:
   - kind: any
-    # Ice temperature layer 4 [K]
+    # Mean wave direction of first swell partition [degrees]
     filters:
     - kind: cf-short-name
-      value: istl4
+      value: mwd1
     - kind: grib-short-name
-      value: istl4
+      value: mwd1
+  - kind: any
+    # Mean wave direction of second swell partition [degrees]
+    filters:
+    - kind: cf-short-name
+      value: mwd2
+    - kind: grib-short-name
+      value: mwd2
+  - kind: any
+    # Mean wave direction of third swell partition [degrees]
+    filters:
+    - kind: cf-short-name
+      value: mwd3
+    - kind: grib-short-name
+      value: mwd3
 - kind: level-kind
   value: single
 requirements:
@@ -25,7 +39,7 @@ requirements:
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
   # Contact people:
-  # - Christoph Ruediger (ECMWF)
+  # - Josh Kousal (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -33,10 +47,8 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: max-pointwise-absolute-error-bound
-      value: 0.05
     - kind: mean-absolute-error-bound
-      value: 0.002
+      value: 0.1
   - kind: all
     # range-relative error (0.01 = 1%)
     requirements:

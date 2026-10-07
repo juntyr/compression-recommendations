@@ -1,4 +1,4 @@
-# Requirements for Ice temperature layer 1
+# Requirements for Ice temperature layers 1-4
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -16,11 +16,35 @@ filters:
       value: istl1
     - kind: grib-short-name
       value: istl1
+  - kind: any
+    # Ice temperature layer 2 [K]
+    filters:
+    - kind: cf-short-name
+      value: istl2
+    - kind: grib-short-name
+      value: istl2
+  - kind: any
+    # Ice temperature layer 3 [K]
+    filters:
+    - kind: cf-short-name
+      value: istl3
+    - kind: grib-short-name
+      value: istl3
+  - kind: any
+    # Ice temperature layer 4 [K]
+    filters:
+    - kind: cf-short-name
+      value: istl4
+    - kind: grib-short-name
+      value: istl4
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
+  # 
+  # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
+  # integrations to make budgets
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
@@ -34,7 +58,7 @@ requirements:
     # absolute error
     requirements:
     - kind: max-pointwise-absolute-error-bound
-      value: 0.05
+      value: 0.01
     - kind: mean-absolute-error-bound
       value: 0.002
   - kind: all

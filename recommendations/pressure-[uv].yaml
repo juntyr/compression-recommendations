@@ -1,4 +1,4 @@
-# Requirements for Soil temperature level 2
+# Requirements for U/V components of wind
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,22 +10,34 @@ filters:
   # variables
   filters:
   - kind: any
-    # Soil temperature level 2 [K]
+    # U component of wind [m s**-1]
     filters:
+    - kind: cf-standard-name
+      value: eastward_wind
     - kind: cf-short-name
-      value: stl2
+      value: u
     - kind: grib-short-name
-      value: stl2
+      value: u
+  - kind: any
+    # V component of wind [m s**-1]
+    filters:
+    - kind: cf-standard-name
+      value: northward_wind
+    - kind: cf-short-name
+      value: v
+    - kind: grib-short-name
+      value: v
 - kind: level-kind
-  value: single
+  value: pressure
 requirements:
 - kind: all
   # pointwise error bounds
   #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
+  # e.g. 0.01m/s or even 0.001m/s for wind fields
   #
   # Contact people:
-  # - Christoph Ruediger (ECMWF)
+  # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -34,11 +46,4 @@ requirements:
     # absolute error
     requirements:
     - kind: max-pointwise-absolute-error-bound
-      value: 0.05
-    - kind: mean-absolute-error-bound
-      value: 0.002
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
-    - kind: mean-range-relative-error-bound
-      value: 0.01
+      value: 0.001

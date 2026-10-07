@@ -1,4 +1,4 @@
-# Requirements for V component of wind
+# Requirements for 100 metre U/V wind components
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,21 +10,26 @@ filters:
   # variables
   filters:
   - kind: any
-    # V component of wind [m s**-1]
+    # 100 metre U wind component [m s**-1]
     filters:
-    - kind: cf-standard-name
-      value: northward_wind
     - kind: cf-short-name
-      value: v
+      value: u100
     - kind: grib-short-name
-      value: v
+      value: 100u
+  - kind: any
+    # 100 metre V wind component [m s**-1]
+    filters:
+    - kind: cf-short-name
+      value: v100
+    - kind: grib-short-name
+      value: 100v
 - kind: level-kind
-  value: pressure
+  value: single
 requirements:
 - kind: all
   # pointwise error bounds
-  #
-  # Peter B. (ECMWF) and Jean (ECMWF) suggest to go lower, e.g. 0.01m/s or
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or
   # even 0.001m/s for wind fields
   #
   # Contact people:
@@ -36,5 +41,5 @@ requirements:
   - kind: all
     # absolute error
     requirements:
-    - kind: max-pointwise-absolute-error-bound
-      value: 0.5
+    - kind: mean-absolute-error-bound
+      value: 0.001

@@ -1,4 +1,4 @@
-# Requirements for Mean wave direction of third swell partition
+# Requirements for 10 metre u/v-components of neutral wind
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -10,22 +10,30 @@ filters:
   # variables
   filters:
   - kind: any
-    # Mean wave direction of third swell partition [degrees]
+    # 10 metre u-component of neutral wind [m s**-1]
     filters:
     - kind: cf-short-name
-      value: mwd3
+      value: u10n
     - kind: grib-short-name
-      value: mwd3
+      value: u10n
+  - kind: any
+    # 10 metre v-component of neutral wind [m s**-1]
+    filters:
+    - kind: cf-short-name
+      value: v10n
+    - kind: grib-short-name
+      value: v10n
 - kind: level-kind
   value: single
 requirements:
 - kind: all
   # pointwise error bounds
-  #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
+  # 
+  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or
+  # even 0.001m/s for wind fields
   #
   # Contact people:
-  # - Josh Kousal (ECMWF)
+  # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
@@ -34,9 +42,4 @@ requirements:
     # absolute error
     requirements:
     - kind: mean-absolute-error-bound
-      value: 0.1
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
-    - kind: mean-range-relative-error-bound
-      value: 0.01
+      value: 0.001

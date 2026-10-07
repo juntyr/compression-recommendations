@@ -1,4 +1,4 @@
-# Requirements for Low cloud cover
+# Requirements for Low/Medium/High cloud cover
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -16,6 +16,20 @@ filters:
       value: lcc
     - kind: grib-short-name
       value: lcc
+  - kind: any
+    # Medium cloud cover [dimensionless]
+    filters:
+    - kind: cf-short-name
+      value: mcc
+    - kind: grib-short-name
+      value: mcc
+  - kind: any
+    # High cloud cover [dimensionless]
+    filters:
+    - kind: cf-short-name
+      value: hcc
+    - kind: grib-short-name
+      value: hcc
 - kind: level-kind
   value: single
 requirements:
@@ -34,7 +48,7 @@ requirements:
     - kind: mean-relative-error-bound
       value: 0.01
 - kind: all
-  # valid value range: 0 % <= lcc <= 100 %
+  # valid value range: 0 % <= [lmh]cc <= 100 %
   #
   # provided by @juntyr
   requirements:
