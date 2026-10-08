@@ -28,6 +28,10 @@ authors:
     family-names: Dueben
     affiliation: European Centre for Medium-Range Weather Forecasts
     orcid: 'https://orcid.org/0000-0002-4610-3326'
+  - given-names: Heikki
+    family-names: Järvinen
+    affiliation: University of Helsinki
+    orcid: 'https://orcid.org/0000-0003-1879-6804'
 repository-code: 'https://github.com/juntyr/compression-recommendations'
 url: 'https://compression-recommendations.readthedocs.io/en/latest/'
 identifiers:

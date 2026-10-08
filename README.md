@@ -49,7 +49,11 @@ That is up to *you*, the community, to decide!
 
 ## Citation
 
-Please refer to the [CITATION.cff](CITATION.cff) file and refer to <https://citation-file-format.github.io> to extract the citation in a format of your choice.
+Please cite this work as follows:
+
+> Tyree, J., Faghih-Naini, S., Klöwer, M., Dueben, P., and Järvinen, H. (2026). compression-recommendations. *Zenodo*. Available from: [doi:10.5281/zenodo.22761209](https://doi.org/10.5281/zenodo.22761209).
+
+Please also refer to the [CITATION.cff](CITATION.cff) file and refer to <https://citation-file-format.github.io> to extract the citation in a format of your choice.
 
 
 ## License
@@ -59,6 +63,6 @@ Licensed under the Mozilla Public License, Version 2.0 ([LICENSE](LICENSE) or ht
 
 ## Funding
 
-The outline for the recommendations have been developed as part of [ESiWACE3](https://www.esiwace.eu), the third phase of the Centre of Excellence in Simulation of Weather and Climate in Europe.
+The recommendations their accompanying `compression-recommendations`, `compression-requirement-checks`, and `compression-requirement-safeguards` packages have been developed as part of [ESiWACE3](https://www.esiwace.eu), the third phase of the Centre of Excellence in Simulation of Weather and Climate in Europe.
 
 Funded by the European Union. This work has received funding from the European High Performance Computing Joint Undertaking (JU) under grant agreement No 101093054.
