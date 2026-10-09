@@ -4730,6 +4730,6 @@ recommendations:
       requirements:
       - kind: mean-relative-error-bound
         value: 0.01
-version: 0.1.0-a2
+version: 0.1.0-b1
 metadata:
   commit: d7486db4c314007f797816baf70a217c051d8e54
