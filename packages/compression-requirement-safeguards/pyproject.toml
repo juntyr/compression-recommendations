@@ -7,7 +7,7 @@ name = "compression-requirement-safeguards"
 version = "0.1.0a2"
 dependencies = [
     "compression-recommendations==0.1.0a2",
-    "compression-safeguards==1.0.0rc3",
+    "compression-safeguards==1.0.0rc5",
 ]
 requires-python = ">=3.11"
 authors = [{ name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" }]

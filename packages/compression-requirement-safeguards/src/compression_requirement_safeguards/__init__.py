@@ -32,7 +32,7 @@ Safeguards(
 """
 
 from collections.abc import Collection
-from typing import TypeGuard, assert_never
+from typing import assert_never
 
 from compression_recommendations.requirements.abc import Requirement
 from compression_recommendations.requirements.combinators import (
@@ -98,13 +98,13 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
 
     safeguards = [sg for req in requirements for sg in _safeguards_for_requirement(req)]
 
-    # collapse nested AllRequirements into the outer one
+    # collapse nested AllSafeguards into the outer list of all safeguards
     safeguards = [
         sg
         for safeguard in safeguards
         for sg in (
             safeguard.safeguards
-            if _isinstance_all_safeguards(safeguard)
+            if isinstance(safeguard, AllSafeguards)
             else [safeguard]
         )
     ]
@@ -130,13 +130,13 @@ def _safeguards_for_requirement(
                     AllRequirements(requirements=[req])
                 )
             ]
-            # collapse nested AnyRequirement's into the outer one
+            # collapse nested AnySafeguard's into the outer one
             safeguards = [
                 sg
                 for safeguard in safeguards
                 for sg in (
                     safeguard.safeguards
-                    if _isinstance_any_safeguard(safeguard)
+                    if isinstance(safeguard, AnySafeguard)
                     else [safeguard]
                 )
             ]
@@ -157,13 +157,13 @@ def _safeguards_for_requirement(
                 for req in requirement.requirements
                 for sg in _safeguards_for_requirement(req)
             ]
-            # collapse nested AllRequirements into the outer one
+            # collapse nested AllSafeguards into the outer one
             safeguards = [
                 sg
                 for safeguard in safeguards
                 for sg in (
                     safeguard.safeguards
-                    if _isinstance_all_safeguards(safeguard)
+                    if isinstance(safeguard, AllSafeguards)
                     else [safeguard]
                 )
             ]
@@ -379,23 +379,3 @@ def _safeguards_for_requirement(
             return [LosslessSafeguard()]
         case _:
             assert_never(requirement.kind)
-
-
-# TODO: https://github.com/juntyr/compression-safeguards/pull/149
-def _isinstance_any_safeguard(obj: object) -> TypeGuard[AnySafeguard]:
-    any_safeguard_class: type[AnySafeguard]
-    any_safeguard_class, *_ = AnySafeguard(
-        safeguards=[LosslessSafeguard()]
-    ).__class__.__bases__
-
-    return isinstance(obj, any_safeguard_class)
-
-
-# TODO: https://github.com/juntyr/compression-safeguards/pull/149
-def _isinstance_all_safeguards(obj: object) -> TypeGuard[AllSafeguards]:
-    all_safeguard_class: type[AllSafeguards]
-    all_safeguard_class, *_ = AllSafeguards(
-        safeguards=[LosslessSafeguard()]
-    ).__class__.__bases__
-
-    return isinstance(obj, all_safeguard_class)
