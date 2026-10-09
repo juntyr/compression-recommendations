@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "compression-recommendations"
-version = "0.1.0a2"
+version = "0.1.0b1"
 dependencies = [
     "semver~=3.0",
     "strictyaml~=1.7.3",
