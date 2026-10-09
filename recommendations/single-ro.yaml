@@ -24,6 +24,9 @@ requirements:
   #
   # It could be considered to remove this value, as ro=sro+ssro (ECMWF)
   #
+  # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
+  # a mean error bound for a majority-zero field can lose structure
+  #
   # Contact people:
   # - Christoph Ruediger (ECMWF)
   #
@@ -35,6 +38,8 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 1e-05
+    - kind: max-pointwise-absolute-error-bound
+      value: 1e-04
   - kind: all
     # relative error (0.01 = 1%)
     requirements:

@@ -22,6 +22,12 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
+  # @juntyr: Reduce error bounds by a factor of 10 since they were close to
+  # the data range
+  #
+  # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
+  # a mean error bound for a majority-zero field can lose structure
+  #
   # Contact people:
   # - Josh Kousal (ECMWF)
   #
@@ -32,6 +38,8 @@ requirements:
     # absolute error
     requirements:
     - kind: mean-absolute-error-bound
+      value: 0.001
+    - kind: max-pointwise-absolute-error-bound
       value: 0.01
   - kind: all
     # relative error (0.01 = 1%)

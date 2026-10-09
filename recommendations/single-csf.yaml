@@ -22,6 +22,9 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
+  # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
+  # a mean error bound for a majority-zero field can lose structure
+  #
   # Contact people:
   # - Peter Bechtold (ECMWF)
   #
@@ -33,6 +36,8 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 1e-05
+    - kind: max-pointwise-absolute-error-bound
+      value: 1e-04
 - kind: all
   requirements:
   # valid value range: 0 m <= csf
