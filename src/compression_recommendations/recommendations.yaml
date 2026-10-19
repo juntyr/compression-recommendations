@@ -1511,8 +1511,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0
+      - kind: mean-range-relative-error-bound
+        value: 0.01
     - kind: all
       requirements:
       - kind: mean-relative-error-bound
@@ -2856,8 +2856,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0
+      - kind: mean-range-relative-error-bound
+        value: 0.01
     - kind: all
       requirements:
       - kind: mean-relative-error-bound
@@ -3200,8 +3200,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0
+      - kind: mean-range-relative-error-bound
+        value: 0.01
     - kind: all
       requirements:
       - kind: mean-relative-error-bound
@@ -4013,8 +4013,8 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0
+      - kind: mean-range-relative-error-bound
+        value: 0.01
     - kind: all
       requirements:
       - kind: mean-relative-error-bound
@@ -4732,4 +4732,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: ddeb4b6da542ed137a36c1edb7ce4971b1368d8d
+  commit: 314258d717312e605c40fa72bfd402bb9ceac3d7
