@@ -1,4 +1,4 @@
-# Requirements for Eastward gravity wave surface stress
+# Requirements for Eastward/Northward gravity wave surface stress
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -16,6 +16,13 @@ filters:
       value: lgws
     - kind: grib-short-name
       value: lgws
+  - kind: any
+    # Northward gravity wave surface stress [N m**-2 s]
+    filters:
+    - kind: cf-short-name
+      value: mgws
+    - kind: grib-short-name
+      value: mgws
 - kind: level-kind
   value: single
 requirements:
@@ -24,17 +31,26 @@ requirements:
   #
   # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
   # a mean error bound for a majority-zero field can lose structure
+  # 
+  # Annelize Van Niekerk (ECMWF): Tightened mean absolute bound, and combined
+  # tighter max absolute and 1% max relative bound
   #
   # Contact people:
   # - Nils Wedi (ECMWF)
+  # - Annelize Van Niekerk (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
   requirements:
   - kind: all
-    # absolute error
+    # mean absolute AND (max absolute OR max relative) error
     requirements:
     - kind: mean-absolute-error-bound
-      value: 100.0
-    - kind: max-pointwise-absolute-error-bound
-      value: 1000.0
+      value: 1.0
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 10.0
+        # relative error (0.01 = 1%)
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01

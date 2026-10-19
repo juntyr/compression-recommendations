@@ -338,6 +338,70 @@ recommendations:
     filters:
     - kind: any
       filters:
+      - kind: cf-standard-name
+        value: surface_downward_eastward_stress
+      - kind: cf-short-name
+        value: ewss
+      - kind: grib-short-name
+        value: ewss
+    - kind: any
+      filters:
+      - kind: cf-standard-name
+        value: surface_downward_northward_stress
+      - kind: cf-short-name
+        value: nsss
+      - kind: grib-short-name
+        value: nsss
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 10.0
+      - kind: any
+        requirements:
+        - kind: max-pointwise-absolute-error-bound
+          value: 25.0
+        - kind: max-pointwise-relative-error-bound
+          value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lgws
+      - kind: grib-short-name
+        value: lgws
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mgws
+      - kind: grib-short-name
+        value: mgws
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 1.0
+      - kind: any
+        requirements:
+        - kind: max-pointwise-absolute-error-bound
+          value: 10.0
+        - kind: max-pointwise-relative-error-bound
+          value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
       - kind: cf-short-name
         value: lcc
       - kind: grib-short-name
@@ -1924,26 +1988,6 @@ recommendations:
     filters:
     - kind: any
       filters:
-      - kind: cf-standard-name
-        value: surface_downward_eastward_stress
-      - kind: cf-short-name
-        value: ewss
-      - kind: grib-short-name
-        value: ewss
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 100.0
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
       - kind: cf-short-name
         value: fal
       - kind: grib-short-name
@@ -2050,9 +2094,13 @@ recommendations:
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
-        value: 1000.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 10000.0
+        value: 10.0
+      - kind: any
+        requirements:
+        - kind: max-pointwise-absolute-error-bound
+          value: 100.0
+        - kind: max-pointwise-relative-error-bound
+          value: 0.01
 - filters:
   - kind: any
     filters:
@@ -2324,26 +2372,6 @@ recommendations:
       requirements:
       - kind: mean-range-relative-error-bound
         value: 0.01
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: lgws
-      - kind: grib-short-name
-        value: lgws
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 100.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 1000.0
 - filters:
   - kind: any
     filters:
@@ -2694,26 +2722,6 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
-        value: mgws
-      - kind: grib-short-name
-        value: mgws
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 100.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 1000.0
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
         value: mn2t
       - kind: grib-short-name
         value: mn2t
@@ -3010,26 +3018,6 @@ recommendations:
     requirements:
     - kind: data-limits
       minimum: 0.0
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-standard-name
-        value: surface_downward_northward_stress
-      - kind: cf-short-name
-        value: nsss
-      - kind: grib-short-name
-        value: nsss
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 100.0
 - filters:
   - kind: any
     filters:
@@ -4732,4 +4720,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: 314258d717312e605c40fa72bfd402bb9ceac3d7
+  commit: 5e6c3d6b7ddc36ff8d5b11bf8bfdce4a4c816dfc
