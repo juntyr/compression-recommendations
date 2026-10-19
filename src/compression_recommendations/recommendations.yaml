@@ -2485,7 +2485,7 @@ recommendations:
       - kind: mean-absolute-error-bound
         value: 1e-05
       - kind: max-pointwise-absolute-error-bound
-        value: 0.0001
+        value: 3e-05
   - kind: all
     requirements:
     - kind: data-limits
@@ -3355,7 +3355,7 @@ recommendations:
       - kind: mean-absolute-error-bound
         value: 1e-05
       - kind: max-pointwise-absolute-error-bound
-        value: 0.0001
+        value: 3e-05
   - kind: all
     requirements:
     - kind: data-limits
