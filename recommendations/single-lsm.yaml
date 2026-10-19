@@ -28,7 +28,7 @@ requirements:
   # - Kristian Mogensen (ECMWF)
   #
   # In ERA5, GRIB linear packing with 24 bits adds a maximum pointwise
-  # range-relative error of 2^(-24) = 5.960464477539063e-08 (0.01 = 1%)
+  # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
   requirements:
     # conservative, provided by @juntyr
   - kind: lossless

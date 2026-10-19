@@ -26,7 +26,7 @@ requirements:
   # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
-  # range-relative error of 2^(-16) = 1.52587890625e-05 (0.01 = 1%)
+  # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
   requirements:
   - kind: all
     # absolute error
