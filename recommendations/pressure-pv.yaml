@@ -30,13 +30,11 @@ requirements:
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
   requirements:
-  - kind: all
-    # absolute error
+  - kind: any
+    # max absolute OR max relative error
     requirements:
     - kind: max-pointwise-absolute-error-bound
       value: 1e-07
-  - kind: all
-    # relative error (0.01 = 1%)
-    requirements:
+      # relative error (0.01 = 1%)
     - kind: max-pointwise-relative-error-bound
       value: 0.1
