@@ -1493,8 +1493,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 10.0
       - kind: max-pointwise-absolute-error-bound
         value: 10.0
 - filters:
@@ -3288,8 +3286,6 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-      - kind: mean-relative-error-bound
-        value: 0.05
       - kind: max-pointwise-relative-error-bound
         value: 0.05
   - kind: all
@@ -4720,4 +4716,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: 22d800322614b8b5ed88630c9335e8822a14a04b
+  commit: a623ff85f3c5eebc0c8afbe202fddb5e342ad17f
