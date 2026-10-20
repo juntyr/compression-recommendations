@@ -22,7 +22,8 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
-  # @juntyr: Is the zero mean absolute error bound necessary?
+  # Josh Kousal (ECMWF): Increased mean absolute bound to 0.01 to permit lossy
+  # compression.
   #
   # Contact people:
   # - Josh Kousal (ECMWF)
@@ -34,7 +35,7 @@ requirements:
     # absolute error
     requirements:
     - kind: mean-absolute-error-bound
-      value: 0.0
+      value: 0.01
   - kind: all
     # relative error (0.01 = 1%)
     requirements:

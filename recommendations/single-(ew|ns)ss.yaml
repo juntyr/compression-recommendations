@@ -1,4 +1,4 @@
-# Requirements for Time-integrated northward turbulent surface stress
+# Requirements for Time-integrated eastward/northward turbulent surface stress
 #
 # Initialised by @juntyr and @SF-N.
 #
@@ -9,6 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
+  - kind: any
+    # Time-integrated eastward turbulent surface stress [N m**-2 s]
+    filters:
+    - kind: cf-standard-name
+      value: surface_downward_eastward_stress
+    - kind: cf-short-name
+      value: ewss
+    - kind: grib-short-name
+      value: ewss
   - kind: any
     # Time-integrated northward turbulent surface stress [N m**-2 s]
     filters:
@@ -24,14 +33,25 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
+  # Annelize Van Niekerk (ECMWF): Tightened mean absolute bound, and added a
+  # combined max absolute and 1% max relative bound
+  #
   # Contact people:
   # - Nils Wedi (ECMWF)
+  # - Annelize Van Niekerk (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
   requirements:
   - kind: all
-    # absolute error
+    # mean absolute AND (max absolute OR max relative) error
     requirements:
     - kind: mean-absolute-error-bound
-      value: 100.0
+      value: 10.0
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 25.0
+        # relative error (0.01 = 1%)
+      - kind: max-pointwise-relative-error-bound
+        value: 0.01
