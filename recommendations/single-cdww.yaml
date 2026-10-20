@@ -22,8 +22,8 @@ requirements:
 - kind: all
   # pointwise error bounds
   #
-  # Josh Kousal (ECMWF): Increased mean bound to 1% range-relative to permit
-  # lossy compression.
+  # Josh Kousal (ECMWF): Increased mean absolute bound to 1e-05 to permit lossy
+  # compression.
   #
   # Contact people:
   # - Josh Kousal (ECMWF)
@@ -32,10 +32,10 @@ requirements:
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
   requirements:
   - kind: all
-    # range-relative error (0.01 = 1%)
+    # absolute error
     requirements:
-    - kind: mean-range-relative-error-bound
-      value: 0.01
+    - kind: mean-absolute-error-bound
+      value: 1e-05
   - kind: all
     # relative error (0.01 = 1%)
     requirements:
