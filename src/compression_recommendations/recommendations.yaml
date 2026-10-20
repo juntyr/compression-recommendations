@@ -195,12 +195,10 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 1e-07
-    - kind: all
-      requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.1
 - filters:
@@ -303,12 +301,10 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.05
 - filters:
@@ -4716,4 +4712,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: a623ff85f3c5eebc0c8afbe202fddb5e342ad17f
+  commit: 5d913c2e462a4cc7daee46f7354ff1bbca0d696f
