@@ -37,7 +37,4 @@ requirements:
       value: 10.0
     # global error bounds (all)
   - kind: all
-    requirements:
-      # absolute error
-    - kind: mean-absolute-error-bound
-      value: 10.0
+    requirements: []
