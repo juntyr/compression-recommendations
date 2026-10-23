@@ -5,6 +5,8 @@ Enumeration over all filter kinds.
 from enum import StrEnum
 from typing import TYPE_CHECKING, Self, assert_never
 
+import strictyaml
+
 if TYPE_CHECKING:
     from .abc import Filter
 
@@ -123,3 +125,7 @@ class FilterKind(StrEnum):
         """
 
         return self.value
+
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Enum(list(cls.__members__.values()))

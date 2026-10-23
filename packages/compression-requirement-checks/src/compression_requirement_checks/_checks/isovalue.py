@@ -30,8 +30,8 @@ def _check_isovalue(
     reconstructed_float = _to_float(reconstructed, ftype)
 
     isovalue_exact_float: None | _F_co
-    isovalue_ties_up_float: None | _F_co
-    isovalue_ties_down_float: None | _F_co
+    isovalue_ties_up_float: _F_co
+    isovalue_ties_down_float: _F_co
 
     if math.isfinite(isovalue):
         isovalue_fraction = Fraction(isovalue)
@@ -45,7 +45,7 @@ def _check_isovalue(
             isovalue_fraction, ftype
         )
     elif math.isnan(isovalue):
-        isovalue_exact_float = isovalue_ties_up_float = isovalue_ties_down_float = None
+        raise ValueError("value must not be NaN")
     else:
         # exact conversion
         isovalue_exact_float = isovalue_ties_up_float = isovalue_ties_down_float = (
@@ -54,13 +54,12 @@ def _check_isovalue(
 
     ok: np.ndarray[S_co, np.dtype[np.bool]] = _true(original.shape)
 
-    if isovalue_ties_up_float is not None:
-        _less(
-            reconstructed_float,
-            isovalue_ties_up_float,
-            out=ok,
-            where=_less(original_float, isovalue_ties_up_float),
-        )
+    _less(
+        reconstructed_float,
+        isovalue_ties_up_float,
+        out=ok,
+        where=_less(original_float, isovalue_ties_up_float),
+    )
 
     if isovalue_exact_float is not None:
         _equal(
@@ -70,12 +69,11 @@ def _check_isovalue(
             where=_equal(original_float, isovalue_exact_float),
         )
 
-    if isovalue_ties_down_float is not None:
-        _greater(
-            reconstructed_float,
-            isovalue_ties_down_float,
-            out=ok,
-            where=_greater(original_float, isovalue_ties_down_float),
-        )
+    _greater(
+        reconstructed_float,
+        isovalue_ties_down_float,
+        out=ok,
+        where=_greater(original_float, isovalue_ties_down_float),
+    )
 
     return ok

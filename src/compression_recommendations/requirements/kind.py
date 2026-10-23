@@ -5,6 +5,8 @@ Enumeration over all requirement kinds.
 from enum import StrEnum
 from typing import TYPE_CHECKING, Self, assert_never
 
+import strictyaml
+
 if TYPE_CHECKING:
     from .abc import Requirement
 
@@ -136,7 +138,7 @@ class RequirementKind(StrEnum):
                 assert_never(self)
 
     @classmethod
-    def from_config(cls, kind: str) -> Self:
+    def from_config(cls, *, kind: str) -> Self:
         """
         Construct the requirement kind from its configuration.
 
@@ -164,3 +166,7 @@ class RequirementKind(StrEnum):
         """
 
         return self.value
+
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Enum(list(cls.__members__.values()))

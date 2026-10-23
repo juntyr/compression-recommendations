@@ -108,6 +108,7 @@ def check_one_input(data) -> None:
         requirement = generate_requirement(data, 0)
     except ValueError as err:
         if str(err) in [
+            "value must not be NaN",
             "minimum must not be NaN",
             "maximum must not be NaN",
             "minimum must be finite",
@@ -115,6 +116,7 @@ def check_one_input(data) -> None:
             "maximum must be greater than or equal to minimum",
             "error bound most be finite",
             "error bound must be non-negative",
+            "AnyRequirement must contain at least one sub-requirement",
         ]:
             return
         raise
@@ -159,8 +161,11 @@ def check_one_input(data) -> None:
 
     try:
         safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
-    except ValueError:
-        return
+    except Exception:
+        print(  # noqa: T201
+            f"\n===\n\nrequirement = {requirement!r}\n\n===\n"
+        )
+        raise
 
     late_bound_reqs = safeguards.late_bound
     late_bound = Bindings()

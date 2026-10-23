@@ -5,6 +5,8 @@ Abstract base class for requirements.
 from abc import ABC
 from typing import ClassVar, Self
 
+import strictyaml
+import strictyaml.compound
 from typing_extensions import override  # MSPV 3.12
 
 from ..config import Config
@@ -42,6 +44,43 @@ class Requirement(Config, ABC):
             The instantiated requirement.
         """
 
-        return RequirementKind.from_config(kind).cls.from_config(
+        return RequirementKind.from_config(kind=kind).cls.from_config(
             **kwargs  # type: ignore
         )
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return _RequirementValidator()
+
+
+class _RequirementValidator(strictyaml.compound.MapValidator):
+    def validate(self, chunk):
+        items = chunk.expect_mapping()
+
+        for key, value in items:
+            yaml_key = self.key_validator(key)
+            if yaml_key == "kind":
+                break
+        else:
+            chunk.while_parsing_found("a requirement", "required key 'kind' not found")
+
+        yaml_value = RequirementKind._schema().validate(value)
+
+        cls = RequirementKind.from_config(kind=yaml_value.value).cls
+
+        return cls._schema().validate(chunk)
+
+    def to_yaml(self, data):
+        self._should_be_mapping(data)
+
+        if "kind" not in data:
+            raise ValueError("required key 'kind' not found for requirement")
+
+        cls = RequirementKind.from_config(kind=data["kind"]).cls
+
+        return cls._schema().to_yaml(data)
+
+    @property
+    def key_validator(self):
+        return strictyaml.Str()

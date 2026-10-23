@@ -6,6 +6,7 @@ from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import Self, assert_never
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
 from .config import Config, Format, LiteralFormat
@@ -170,3 +171,14 @@ class Recommendation(Config):
 ///"""
             case _:
                 assert_never(format)
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "filters": strictyaml.EmptyList() | strictyaml.Seq(Filter._schema()),
+                "requirements": strictyaml.EmptyList()
+                | strictyaml.Seq(Requirement._schema()),
+            }
+        )

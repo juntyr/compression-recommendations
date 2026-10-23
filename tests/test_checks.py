@@ -1098,7 +1098,7 @@ def test_fuzzer_found_range_relative_rounding_error_1():
 
     decompressed = np.array([[-0.12006]], dtype=np.float16)
 
-    requirement = requirement = AnyRequirement(
+    requirement = AnyRequirement(
         requirements=[
             MaxPointwiseRangeRelativeErrorBoundRequirement(value=10),
             MaxPointwiseRangeRelativeErrorBoundRequirement(value=18),
@@ -1115,6 +1115,32 @@ def test_fuzzer_found_range_relative_rounding_error_1():
             "$x_finite_min": np.float16(-0.1175),
             "$x_finite_max": np.float16(-0.1175),
         },
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+def test_fuzzer_found_data_limits_cast_overflow():
+    original = np.array([], dtype=np.float16)
+
+    decompressed = np.array([], dtype=np.float16)
+
+    requirement = AllRequirements(
+        requirements=[
+            LosslessRequirement(),
+            DataLimitsRequirement(minimum=8.868235750373998e290, maximum=None),
+        ]
+    )
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
     )
     corrected = safeguards.apply_correction(
         approximation=decompressed, correction=correction

@@ -37,6 +37,7 @@ from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import Self, assert_never
 
+import strictyaml
 from semver.version import Version
 from typed_classproperties import classproperty
 from typing_extensions import override  # MSPV 3.12
@@ -244,3 +245,16 @@ class Recommendations(Config):
                 return f"{joiner.join(recommendation.humanise(format=format) for recommendation in self.recommendations)}"
             case _:
                 assert_never(format)
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "recommendations": strictyaml.EmptyList()
+                | strictyaml.Seq(Recommendation._schema()),
+                "version": strictyaml.Str(),
+                "metadata": strictyaml.EmptyDict()
+                | strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
+            }
+        )

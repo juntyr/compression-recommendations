@@ -6,6 +6,7 @@ from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
 from ..config import Format, LiteralFormat, _humanise_labelled_type
@@ -47,6 +48,11 @@ class AnyRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.any
     requirements: Collection[Requirement]
+
+    def __init__(self, *, requirements: Collection[Requirement]) -> None:
+        if len(requirements) == 0:
+            raise ValueError("AnyRequirement must contain at least one sub-requirement")
+        self.requirements = requirements
 
     @override
     @classmethod
@@ -121,6 +127,16 @@ class AnyRequirement(Requirement):
             case requirements:
                 or_ = _humanise_labelled_type(self, label="or", format=format)
                 return f"({f' {or_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "requirements": strictyaml.Seq(Requirement._schema()),
+            }
+        )
 
 
 @dataclass(kw_only=True, slots=True)
@@ -219,3 +235,14 @@ class AllRequirements(Requirement):
             case requirements:
                 and_ = _humanise_labelled_type(self, label="and", format=format)
                 return f"({f' {and_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "requirements": strictyaml.EmptyList()
+                | strictyaml.Seq(Requirement._schema()),
+            }
+        )
