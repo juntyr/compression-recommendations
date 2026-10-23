@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Precipitation type [Code table 4.201]
   - kind: any

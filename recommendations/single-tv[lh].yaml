@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Type of low vegetation [Code table 4.234]
   - kind: any

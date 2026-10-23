@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Model bathymetry [m]
   - kind: any

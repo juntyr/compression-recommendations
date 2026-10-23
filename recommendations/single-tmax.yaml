@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Period corresponding to maximum individual wave height [s]
   - kind: any

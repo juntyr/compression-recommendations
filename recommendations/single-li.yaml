@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Instantaneous total lightning flash density [km**-2 day**-1]
   - kind: any

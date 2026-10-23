@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Time-mean northward turbulent surface stress [N m**-2]
   - kind: any

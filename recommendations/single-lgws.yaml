@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Eastward gravity wave surface stress [N m**-2 s]
   - kind: any

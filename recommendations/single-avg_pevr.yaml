@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Time-mean potential evaporation rate [kg m**-2 s**-1]
   - kind: any

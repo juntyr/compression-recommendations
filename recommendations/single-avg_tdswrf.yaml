@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Time mean top downward short-wave radiation flux [W m**-2]
   - kind: any

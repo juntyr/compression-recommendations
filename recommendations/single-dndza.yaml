@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Mean vertical gradient of refractivity inside trapping layer [m**-1]
   - kind: any

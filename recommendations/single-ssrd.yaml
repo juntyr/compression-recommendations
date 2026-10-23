@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Surface short-wave (solar) radiation downwards [J m**-2]
   - kind: any

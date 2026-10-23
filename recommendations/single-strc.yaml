@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Surface net long-wave (thermal) radiation, clear sky [J m**-2]
   - kind: any

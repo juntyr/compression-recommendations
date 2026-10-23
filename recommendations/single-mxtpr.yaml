@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Maximum total precipitation rate since previous post-processing [kg m**-2 s**-1]
   - kind: any

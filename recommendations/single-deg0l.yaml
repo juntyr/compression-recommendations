@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Geometric height of 0 degrees C atmospheric isothermal level above ground [m]
   - kind: any

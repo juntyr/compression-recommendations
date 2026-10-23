@@ -6,8 +6,8 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
     # Time-integrated surface sensible heat net flux [J m**-2]
   - kind: any
