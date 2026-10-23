@@ -160,8 +160,11 @@ def check_one_input(data) -> None:
 
     try:
         safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
-    except ValueError:
-        return
+    except Exception:
+        print(  # noqa: T201
+            f"\n===\n\nrequirement = {requirement!r}\n\n===\n"
+        )
+        raise
 
     late_bound_reqs = safeguards.late_bound
     late_bound = Bindings()

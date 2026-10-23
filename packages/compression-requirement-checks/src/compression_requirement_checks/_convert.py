@@ -58,7 +58,21 @@ def _fraction_to_float_exact(x: Fraction, ftype: np.dtype[_F_co]) -> None | _F_c
     except OverflowError:
         return None
 
-    x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+    # cast to ftype might be lossy and over-/underflow can occur
+    with np.errstate(over="ignore", under="ignore"):
+        x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+
+    # x is finite but casts to +Inf,
+    #  so likely there is no exact cast,
+    # but double check if x_f = max(ftype) would also work
+    if np.isposinf(x_f):
+        x_f = np.finfo(ftype).max
+
+    # x is finite but casts to -Inf,
+    #  so likely there is no exact cast,
+    # but double check if x_f = min(ftype) would also work
+    if np.isneginf(x_f):
+        x_f = np.finfo(ftype).min
 
     # this is lossless since ftype <= float
     x_f_fraction = Fraction(float(x_f))
@@ -77,13 +91,31 @@ def _fraction_to_float_round_ties_down(x: Fraction, ftype: np.dtype[_F_co]) -> _
     except OverflowError:
         return ftype.type(-np.inf) if x < 0 else np.finfo(ftype).max
 
-    x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+    # cast to ftype might be lossy and over-/underflow can occur
+    with np.errstate(over="ignore", under="ignore"):
+        x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+
+    # x is finite but casts to +Inf,
+    #  so x_f = max(dtype) will likely be the result,
+    # but double check that we don't need to nudge down
+    if np.isposinf(x_f):
+        x_f = np.finfo(ftype).max
+
+    # x is finite but casts to -Inf,
+    #  so x_f = -Inf will likely be the result,
+    # but double check if x_f = min(ftype) would also work
+    if np.isneginf(x_f):
+        x_f = np.finfo(ftype).min
 
     # this is lossless since ftype <= float
     x_f_fraction = Fraction(float(x_f))
 
     if x_f_fraction > x:
-        x_f = np.nextafter(x_f, ftype.type(-np.inf))
+        with np.errstate(over="ignore", under="ignore"):
+            x_f = np.nextafter(x_f, ftype.type(-np.inf))
+        # x is finite but x_f is -Inf, so x_f < x
+        if np.isneginf(x_f):
+            return x_f
         x_f_fraction = Fraction(float(x_f))
 
     assert x_f_fraction <= x
@@ -99,13 +131,31 @@ def _fraction_to_float_round_ties_up(x: Fraction, ftype: np.dtype[_F_co]) -> _F_
     except OverflowError:
         return np.finfo(ftype).min if x < 0 else ftype.type(np.inf)
 
-    x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+    # cast to ftype might be lossy and over-/underflow can occur
+    with np.errstate(over="ignore", under="ignore"):
+        x_f: _F_co = _extract_scalar(np.array(x_float).astype(ftype))
+
+    # x is finite but casts to +Inf,
+    #  so x_f = +Inf will likely be the result,
+    # but double check if x_f = max(ftype) would also work
+    if np.isposinf(x_f):
+        x_f = np.finfo(ftype).max
+
+    # x is finite but casts to -Inf,
+    #  so x_f = min(dtype) will likely be the result,
+    # but double check that we don't need to nudge up
+    if np.isneginf(x_f):
+        x_f = np.finfo(ftype).min
 
     # this is lossless since ftype <= float
     x_f_fraction = Fraction(float(x_f))
 
     if x_f_fraction < x:
-        x_f = np.nextafter(x_f, ftype.type(np.inf))
+        with np.errstate(over="ignore", under="ignore"):
+            x_f = np.nextafter(x_f, ftype.type(np.inf))
+        # x is finite but x_f is +Inf, so x_f > x
+        if np.isposinf(x_f):
+            return x_f
         x_f_fraction = Fraction(float(x_f))
 
     assert x_f_fraction >= x
