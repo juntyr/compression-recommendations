@@ -24,7 +24,6 @@ filters:
 
 requirements:
 
-- kind: all
   # pointwise error bounds
   #
   # Contact people:
@@ -32,6 +31,7 @@ requirements:
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
   - kind: all
     # absolute error
@@ -43,10 +43,10 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
-- kind: all
   # valid value range: 0 % <= tcc <= 100 %
   #
   # provided by @juntyr
+- kind: all
   requirements:
   - kind: data-limits
     minimum: 0.0

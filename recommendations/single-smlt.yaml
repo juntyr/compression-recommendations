@@ -22,7 +22,6 @@ filters:
 
 requirements:
 
-- kind: all
   # pointwise error bounds
   #
   # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
@@ -33,6 +32,7 @@ requirements:
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
   - kind: all
     # absolute error

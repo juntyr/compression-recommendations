@@ -55,11 +55,11 @@ filters:
 
 requirements:
 
-- kind: all
   # pointwise error bounds
   # 
   # Contact people:
   # - Philippe Lopez (ECMWF)
+- kind: all
   requirements:
   - kind: all
     # relative error (0.01 = 1%)
