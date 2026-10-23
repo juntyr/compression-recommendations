@@ -1,9 +1,10 @@
 # Requirements for Surface direct short-wave radiation, clear sky
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Robin Hogan (ECMWF)
 
 filters:
   # variables (any)
@@ -25,9 +26,6 @@ requirements:
   # error bounds (all)
   # 
   # Robin Hogan (ECMWF): See uvb for reasoning on 3600 J/m2
-  #
-  # Contact people:
-  # - Robin Hogan (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

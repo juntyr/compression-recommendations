@@ -1,9 +1,11 @@
 # Requirements for Lake cover
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Margarita Choulga (ECMWF)
+# - Christoph Ruediger (ECMWF)
 
 filters:
   # variables (any)
@@ -23,10 +25,6 @@ filters:
 requirements:
 
   # error bounds (all)
-  #
-  # Contact people:
-  # - Margarita Choulga (ECMWF)
-  # - Christoph Ruediger (ECMWF)
   #
   # In ERA5, GRIB linear packing with 24 bits adds a maximum pointwise
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)

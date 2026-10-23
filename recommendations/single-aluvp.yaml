@@ -1,9 +1,10 @@
 # Requirements for UV visible albedo for direct radiation (climatological)
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Robin Hogan (ECMWF)
 
 filters:
   # variables (any)
@@ -27,9 +28,6 @@ requirements:
   # There is no point in archiving these four components because they are
   # straight from a climatology and are likely to be misinterpreted by users
   # (ECMWF)
-  #
-  # Contact people:
-  # - Robin Hogan (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

@@ -1,9 +1,10 @@
 # Requirements for Volumetric soil water layers 1-4
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Christoph Ruediger (ECMWF)
 
 filters:
   # variables (any)
@@ -47,9 +48,6 @@ requirements:
   #
   # Christoph Ruediger (ECMWF) is a bit concerned that these bounded variables
   # can have negative values in ERA5
-  #
-  # Contact people:
-  # - Christoph Ruediger (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

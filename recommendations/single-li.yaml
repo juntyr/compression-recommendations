@@ -1,9 +1,10 @@
 # Requirements for Lightning flash density
 #
-# Initialised by @juntyr.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Philippe Lopez (ECMWF)
 
 filters:
   # variables (any)
@@ -56,9 +57,6 @@ filters:
 requirements:
 
   # error bounds (all)
-  # 
-  # Contact people:
-  # - Philippe Lopez (ECMWF)
 - kind: all
   requirements:
     # pointwise error bounds (any)
