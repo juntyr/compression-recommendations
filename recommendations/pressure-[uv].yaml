@@ -6,11 +6,11 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # U component of wind [m s**-1]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: eastward_wind
@@ -18,8 +18,8 @@ filters:
       value: u
     - kind: grib-short-name
       value: u
-  - kind: any
     # V component of wind [m s**-1]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: northward_wind
@@ -27,11 +27,13 @@ filters:
       value: v
     - kind: grib-short-name
       value: v
+  # pressure-level variable
 - kind: level-kind
   value: pressure
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   #
   # Peter B. (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
   # e.g. 0.01m/s or even 0.001m/s for wind fields
@@ -41,9 +43,14 @@ requirements:
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
-  - kind: all
-    # absolute error
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
+      # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 0.001
+    # global error bounds (all)
+  - kind: all
+    requirements: []

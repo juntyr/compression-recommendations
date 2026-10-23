@@ -6,37 +6,40 @@
 # and make well-justified changes!
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Potential vorticity [K m**2 kg**-1 s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: pv
     - kind: grib-short-name
       value: pv
+  # pressure-level variable
 - kind: level-kind
   value: pressure
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # 0.1 PVU = 1e-7
+
+  # error bounds (all)
   #
   # Contact people:
   # - Nils Wedi (ECMWF)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (all - FIXME)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error (0.1 PVU = 1e-7)
     - kind: max-pointwise-absolute-error-bound
       value: 1e-07
-  - kind: all
-    # relative error (0.01 = 1%)
-    requirements:
+      # relative error (0.01 = 1%)
     - kind: max-pointwise-relative-error-bound
       value: 0.1
+    # global error bounds (all)
+  - kind: all
+    requirements: []
