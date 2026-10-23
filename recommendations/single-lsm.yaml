@@ -33,12 +33,26 @@ requirements:
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
 - kind: all
   requirements:
-    # conservative, provided by @juntyr
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
+  - kind: all
+    requirements: []
+
+  # lossless
+  #
+  # conservative, provided by @juntyr
   - kind: lossless
-  # It is important that threshold of 0.5 can still be used to decide whether
-  # land or ocean (ECMWF)
+
+  # isovalues (all)
+  #
+  # It is important that threshold of 0.5 can still be used to distinguish
+  # between land (> 0.5, land or inland water) and ocean (<= 0.5, ocean or
+  # inland water) (ECMWF)
 - kind: all
   requirements:
+    # ocean < 0.5 <= land
   - kind: isovalue
     value: 0.5
 

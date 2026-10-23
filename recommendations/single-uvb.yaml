@@ -39,8 +39,8 @@ requirements:
 - kind: all
   requirements:
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 3600.0
 

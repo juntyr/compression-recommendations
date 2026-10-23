@@ -34,7 +34,7 @@ requirements:
 - kind: all
   requirements:
   - kind: all
-    # relative error (0.01 = 1%)
     requirements:
+      # relative error (0.01 = 1%)
     - kind: mean-relative-error-bound
       value: 0.01

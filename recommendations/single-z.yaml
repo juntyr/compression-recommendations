@@ -34,7 +34,7 @@ requirements:
 - kind: all
   requirements:
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 10.0

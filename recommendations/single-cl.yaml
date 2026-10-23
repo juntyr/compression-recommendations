@@ -33,13 +33,13 @@ requirements:
 - kind: all
   requirements:
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 1e-05
   - kind: all
-    # relative error (0.01 = 1%)
     requirements:
+      # relative error (0.01 = 1%)
     - kind: mean-relative-error-bound
       value: 0.01
 
