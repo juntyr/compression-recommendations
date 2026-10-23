@@ -108,6 +108,7 @@ def check_one_input(data) -> None:
         requirement = generate_requirement(data, 0)
     except ValueError as err:
         if str(err) in [
+            "value must not be NaN",
             "minimum must not be NaN",
             "maximum must not be NaN",
             "minimum must be finite",

@@ -2,6 +2,7 @@
 Isovalue-preserving requirements.
 """
 
+import math
 from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
@@ -30,6 +31,8 @@ class IsovalueRequirement(Requirement):
     \end{align*}
     \]
 
+    The isovalue must not be NaN.
+
     Requirements $R$ are defined for each data point $x_i$ and its decompressed
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
     See the [`AnyRequirement`][...combinators.AnyRequirement] for more
@@ -43,6 +46,12 @@ class IsovalueRequirement(Requirement):
 
     kind: ClassVar[RequirementKind] = RequirementKind.isovalue
     value: int | float
+
+    def __init__(self, *, value: int | float) -> None:
+        if math.isnan(value):
+            raise ValueError("value must not be NaN")
+
+        self.value = value
 
     @override
     @classmethod
