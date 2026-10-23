@@ -16,9 +16,12 @@ filters:
       value: src
     - kind: grib-short-name
       value: src
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

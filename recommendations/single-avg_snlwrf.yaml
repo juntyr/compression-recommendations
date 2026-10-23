@@ -16,9 +16,12 @@ filters:
       value: avg_snlwrf
     - kind: grib-short-name
       value: avg_snlwrf
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

@@ -49,9 +49,12 @@ filters:
     filters:
     - kind: grib-short-name
       value: licga6
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   # 

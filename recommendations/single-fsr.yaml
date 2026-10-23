@@ -16,9 +16,12 @@ filters:
       value: fsr
     - kind: grib-short-name
       value: fsr
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

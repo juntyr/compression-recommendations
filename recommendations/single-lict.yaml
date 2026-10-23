@@ -16,9 +16,12 @@ filters:
       value: lict
     - kind: grib-short-name
       value: lict
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   # 

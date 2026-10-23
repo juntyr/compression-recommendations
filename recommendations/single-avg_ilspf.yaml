@@ -16,9 +16,12 @@ filters:
       value: avg_ilspf
     - kind: grib-short-name
       value: avg_ilspf
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

@@ -23,9 +23,12 @@ filters:
       value: v10n
     - kind: grib-short-name
       value: v10n
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   # 

@@ -18,9 +18,12 @@ filters:
       value: ewss
     - kind: grib-short-name
       value: ewss
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

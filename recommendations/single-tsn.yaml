@@ -18,9 +18,12 @@ filters:
       value: tsn
     - kind: grib-short-name
       value: tsn
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   # 

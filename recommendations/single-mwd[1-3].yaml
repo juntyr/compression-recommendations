@@ -30,9 +30,12 @@ filters:
       value: mwd3
     - kind: grib-short-name
       value: mwd3
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

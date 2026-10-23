@@ -16,9 +16,12 @@ filters:
       value: avg_igwd
     - kind: grib-short-name
       value: avg_igwd
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

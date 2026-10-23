@@ -37,9 +37,12 @@ filters:
       value: istl4
     - kind: grib-short-name
       value: istl4
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   # 

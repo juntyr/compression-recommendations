@@ -23,9 +23,12 @@ filters:
       value: lai_hv
     - kind: grib-short-name
       value: lai_hv
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

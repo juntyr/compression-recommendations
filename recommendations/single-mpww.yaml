@@ -16,9 +16,12 @@ filters:
       value: mpww
     - kind: grib-short-name
       value: mpww
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

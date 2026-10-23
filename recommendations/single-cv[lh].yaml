@@ -23,9 +23,12 @@ filters:
       value: cvh
     - kind: grib-short-name
       value: cvh
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

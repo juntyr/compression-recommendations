@@ -23,9 +23,12 @@ filters:
       value: p2ps
     - kind: grib-short-name
       value: p2ps
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

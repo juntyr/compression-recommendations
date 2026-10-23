@@ -16,9 +16,12 @@ filters:
       value: dwps
     - kind: grib-short-name
       value: dwps
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

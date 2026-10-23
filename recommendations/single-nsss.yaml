@@ -18,9 +18,12 @@ filters:
       value: nsss
     - kind: grib-short-name
       value: nsss
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #

@@ -18,9 +18,12 @@ filters:
       value: cp
     - kind: grib-short-name
       value: cp
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
 - kind: all
   # pointwise error bounds
   #
