@@ -177,7 +177,8 @@ class Recommendation(Config):
     def _schema(cls) -> strictyaml.Validator:
         return strictyaml.Map(
             {
-                "filters": strictyaml.Seq(Filter._schema()),
-                "requirements": strictyaml.Seq(Requirement._schema()),
+                "filters": strictyaml.EmptyList() | strictyaml.Seq(Filter._schema()),
+                "requirements": strictyaml.EmptyList()
+                | strictyaml.Seq(Requirement._schema()),
             }
         )

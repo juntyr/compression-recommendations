@@ -251,8 +251,10 @@ class Recommendations(Config):
     def _schema(cls) -> strictyaml.Validator:
         return strictyaml.Map(
             {
-                "recommendations": strictyaml.Seq(Recommendation._schema()),
+                "recommendations": strictyaml.EmptyList()
+                | strictyaml.Seq(Recommendation._schema()),
                 "version": strictyaml.Str(),
-                "metadata": strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
+                "metadata": strictyaml.EmptyDict()
+                | strictyaml.MapPattern(strictyaml.Str(), strictyaml.Any()),
             }
         )

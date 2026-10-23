@@ -97,7 +97,7 @@ class _FilterValidator(strictyaml.compound.MapValidator):
         self._should_be_mapping(data)
 
         if "kind" not in data:
-            raise ValueError("missing required key 'kind' not found")
+            raise ValueError("required key 'kind' not found for filter")
 
         cls = FilterKind.from_config(kind=data["kind"]).cls
 

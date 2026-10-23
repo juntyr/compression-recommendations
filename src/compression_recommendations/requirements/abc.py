@@ -75,7 +75,7 @@ class _RequirementValidator(strictyaml.compound.MapValidator):
         self._should_be_mapping(data)
 
         if "kind" not in data:
-            raise ValueError("missing required key 'kind' not found")
+            raise ValueError("required key 'kind' not found for requirement")
 
         cls = RequirementKind.from_config(kind=data["kind"]).cls
 

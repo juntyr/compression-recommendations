@@ -115,6 +115,7 @@ def check_one_input(data) -> None:
             "maximum must be greater than or equal to minimum",
             "error bound most be finite",
             "error bound must be non-negative",
+            "AnyRequirement must contain at least one sub-requirement",
         ]:
             return
         raise
