@@ -1449,8 +1449,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 10.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 10.0
 - filters:
   - kind: any
     filters:
@@ -2264,8 +2262,6 @@ recommendations:
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.002
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
@@ -2562,7 +2558,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-    - kind: lossless
+  - kind: lossless
   - kind: all
     requirements:
     - kind: isovalue
@@ -3212,7 +3208,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-    - kind: lossless
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -3537,7 +3533,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-    - kind: lossless
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -4490,7 +4486,7 @@ recommendations:
     requirements:
     - kind: all
       requirements:
-    - kind: lossless
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -4758,4 +4754,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: 386588ef70cb88e912fbdfb86123cac7cb54e4db
+  commit: 8a9daecca5ecb48a240c28e5d2a4c5f27d322d90
