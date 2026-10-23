@@ -51,7 +51,7 @@ That is up to *you*, the community, to decide!
 
 Please cite this work as follows:
 
-> Tyree, J., Faghih-Naini, S., Klöwer, M., Dueben, P., and Järvinen, H. (2026). compression-recommendations. *Zenodo*. Available from: [doi:10.5281/zenodo.22761209](https://doi.org/10.5281/zenodo.22761209).
+> Tyree, J., Faghih-Naini, S., Klöwer, M., Dueben, P., and Järvinen, H. (2026). Recommendations for Safe Lossy Compression of weather and climate data. *Zenodo*. Available from: [doi:10.5281/zenodo.22761209](https://doi.org/10.5281/zenodo.22761209).
 
 Please also refer to the [CITATION.cff](CITATION.cff) file and refer to <https://citation-file-format.github.io> to extract the citation in a format of your choice.
 
