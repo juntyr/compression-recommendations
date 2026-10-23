@@ -31,7 +31,8 @@ class IsovalueRequirement(Requirement):
     \end{align*}
     \]
 
-    The isovalue must not be NaN.
+    The isovalue must not be NaN, use a
+    [`MissingValueRequirement`][...missing.MissingValueRequirement] instead.
 
     Requirements $R$ are defined for each data point $x_i$ and its decompressed
     reconstruction $\hat{x}_i$, i.e. $R(x_i, \hat{x}_i)$.
