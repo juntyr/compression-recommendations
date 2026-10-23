@@ -31,11 +31,15 @@ requirements:
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
 - kind: all
   requirements:
-  - kind: all
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
       # relative error (0.01 = 1%)
     - kind: max-pointwise-relative-error-bound
       value: 0.01
+    # global error bounds (all)
+  - kind: all
+    requirements: []
 
   # value validity constraints (all)
   #

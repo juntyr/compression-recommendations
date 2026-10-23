@@ -33,8 +33,12 @@ requirements:
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
 - kind: all
   requirements:
-  - kind: all
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
       # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 10.0
+    # global error bounds (all)
+  - kind: all
+    requirements: []

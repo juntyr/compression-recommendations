@@ -59,15 +59,18 @@ requirements:
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
 - kind: all
   requirements:
-  - kind: all
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
       # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 0.01
-    - kind: mean-absolute-error-bound
-      value: 0.002
+    # global error bounds (all)
   - kind: all
     requirements:
+      # absolute error
+    - kind: mean-absolute-error-bound
+      value: 0.002
       # range-relative error (0.01 = 1%)
     - kind: mean-range-relative-error-bound
       value: 0.01

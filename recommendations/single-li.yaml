@@ -61,6 +61,10 @@ requirements:
   # - Philippe Lopez (ECMWF)
 - kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
     requirements:
       # relative error (0.01 = 1%)
