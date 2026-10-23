@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Time-mean surface net short-wave radiation flux [W m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: avg_snswrf

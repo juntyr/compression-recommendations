@@ -9,30 +9,44 @@ filters:
 - kind: any
   # variables
   filters:
+    # Instantaneous total lightning flash density [km**-2 day**-1]
   - kind: any
     filters:
-    # Instantaneous total lightning flash density [km**-2 day**-1]
     - kind: grib-short-name
       value: litoti
     # Averaged total lightning flash density in the last hour [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota1
     # Instantaneous cloud-to-ground lightning flash density [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licgi
     # Averaged cloud-to-ground lightning flash density in the last hour [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga1
     # Averaged total lightning flash density in the last 3 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota3
     # Averaged total lightning flash density in the last 6 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota6
     # Averaged cloud-to-ground lightning flash density in the last 3 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga3
     # Averaged cloud-to-ground lightning flash density in the last 6 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga6
 - kind: level-kind

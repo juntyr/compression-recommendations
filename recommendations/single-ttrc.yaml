@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Top net long-wave (thermal) radiation, clear sky [J m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: ttrc

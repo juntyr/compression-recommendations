@@ -9,29 +9,29 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Volumetric soil water layer 1 [m**3 m**-3]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swvl1
     - kind: grib-short-name
       value: swvl1
-  - kind: any
     # Volumetric soil water layer 2 [m**3 m**-3]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swvl2
     - kind: grib-short-name
       value: swvl2
-  - kind: any
     # Volumetric soil water layer 3 [m**3 m**-3]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swvl3
     - kind: grib-short-name
       value: swvl3
-  - kind: any
     # Volumetric soil water layer 4 [m**3 m**-3]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swvl4

@@ -9,15 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Low vegetation cover [dimensionless]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: cvl
     - kind: grib-short-name
       value: cvl
-  - kind: any
     # High vegetation cover [dimensionless]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: cvh

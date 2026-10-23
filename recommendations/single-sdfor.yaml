@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Standard deviation of filtered subgrid orography (climatological) [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: sdfor

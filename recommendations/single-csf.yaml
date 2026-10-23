@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Convective snowfall [m of water equivalent]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: csf

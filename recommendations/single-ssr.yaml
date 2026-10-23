@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Surface net short-wave (solar) radiation [J m**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_net_downward_shortwave_flux

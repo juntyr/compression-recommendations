@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Time-mean surface latent heat flux [W m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: avg_slhtf

@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Time-integrated surface latent heat net flux [J m**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_upward_latent_heat_flux

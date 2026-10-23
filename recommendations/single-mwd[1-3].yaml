@@ -9,22 +9,22 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean wave direction of first swell partition [degrees]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwd1
     - kind: grib-short-name
       value: mwd1
-  - kind: any
     # Mean wave direction of second swell partition [degrees]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwd2
     - kind: grib-short-name
       value: mwd2
-  - kind: any
     # Mean wave direction of third swell partition [degrees]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwd3

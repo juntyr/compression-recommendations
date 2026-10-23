@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Precipitation type [Code table 4.201]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: ptype

@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Time-mean boundary layer dissipation [W m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: avg_ibld

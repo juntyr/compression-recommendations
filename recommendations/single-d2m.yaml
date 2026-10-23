@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # 2 metre dewpoint temperature [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: d2m

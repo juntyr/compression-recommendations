@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Total column vertically-integrated water vapour [kg m**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: lwe_thickness_of_atmosphere_mass_content_of_water_vapor

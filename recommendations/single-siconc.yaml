@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Sea ice area fraction [dimensionless]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: sea_ice_area_fraction

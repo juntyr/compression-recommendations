@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # UV visible albedo for direct radiation (climatological) [dimensionless]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: aluvp

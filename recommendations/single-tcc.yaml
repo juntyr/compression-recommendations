@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Total cloud cover [dimensionless]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: cloud_area_fraction

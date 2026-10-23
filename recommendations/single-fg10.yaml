@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Maximum 10 metre wind gust since previous post-processing [m s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: fg10

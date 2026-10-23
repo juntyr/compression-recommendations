@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Temperature of snow layer [K]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: temperature_in_surface_snow

@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Gravity wave dissipation [J m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: gwd

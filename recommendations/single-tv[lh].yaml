@@ -9,15 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Type of low vegetation [Code table 4.234]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: tvl
     - kind: grib-short-name
       value: tvl
-  - kind: any
     # Type of high vegetation [Code table 4.234]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: tvh

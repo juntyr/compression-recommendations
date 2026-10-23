@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Air density over the oceans [kg m**-3]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: rhoao

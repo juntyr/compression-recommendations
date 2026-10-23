@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Normalized energy flux into ocean [Numeric]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: phioc

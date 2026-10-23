@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Surface net long-wave (thermal) radiation [J m**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_net_upward_longwave_flux

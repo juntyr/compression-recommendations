@@ -9,22 +9,22 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Significant wave height of first swell partition [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swh1
     - kind: grib-short-name
       value: swh1
-  - kind: any
     # Significant wave height of second swell partition [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swh2
     - kind: grib-short-name
       value: swh2
-  - kind: any
     # Significant wave height of third swell partition [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swh3

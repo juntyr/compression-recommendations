@@ -9,15 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # 100 metre U wind component [m s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: u100
     - kind: grib-short-name
       value: 100u
-  - kind: any
     # 100 metre V wind component [m s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: v100

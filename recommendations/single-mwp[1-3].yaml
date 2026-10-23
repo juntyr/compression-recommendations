@@ -9,22 +9,22 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean wave period of first swell partition [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwp1
     - kind: grib-short-name
       value: mwp1
-  - kind: any
     # Mean wave period of second swell partition [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwp2
     - kind: grib-short-name
       value: mwp2
-  - kind: any
     # Mean wave period of third swell partition [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwp3

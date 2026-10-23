@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Evaporation [m of water equivalent]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: lwe_thickness_of_water_evaporation_amount

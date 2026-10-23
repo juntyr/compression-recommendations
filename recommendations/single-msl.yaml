@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean sea level pressure [Pa]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: air_pressure_at_mean_sea_level

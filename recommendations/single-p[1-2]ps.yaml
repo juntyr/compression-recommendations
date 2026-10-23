@@ -9,15 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean wave period based on first moment for swell [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: p1ps
     - kind: grib-short-name
       value: p1ps
-  - kind: any
     # Mean wave period based on second moment for swell [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: p2ps

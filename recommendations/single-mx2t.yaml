@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Maximum temperature at 2 metres since previous post-processing [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mx2t

@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Geopotential [m**2 s**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: geopotential

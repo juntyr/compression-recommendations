@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Lake total depth [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: dl

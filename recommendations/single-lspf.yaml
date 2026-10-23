@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Large-scale precipitation fraction [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: lspf

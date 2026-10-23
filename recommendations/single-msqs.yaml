@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean square slope of waves [dimensionless]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: msqs

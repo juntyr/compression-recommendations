@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Forecast logarithm of surface roughness for heat [Numeric]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: flsr

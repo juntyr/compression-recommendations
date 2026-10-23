@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Instantaneous northward turbulent surface stress [N m**-2]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: inss

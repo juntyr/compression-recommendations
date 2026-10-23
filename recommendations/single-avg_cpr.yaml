@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Time-mean convective precipitation rate [kg m**-2 s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: avg_cpr

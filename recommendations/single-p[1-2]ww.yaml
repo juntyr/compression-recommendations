@@ -9,15 +9,15 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Mean wave period based on first moment for wind waves [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: p1ww
     - kind: grib-short-name
       value: p1ww
-  - kind: any
     # Mean wave period based on second moment for wind waves [s]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: p2ww

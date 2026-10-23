@@ -9,8 +9,8 @@ filters:
 - kind: any
   # variables
   filters:
-  - kind: any
     # Soil temperature level 1 [K]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_temperature
@@ -18,22 +18,22 @@ filters:
       value: stl1
     - kind: grib-short-name
       value: stl1
-  - kind: any
     # Soil temperature level 2 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: stl2
     - kind: grib-short-name
       value: stl2
-  - kind: any
     # Soil temperature level 3 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: stl3
     - kind: grib-short-name
       value: stl3
-  - kind: any
     # Soil temperature level 4 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: stl4
