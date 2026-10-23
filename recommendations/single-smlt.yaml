@@ -53,4 +53,5 @@ requirements:
 - kind: all
   requirements:
     # 0 m <= smlt
+  - kind: data-limits
     minimum: 0.0

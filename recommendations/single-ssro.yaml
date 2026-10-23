@@ -51,4 +51,5 @@ requirements:
 - kind: all
   requirements:
     # 0 m <= ssro
+  - kind: data-limits
     minimum: 0.0

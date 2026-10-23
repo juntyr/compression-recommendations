@@ -43,4 +43,5 @@ requirements:
 - kind: all
   requirements:
     # 0 m s^-1 <= wstar
+  - kind: data-limits
     minimum: 0.0

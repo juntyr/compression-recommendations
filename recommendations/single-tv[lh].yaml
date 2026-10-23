@@ -47,5 +47,6 @@ requirements:
 - kind: all
   requirements:
     # 1 <= tv[lh] <= 20
+  - kind: data-limits
     minimum: 0
     maximum: 20

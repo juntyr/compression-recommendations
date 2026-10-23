@@ -43,4 +43,5 @@ requirements:
 - kind: all
   requirements:
     # 0 kg m^-2 s^-1 <= lsrr
+  - kind: data-limits
     minimum: 0.0

@@ -62,4 +62,5 @@ requirements:
 - kind: all
   requirements:
     # 0 m <= swh[1-3]
+  - kind: data-limits
     minimum: 0.0

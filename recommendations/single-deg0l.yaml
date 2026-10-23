@@ -43,4 +43,5 @@ requirements:
 - kind: all
   requirements:
     # 0 m <= deg0l
+  - kind: data-limits
     minimum: 0.0

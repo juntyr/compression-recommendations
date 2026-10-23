@@ -50,4 +50,5 @@ requirements:
 - kind: all
   requirements:
     # 0 J m^-2 <= uvb
+  - kind: data-limits
     minimum: 0.0

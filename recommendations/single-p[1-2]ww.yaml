@@ -50,4 +50,5 @@ requirements:
 - kind: all
   requirements:
     # 0 s <= p[1-2]ww
+  - kind: data-limits
     minimum: 0.0

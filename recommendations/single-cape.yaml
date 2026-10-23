@@ -43,4 +43,5 @@ requirements:
 - kind: all
   requirements:
     # 0 J kg^-1 <= cape
+  - kind: data-limits
     minimum: 0.0

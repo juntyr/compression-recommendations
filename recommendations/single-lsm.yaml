@@ -48,5 +48,6 @@ requirements:
 - kind: all
   requirements:
     # 0 % <= lsm <= 100 %
+  - kind: data-limits
     minimum: 0.0
     maximum: 1.0
