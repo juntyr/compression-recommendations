@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Contact people:
   # - Josh Kousal (ECMWF)
@@ -36,10 +36,11 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 0.01
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 m <= shts
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 m <= shts
     minimum: 0.0

@@ -24,7 +24,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Contact people:
   # - Nils Wedi (ECMWF)
@@ -45,11 +45,12 @@ requirements:
       value: 0.01
     - kind: max-pointwise-relative-error-bound
       value: 0.05
-  # valid value range: 0 % <= siconc <= 100 %
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
 - kind: all
   requirements:
-  - kind: data-limits
+    # 0 % <= siconc <= 100 %
     minimum: 0.0
     maximum: 1.0

@@ -24,7 +24,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   # 
   # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
   # integrations to make budgets

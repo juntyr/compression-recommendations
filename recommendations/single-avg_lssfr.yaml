@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Contact people:
   # - Peter Bechtold (ECMWF)
@@ -36,10 +36,11 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 kg m^-2 s^-1 <= avg_lssfr
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 kg m^-2 s^-1 <= avg_lssfr
     minimum: 0.0

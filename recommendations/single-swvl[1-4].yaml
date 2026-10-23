@@ -43,7 +43,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Christoph Ruediger (ECMWF) is a bit concerned that these bounded variables
   # can have negative values in ERA5

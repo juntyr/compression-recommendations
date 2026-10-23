@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # @juntyr: Is the zero mean absolute error bound necessary?
   #

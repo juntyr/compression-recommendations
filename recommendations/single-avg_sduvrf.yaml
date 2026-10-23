@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Contact people:
   # - Robin Hogan (ECMWF)
@@ -41,10 +41,11 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 W m^-2 <= avg_sduvrf
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 W m^-2 <= avg_sduvrf
     minimum: 0.0

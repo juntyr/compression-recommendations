@@ -55,7 +55,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   # 
   # Contact people:
   # - Philippe Lopez (ECMWF)

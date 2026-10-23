@@ -24,7 +24,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #

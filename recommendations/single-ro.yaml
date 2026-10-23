@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # It could be considered to remove this value, as ro=sro+ssro (ECMWF)
   #
@@ -48,10 +48,11 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 m <= ro
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 m <= ro
     minimum: 0.0

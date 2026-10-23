@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # @juntyr: Reduce error bounds by a factor of 10 since they were close to
   # the data range

@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # There is no point in archiving these four components because they are
   # straight from a climatology and are likely to be misinterpreted by users

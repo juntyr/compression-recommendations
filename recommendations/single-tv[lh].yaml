@@ -29,7 +29,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Contact people:
   # - Christoph Ruediger (ECMWF)
@@ -40,11 +40,12 @@ requirements:
   requirements:
     # conservative, provided by @juntyr
   - kind: lossless
-  # valid value range: 1 <= tv[lh] <= 20
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
 - kind: all
   requirements:
-  - kind: data-limits
+    # 1 <= tv[lh] <= 20
     minimum: 0
     maximum: 20

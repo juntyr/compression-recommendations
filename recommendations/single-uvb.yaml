@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # Robin Hogan (ECMWF):
   # For all the accumulated radiative fluxes I am going for 1 W/m2 error in a
@@ -43,10 +43,11 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 3600.0
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 J m^-2 <= uvb
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 J m^-2 <= uvb
     minimum: 0.0

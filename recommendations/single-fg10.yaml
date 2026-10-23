@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   # 
   # Peter B. (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
   # e.g. 0.01m/s or even 0.001m/s for wind fields

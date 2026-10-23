@@ -24,7 +24,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   # 
   # Robin Hogan (ECMWF): See uvb for reasoning on 3600 J/m2
   #
@@ -40,10 +40,11 @@ requirements:
     requirements:
     - kind: mean-absolute-error-bound
       value: 3600.0
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 J m^-2 <= ssrc
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 J m^-2 <= ssrc
     minimum: 0.0

@@ -22,7 +22,7 @@ filters:
 
 requirements:
 
-  # pointwise error bounds
+  # error bounds (all)
   #
   # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
   # a mean error bound for a majority-zero field can lose structure
@@ -46,10 +46,11 @@ requirements:
     requirements:
     - kind: mean-relative-error-bound
       value: 0.01
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
 - kind: all
   requirements:
-  # valid value range: 0 m <= smlt
-  #
-  # provided by @juntyr
-  - kind: data-limits
+    # 0 m <= smlt
     minimum: 0.0
