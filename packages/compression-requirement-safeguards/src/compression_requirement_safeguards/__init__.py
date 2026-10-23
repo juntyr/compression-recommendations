@@ -58,6 +58,9 @@ from compression_recommendations.requirements.missing import MissingValueRequire
 from compression_safeguards.safeguards.abc import Safeguard
 from compression_safeguards.safeguards.combinators.all import AllSafeguards
 from compression_safeguards.safeguards.combinators.any import AnySafeguard
+from compression_safeguards.safeguards.combinators.assume_safe import (
+    AssumeAlwaysSafeguard,
+)
 from compression_safeguards.safeguards.combinators.everywhere import EverywhereSafeguard
 from compression_safeguards.safeguards.eb import ErrorBound
 from compression_safeguards.safeguards.pointwise.abc import PointwiseSafeguard
@@ -99,6 +102,7 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
     safeguards = [sg for req in requirements for sg in _safeguards_for_requirement(req)]
 
     # collapse nested AllSafeguards into the outer list of all safeguards
+    # filter out AssumeAlwaysSafeguard's since they're always safe
     safeguards = [
         sg
         for safeguard in safeguards
@@ -107,7 +111,12 @@ def safeguards_for_requirements(*requirements: Requirement) -> Collection[Safegu
             if isinstance(safeguard, AllSafeguards)
             else [safeguard]
         )
+        if not isinstance(sg, AssumeAlwaysSafeguard)
     ]
+
+    # all([..., LosslessSafeguard, ...]) = LosslessSafeguard
+    if any(isinstance(sg, LosslessSafeguard) for sg in safeguards):
+        return [LosslessSafeguard()]
 
     return safeguards
 
@@ -140,9 +149,23 @@ def _safeguards_for_requirement(
                     else [safeguard]
                 )
             ]
-            # collapse a directly-wrapped safeguard
+            # any([..., True, ...]) = True
+            if any(isinstance(sg, AssumeAlwaysSafeguard) for sg in safeguards):
+                return [AssumeAlwaysSafeguard()]
+            # collapse multiple LosslessSafeguard's into one
+            # we conservatively don't filter out LosslessSafeguard entirely
+            if any(isinstance(sg, LosslessSafeguard) for sg in safeguards):
+                safeguards = [
+                    sg for sg in safeguards if not isinstance(sg, LosslessSafeguard)
+                ] + [LosslessSafeguard()]
             match safeguards:
+                case []:
+                    # any([]) = False, but the original data must always be safe
+                    raise ValueError(
+                        "AnyRequirement must contain at least one sub-requirement"
+                    )
                 case [safeguard]:
+                    # collapse a directly-wrapped safeguard
                     return [safeguard]
                 case safeguards:
                     return [
@@ -158,6 +181,7 @@ def _safeguards_for_requirement(
                 for sg in _safeguards_for_requirement(req)
             ]
             # collapse nested AllSafeguards into the outer one
+            # filter out AssumeAlwaysSafeguard's since they're always safe
             safeguards = [
                 sg
                 for safeguard in safeguards
@@ -166,10 +190,18 @@ def _safeguards_for_requirement(
                     if isinstance(safeguard, AllSafeguards)
                     else [safeguard]
                 )
+                if not isinstance(sg, AssumeAlwaysSafeguard)
             ]
-            # collapse a directly-wrapped safeguard
+            # all([..., LosslessSafeguard, ...]) = LosslessSafeguard
+            if any(isinstance(sg, LosslessSafeguard) for sg in safeguards):
+                return [LosslessSafeguard()]
             match safeguards:
+                case []:
+                    # all([]) = True
+                    # TODO: pass through to AllSafeguards once allowed
+                    return [AssumeAlwaysSafeguard()]
                 case [safeguard]:
+                    # collapse a directly-wrapped safeguard
                     return [safeguard]
                 case safeguards:
                     return [
@@ -367,7 +399,12 @@ def _safeguards_for_requirement(
                         early_bound=dict(maximum=requirement.maximum),
                     )
                 )
-            return safeguards
+            match safeguards:
+                case []:
+                    # no limits = always safe
+                    return [AssumeAlwaysSafeguard()]
+                case safeguards:
+                    return safeguards
         case RequirementKind.isovalue:
             assert isinstance(requirement, IsovalueRequirement)
             return [SignPreservingSafeguard(offset=requirement.value)]

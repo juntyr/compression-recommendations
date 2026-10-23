@@ -65,13 +65,6 @@ def test_all_recommendations():
 
 @pytest.mark.parametrize("cls", [AnyRequirement, AllRequirements])
 def test_combinator_requirement(cls):
-    with pytest.raises(
-        ValueError, match="can only combine over at least one safeguard"
-    ):
-        compression_requirement_safeguards.safeguards_for_requirements(
-            cls(requirements=[])
-        )
-
     compression_requirement_safeguards.safeguards_for_requirements(
         cls(requirements=[IsovalueRequirement(value=0)])
     )
@@ -79,6 +72,21 @@ def test_combinator_requirement(cls):
     compression_requirement_safeguards.safeguards_for_requirements(
         cls(requirements=[IsovalueRequirement(value=0), IsovalueRequirement(value=1)])
     )
+
+
+def test_empty_all_combinator_requirement():
+    compression_requirement_safeguards.safeguards_for_requirements(
+        AllRequirements(requirements=[])
+    )
+
+
+def test_empty_any_combinator_requirement():
+    with pytest.raises(
+        ValueError, match="AnyRequirement must contain at least one sub-requirement"
+    ):
+        compression_requirement_safeguards.safeguards_for_requirements(
+            AnyRequirement(requirements=[])
+        )
 
 
 @pytest.mark.parametrize(

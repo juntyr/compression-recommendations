@@ -7,9 +7,10 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
-from ...config import Format, LiteralFormat, _humanise_kinded_type, _parse_number
+from ...config import Format, LiteralFormat, _humanise_kinded_type
 from ...typing import JSON
 from ..abc import Requirement
 from ..kind import RequirementKind
@@ -84,7 +85,7 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
             requirement.
         """
 
-        return cls(value=_parse_number(value))
+        return cls(value=value)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -117,6 +118,16 @@ class MaxPointwiseAbsoluteErrorBoundRequirement(Requirement):
         """
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": strictyaml.Int() | strictyaml.Float(),
+            }
+        )
 
 
 @dataclass(kw_only=True, slots=True)
@@ -181,7 +192,7 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
             requirement.
         """
 
-        return cls(value=_parse_number(value))
+        return cls(value=value)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -214,6 +225,16 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
         """
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": strictyaml.Int() | strictyaml.Float(),
+            }
+        )
 
 
 @dataclass(kw_only=True, slots=True)
@@ -293,7 +314,7 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
             requirement.
         """
 
-        return cls(value=_parse_number(value))
+        return cls(value=value)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -326,6 +347,16 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
         """
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": strictyaml.Int() | strictyaml.Float(),
+            }
+        )
 
 
 @dataclass(kw_only=True, slots=True)
@@ -422,11 +453,7 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
             requirement.
         """
 
-        return cls(
-            value=_parse_number(value),
-            minimum=_parse_number(minimum),
-            maximum=_parse_number(maximum),
-        )
+        return cls(value=value, minimum=minimum, maximum=maximum)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -464,3 +491,15 @@ class MaxPointwiseQuadraticErrorBoundRequirement(Requirement):
         """
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value}, minimum={self.minimum}, maximum={self.maximum})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": strictyaml.Int() | strictyaml.Float(),
+                "minimum": strictyaml.Int() | strictyaml.Float(),
+                "maximum": strictyaml.Int() | strictyaml.Float(),
+            }
+        )

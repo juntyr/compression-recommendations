@@ -6,6 +6,7 @@ from collections.abc import Collection, Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
 from ..config import Format, LiteralFormat, _humanise_labelled_type
@@ -126,6 +127,16 @@ class AnyFilter(Filter):
                 or_ = _humanise_labelled_type(self, label="or", format=format)
                 return f"({f' {or_} '.join(filter.humanise(format=format) for filter in filters)})"
 
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "filters": strictyaml.EmptyList() | strictyaml.Seq(Filter._schema()),
+            }
+        )
+
 
 @dataclass(kw_only=True, slots=True)
 class AllFilters(Filter):
@@ -237,6 +248,16 @@ class AllFilters(Filter):
                 and_ = _humanise_labelled_type(self, label="and", format=format)
                 return f"({f' {and_} '.join(filter.humanise(format=format) for filter in filters)})"
 
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "filters": strictyaml.EmptyList() | strictyaml.Seq(Filter._schema()),
+            }
+        )
+
 
 @dataclass(kw_only=True, slots=True)
 class NotFilter(Filter):
@@ -330,3 +351,13 @@ class NotFilter(Filter):
 
         not_ = _humanise_labelled_type(self, label="not", format=format)
         return f"{not_} {self.filter.humanise(format=format)}"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "filters": Filter._schema(),
+            }
+        )

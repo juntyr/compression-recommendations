@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import ClassVar, Self, assert_never
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
 from ..config import (
@@ -14,7 +15,6 @@ from ..config import (
     LiteralFormat,
     _humanise_kinded_type,
     _humanise_labelled_type,
-    _parse_number,
 )
 from ..typing import JSON
 from .abc import Filter
@@ -82,6 +82,10 @@ class LevelKind(StrEnum):
         """
 
         return _humanise_labelled_type(self, label=self.value, format=format)
+
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Enum(list(cls.__members__.values()))
 
 
 @dataclass(kw_only=True, slots=True)
@@ -197,6 +201,16 @@ class LevelKindFilter(Filter):
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value.humanise(format=format)})"
 
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": LevelKind._schema(),
+            }
+        )
+
 
 @dataclass(kw_only=True, slots=True)
 class LevelValueFilter(Filter):
@@ -310,10 +324,7 @@ class LevelValueFilter(Filter):
             The instantiated level value filter.
         """
 
-        return cls(
-            minimum=None if minimum is None else _parse_number(minimum),
-            maximum=None if maximum is None else _parse_number(maximum),
-        )
+        return cls(minimum=minimum, maximum=maximum)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -362,3 +373,18 @@ class LevelValueFilter(Filter):
                 return f"{ty}(minimum={minimum}, maximum={maximum})"
             case _:
                 assert_never(limits)
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                strictyaml.Optional("minimum"): strictyaml.NullNone()
+                | strictyaml.Int()
+                | strictyaml.Float(),
+                strictyaml.Optional("maximum"): strictyaml.NullNone()
+                | strictyaml.Int()
+                | strictyaml.Float(),
+            }
+        )

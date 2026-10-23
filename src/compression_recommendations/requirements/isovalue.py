@@ -6,9 +6,10 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import Format, LiteralFormat, _humanise_kinded_type, _parse_number
+from ..config import Format, LiteralFormat, _humanise_kinded_type
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -64,7 +65,7 @@ class IsovalueRequirement(Requirement):
             The instantiated isovalue requirement.
         """
 
-        return cls(value=_parse_number(value))
+        return cls(value=value)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -96,3 +97,13 @@ class IsovalueRequirement(Requirement):
         """
 
         return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                "value": strictyaml.Int() | strictyaml.Float(),
+            }
+        )

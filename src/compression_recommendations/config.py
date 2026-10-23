@@ -136,7 +136,7 @@ class Config(ABC):
 
         return cls.from_config(
             **_parse_yaml(  # type: ignore
-                strictyaml.load(yaml)
+                strictyaml.dirty_load(yaml, schema=cls._schema(), allow_flow_style=True)
             )
         )
 
@@ -170,7 +170,9 @@ class Config(ABC):
             The instantiated class.
         """
 
-        return strictyaml.as_document(self.get_config()).as_yaml()
+        return strictyaml.as_document(
+            self.get_config(), schema=type(self)._schema()
+        ).as_yaml()
 
     @final
     def dump(self, writer: Writer[str]) -> None:
@@ -184,6 +186,11 @@ class Config(ABC):
         """
 
         writer.write(self.dumps())
+
+    @classmethod
+    @abstractmethod
+    def _schema(cls) -> strictyaml.Validator:
+        pass
 
 
 def _parse_yaml(yaml: strictyaml.YAML) -> JSON:
@@ -199,16 +206,6 @@ def _parse_yaml(yaml: strictyaml.YAML) -> JSON:
         )
 
     raise ValueError("unexpected yaml", yaml)
-
-
-# FIXME: use a schema for strictyaml instead
-def _parse_number(x: int | float | str) -> int | float:
-    if isinstance(x, int | float):
-        return x
-    try:
-        return int(x)
-    except ValueError:
-        return float(x)
 
 
 def _humanise_kinded_type(

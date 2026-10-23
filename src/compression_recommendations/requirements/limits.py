@@ -7,9 +7,10 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import ClassVar, Self, assert_never
 
+import strictyaml
 from typing_extensions import override  # MSPV 3.12
 
-from ..config import Format, LiteralFormat, _humanise_kinded_type, _parse_number
+from ..config import Format, LiteralFormat, _humanise_kinded_type
 from ..typing import JSON
 from .abc import Requirement
 from .kind import RequirementKind
@@ -93,10 +94,7 @@ class DataLimitsRequirement(Requirement):
             The instantiated data limits requirement.
         """
 
-        return cls(
-            minimum=None if minimum is None else _parse_number(minimum),
-            maximum=None if maximum is None else _parse_number(maximum),
-        )
+        return cls(minimum=minimum, maximum=maximum)
 
     @override
     def get_config(self) -> Mapping[str, JSON]:
@@ -145,3 +143,18 @@ class DataLimitsRequirement(Requirement):
                 return f"{ty}(minimum={minimum}, maximum={maximum})"
             case _:
                 assert_never(limits)
+
+    @override
+    @classmethod
+    def _schema(cls) -> strictyaml.Validator:
+        return strictyaml.Map(
+            {
+                "kind": strictyaml.Enum([cls.kind.value]),
+                strictyaml.Optional("minimum"): strictyaml.NullNone()
+                | strictyaml.Int()
+                | strictyaml.Float(),
+                strictyaml.Optional("maximum"): strictyaml.NullNone()
+                | strictyaml.Int()
+                | strictyaml.Float(),
+            }
+        )
