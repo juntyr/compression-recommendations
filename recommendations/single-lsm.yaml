@@ -41,7 +41,7 @@ requirements:
   # lossless
   #
   # conservative, provided by @juntyr
-  - kind: lossless
+- kind: lossless
 
   # isovalues (all)
   #

@@ -39,7 +39,7 @@ requirements:
   # lossless
   #
   # conservative, provided by @juntyr
-  - kind: lossless
+- kind: lossless
 
   # value validity constraints (all)
   #

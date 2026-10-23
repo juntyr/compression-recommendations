@@ -61,8 +61,6 @@ requirements:
       # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 0.01
-    - kind: mean-absolute-error-bound
-      value: 0.002
     # global error bounds (all)
   - kind: all
     requirements:
