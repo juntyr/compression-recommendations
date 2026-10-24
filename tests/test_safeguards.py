@@ -39,7 +39,7 @@ def test_recommended_safeguards_for_cc():
         ).get_config()
         == Safeguards(
             safeguards=[
-                ErrorBoundSafeguard(type="rel", eb=0.01, equal_nan=False),
+                ErrorBoundSafeguard(type="rel", eb=0.01, equal_nan=True),
                 PointwiseQuantityOfInterestErrorBoundSafeguard(
                     qoi='x >= c["minimum"]',  # type: ignore
                     type="abs",
