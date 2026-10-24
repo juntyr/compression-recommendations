@@ -211,7 +211,11 @@ def _safeguards_for_requirement(
                     ]
         case RequirementKind.max_pointwise_absolute_error_bound:
             assert isinstance(requirement, MaxPointwiseAbsoluteErrorBoundRequirement)
-            return [ErrorBoundSafeguard(type=ErrorBound.abs, eb=requirement.value)]
+            return [
+                ErrorBoundSafeguard(
+                    type=ErrorBound.abs, eb=requirement.value, equal_nan=True
+                )
+            ]
         case RequirementKind.mean_absolute_error_bound:
             assert isinstance(requirement, MeanAbsoluteErrorBoundRequirement)
             # conservatively bound the pointwise absolute error instead
@@ -221,7 +225,11 @@ def _safeguards_for_requirement(
             return [EverywhereSafeguard(safeguard=safeguard)]
         case RequirementKind.max_pointwise_relative_error_bound:
             assert isinstance(requirement, MaxPointwiseRelativeErrorBoundRequirement)
-            return [ErrorBoundSafeguard(type=ErrorBound.rel, eb=requirement.value)]
+            return [
+                ErrorBoundSafeguard(
+                    type=ErrorBound.rel, eb=requirement.value, equal_nan=True
+                )
+            ]
         case RequirementKind.mean_relative_error_bound:
             assert isinstance(requirement, MeanRelativeErrorBoundRequirement)
             # conservatively bound the pointwise relative error instead
