@@ -1,16 +1,17 @@
 # Requirements for Convective precipitation
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Peter Bechtold (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Convective precipitation [m]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: lwe_thickness_of_convective_precipitation_amount
@@ -18,27 +19,33 @@ filters:
       value: cp
     - kind: grib-short-name
       value: cp
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Peter Bechtold (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
-  requirements:
-  - kind: all
-    # absolute error
-    requirements:
-    - kind: mean-absolute-error-bound
-      value: 1e-05
 - kind: all
   requirements:
-  # valid value range: 0 m <= cp
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
+  - kind: all
+    requirements:
+      # absolute error
+    - kind: mean-absolute-error-bound
+      value: 1e-05
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
+- kind: all
+  requirements:
+    # 0 m <= cp
   - kind: data-limits
     minimum: 0.0

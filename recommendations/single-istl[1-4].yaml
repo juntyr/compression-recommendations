@@ -1,68 +1,72 @@
 # Requirements for Ice temperature layers 1-4
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Christoph Ruediger (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Ice temperature layer 1 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: istl1
     - kind: grib-short-name
       value: istl1
-  - kind: any
     # Ice temperature layer 2 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: istl2
     - kind: grib-short-name
       value: istl2
-  - kind: any
     # Ice temperature layer 3 [K]
-    filters:
-    - kind: cf-short-name
-      value: istl3
-    - kind: grib-short-name
-      value: istl3
   - kind: any
+    filters:
+    - kind: cf-short-name
+      value: istl3
+    - kind: grib-short-name
+      value: istl3
     # Ice temperature layer 4 [K]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: istl4
     - kind: grib-short-name
       value: istl4
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   # 
   # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
   # integrations to make budgets
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
   #
-  # Contact people:
-  # - Christoph Ruediger (ECMWF)
-  #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
-  - kind: all
-    # absolute error
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
+      # absolute error
     - kind: max-pointwise-absolute-error-bound
       value: 0.01
+    # global error bounds (all)
+  - kind: all
+    requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 0.002
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
+      # range-relative error (0.01 = 1%)
     - kind: mean-range-relative-error-bound
       value: 0.01

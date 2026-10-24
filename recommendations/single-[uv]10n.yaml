@@ -1,45 +1,50 @@
 # Requirements for 10 metre u/v-components of neutral wind
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Nils Wedi (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # 10 metre u-component of neutral wind [m s**-1]
-    filters:
-    - kind: cf-short-name
-      value: u10n
-    - kind: grib-short-name
-      value: u10n
   - kind: any
+    filters:
+    - kind: cf-short-name
+      value: u10n
+    - kind: grib-short-name
+      value: u10n
     # 10 metre v-component of neutral wind [m s**-1]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: v10n
     - kind: grib-short-name
       value: v10n
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   # 
   # Peter B. (ECMWF) and Jean (ECMWF) suggested to go low, e.g. 0.01m/s or
   # even 0.001m/s for wind fields
   #
-  # Contact people:
-  # - Nils Wedi (ECMWF)
-  #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 0.001

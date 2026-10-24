@@ -1,16 +1,17 @@
 # Requirements for Total cloud cover
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Peter Bechtold (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Total cloud cover [dimensionless]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: cloud_area_fraction
@@ -18,33 +19,37 @@ filters:
       value: tcc
     - kind: grib-short-name
       value: tcc
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Peter Bechtold (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 0.05
-  - kind: all
-    # relative error (0.01 = 1%)
-    requirements:
+      # relative error (0.01 = 1%)
     - kind: mean-relative-error-bound
       value: 0.01
-- kind: all
-  # valid value range: 0 % <= tcc <= 100 %
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
+- kind: all
   requirements:
+    # 0 % <= tcc <= 100 %
   - kind: data-limits
     minimum: 0.0
     maximum: 1.0

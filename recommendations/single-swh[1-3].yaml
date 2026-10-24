@@ -1,61 +1,66 @@
 # Requirements for Significant wave height of first-third swell partition
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Josh Kousal (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Significant wave height of first swell partition [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swh1
     - kind: grib-short-name
       value: swh1
-  - kind: any
     # Significant wave height of second swell partition [m]
-    filters:
-    - kind: cf-short-name
-      value: swh2
-    - kind: grib-short-name
-      value: swh2
   - kind: any
+    filters:
+    - kind: cf-short-name
+      value: swh2
+    - kind: grib-short-name
+      value: swh2
     # Significant wave height of third swell partition [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: swh3
     - kind: grib-short-name
       value: swh3
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Josh Kousal (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
-  requirements:
-  - kind: all
-    # absolute error
-    requirements:
-    - kind: mean-absolute-error-bound
-      value: 0.01
-  - kind: all
-    # relative error (0.01 = 1%)
-    requirements:
-    - kind: mean-relative-error-bound
-      value: 0.01
 - kind: all
   requirements:
-  # valid value range: 0 m <= swh[1-3]
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
+  - kind: all
+    requirements:
+      # absolute error
+    - kind: mean-absolute-error-bound
+      value: 0.01
+      # relative error (0.01 = 1%)
+    - kind: mean-relative-error-bound
+      value: 0.01
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
+- kind: all
+  requirements:
+    # 0 m <= swh[1-3]
   - kind: data-limits
     minimum: 0.0

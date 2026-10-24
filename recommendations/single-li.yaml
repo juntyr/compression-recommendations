@@ -1,51 +1,70 @@
 # Requirements for Lightning flash density
 #
-# Initialised by @juntyr.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Philippe Lopez (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
+    # Instantaneous total lightning flash density [km**-2 day**-1]
   - kind: any
     filters:
-    # Instantaneous total lightning flash density [km**-2 day**-1]
     - kind: grib-short-name
       value: litoti
     # Averaged total lightning flash density in the last hour [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota1
     # Instantaneous cloud-to-ground lightning flash density [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licgi
     # Averaged cloud-to-ground lightning flash density in the last hour [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga1
     # Averaged total lightning flash density in the last 3 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota3
     # Averaged total lightning flash density in the last 6 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: litota6
     # Averaged cloud-to-ground lightning flash density in the last 3 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga3
     # Averaged cloud-to-ground lightning flash density in the last 6 hours [km**-2 day**-1]
+  - kind: any
+    filters:
     - kind: grib-short-name
       value: licga6
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
+
+  # error bounds (all)
 - kind: all
-  # pointwise error bounds
-  # 
-  # Contact people:
-  # - Philippe Lopez (ECMWF)
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # relative error (0.01 = 1%)
     requirements:
+      # relative error (0.01 = 1%)
     - kind: mean-relative-error-bound
       value: 0.01

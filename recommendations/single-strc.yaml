@@ -1,16 +1,17 @@
 # Requirements for Surface net long-wave (thermal) radiation, clear sky
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Robin Hogan (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Surface net long-wave (thermal) radiation, clear sky [J m**-2]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_net_downward_longwave_flux_assuming_clear_sky
@@ -18,22 +19,26 @@ filters:
       value: strc
     - kind: grib-short-name
       value: strc
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   # 
   # Robin Hogan (ECMWF): See uvb for reasoning on 3600 J/m2
   #
-  # Contact people:
-  # - Robin Hogan (ECMWF)
-  #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 3600.0
