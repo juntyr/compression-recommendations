@@ -1,35 +1,40 @@
 # Requirements for Lake total depth
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Christoph Ruediger (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Lake total depth [m]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: dl
     - kind: grib-short-name
       value: dl
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Christoph Ruediger (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 24 bits adds a maximum pointwise
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 0.1

@@ -1,16 +1,17 @@
 # Requirements for Time-integrated eastward turbulent surface stress
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Nils Wedi (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Time-integrated eastward turbulent surface stress [N m**-2 s]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: surface_downward_eastward_stress
@@ -18,20 +19,24 @@ filters:
       value: ewss
     - kind: grib-short-name
       value: ewss
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Nils Wedi (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 100.0

@@ -1,16 +1,17 @@
 # Requirements for Land-sea mask
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Kristian Mogensen (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Land-sea mask [dimensionless]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: land_binary_mask
@@ -18,31 +19,47 @@ filters:
       value: lsm
     - kind: grib-short-name
       value: lsm
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Kristian Mogensen (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 24 bits adds a maximum pointwise
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
-  requirements:
-    # conservative, provided by @juntyr
-  - kind: lossless
 - kind: all
-  # It is important that threshold of 0.5 can still be used to decide whether
-  # land or ocean (ECMWF)
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
+  - kind: all
+    requirements: []
+
+  # lossless
+  #
+  # conservative, provided by @juntyr
+- kind: lossless
+
+  # isovalues (all)
+  #
+  # It is important that threshold of 0.5 can still be used to distinguish
+  # between land (> 0.5, land or inland water) and ocean (<= 0.5, ocean or
+  # inland water) (ECMWF)
+- kind: all
+  requirements:
+    # ocean < 0.5 <= land
   - kind: isovalue
     value: 0.5
-- kind: all
-  # valid value range: 0 % <= lsm <= 100 %
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
+- kind: all
   requirements:
+    # 0 % <= lsm <= 100 %
   - kind: data-limits
     minimum: 0.0
     maximum: 1.0

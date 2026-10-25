@@ -1,56 +1,61 @@
 # Requirements for Mean wave direction of first-third swell partition
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Josh Kousal (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Mean wave direction of first swell partition [degrees]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwd1
     - kind: grib-short-name
       value: mwd1
-  - kind: any
     # Mean wave direction of second swell partition [degrees]
-    filters:
-    - kind: cf-short-name
-      value: mwd2
-    - kind: grib-short-name
-      value: mwd2
   - kind: any
+    filters:
+    - kind: cf-short-name
+      value: mwd2
+    - kind: grib-short-name
+      value: mwd2
     # Mean wave direction of third swell partition [degrees]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: mwd3
     - kind: grib-short-name
       value: mwd3
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
-  #
-  # Contact people:
-  # - Josh Kousal (ECMWF)
+  # Peter Dueben (ECMWF): changed from mean relative to mean range-relative,
+  # since swell partition is bounded and low/high degrees have similar
+  # uncertainty
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
   - kind: all
-    # absolute error
     requirements:
+      # absolute error
     - kind: mean-absolute-error-bound
       value: 0.1
-  - kind: all
-    # range-relative error (0.01 = 1%)
-    requirements:
+      # range-relative error (0.01 = 1%)
     - kind: mean-range-relative-error-bound
       value: 0.01

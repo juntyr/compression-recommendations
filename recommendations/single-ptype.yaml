@@ -1,43 +1,55 @@
 # Requirements for Precipitation type
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Peter Bechtold (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Precipitation type [Code table 4.201]
+  - kind: any
     filters:
     - kind: cf-short-name
       value: ptype
     - kind: grib-short-name
       value: ptype
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
-  #
-  # Contact people:
-  # - Peter Bechtold (ECMWF)
+
+  # error bounds (all)
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
-  requirements:
-    # conservative, provided by @juntyr
-  - kind: lossless
 - kind: all
-  # valid value range: 0 <= ptype <= 14
-  # missing value: 255
-  #
-  # provided by @juntyr
   requirements:
+    # pointwise error bounds (any)
+  # - kind: any
+  #   requirements: []
+    # global error bounds (all)
+  - kind: all
+    requirements: []
+
+  # lossless
+  #
+  # conservative, provided by @juntyr
+- kind: lossless
+
+  # value validity constraints (all)
+  #
+  # Provided by @juntyr
+- kind: all
+  requirements:
+    # 0 <= ptype <= 14
   - kind: data-limits
     minimum: 0
     maximum: 14
+    # missing value: 255
   - kind: missing-value
     value: 255

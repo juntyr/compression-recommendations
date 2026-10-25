@@ -416,8 +416,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.001
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.5
 - filters:
@@ -558,8 +556,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.1
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -580,8 +576,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.001
-    - kind: all
-      requirements:
       - kind: mean-range-relative-error-bound
         value: 0.001
 - filters:
@@ -642,14 +636,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-07
       - kind: max-pointwise-absolute-error-bound
         value: 1e-06
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-07
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -1045,8 +1039,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.1
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1085,14 +1077,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-06
       - kind: max-pointwise-absolute-error-bound
         value: 1e-05
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-06
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1189,14 +1181,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-06
       - kind: max-pointwise-absolute-error-bound
         value: 1e-05
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-06
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1217,14 +1209,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-06
       - kind: max-pointwise-absolute-error-bound
         value: 1e-05
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-06
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1413,8 +1405,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -1451,11 +1441,13 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 10.0
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
-        value: 10.0
-      - kind: max-pointwise-absolute-error-bound
         value: 10.0
 - filters:
   - kind: any
@@ -1537,8 +1529,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.0
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -1595,8 +1585,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1664,12 +1652,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.0001
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0001
   - kind: all
     requirements:
     - kind: data-limits
@@ -1720,8 +1710,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -1743,10 +1731,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -1933,14 +1923,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-05
       - kind: max-pointwise-absolute-error-bound
         value: 0.0001
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-05
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -2017,10 +2007,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.001
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -2071,12 +2063,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 10000.0
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 1000.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 10000.0
 - filters:
   - kind: any
     filters:
@@ -2167,9 +2161,11 @@ recommendations:
       requirements:
       - kind: mean-relative-error-bound
         value: 0.01
-  - kind: data-limits
-    minimum: 0.0
-    maximum: 1.0
+  - kind: all
+    requirements:
+    - kind: data-limits
+      minimum: 0.0
+      maximum: 1.0
 - filters:
   - kind: any
     filters:
@@ -2224,8 +2220,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -2264,14 +2258,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.002
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.002
       - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
@@ -2298,6 +2292,42 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
+        value: lblt
+      - kind: grib-short-name
+        value: lblt
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lmlt
+      - kind: grib-short-name
+        value: lmlt
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ltlt
+      - kind: grib-short-name
+        value: ltlt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.0001
+      - kind: mean-range-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
         value: lai_lv
       - kind: grib-short-name
         value: lai_lv
@@ -2316,8 +2346,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.0001
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -2330,44 +2358,22 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
-        value: lblt
+        value: lgws
       - kind: grib-short-name
-        value: lblt
+        value: lgws
   - kind: level-kind
     value: single
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.0001
-    - kind: all
-      requirements:
-      - kind: mean-range-relative-error-bound
-        value: 0.01
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: lgws
-      - kind: grib-short-name
-        value: lgws
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
+        value: 1000.0
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 100.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 1000.0
 - filters:
   - kind: any
     filters:
@@ -2375,18 +2381,32 @@ recommendations:
       filters:
       - kind: grib-short-name
         value: litoti
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: litota1
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: licgi
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: licga1
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: litota3
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: litota6
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: licga3
+    - kind: any
+      filters:
       - kind: grib-short-name
         value: licga6
   - kind: level-kind
@@ -2416,8 +2436,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.001
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -2434,14 +2452,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.0001
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.0001
       - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
@@ -2462,8 +2480,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.1
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -2472,44 +2488,22 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
-        value: lmlt
+        value: lsf
       - kind: grib-short-name
-        value: lmlt
+        value: lsf
   - kind: level-kind
     value: single
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-      - kind: mean-absolute-error-bound
         value: 0.0001
-    - kind: all
-      requirements:
-      - kind: mean-range-relative-error-bound
-        value: 0.01
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: lsf
-      - kind: grib-short-name
-        value: lsf
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0001
   - kind: all
     requirements:
     - kind: data-limits
@@ -2532,8 +2526,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -2552,7 +2544,9 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: lossless
+    - kind: all
+      requirements:
+  - kind: lossless
   - kind: all
     requirements:
     - kind: isovalue
@@ -2600,10 +2594,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-relative-error-bound
         value: 0.01
+    - kind: all
+      requirements:
   - kind: all
     requirements:
     - kind: data-limits
@@ -2658,80 +2654,58 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
-        value: ltlt
+        value: mdts
       - kind: grib-short-name
-        value: ltlt
+        value: mdts
   - kind: level-kind
     value: single
   requirements:
   - kind: all
     requirements:
     - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mdww
+      - kind: grib-short-name
+        value: mdww
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.1
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: mgws
+      - kind: grib-short-name
+        value: mgws
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.0001
-    - kind: all
-      requirements:
-      - kind: mean-range-relative-error-bound
-        value: 0.01
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: mdts
-      - kind: grib-short-name
-        value: mdts
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.1
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: mdww
-      - kind: grib-short-name
-        value: mdww
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.1
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: mgws
-      - kind: grib-short-name
-        value: mgws
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
+        value: 1000.0
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 100.0
-      - kind: max-pointwise-absolute-error-bound
-        value: 1000.0
 - filters:
   - kind: any
     filters:
@@ -2746,10 +2720,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -2860,10 +2836,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 1.0
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -2882,8 +2860,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.0
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -2934,8 +2910,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.1
-    - kind: all
-      requirements:
       - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
@@ -2986,8 +2960,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3008,10 +2980,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -3142,8 +3116,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -3164,8 +3136,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.03
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -3200,7 +3170,9 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: lossless
+    - kind: all
+      requirements:
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -3226,8 +3198,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.0
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -3244,14 +3214,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-05
       - kind: max-pointwise-absolute-error-bound
         value: 0.0001
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-05
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3276,8 +3246,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.1
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -3300,8 +3268,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3322,11 +3288,13 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
     - kind: all
       requirements:
       - kind: mean-relative-error-bound
-        value: 0.05
-      - kind: max-pointwise-relative-error-bound
         value: 0.05
   - kind: all
     requirements:
@@ -3350,8 +3318,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1.0
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3374,12 +3340,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.0001
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.0001
   - kind: all
     requirements:
     - kind: data-limits
@@ -3440,16 +3408,16 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-relative-error-bound
+        value: 0.05
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
-      - kind: max-pointwise-relative-error-bound
-        value: 0.05
   - kind: all
     requirements:
     - kind: data-limits
@@ -3469,10 +3437,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -3525,7 +3495,9 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: lossless
+    - kind: all
+      requirements:
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -3547,14 +3519,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 1e-05
       - kind: max-pointwise-absolute-error-bound
         value: 0.0001
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 1e-05
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3577,7 +3549,7 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 1.0
@@ -3603,8 +3575,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -3625,8 +3595,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3761,8 +3729,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3783,10 +3749,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -3821,14 +3789,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
-      - kind: mean-absolute-error-bound
-        value: 0.002
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.002
       - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
@@ -3955,8 +3923,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -3999,8 +3965,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4017,10 +3981,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -4039,8 +4005,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.0
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4063,8 +4027,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
   - kind: all
@@ -4150,12 +4112,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.1
     - kind: all
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.1
   - kind: all
     requirements:
     - kind: data-limits
@@ -4374,10 +4338,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -4482,7 +4448,9 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: lossless
+    - kind: all
+      requirements:
+  - kind: lossless
   - kind: all
     requirements:
     - kind: data-limits
@@ -4506,8 +4474,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4568,8 +4534,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4640,14 +4604,14 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.001
       - kind: max-pointwise-absolute-error-bound
         value: 0.01
     - kind: all
       requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.001
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4668,8 +4632,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 0.01
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4690,8 +4652,6 @@ recommendations:
       requirements:
       - kind: mean-absolute-error-bound
         value: 1e-05
-    - kind: all
-      requirements:
       - kind: mean-relative-error-bound
         value: 0.01
 - filters:
@@ -4732,10 +4692,12 @@ recommendations:
   requirements:
   - kind: all
     requirements:
-    - kind: all
+    - kind: any
       requirements:
       - kind: max-pointwise-absolute-error-bound
         value: 10.0
+    - kind: all
+      requirements:
 - filters:
   - kind: any
     filters:
@@ -4756,4 +4718,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: 268030810f5d39b2872264d12539a36ecb3cb60d
+  commit: 93ee951ae16ee4135587dd5d64172d9df478b902

@@ -1,0 +1,66 @@
+# Requirements for Lake bottom/mix-layer/total layer temperature
+#
+# Please feel free to add comments (with your name),
+# and make well-justified changes!
+#
+# Contact people:
+# - Christoph Ruediger (ECMWF)
+
+filters:
+  # variables (any)
+- kind: any
+  filters:
+    # Lake bottom temperature [K]
+  - kind: any
+    filters:
+    - kind: cf-short-name
+      value: lblt
+    - kind: grib-short-name
+      value: lblt
+    # Lake mix-layer temperature [K]
+  - kind: any
+    filters:
+    - kind: cf-short-name
+      value: lmlt
+    - kind: grib-short-name
+      value: lmlt
+    # Lake total layer temperature [K]
+  - kind: any
+    filters:
+    - kind: cf-short-name
+      value: ltlt
+    - kind: grib-short-name
+      value: ltlt
+  # single-level variable
+- kind: level-kind
+  value: single
+
+requirements:
+
+  # error bounds (all)
+  # 
+  # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
+  # integrations to make budgets
+  #
+  # Peter Dueben (ECMWF): changed from mean relative to mean range-relative,
+  # since temperature offset in Kelvin is larger than its range
+  #
+  # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
+  # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
+- kind: all
+  requirements:
+    # pointwise error bounds (any)
+  - kind: any
+    requirements:
+      # absolute error
+    - kind: max-pointwise-absolute-error-bound
+      value: 0.01
+    # global error bounds (all)
+  - kind: all
+    requirements:
+      # absolute error
+    - kind: mean-absolute-error-bound
+      value: 0.0001
+      # range-relative error (0.01 = 1%)
+    - kind: mean-range-relative-error-bound
+      value: 0.01

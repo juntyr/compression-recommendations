@@ -1,9 +1,10 @@
 # Requirements for Temperature
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Nils Wedi (ECMWF)
 
 filters:
   # variables (any)
@@ -29,10 +30,8 @@ requirements:
   # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
   # integrations to make budgets
   #
-  # Peter Dueben (ECMWF): changed from pointwise-relative to range-relative
-  #
-  # Contact people:
-  # - Nils Wedi (ECMWF)
+  # Peter Dueben (ECMWF): changed from pointwise-relative to pointwise range-
+  # relative, since temperature offset in Kelvin is larger than its range
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

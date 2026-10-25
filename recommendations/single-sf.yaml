@@ -1,16 +1,17 @@
 # Requirements for Snowfall
 #
-# Initialised by @juntyr and @SF-N.
-#
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
+#
+# Contact people:
+# - Peter Bechtold (ECMWF)
 
 filters:
+  # variables (any)
 - kind: any
-  # variables
   filters:
-  - kind: any
     # Snowfall [m of water equivalent]
+  - kind: any
     filters:
     - kind: cf-standard-name
       value: lwe_thickness_of_snowfall_amount
@@ -18,32 +19,39 @@ filters:
       value: sf
     - kind: grib-short-name
       value: sf
+  # single-level variable
 - kind: level-kind
   value: single
+
 requirements:
-- kind: all
-  # pointwise error bounds
+
+  # error bounds (all)
   #
   # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
   # a mean error bound for a majority-zero field can lose structure
   #
-  # Contact people:
-  # - Peter Bechtold (ECMWF)
-  #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
-  requirements:
-  - kind: all
-    # absolute error
-    requirements:
-    - kind: mean-absolute-error-bound
-      value: 1e-05
-    - kind: max-pointwise-absolute-error-bound
-      value: 1e-04
 - kind: all
   requirements:
-  # valid value range: 0 m <= sf
+    # pointwise error bounds (any)
+  - kind: any
+    requirements:
+      # absolute error
+    - kind: max-pointwise-absolute-error-bound
+      value: 1e-04
+    # global error bounds (all)
+  - kind: all
+    requirements:
+      # absolute error
+    - kind: mean-absolute-error-bound
+      value: 1e-05
+
+  # value validity constraints (all)
   #
-  # provided by @juntyr
+  # Provided by @juntyr
+- kind: all
+  requirements:
+    # 0 m <= sf
   - kind: data-limits
     minimum: 0.0
