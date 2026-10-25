@@ -1,4 +1,4 @@
-# Requirements for Lake bottom temperature
+# Requirements for Lake bottom/mix-layer/total layer temperature
 #
 # Please feel free to add comments (with your name),
 # and make well-justified changes!
@@ -17,6 +17,20 @@ filters:
       value: lblt
     - kind: grib-short-name
       value: lblt
+    # Lake mix-layer temperature [K]
+  - kind: any
+    filters:
+    - kind: cf-short-name
+      value: lmlt
+    - kind: grib-short-name
+      value: lmlt
+    # Lake total layer temperature [K]
+  - kind: any
+    filters:
+    - kind: cf-short-name
+      value: ltlt
+    - kind: grib-short-name
+      value: ltlt
   # single-level variable
 - kind: level-kind
   value: single
