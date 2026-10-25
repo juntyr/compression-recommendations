@@ -45,12 +45,13 @@ requirements:
 
   # lossless
   #
-  # conservative, provided by @juntyr
+  # Christoph Ruediger (ECMWF): The vegetation type values are integers - there
+  # shouldn't be an error associated with them.
 - kind: lossless
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on WMO Code Table 4.234
 - kind: all
   requirements:
     # 1 <= tv[lh] <= 20

@@ -25,8 +25,8 @@ requirements:
 
   # error bounds (all)
   #
-  # The maximum error should be the smaller of either indicated absolute /
-  # relative errors (ECMWF)
+  # Christoph Ruediger (ECMWF): The maximum error should be the smaller of
+  # either indicated absolute / relative errors
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
@@ -47,7 +47,7 @@ requirements:
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on ERA5 data limits
 - kind: all
   requirements:
     # 0 m <= ssro

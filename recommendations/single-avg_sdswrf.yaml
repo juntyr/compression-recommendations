@@ -41,7 +41,7 @@ requirements:
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on ERA5 data limits
 - kind: all
   requirements:
     # 0 W m^-2 <= avg_sdswrf

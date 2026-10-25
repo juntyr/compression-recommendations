@@ -25,9 +25,9 @@ requirements:
 
   # error bounds (all)
   #
-  # There is no point in archiving these four components because they are
-  # straight from a climatology and are likely to be misinterpreted by users
-  # (ECMWF)
+  # Robin Hogan (ECMWF): There is no point in archiving this component because
+  # it is straight from a climatology and are likely to be misinterpreted by
+  # users
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

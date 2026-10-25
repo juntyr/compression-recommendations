@@ -38,12 +38,13 @@ requirements:
 
   # lossless
   #
-  # conservative, provided by @juntyr
+  # Christoph Ruediger (ECMWF): The soil type values are integers - there
+  # shouldn't be an error associated with them.
 - kind: lossless
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on WMO Code Table 4.213
 - kind: all
   requirements:
     # 0 <= slt <= 11

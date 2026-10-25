@@ -27,7 +27,7 @@ requirements:
 
   # error bounds (all)
   #
-  # Peter B. (ECMWF) recommended 0.01K for temperature fields for long
+  # Peter Bechtold (ECMWF) recommended 0.01K for temperature fields for long
   # integrations to make budgets
   #
   # Peter Dueben (ECMWF): changed from pointwise-relative to pointwise range-

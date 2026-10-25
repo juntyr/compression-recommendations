@@ -25,7 +25,7 @@ requirements:
 
   # error bounds (all)
   # 
-  # Peter B. (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
+  # Peter Bechtold (ECMWF) and Jean (ECMWF) suggested to go lower than 0.5m/s,
   # e.g. 0.01m/s or even 0.001m/s for wind fields
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
