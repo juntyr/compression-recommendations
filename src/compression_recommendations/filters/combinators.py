@@ -124,8 +124,9 @@ class AnyFilter(Filter):
             case (filter,):
                 return filter.humanise(format=format)
             case filters:
+                any = _humanise_labelled_type(self, label="any", format=format)
                 or_ = _humanise_labelled_type(self, label="or", format=format)
-                return f"({f' {or_} '.join(filter.humanise(format=format) for filter in filters)})"
+                return f"{any}({f' {or_} '.join(filter.humanise(format=format) for filter in filters)})"
 
     @override
     @classmethod
@@ -245,8 +246,9 @@ class AllFilters(Filter):
             case (filter,):
                 return filter.humanise(format=format)
             case filters:
+                all = _humanise_labelled_type(self, label="all", format=format)
                 and_ = _humanise_labelled_type(self, label="and", format=format)
-                return f"({f' {and_} '.join(filter.humanise(format=format) for filter in filters)})"
+                return f"{all}({f' {and_} '.join(filter.humanise(format=format) for filter in filters)})"
 
     @override
     @classmethod
