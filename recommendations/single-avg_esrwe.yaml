@@ -25,8 +25,9 @@ requirements:
 
   # error bounds (all)
   #
-  # @juntyr and @SF-N: Added a maximum pointwise absolute error bound, since
-  # a mean error bound for a majority-zero field can lose structure
+  # Sara Faghih-Naini (ECMWF) and Juniper Tyree (UH): Added a maximum pointwise
+  # absolute error bound, since a mean error bound for a majority-zero field
+  # can lose structure
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)

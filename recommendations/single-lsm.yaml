@@ -40,14 +40,14 @@ requirements:
 
   # lossless
   #
-  # conservative, provided by @juntyr
+  # Juniper Tyree (UH): Conservative, since no error bound has been suggested
 - kind: lossless
 
   # isovalues (all)
   #
-  # It is important that threshold of 0.5 can still be used to distinguish
-  # between land (> 0.5, land or inland water) and ocean (<= 0.5, ocean or
-  # inland water) (ECMWF)
+  # Kristian Mogensen (ECMWF): It is important that threshold of 0.5 can still
+  # be used to distinguish between land (> 0.5, land or inland water) and
+  # ocean (<= 0.5, ocean or inland water)
 - kind: all
   requirements:
     # ocean < 0.5 <= land
@@ -56,7 +56,7 @@ requirements:
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on ERA5 data limits
 - kind: all
   requirements:
     # 0 % <= lsm <= 100 %

@@ -38,12 +38,12 @@ requirements:
 
   # lossless
   #
-  # conservative, provided by @juntyr
+  # Juniper Tyree (UH): Conservative, since no error bound has been suggested
 - kind: lossless
 
   # value validity constraints (all)
   #
-  # Provided by @juntyr
+  # Juniper Tyree (UH): Initialised based on WMO Code Table 4.201
 - kind: all
   requirements:
     # 0 <= ptype <= 14
