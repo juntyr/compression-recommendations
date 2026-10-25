@@ -2292,6 +2292,42 @@ recommendations:
     - kind: any
       filters:
       - kind: cf-short-name
+        value: lblt
+      - kind: grib-short-name
+        value: lblt
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: lmlt
+      - kind: grib-short-name
+        value: lmlt
+    - kind: any
+      filters:
+      - kind: cf-short-name
+        value: ltlt
+      - kind: grib-short-name
+        value: ltlt
+  - kind: level-kind
+    value: single
+  requirements:
+  - kind: all
+    requirements:
+    - kind: any
+      requirements:
+      - kind: max-pointwise-absolute-error-bound
+        value: 0.01
+    - kind: all
+      requirements:
+      - kind: mean-absolute-error-bound
+        value: 0.0001
+      - kind: mean-range-relative-error-bound
+        value: 0.01
+- filters:
+  - kind: any
+    filters:
+    - kind: any
+      filters:
+      - kind: cf-short-name
         value: lai_lv
       - kind: grib-short-name
         value: lai_lv
@@ -2316,30 +2352,6 @@ recommendations:
     requirements:
     - kind: data-limits
       minimum: 0.0
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: lblt
-      - kind: grib-short-name
-        value: lblt
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: any
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0001
-      - kind: mean-range-relative-error-bound
-        value: 0.01
 - filters:
   - kind: any
     filters:
@@ -2469,30 +2481,6 @@ recommendations:
       - kind: mean-absolute-error-bound
         value: 0.1
       - kind: mean-relative-error-bound
-        value: 0.01
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: lmlt
-      - kind: grib-short-name
-        value: lmlt
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: any
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0001
-      - kind: mean-range-relative-error-bound
         value: 0.01
 - filters:
   - kind: any
@@ -2660,30 +2648,6 @@ recommendations:
     requirements:
     - kind: data-limits
       minimum: 0.0
-- filters:
-  - kind: any
-    filters:
-    - kind: any
-      filters:
-      - kind: cf-short-name
-        value: ltlt
-      - kind: grib-short-name
-        value: ltlt
-  - kind: level-kind
-    value: single
-  requirements:
-  - kind: all
-    requirements:
-    - kind: any
-      requirements:
-      - kind: max-pointwise-absolute-error-bound
-        value: 0.01
-    - kind: all
-      requirements:
-      - kind: mean-absolute-error-bound
-        value: 0.0001
-      - kind: mean-range-relative-error-bound
-        value: 0.01
 - filters:
   - kind: any
     filters:
@@ -4754,4 +4718,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: fe128198c8f8c67f578072e74564ead6f80bd8d1
+  commit: 93ee951ae16ee4135587dd5d64172d9df478b902
