@@ -125,8 +125,9 @@ class AnyRequirement(Requirement):
             case (requirement,):
                 return requirement.humanise(format=format)
             case requirements:
+                any = _humanise_labelled_type(self, label="any", format=format)
                 or_ = _humanise_labelled_type(self, label="or", format=format)
-                return f"({f' {or_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
+                return f"{any}({f' {or_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
 
     @override
     @classmethod
@@ -233,8 +234,9 @@ class AllRequirements(Requirement):
             case (requirement,):
                 return requirement.humanise(format=format)
             case requirements:
+                all = _humanise_labelled_type(self, label="all", format=format)
                 and_ = _humanise_labelled_type(self, label="and", format=format)
-                return f"({f' {and_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
+                return f"{all}({f' {and_} '.join(requirement.humanise(format=format) for requirement in requirements)})"
 
     @override
     @classmethod
