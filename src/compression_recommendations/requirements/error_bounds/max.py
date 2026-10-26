@@ -224,7 +224,7 @@ class MaxPointwiseRelativeErrorBoundRequirement(Requirement):
             error bound requirement.
         """
 
-        return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+        return f"{_humanise_kinded_type(self, format=format)}({self.value * 100}%)"
 
     @override
     @classmethod
@@ -346,7 +346,7 @@ class MaxPointwiseRangeRelativeErrorBoundRequirement(Requirement):
             range-relative error bound requirement.
         """
 
-        return f"{_humanise_kinded_type(self, format=format)}({self.value})"
+        return f"{_humanise_kinded_type(self, format=format)}({self.value * 100}%)"
 
     @override
     @classmethod
