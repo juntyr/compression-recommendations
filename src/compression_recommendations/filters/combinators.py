@@ -360,6 +360,6 @@ class NotFilter(Filter):
         return strictyaml.Map(
             {
                 "kind": strictyaml.Enum([cls.kind.value]),
-                "filters": Filter._schema(),
+                "filter": Filter._schema(),
             }
         )
