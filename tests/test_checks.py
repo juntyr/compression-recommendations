@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from compression_requirement_checks import check_safety_requirement
 from compression_requirement_safeguards import safeguards_for_requirements
 from compression_safeguards.api import Safeguards
@@ -8,6 +9,7 @@ from compression_recommendations.requirements.combinators import (
     AnyRequirement,
 )
 from compression_recommendations.requirements.error_bounds.max import (
+    MaxPointwiseAbsoluteErrorBoundRequirement,
     MaxPointwiseQuadraticErrorBoundRequirement,
     MaxPointwiseRangeRelativeErrorBoundRequirement,
     MaxPointwiseRelativeErrorBoundRequirement,
@@ -1146,6 +1148,32 @@ def test_fuzzer_found_data_limits_cast_overflow():
         approximation=decompressed, correction=correction
     )
 
+    assert check_safety_requirement(
+        original=original, reconstructed=corrected, requirement=requirement
+    )
+
+
+@pytest.mark.xfail
+def test_fuzzer_found_abs_error_violation():
+    original = np.array(2.086e-06, dtype=np.float16)
+
+    decompressed = np.array(-64, dtype=np.float16)
+
+    requirement = MaxPointwiseAbsoluteErrorBoundRequirement(value=64)
+
+    safeguards = Safeguards(safeguards=safeguards_for_requirements(requirement))
+
+    correction = safeguards.compute_correction(
+        data=original, approximation=decompressed
+    )
+    corrected = safeguards.apply_correction(
+        approximation=decompressed, correction=correction
+    )
+
+    # compression-safeguards define their error bound checks in the data type
+    #  of the data, and in float16, 64 + 2.086e-06 = 64
+    # fixing this would require using rounding modes or arithmetic with error
+    #  terms when checking and applying error bounds
     assert check_safety_requirement(
         original=original, reconstructed=corrected, requirement=requirement
     )
