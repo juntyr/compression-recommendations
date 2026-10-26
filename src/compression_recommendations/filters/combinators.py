@@ -118,7 +118,13 @@ class AnyFilter(Filter):
             The humanised representation of this any-filter combinator.
         """
 
-        match self.filters:
+        filters: list[Filter] = [
+            filter
+            for filter in self.filters
+            if not (isinstance(filter, AnyFilter) and len(filter.filters) == 0)
+        ]
+
+        match filters:
             case ():
                 return _humanise_labelled_type(self, label="False", format=format)
             case (filter,):
@@ -240,7 +246,13 @@ class AllFilters(Filter):
             The humanised representation of this all-filters combinator.
         """
 
-        match self.filters:
+        filters: list[Filter] = [
+            filter
+            for filter in self.filters
+            if not (isinstance(filter, AllFilters) and len(filter.filters) == 0)
+        ]
+
+        match filters:
             case ():
                 return _humanise_labelled_type(self, label="True", format=format)
             case (filter,):

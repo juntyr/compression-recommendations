@@ -119,7 +119,16 @@ class AnyRequirement(Requirement):
             The humanised representation of this any-requirement combinator.
         """
 
-        match self.requirements:
+        requirements: list[Requirement] = [
+            requirement
+            for requirement in self.requirements
+            if not (
+                isinstance(requirement, AnyRequirement)
+                and len(requirement.requirements) == 0
+            )
+        ]
+
+        match requirements:
             case ():
                 return _humanise_labelled_type(self, label="False", format=format)
             case (requirement,):
@@ -228,7 +237,16 @@ class AllRequirements(Requirement):
             The humanised representation of this all-requirements combinator.
         """
 
-        match self.requirements:
+        requirements: list[Requirement] = [
+            requirement
+            for requirement in self.requirements
+            if not (
+                isinstance(requirement, AllRequirements)
+                and len(requirement.requirements) == 0
+            )
+        ]
+
+        match requirements:
             case ():
                 return _humanise_labelled_type(self, label="True", format=format)
             case (requirement,):
