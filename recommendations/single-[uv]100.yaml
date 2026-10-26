@@ -31,7 +31,7 @@ filters:
 requirements:
 
   # error bounds (all)
-  # 
+  #
   # Peter Bechtold (ECMWF) and Jean Bidlot (ECMWF) suggested to go low,
   # e.g. 0.01m/s or even 0.001m/s for wind fields
   #
