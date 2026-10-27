@@ -24,7 +24,7 @@ filters:
 requirements:
 
   # error bounds (all)
-  # 
+  #
   # Robin Hogan (ECMWF): See uvb for reasoning on 3600 J/m2
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise

@@ -26,9 +26,11 @@ filters:
 requirements:
 
   # error bounds (all)
-  # 
+  #
   # In ERA5, GRIB linear packing with 24 bits adds a maximum pointwise
   # range-relative error of 1 / (2^24 - 1) ⪆ 5.960e-08 (0.01 = 1%)
+  #
+  # This variable is constant across ERA5 ensemble members
 - kind: all
   requirements:
     # pointwise error bounds (any)
