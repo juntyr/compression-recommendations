@@ -5,6 +5,7 @@
 #
 # Contact people:
 # - Nils Wedi (ECMWF)
+# - Annelize Van Niekerk (ECMWF)
 
 filters:
   # variables (any)
@@ -29,6 +30,9 @@ requirements:
   # absolute error bound, since a mean error bound for a majority-zero field
   # can lose structure
   #
+  # Annelize Van Niekerk (ECMWF): Tightened mean absolute bound, and combined
+  # tighter max absolute and 1% max relative bound
+  #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
 - kind: all
@@ -38,10 +42,13 @@ requirements:
     requirements:
       # absolute error
     - kind: max-pointwise-absolute-error-bound
-      value: 10000.0
+      value: 100.0
+      # relative error (0.01 = 1%)
+    - kind: max-pointwise-relative-error-bound
+      value: 0.01
     # global error bounds (all)
   - kind: all
     requirements:
       # absolute error
     - kind: mean-absolute-error-bound
-      value: 1000.0
+      value: 10.0

@@ -37,10 +37,7 @@ requirements:
       value: 0.05
     # global error bounds (all)
   - kind: all
-    requirements:
-      # relative error (0.01 = 1%)
-    - kind: mean-relative-error-bound
-      value: 0.05
+    requirements: []
 
   # value validity constraints (all)
   #

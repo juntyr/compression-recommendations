@@ -25,7 +25,8 @@ requirements:
 
   # error bounds (all)
   #
-  # Juniper Tyree (UH): Is the zero mean absolute error bound necessary?
+  # Josh Kousal (ECMWF): Increased mean absolute bound to 1e-04 to permit lossy
+  # compression
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
@@ -39,7 +40,7 @@ requirements:
     requirements:
       # absolute error
     - kind: mean-absolute-error-bound
-      value: 0.0
+      value: 1e-04
       # relative error (0.01 = 1%)
     - kind: mean-relative-error-bound
       value: 0.01

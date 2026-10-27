@@ -137,6 +137,6 @@ class TagFilter(Filter):
         return strictyaml.Map(
             {
                 "kind": strictyaml.Enum([cls.kind.value]),
-                "tag": strictyaml.Str(),
+                "value": strictyaml.Str(),
             }
         )

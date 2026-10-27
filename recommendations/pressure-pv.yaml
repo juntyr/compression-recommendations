@@ -29,8 +29,8 @@ requirements:
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
 - kind: all
   requirements:
-    # pointwise error bounds (all - FIXME)
-  - kind: all
+    # pointwise error bounds (any)
+  - kind: any
     requirements:
       # absolute error (0.1 PVU = 1e-7)
     - kind: max-pointwise-absolute-error-bound
