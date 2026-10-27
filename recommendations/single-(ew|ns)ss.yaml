@@ -37,8 +37,8 @@ requirements:
 
   # error bounds (all)
   #
-  # Annelize Van Niekerk (ECMWF): Tightened mean absolute bound, and added a
-  # combined max absolute and 1% max relative bound
+  # Sara Faghih-Naini (ECMWF) and Annelize Van Niekerk (ECMWF): Tightened mean
+  # absolute bound, and added a combined max absolute and 1% max relative bound
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
