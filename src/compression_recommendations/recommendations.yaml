@@ -4686,6 +4686,6 @@ recommendations:
       requirements:
       - kind: mean-relative-error-bound
         value: 0.01
-version: 0.1.0-b1
+version: 0.1.0-b2
 metadata:
   commit: 5d8481434ad99e735b7a47779256f2cb639c7597
