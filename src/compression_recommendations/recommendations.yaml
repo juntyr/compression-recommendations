@@ -3969,7 +3969,7 @@ recommendations:
     requirements:
     - kind: any
       requirements:
-      - kind: mean-absolute-error-bound
+      - kind: max-pointwise-absolute-error-bound
         value: 0.02
     - kind: all
       requirements:
@@ -4688,4 +4688,4 @@ recommendations:
         value: 0.01
 version: 0.1.0-b1
 metadata:
-  commit: 43cb5ca9745ec20ab6da11c3c2aec93dd42869d0
+  commit: ff4e430aa96296dba8aec7aeb0dae1d38a7adbfa
