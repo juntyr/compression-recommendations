@@ -5,7 +5,7 @@
 #
 # Contact people:
 # - Nils Wedi (ECMWF)
-# - Annelize Van Niekerk (ECMWF)
+# - Annelize van Niekerk (ECMWF)
 
 filters:
   # variables (any)
@@ -37,7 +37,7 @@ requirements:
 
   # error bounds (all)
   #
-  # Sara Faghih-Naini (ECMWF) and Annelize Van Niekerk (ECMWF): Tightened mean
+  # Sara Faghih-Naini (ECMWF) and Annelize van Niekerk (ECMWF): Tightened mean
   # absolute bound, and added a combined max absolute and 1% max relative bound
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
