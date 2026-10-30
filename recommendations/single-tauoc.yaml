@@ -28,7 +28,8 @@ requirements:
   # Sara Faghih-Naini (ECMWF) and Josh Kousal (ECMWF): Increased mean absolute
   # bound to 0.01 to permit lossy compression
   #
-  # Sara Faghih-Naini (ECMWF): Added max absolute bound to bound error outliers
+  # Sara Faghih-Naini (ECMWF) and Josh Kousal (ECMWF): Added max absolute bound
+  # to bound error outliers
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
