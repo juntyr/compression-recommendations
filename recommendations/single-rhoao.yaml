@@ -28,9 +28,10 @@ requirements:
   # Sara Faghih-Naini (ECMWF) and Josh Kousal (ECMWF): Increased mean absolute
   # bound to 0.01 to permit lossy compression
   #
-  # Sara Faghih-Naini (ECMWF): Switched from mean absolute to max absolute
-  # bound, since variable variability is low, and removed mean relative
-  # bound, since it was superfluous given the variable range offset
+  # Sara Faghih-Naini (ECMWF) and Josh Kousal (ECMWF): Switched from mean
+  # absolute to max absolute bound, since variable variability is low, and
+  # removed mean relative bound, since it was superfluous given the variable
+  # range offset
   #
   # In ERA5, GRIB linear packing with 16 bits adds a maximum pointwise
   # range-relative error of 1 / (2^16 - 1) ⪆ 1.525e-05 (0.01 = 1%)
